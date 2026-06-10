@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Royce Castle Recruiting Profile</title>
+    <link rel="canonical" href="https://roycecastle.com/flyer.html">
+    <link rel="icon" href="data:,">
+    <style>
+      :root {
+        --ink: #14171f;
+        --muted: #5f6675;
+        --brand: #771d26;
+        --blue: #2454a6;
+        --gold: #d8a642;
+        --line: rgba(20, 23, 31, 0.16);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #eef2f7;
+        color: var(--ink);
+      }
+
+      main {
+        width: min(980px, calc(100vw - 28px));
+        margin: 24px auto;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        box-shadow: 0 20px 48px rgba(17, 24, 39, 0.14);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 268px;
+        min-height: 310px;
+        color: #ffffff;
+        background:
+          linear-gradient(90deg, rgba(20, 23, 31, 0.92), rgba(20, 23, 31, 0.52)),
+          url("assets/basketball-court.jpg") center / cover;
+      }
+
+      .hero-copy {
+        padding: 38px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 12px;
+        font-size: 4.8rem;
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tags span {
+        padding: 7px 10px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        font-weight: 900;
+      }
+
+      .photo-box {
+        display: grid;
+        place-items: center;
+        padding: 22px;
+      }
+
+      .photo-frame {
+        display: grid;
+        place-items: center;
+        width: 214px;
+        height: 286px;
+        overflow: hidden;
+        border-radius: 18px;
+        background: var(--blue);
+        border: 5px solid #ffffff;
+        color: #ffffff;
+        font-size: 3rem;
+        font-weight: 950;
+      }
+
+      .photo-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 20%;
+      }
+
+      .body {
+        display: grid;
+        grid-template-columns: 0.34fr 0.66fr;
+        gap: 24px;
+        padding: 28px;
+      }
+
+      .stat-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .stat {
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: #f8fafc;
+      }
+
+      .stat strong,
+      .stat span {
+        display: block;
+      }
+
+      .stat strong {
+        font-size: 1.55rem;
+      }
+
+      .stat span {
+        margin-top: 2px;
+        color: var(--muted);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+      }
+
+      section {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      section:first-child {
+        padding-top: 0;
+      }
+
+      section:last-child {
+        border-bottom: 0;
+      }
+
+      h2 {
+        margin-bottom: 8px;
+        color: var(--brand);
+        font-size: 1.15rem;
+        text-transform: uppercase;
+        letter-spacing: 0;
+      }
+
+      p,
+      li {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .contact-line {
+        display: grid;
+        gap: 6px;
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #ffffff;
+      }
+
+      .contact-line span {
+        color: #ffffff;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin: 0 auto 24px;
+      }
+
+      button,
+      a {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 0;
+        padding: 10px 14px;
+        background: var(--brand);
+        color: #ffffff;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      a {
+        background: var(--ink);
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+        }
+
+        main {
+          width: 100%;
+          margin: 0;
+          box-shadow: none;
+          border: 0;
+        }
+
+        .actions {
+          display: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .hero,
+        .body {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+
+        .hero-copy {
+          padding: 30px 24px 18px;
+        }
+
+        .tags {
+          display: grid;
+          grid-template-columns: 1fr;
+          width: min(320px, 100%);
+        }
+
+        .tags span {
+          min-width: 0;
+          text-align: center;
+          overflow-wrap: anywhere;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Basketball Recruit | Class of <span data-field="graduationYear">2024</span></p>
+          <h1 data-field="name">Royce Castle</h1>
+          <div class="tags">
+            <span data-field="height">6'5"</span>
+            <span data-field="primaryPosition">Shooting Guard</span>
+            <span data-field="secondaryPosition">Playmaker</span>
+            <span data-field="gpaTag">High School GPA 3.7</span>
+            <span>Rigby High School</span>
+          </div>
+        </div>
+        <div class="photo-box">
+          <div class="photo-frame">
+            <img id="profile-photo" alt="Royce Castle" hidden>
+            <span id="photo-placeholder">RC</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="body">
+        <aside>
+          <div class="stat-grid">
+            <div class="stat"><strong data-field="height">6'5"</strong><span>Height</span></div>
+            <div class="stat"><strong id="vertical">Add</strong><span>Vertical</span></div>
+            <div class="stat"><strong>SG / Playmaker</strong><span>Role</span></div>
+            <div class="stat"><strong data-field="gpa">3.7</strong><span>High School GPA</span></div>
+            <div class="stat"><strong>Lockdown</strong><span>Defense</span></div>
+          </div>
+          <div class="contact-line">
+            <strong>Recruiting Contact</strong>
+            <span id="from-email">erik@puricloud.com</span>
+          </div>
+        </aside>
+
+        <article>
+          <section>
+            <h2>Player Summary</h2>
+            <p data-field="style"></p>
+          </section>
+          <section>
+            <h2>Program Value</h2>
+            <p data-field="value"></p>
+          </section>
+          <section>
+            <h2>Accolades / Notes</h2>
+            <p data-field="accolades"></p>
+          </section>
+          <section>
+            <h2>What Royce Brings</h2>
+            <ul>
+              <li>Great jump shot and three-point range.</li>
+              <li>Can post up smaller guards and make plays for teammates.</li>
+              <li>Ferocious defender who embraces tough assignments.</li>
+              <li>Crashes the boards and competes with a team-first motor.</li>
+              <li>High-motor workhorse who brings consistent effort to every workout.</li>
+              <li>High personal standards, strong work ethic, and healthy lifestyle.</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+    <div class="actions">
+      <button type="button" onclick="window.print()">Print / Save PDF</button>
+      <a href="index.html">Back to App</a>
+    </div>
+
+    <script>
+      const APP_KEY = "royceCastleRecruitingStudio.v3";
+      const STANDALONE_KEY = "royceCastleRecruitingStudio.standalone.v1";
+      const saved = JSON.parse(localStorage.getItem(APP_KEY) || "{}");
+      const standalone = JSON.parse(localStorage.getItem(STANDALONE_KEY) || "{}");
+      const athlete = saved.athlete || standalone || {};
+      const settings = saved.settings || { fromEmail: standalone.fromEmail };
+      const secondaryRole = athlete.secondaryPosition || athlete.secondary;
+      const normalizedSecondary = secondaryRole === "Point Guard" ? "Playmaker" : secondaryRole || "Playmaker";
+      const defaultStyle =
+        "Long combo guard with a strong jump shot, deep three-point range, post-up ability against smaller guards, and natural playmaking feel. Brings lockdown defensive effort, crashes the boards hard, and can be trusted with the opponent's best perimeter scorer.";
+      const defaultValue =
+        "Royce brings coachability, maturity, leadership, and a team-first approach. He earned a 3.7 high school GPA and plays with the kind of high-motor, workhorse energy coaches want in a program. He carries high standards for health, academics, and personal conduct and can help build locker-room culture on and off the court.";
+      const styleText = athlete.style || defaultStyle;
+      const valueText = athlete.value || defaultValue;
+      const fieldFallbacks = {
+        name: athlete.name || "Royce Castle",
+        graduationYear: athlete.graduationYear || athlete.grad || "2024",
+        height: athlete.height || "6'5\"",
+        primaryPosition: athlete.primaryPosition || athlete.position || "Shooting Guard",
+        secondaryPosition: normalizedSecondary,
+        gpa: athlete.gpa || "3.7",
+        gpaTag: `High School GPA ${athlete.gpa || "3.7"}`,
+        style: styleText.includes("fluent Spanish") || styleText.includes("Ecuador") ? defaultStyle : styleText,
+        value: valueText.includes("fluent Spanish") || valueText.includes("Ecuador") ? defaultValue : valueText,
+        accolades: athlete.accolades
+      };
+      document.querySelectorAll("[data-field]").forEach((node) => {
+        const value = fieldFallbacks[node.dataset.field] || athlete[node.dataset.field];
+        if (value) node.textContent = value;
+      });
+      document.querySelector("#vertical").textContent = athlete.vertical || athlete.weight || "Add";
+      document.querySelector("#from-email").textContent = settings.fromEmail || "erik@puricloud.com";
+      const profilePhoto = athlete.photoData || athlete.photoUrl || "assets/royce-castle-rcastle.jpg";
+      if (profilePhoto) {
+        document.querySelector("#profile-photo").src = profilePhoto;
+        document.querySelector("#profile-photo").hidden = false;
+        document.querySelector("#photo-placeholder").hidden = true;
+      }
+    </script>
+  </body>
+</html>

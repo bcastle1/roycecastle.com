@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coach Contact Worksheets | Royce Castle</title>
+    <link rel="canonical" href="https://roycecastle.com/contacts.html">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css?v=20260608-mockup-final">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  </head>
+  <body class="contacts-page">
+    <header class="topbar">
+      <a class="brand" href="index.html#dashboard" aria-label="Back to recruiting studio">
+        <span class="brand-mark">RC</span>
+        <span>
+          <strong>Coach Worksheets</strong>
+          <small>D1, JUCO, D2, NAIA, and other programs</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Worksheet navigation">
+        <a href="index.html#outreach"><i data-lucide="send"></i>Outreach</a>
+        <a href="index.html#video"><i data-lucide="video"></i>Video</a>
+        <a href="index.html#stats"><i data-lucide="bar-chart-3"></i>Stats</a>
+      </nav>
+      <a class="primary-button compact" href="index.html#outreach">
+        <i data-lucide="arrow-left"></i>
+        Back to App
+      </a>
+    </header>
+
+    <main class="contacts-main">
+      <section class="contacts-hero">
+        <div>
+          <p class="eyebrow">Expanded Database</p>
+          <h1>School Contact Worksheets</h1>
+          <p>
+            Browse the expanded recruiting worksheet database. Rows include broad program coverage plus verified
+            contact details where available; rows marked verify should be checked on the official athletics site
+            before sending.
+          </p>
+        </div>
+        <div class="contacts-metrics">
+          <span><strong id="count-total">0</strong>Total Rows</span>
+          <span><strong id="count-d1">0</strong>D1</span>
+          <span><strong id="count-juco">0</strong>JUCO</span>
+          <span><strong id="count-other">0</strong>Other</span>
+        </div>
+      </section>
+
+      <section class="workspace contacts-workbook">
+        <div class="section-heading row">
+          <div>
+            <p class="eyebrow">Worksheets</p>
+            <h2>All Basketball Programs</h2>
+          </div>
+          <div class="button-row">
+            <button class="secondary-button" type="button" id="export-page-contacts">
+              <i data-lucide="download"></i>
+              Export Visible CSV
+            </button>
+            <button class="ghost-button" type="button" id="reset-page-contacts">
+              <i data-lucide="rotate-ccw"></i>
+              Reload Starter Data
+            </button>
+          </div>
+        </div>
+
+        <div class="worksheet-tabs" role="tablist" aria-label="Contact worksheet tabs">
+          <button type="button" class="active" data-group="d1">D1 Programs</button>
+          <button type="button" data-group="juco">JUCO / Two-Year</button>
+          <button type="button" data-group="other">D2 / NAIA / Other</button>
+        </div>
+
+        <div class="table-tools expanded">
+          <label>
+            Search
+            <input id="page-contact-search" placeholder="School, state, coach, email, conference, source">
+          </label>
+          <label>
+            Division
+            <select id="page-division-filter">
+              <option value="">All divisions in worksheet</option>
+            </select>
+          </label>
+          <label>
+            Sort by
+            <select id="page-contact-sort">
+              <option value="displayName">School</option>
+              <option value="state">State</option>
+              <option value="division">Division</option>
+              <option value="conference">Conference</option>
+              <option value="headCoach">Head coach</option>
+              <option value="assistantCoach">Assistant / recruiting contact</option>
+              <option value="ranking">Ranking</option>
+              <option value="sentAt">Sent date</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-summary" id="table-summary">Showing 0 rows.</div>
+        <div class="table-wrap contact-page-table">
+          <table class="contacts-table">
+            <thead>
+              <tr>
+                <th>School</th>
+                <th>State</th>
+                <th>Division</th>
+                <th>Conference</th>
+                <th>Ranking</th>
+                <th>Head Coach</th>
+                <th>Assistant / Recruiting Contact</th>
+                <th>Email Contacts</th>
+                <th>Phone</th>
+                <th>Scholarship / NIL Notes</th>
+                <th>Links</th>
+                <th>Sent / Reply</th>
+                <th>Source Status</th>
+                <th>Use</th>
+              </tr>
+            </thead>
+            <tbody id="page-contacts-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="contacts-data.js?v=20260601"></script>
+    <script src="contacts-page.js?v=20260601"></script>
+  </body>
+</html>
