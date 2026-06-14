@@ -159,7 +159,7 @@ function renderRow(row) {
       </td>
       <td>${escapeHtml(row.sourceStatus || "")}</td>
       <td>
-        <a class="secondary-button compact" href="index.html?select=${escapeAttr(row.id)}#outreach">
+        <a class="secondary-button compact" href="admin/?select=${escapeAttr(row.id)}#campaign">
           <i data-lucide="send"></i>
           Draft
         </a>

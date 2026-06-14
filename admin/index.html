@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin | Royce Castle Recruiting</title>
+    <link rel="canonical" href="https://roycecastle.com/admin/">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../styles.css?v=20260614-public-admin4">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  </head>
+  <body class="admin-page">
+    <section class="admin-login" id="admin-login">
+      <div class="login-card">
+        <span class="brand-mark">RC</span>
+        <h1>Recruiting Admin</h1>
+        <p>Enter the admin code to manage media, contacts, messages, drafts, and outreach scheduling.</p>
+        <form id="admin-login-form">
+          <label>Admin code<input id="admin-login-code" type="password" autocomplete="current-password" autofocus></label>
+          <button class="primary-button" type="submit"><i data-lucide="lock-keyhole"></i>Log In</button>
+        </form>
+        <p class="login-error" id="admin-login-error" hidden>That code did not match.</p>
+        <a class="ghost-button" href="../"><i data-lucide="arrow-left"></i>Back to public site</a>
+      </div>
+    </section>
+
+    <div class="admin-shell" id="admin-app" hidden>
+      <aside class="admin-sidebar">
+        <a class="admin-brand" href="#overview">
+          <span class="brand-mark">RC</span>
+          <span><strong>Admin Studio</strong><small>Royce recruiting operations</small></span>
+        </a>
+        <nav aria-label="Admin navigation">
+          <a href="#overview"><i data-lucide="layout-dashboard"></i>Overview</a>
+          <a href="#messages"><i data-lucide="inbox"></i>Messages</a>
+          <a href="#campaign"><i data-lucide="send"></i>Email Runs</a>
+          <a href="#workbook"><i data-lucide="table-2"></i>Workbook</a>
+          <a href="#media"><i data-lucide="image"></i>Media</a>
+          <a href="#settings"><i data-lucide="settings"></i>Settings</a>
+        </nav>
+        <a class="ghost-button compact" href="../"><i data-lucide="external-link"></i>Public Site</a>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-header" id="overview">
+          <div>
+            <p class="eyebrow">Recruiting Control Room</p>
+            <h1>Royce Castle Admin</h1>
+            <p>Manage the coach workbook, messages, media, email drafts, and scheduled outreach from one private dashboard.</p>
+          </div>
+          <div class="admin-header-actions">
+            <button class="secondary-button" id="admin-lock" type="button"><i data-lucide="lock"></i>Lock Admin</button>
+            <a class="primary-button" href="../#contact"><i data-lucide="mail"></i>View Contact Form</a>
+          </div>
+        </header>
+
+        <section class="admin-metrics">
+          <article><small>Contacts</small><strong id="metric-contacts">0</strong><span>Workbook rows loaded</span></article>
+          <article><small>Selected</small><strong id="metric-selected">0</strong><span>Ready for next run</span></article>
+          <article><small>Messages</small><strong id="metric-messages">0</strong><span>Saved in this browser</span></article>
+          <article><small>Last run</small><strong id="metric-progress">0%</strong><span id="metric-run-label">No active run</span></article>
+        </section>
+
+        <section class="admin-grid two-col">
+          <article class="panel admin-panel" id="messages">
+            <div class="section-heading row">
+              <div>
+                <p class="eyebrow">Inbox</p>
+                <h2>Site Messages</h2>
+              </div>
+              <button class="ghost-button compact" id="clear-messages" type="button"><i data-lucide="trash-2"></i>Clear</button>
+            </div>
+            <div class="message-list" id="message-list"></div>
+          </article>
+
+          <article class="panel admin-panel" id="settings">
+            <div class="section-heading">
+              <p class="eyebrow">Configuration</p>
+              <h2>Admin & Email Settings</h2>
+            </div>
+            <div class="field-grid">
+              <label>Email forwards to<input id="setting-forward" type="email"></label>
+              <label>Send from email<input id="setting-from" type="email"></label>
+              <label>Change admin code<input id="setting-code" type="password" placeholder="New admin code"></label>
+              <label>Confirm code<input id="setting-code-confirm" type="password" placeholder="Repeat new code"></label>
+            </div>
+            <button class="primary-button" id="save-settings" type="button"><i data-lucide="save"></i>Save Settings</button>
+          </article>
+        </section>
+
+        <section class="panel admin-panel" id="campaign">
+          <div class="section-heading row">
+            <div>
+              <p class="eyebrow">Outreach</p>
+              <h2>Email Draft & Scheduled Runs</h2>
+            </div>
+            <div class="button-row">
+              <button class="ghost-button compact" id="toggle-progress" type="button"><i data-lucide="activity"></i>View Progress</button>
+              <button class="ghost-button compact" id="toggle-log" type="button"><i data-lucide="file-text"></i>View Run Log</button>
+            </div>
+          </div>
+
+          <div class="admin-campaign-grid">
+            <div class="composer-card">
+              <div class="school-strip admin-school-strip">
+                <strong id="admin-selected-school">Select a contact</strong>
+                <span id="admin-selected-meta">Choose from the workbook or enter a manual email.</span>
+              </div>
+              <div class="field-grid">
+                <label>To<input id="admin-to-email"></label>
+                <label>CC<input id="admin-cc-email" placeholder="Optional CC list"></label>
+              </div>
+              <label>Subject<input id="admin-subject"></label>
+              <label>Email draft<textarea id="admin-email-body" rows="10"></textarea></label>
+              <div class="button-row">
+                <button class="primary-button" id="admin-copy-email" type="button"><i data-lucide="copy"></i>Copy Draft</button>
+                <button class="secondary-button" id="admin-open-email" type="button"><i data-lucide="mail"></i>Open Draft</button>
+                <button class="ghost-button" id="admin-mark-sent" type="button"><i data-lucide="check"></i>Mark Sent</button>
+              </div>
+            </div>
+
+            <div class="run-card">
+              <div class="field-grid">
+                <label>Frequency
+                  <select id="schedule-frequency">
+                    <option value="manual">Manual run only</option>
+                    <option value="weekly">Once a week</option>
+                    <option value="biweekly">Every two weeks</option>
+                    <option value="monthly">Monthly</option>
+                  </select>
+                </label>
+                <label>Day
+                  <select id="schedule-day">
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                  </select>
+                </label>
+                <label>Time<input id="schedule-time" type="time" value="09:00"></label>
+                <label>Delay between emails, seconds<input id="schedule-delay" type="number" min="1" value="4"></label>
+              </div>
+              <label>Manual email<input id="manual-email" type="email" placeholder="optional@email.com"></label>
+              <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts during run</label>
+              <div class="button-row">
+                <button class="primary-button" id="start-run" type="button"><i data-lucide="rocket"></i>Start Send Run</button>
+                <button class="secondary-button" id="save-schedule" type="button"><i data-lucide="calendar-clock"></i>Save Auto-Send Schedule</button>
+              </div>
+              <div class="progress-panel" id="progress-panel" hidden>
+                <div class="progress-meta"><span id="progress-text">0%</span><span id="progress-count">0 of 0</span></div>
+                <div class="progress-track"><span id="progress-bar"></span></div>
+              </div>
+              <div class="run-log" id="run-log" hidden></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel admin-panel" id="workbook">
+          <div class="section-heading row">
+            <div>
+              <p class="eyebrow">Workbook</p>
+              <h2>Coach Contact Information</h2>
+            </div>
+            <div class="button-row">
+              <a class="secondary-button" href="../contacts.html"><i data-lucide="table-2"></i>Open Workbook</a>
+              <button class="ghost-button" id="download-workbook" type="button"><i data-lucide="download"></i>Download CSV</button>
+            </div>
+          </div>
+          <div class="contact-tools">
+            <label>Search contacts<input id="admin-contact-search" placeholder="School, coach, email, state, division"></label>
+            <label>Group
+              <select id="admin-contact-group">
+                <option value="">All groups</option>
+                <option value="d1">D1</option>
+                <option value="juco">JUCO / two-year</option>
+                <option value="other">D2 / NAIA / other</option>
+              </select>
+            </label>
+            <div class="button-row">
+              <button class="ghost-button compact" id="select-visible" type="button"><i data-lucide="list-checks"></i>Select Visible</button>
+              <button class="ghost-button compact" id="clear-selected" type="button"><i data-lucide="circle-x"></i>Clear Selected</button>
+            </div>
+          </div>
+          <div class="admin-contact-list" id="admin-contact-list"></div>
+        </section>
+
+        <section class="panel admin-panel" id="media">
+          <div class="section-heading row">
+            <div>
+              <p class="eyebrow">Media</p>
+              <h2>Images & Video Library</h2>
+            </div>
+            <a class="ghost-button compact" href="../assets/video/royce-castle-highlight.mp4" target="_blank" rel="noreferrer">
+              <i data-lucide="external-link"></i>Open Highlight
+            </a>
+          </div>
+          <div class="admin-media-grid">
+            <article><img src="../assets/royce-castle-rcastle.jpg" alt="Royce Castle holding basketball"><strong>Primary landing portrait</strong></article>
+            <article><img src="../assets/royce-castle-profile-poster.png" alt="Royce Castle poster backdrop"><strong>Poster backdrop</strong></article>
+            <article><img src="../assets/royce-castle-profile.jpg" alt="Royce Castle profile image"><strong>Profile image</strong></article>
+            <article><img src="../assets/basketball-court.jpg" alt="Basketball court background"><strong>Court background</strong></article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="admin-toast" class="toast" role="status"></div>
+    <script src="../contacts-data.js?v=20260601"></script>
+    <script src="admin.js?v=20260614-public-admin2"></script>
+  </body>
+</html>
