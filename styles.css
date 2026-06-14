@@ -1079,8 +1079,8 @@ body.contacts-page .contacts-main {
 
 .landing-photo-wrap {
   display: grid;
-  align-items: end;
-  padding: 34px 18px 0 36px;
+  align-items: center;
+  padding: 34px 18px 34px 36px;
   background:
     linear-gradient(90deg, rgba(6, 16, 29, 0.34), rgba(6, 16, 29, 0)),
     radial-gradient(circle at 20% 16%, rgba(240, 179, 35, 0.16), transparent 32%);
@@ -1789,7 +1789,7 @@ body.contacts-page .contacts-main {
   }
 
   .landing-photo-wrap {
-    padding: 20px 20px 0;
+    padding: 20px;
   }
 
   .landing-photo {
