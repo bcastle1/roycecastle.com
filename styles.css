@@ -1171,6 +1171,10 @@ body.contacts-page .contacts-main {
   padding: 18px;
 }
 
+.public-main > section {
+  scroll-margin-top: 132px;
+}
+
 .public-topbar .main-nav a:first-child::after {
   background: var(--gold);
 }
@@ -1529,23 +1533,127 @@ body.contacts-page .contacts-main {
   min-height: 104px;
 }
 
-.media-section {
+.action-gallery {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr 1fr;
+  gap: 22px;
+  overflow: hidden;
+  padding: clamp(22px, 4vw, 46px);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(6, 16, 29, 0.98), rgba(122, 16, 38, 0.9)),
+    url("assets/basketball-court.jpg") center / cover;
+  color: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.gallery-intro {
+  max-width: 860px;
+}
+
+.gallery-intro h2 {
+  color: #ffffff;
+}
+
+.gallery-intro p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.12fr) repeat(2, minmax(210px, 0.72fr));
+  grid-template-rows: repeat(2, 295px);
+  grid-auto-rows: 295px;
   gap: 10px;
 }
 
-.media-section img {
-  width: 100%;
-  height: 340px;
-  object-fit: cover;
+.gallery-frame {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
   border-radius: var(--radius);
-  border: 1px solid var(--line);
-  box-shadow: var(--soft-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #07111f;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
 }
 
-.media-section img:first-child {
-  object-position: 50% 18%;
+.gallery-frame.featured {
+  grid-row: span 2;
+}
+
+.gallery-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 260ms ease, filter 260ms ease;
+}
+
+.gallery-frame:hover img {
+  transform: scale(1.045);
+  filter: saturate(1.08) contrast(1.03);
+}
+
+.gallery-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(7, 17, 31, 0) 48%, rgba(7, 17, 31, 0.72) 100%);
+}
+
+.gallery-frame figcaption {
+  position: absolute;
+  inset: auto 12px 12px;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(7, 17, 31, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.gallery-frame span {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.gallery-frame strong {
+  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  line-height: 1.05;
+}
+
+.gallery-frame small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  font-weight: 760;
+  line-height: 1.35;
+}
+
+.gallery-frame.shot-release img {
+  object-position: 50% 22%;
+}
+
+.gallery-frame.touch img {
+  object-position: 50% 35%;
+}
+
+.gallery-frame.release img {
+  object-position: 50% 24%;
+}
+
+.gallery-frame.pressure img {
+  object-position: 50% 52%;
+}
+
+.gallery-frame.rebound img {
+  object-position: 50% 36%;
 }
 
 .contact-section {
@@ -2007,10 +2115,19 @@ body.contacts-page .contacts-main {
 
   .hero-proof,
   .impact-band,
-  .media-section,
+  .gallery-grid,
   .admin-metrics,
   .admin-media-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-rows: none;
+    grid-auto-rows: 295px;
+  }
+
+  .gallery-frame.featured {
+    grid-row: span 2;
   }
 
   .admin-shell {
@@ -2034,6 +2151,10 @@ body.contacts-page .contacts-main {
     padding: 10px;
   }
 
+  .public-main > section {
+    scroll-margin-top: 260px;
+  }
+
   .landing-copy {
     order: -1;
     padding: 24px;
@@ -2049,13 +2170,32 @@ body.contacts-page .contacts-main {
 
   .hero-proof,
   .impact-band,
-  .media-section,
+  .gallery-grid,
   .admin-metrics,
   .admin-media-grid,
   .contact-form,
   .contact-tools,
   .admin-sidebar nav {
     grid-template-columns: 1fr;
+  }
+
+  .action-gallery {
+    padding: 18px;
+  }
+
+  .gallery-grid {
+    grid-auto-rows: auto;
+  }
+
+  .gallery-frame,
+  .gallery-frame.featured {
+    min-height: 360px;
+    height: min(520px, 75vh);
+    grid-row: auto;
+  }
+
+  .gallery-frame figcaption {
+    inset: auto 10px 10px;
   }
 
   .admin-header,
