@@ -1595,47 +1595,6 @@ body.contacts-page .contacts-main {
   filter: saturate(1.08) contrast(1.03);
 }
 
-.gallery-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(7, 17, 31, 0) 48%, rgba(7, 17, 31, 0.72) 100%);
-}
-
-.gallery-frame figcaption {
-  position: absolute;
-  inset: auto 12px 12px;
-  z-index: 1;
-  display: grid;
-  gap: 4px;
-  padding: 12px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(7, 17, 31, 0.72);
-  backdrop-filter: blur(14px);
-}
-
-.gallery-frame span {
-  color: var(--gold);
-  font-size: 0.72rem;
-  font-weight: 950;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
-
-.gallery-frame strong {
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
-  line-height: 1.05;
-}
-
-.gallery-frame small {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
-  font-weight: 760;
-  line-height: 1.35;
-}
-
 .gallery-frame.shot-release img {
   object-position: 50% 22%;
 }
@@ -2192,10 +2151,6 @@ body.contacts-page .contacts-main {
     min-height: 360px;
     height: min(520px, 75vh);
     grid-row: auto;
-  }
-
-  .gallery-frame figcaption {
-    inset: auto 10px 10px;
   }
 
   .admin-header,
