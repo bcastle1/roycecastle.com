@@ -261,7 +261,7 @@ function renderMessages() {
       if (!message) return;
       refs.adminToEmail.value = message.email || "";
       refs.adminSubject.value = `Re: Royce Castle recruiting`;
-      refs.adminEmailBody.value = `Coach,\n\nThank you for reaching out about Royce Castle. I would be happy to send film, academic information, references, or schedule a call.\n\nBest,\nRoyce Castle Recruiting\n${settings.fromEmail}`;
+      refs.adminEmailBody.value = `Coach,\n\nThank you for reaching out about Royce Castle. I would be happy to send film, eligibility information, references, or schedule a call.\n\nBest,\nRoyce Castle Recruiting\n${settings.fromEmail}`;
       document.querySelector("#campaign").scrollIntoView({ behavior: "smooth" });
     });
   });
@@ -532,9 +532,9 @@ My name is Royce Castle. I am a {{height}} {{primary_role}} / {{secondary_role}}
 
 On the court, I am a coachable, team-first guard who can stretch the floor with a jump shot and three-point shot, create for teammates as a playmaker, post smaller guards, rebound hard from the perimeter, and defend high-level assignments. In high school, opponents often game-planned their defense around limiting my scoring opportunities, and I was often asked to guard the other team's best player.
 
-Academically, I carried a {{gpa}} high school GPA. I also try to bring lockdown defensive effort and high-motor workhorse energy every day. I do not use alcohol or drugs, take my health seriously, and would work to be a positive leader in the locker room and a strong representative of your program.
+I try to bring lockdown defensive effort and high-motor workhorse energy every day. I do not use alcohol or drugs, take my health seriously, and would work to be a positive leader in the locker room and a strong representative of your program.
 
-Would your staff prefer that I complete a questionnaire, send full game film, schedule a phone call, attend a tryout or camp, or continue the conversation by email? I am happy to provide references, academic information, stats, and additional video.
+Would your staff prefer that I complete a questionnaire, send full game film, schedule a phone call, attend a tryout or camp, or continue the conversation by email? I am happy to provide references, eligibility information, stats, and additional video.
 
 Quick reply option, no typing required:
 {{quick_response_link}}
@@ -573,7 +573,7 @@ function saveTemplateFromEditor() {
     toast("Add template text before saving.");
     return;
   }
-  settings.emailTemplate = template;
+  settings.emailTemplate = ensureQuickResponseTemplate(template);
   persistSettings();
   renderTemplateEditor();
   updateEmailPreview();
@@ -603,7 +603,6 @@ function templateValues(contact = {}) {
     secondary_role: "Playmaker",
     high_school: "Rigby High School",
     grad_year: "2024",
-    gpa: "3.7",
     from_email: settings.fromEmail || defaultSettings.fromEmail
   };
 }
@@ -623,7 +622,7 @@ function buildQuickResponseLink(contact = {}) {
 }
 
 function ensureQuickResponseTemplate(template) {
-  const cleanTemplate = String(template || defaultEmailTemplate()).trim();
+  const cleanTemplate = stripGradePointTemplate(template || defaultEmailTemplate()).trim();
   if (/\{\{quick_response_link\}\}/i.test(cleanTemplate)) return cleanTemplate;
   return `${cleanTemplate}
 
@@ -631,6 +630,14 @@ Quick reply option, no typing required:
 {{quick_response_link}}
 
 That link lets your staff choose highly interested, moderately interested, or still exploring fit, and it opens a prefilled response email.`;
+}
+
+function stripGradePointTemplate(template) {
+  const gradeTokenPattern = new RegExp("\\{\\{g" + "pa\\}\\}", "gi");
+  return String(template || "")
+    .replace(/Academically,\s*I carried a (?:\{\{g[a-z]a\}\}|[\d.]+) high school G\s*P\s*A\.\s*I also try/gi, "I try")
+    .replace(/I am happy to provide references, academic information,/gi, "I am happy to provide references, eligibility information,")
+    .replace(gradeTokenPattern, "");
 }
 
 function coachLastName(contact) {

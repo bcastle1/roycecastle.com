@@ -3,7 +3,7 @@ const DEFAULT_REPLY_EMAIL = "erik@puricloud.com";
 const responseOptions = {
   high: {
     label: "Highly interested",
-    body: "I am highly interested in Royce Castle. Please follow up with full film, academic information, and the best next step. I expect to respond within 1-2 days."
+    body: "I am highly interested in Royce Castle. Please follow up with full film, eligibility information, and the best next step. I expect to respond within 1-2 days."
   },
   moderate: {
     label: "Moderately interested",

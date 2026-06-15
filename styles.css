@@ -334,27 +334,6 @@ main {
   color: #ffffff;
 }
 
-.gpa-ribbon {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 8px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  font-size: 1.05rem;
-  font-weight: 850;
-}
-
-.gpa-ribbon svg,
-.gpa-ribbon strong {
-  color: var(--gold);
-}
-
-.gpa-ribbon strong {
-  font-size: 1.22rem;
-}
-
 .stat-tiles {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -1278,7 +1257,7 @@ body.contacts-page .contacts-main {
 
 .hero-proof {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
   padding-top: 8px;
 }
