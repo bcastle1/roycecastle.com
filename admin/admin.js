@@ -3,6 +3,7 @@ const ADMIN_SESSION_KEY = "royceCastleRecruitingStudio.adminUnlocked.v1";
 const ADMIN_SETTINGS_KEY = "royceCastleRecruitingStudio.adminSettings.v1";
 const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
 const RUN_LOG_KEY = "royceCastleRecruitingStudio.runLog.v1";
+const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
@@ -14,7 +15,8 @@ const defaultSettings = {
   day: "Monday",
   time: "09:00",
   delaySeconds: 4,
-  openDrafts: false
+  openDrafts: false,
+  emailTemplate: defaultEmailTemplate()
 };
 
 let settings = loadSettings();
@@ -64,7 +66,10 @@ function collectRefs() {
     "admin-to-email",
     "admin-cc-email",
     "admin-subject",
+    "admin-email-template",
     "admin-email-body",
+    "save-template",
+    "reset-template",
     "admin-copy-email",
     "admin-open-email",
     "admin-mark-sent",
@@ -131,6 +136,7 @@ function bindAdminEvents() {
     settings.ccEmail = refs.adminCcEmail.value;
     persistSettings();
   });
+  refs.adminEmailTemplate.addEventListener("input", updateEmailPreview);
 }
 
 function handleAdminClick(event) {
@@ -158,6 +164,12 @@ function handleAdminClick(event) {
       break;
     case "admin-mark-sent":
       markCurrentSent();
+      break;
+    case "save-template":
+      saveTemplateFromEditor();
+      break;
+    case "reset-template":
+      resetTemplate();
       break;
     case "start-run":
       startSendRun();
@@ -256,19 +268,20 @@ function renderMessages() {
 
 function renderComposer() {
   const contact = currentContact();
+  renderTemplateEditor();
   if (contact) {
     refs.adminSelectedSchool.textContent = contact.displayName || contact.school || "Selected contact";
     refs.adminSelectedMeta.textContent = [contact.assistantCoach, contact.headCoach, contact.division, contact.conference].filter(Boolean).join(" | ");
     refs.adminToEmail.value = contactEmail(contact);
     refs.adminSubject.value = `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`;
-    refs.adminEmailBody.value = buildEmail(contact);
+    updateEmailPreview();
     return;
   }
 
   refs.adminSelectedSchool.textContent = "Manual email";
   refs.adminSelectedMeta.textContent = "Enter an address and edit the draft before sending.";
   if (!refs.adminSubject.value) refs.adminSubject.value = `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`;
-  if (!refs.adminEmailBody.value) refs.adminEmailBody.value = buildEmail({});
+  updateEmailPreview();
 }
 
 function renderContacts() {
@@ -400,6 +413,7 @@ function startSendRun() {
     refs.adminEmailBody.value = target.body;
     logRun(`Prepared individualized draft for ${target.label} <${target.email}>.`);
     if (settings.openDrafts) openMailDraft(target, true);
+    recordEmailHistory(target, settings.openDrafts ? "Draft opened" : "Prepared");
     runState.sent += 1;
     updateProgress();
     runTimer = setTimeout(step, settings.delaySeconds * 1000);
@@ -413,7 +427,15 @@ function runTargets() {
   const targets = selectedContacts.flatMap((contact) => {
     const email = contactEmail(contact);
     if (!email) return [];
-    return [{ email, label: contact.displayName || contact.school, subject: `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`, body: buildEmail(contact) }];
+    return [
+      {
+        contactId: contact.id,
+        email,
+        label: contact.displayName || contact.school,
+        subject: `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`,
+        body: buildEmail(contact)
+      }
+    ];
   });
 
   const manualEmail = refs.manualEmail.value.trim();
@@ -470,6 +492,16 @@ function markCurrentSent() {
     toast("Manual draft marked ready.");
     return;
   }
+  recordEmailHistory(
+    {
+      contactId: contact.id,
+      email: refs.adminToEmail.value.trim() || contactEmail(contact),
+      label: contact.displayName || contact.school,
+      subject: refs.adminSubject.value,
+      body: refs.adminEmailBody.value
+    },
+    "Sent"
+  );
   logRun(`Marked sent for ${contact.displayName || contact.school}.`);
   selectedContactIds.delete(contact.id);
   renderAll();
@@ -492,16 +524,14 @@ function contactEmail(contact) {
   return [contact.headEmail, contact.assistantEmail].filter(Boolean).join(", ");
 }
 
-function buildEmail(contact) {
-  const coach = coachLastName(contact);
-  const schoolName = contact.displayName || contact.school || "your program";
-  return `Coach ${coach},
+function defaultEmailTemplate() {
+  return `Coach {{coach_last_name}},
 
-My name is Royce Castle. I am a 6'5" Shooting Guard / Playmaker from Rigby High School in Idaho, class of 2024. I am reaching out because I am interested in the ${schoolName} men's basketball program and would be grateful for a chance to learn the best process for being evaluated by your staff.
+My name is Royce Castle. I am a {{height}} {{primary_role}} / {{secondary_role}} from {{high_school}} in Idaho, class of {{grad_year}}. I am reaching out because I am interested in the {{school_name}} men's basketball program and would be grateful for a chance to learn the best process for being evaluated by your staff.
 
 On the court, I am a coachable, team-first guard who can stretch the floor with a jump shot and three-point shot, create for teammates as a playmaker, post smaller guards, rebound hard from the perimeter, and defend high-level assignments. In high school, opponents often game-planned their defense around limiting my scoring opportunities, and I was often asked to guard the other team's best player.
 
-Academically, I carried a 3.7 high school GPA. I also try to bring lockdown defensive effort and high-motor workhorse energy every day. I do not use alcohol or drugs, take my health seriously, and would work to be a positive leader in the locker room and a strong representative of your program.
+Academically, I carried a {{gpa}} high school GPA. I also try to bring lockdown defensive effort and high-motor workhorse energy every day. I do not use alcohol or drugs, take my health seriously, and would work to be a positive leader in the locker room and a strong representative of your program.
 
 Would your staff prefer that I complete a questionnaire, send full game film, schedule a phone call, attend a tryout or camp, or continue the conversation by email? I am happy to provide references, academic information, stats, and additional video.
 
@@ -509,7 +539,70 @@ Thank you for your time and consideration.
 
 Sincerely,
 Royce Castle
-${settings.fromEmail}`;
+{{from_email}}`;
+}
+
+function renderTemplateEditor() {
+  if (!refs.adminEmailTemplate || document.activeElement === refs.adminEmailTemplate) return;
+  refs.adminEmailTemplate.innerHTML = highlightTemplate(settings.emailTemplate || defaultEmailTemplate());
+}
+
+function highlightTemplate(template) {
+  return escapeHtml(template).replace(/(\{\{[a-z0-9_]+\}\})/gi, '<span class="template-token">$1</span>');
+}
+
+function templateEditorText() {
+  return (refs.adminEmailTemplate?.innerText || "").replace(/\u00a0/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function updateEmailPreview() {
+  if (!refs.adminEmailBody) return;
+  const template = document.activeElement === refs.adminEmailTemplate ? templateEditorText() : settings.emailTemplate || defaultEmailTemplate();
+  refs.adminEmailBody.value = resolveTemplate(template, currentContact() || {});
+}
+
+function saveTemplateFromEditor() {
+  const template = templateEditorText();
+  if (!template) {
+    toast("Add template text before saving.");
+    return;
+  }
+  settings.emailTemplate = template;
+  persistSettings();
+  renderTemplateEditor();
+  updateEmailPreview();
+  toast("Email template saved. Future drafts will use it.");
+}
+
+function resetTemplate() {
+  settings.emailTemplate = defaultEmailTemplate();
+  persistSettings();
+  renderTemplateEditor();
+  updateEmailPreview();
+  toast("Email template reset.");
+}
+
+function resolveTemplate(template, contact) {
+  const values = templateValues(contact);
+  return String(template || defaultEmailTemplate()).replace(/\{\{([a-z0-9_]+)\}\}/gi, (_, key) => values[key] ?? "");
+}
+
+function templateValues(contact = {}) {
+  return {
+    coach_last_name: coachLastName(contact),
+    school_name: contact.displayName || contact.school || "your program",
+    height: `6'5"`,
+    primary_role: "Shooting Guard",
+    secondary_role: "Playmaker",
+    high_school: "Rigby High School",
+    grad_year: "2024",
+    gpa: "3.7",
+    from_email: settings.fromEmail || defaultSettings.fromEmail
+  };
+}
+
+function buildEmail(contact) {
+  return resolveTemplate(settings.emailTemplate || defaultEmailTemplate(), contact || {});
 }
 
 function coachLastName(contact) {
@@ -582,6 +675,33 @@ function loadMessages() {
   try {
     const messages = JSON.parse(localStorage.getItem(PUBLIC_MESSAGES_KEY) || "[]");
     return Array.isArray(messages) ? messages : [];
+  } catch {
+    return [];
+  }
+}
+
+function recordEmailHistory(target, status = "Sent") {
+  if (!target.contactId) return;
+  const history = loadEmailHistory();
+  history.unshift({
+    id: `email-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    contactId: target.contactId,
+    school: target.label || "",
+    email: target.email || "",
+    subject: target.subject || refs.adminSubject?.value || "",
+    body: target.body || refs.adminEmailBody?.value || "",
+    status,
+    sentAt: new Date().toISOString(),
+    respondedAt: "",
+    viewedAt: ""
+  });
+  localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(history.slice(0, 500)));
+}
+
+function loadEmailHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(EMAIL_HISTORY_KEY) || "[]");
+    return Array.isArray(history) ? history : [];
   } catch {
     return [];
   }

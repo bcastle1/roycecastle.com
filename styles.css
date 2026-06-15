@@ -494,6 +494,60 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(122, 16, 38, 0.11);
 }
 
+.template-label {
+  gap: 8px;
+}
+
+.template-editor {
+  width: 100%;
+  min-height: 214px;
+  max-height: 340px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 11px 12px;
+  color: var(--ink);
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 620;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  box-shadow: inset 0 1px 0 rgba(13, 24, 41, 0.02);
+}
+
+.template-editor:focus {
+  outline: 0;
+  border-color: color-mix(in srgb, var(--maroon) 54%, white);
+  box-shadow: 0 0 0 3px rgba(122, 16, 38, 0.11);
+}
+
+.template-token {
+  display: inline-block;
+  border-bottom: 2px solid var(--gold);
+  border-radius: 4px;
+  padding: 0 3px 1px;
+  background: rgba(250, 191, 45, 0.18);
+  color: #5d0d1d;
+  font-weight: 950;
+}
+
+.placeholder-help {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: -2px;
+}
+
+.placeholder-help span {
+  border: 1px solid rgba(122, 16, 38, 0.14);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #fff8e8;
+  color: #5d0d1d;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
 textarea {
   min-height: 148px;
   resize: vertical;
@@ -875,7 +929,7 @@ body.contacts-page .contacts-main {
 
 .contacts-table {
   width: 100%;
-  min-width: 1900px;
+  min-width: 2260px;
   border-collapse: collapse;
 }
 
@@ -916,6 +970,89 @@ body.contacts-page .contacts-main {
 .contacts-table td a {
   color: var(--blue);
   font-weight: 900;
+}
+
+.contacts-table .history-button {
+  width: max-content;
+  color: var(--ink);
+}
+
+.history-modal[hidden] {
+  display: none;
+}
+
+.history-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(3, 10, 20, 0.58);
+  backdrop-filter: blur(10px);
+}
+
+.history-dialog {
+  width: min(980px, 96vw);
+  max-height: min(780px, 92vh);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  padding: 18px;
+  background: #ffffff;
+  box-shadow: 0 28px 90px rgba(3, 10, 20, 0.35);
+}
+
+.history-body {
+  margin-top: 14px;
+}
+
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.history-entry {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+}
+
+.history-meta {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 780;
+}
+
+.history-meta strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.history-entry pre {
+  max-height: 280px;
+  overflow: auto;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+
+.history-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .empty-state {

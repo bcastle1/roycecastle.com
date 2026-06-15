@@ -1,4 +1,5 @@
 const CONTACTS_APP_KEY = "royceCastleRecruitingStudio.v3";
+const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
 
 const pageRefs = {
   body: document.querySelector("#page-contacts-body"),
@@ -10,11 +11,16 @@ const pageRefs = {
   d1: document.querySelector("#count-d1"),
   juco: document.querySelector("#count-juco"),
   other: document.querySelector("#count-other"),
+  historyModal: document.querySelector("#history-modal"),
+  historyTitle: document.querySelector("#history-title"),
+  historyBody: document.querySelector("#history-body"),
+  closeHistory: document.querySelector("#close-history"),
   toast: document.querySelector("#toast")
 };
 
 let worksheetGroup = "d1";
 let worksheetContacts = loadWorksheetContacts();
+let activeHistoryContactId = "";
 
 initContactsPage();
 
@@ -40,6 +46,17 @@ function bindContactsPageEvents() {
   pageRefs.search.addEventListener("input", renderWorksheet);
   pageRefs.sort.addEventListener("change", renderWorksheet);
   pageRefs.division.addEventListener("change", renderWorksheet);
+  pageRefs.body.addEventListener("click", (event) => {
+    const historyButton = event.target.closest("[data-history-contact]");
+    if (historyButton) openHistory(historyButton.dataset.historyContact);
+  });
+  pageRefs.closeHistory.addEventListener("click", closeHistory);
+  pageRefs.historyModal.addEventListener("click", (event) => {
+    if (event.target === pageRefs.historyModal) closeHistory();
+    const action = event.target.closest("[data-history-action]");
+    if (!action) return;
+    updateHistoryItem(action.dataset.historyId, action.dataset.historyAction);
+  });
   document.querySelector("#export-page-contacts").addEventListener("click", exportVisibleContacts);
   document.querySelector("#reset-page-contacts").addEventListener("click", () => {
     if (!confirm("Reload the expanded starter contact database for this browser? Sent/reply status saved in this browser will be cleared.")) return;
@@ -119,7 +136,7 @@ function visibleRows() {
         .toLowerCase()
         .includes(query);
     })
-    .sort((a, b) => String(a[sortKey] || "").localeCompare(String(b[sortKey] || "")));
+    .sort((a, b) => String(sortValue(a, sortKey) || "").localeCompare(String(sortValue(b, sortKey) || "")));
 }
 
 function renderWorksheet() {
@@ -127,12 +144,13 @@ function renderWorksheet() {
   pageRefs.summary.textContent = `Showing ${rows.length.toLocaleString()} ${worksheetLabel()} row${rows.length === 1 ? "" : "s"}.`;
   pageRefs.body.innerHTML = rows.length
     ? rows.map(renderRow).join("")
-    : `<tr><td colspan="14"><div class="empty-state">No contacts match the current filters.</div></td></tr>`;
+    : `<tr><td colspan="17"><div class="empty-state">No contacts match the current filters.</div></td></tr>`;
   refreshWorksheetIcons();
 }
 
 function renderRow(row) {
   const emails = [row.headEmail, row.assistantEmail].filter(Boolean);
+  const history = emailHistoryFor(row.id);
   const links = [
     row.athleticsUrl ? `<a href="${escapeAttr(row.athleticsUrl)}" target="_blank" rel="noreferrer">Athletics</a>` : "",
     row.staffDirectoryUrl ? `<a href="${escapeAttr(row.staffDirectoryUrl)}" target="_blank" rel="noreferrer">Staff directory</a>` : ""
@@ -153,10 +171,10 @@ function renderRow(row) {
       <td>${escapeHtml(row.phone || "")}</td>
       <td>${escapeHtml(row.scholarshipNote || "")}</td>
       <td>${links.join("") || "<em>Research link</em>"}</td>
-      <td>
-        <span>${row.sentAt ? `Sent ${escapeHtml(formatDate(row.sentAt))}` : "Not sent"}</span>
-        <span>${row.respondedAt ? `Reply ${escapeHtml(formatDate(row.respondedAt))}` : "No reply logged"}</span>
-      </td>
+      <td>${renderHistorySummary(history[0])}</td>
+      <td>${renderHistorySummary(history[1])}</td>
+      <td>${renderHistorySummary(history[2])}</td>
+      <td>${renderHistoryButton(row, history.length)}</td>
       <td>${escapeHtml(row.sourceStatus || "")}</td>
       <td>
         <a class="secondary-button compact" href="admin/?select=${escapeAttr(row.id)}#campaign">
@@ -168,10 +186,106 @@ function renderRow(row) {
   `;
 }
 
+function renderHistorySummary(item) {
+  if (!item) return "<em>No email logged</em>";
+  return `
+    <span>${escapeHtml(formatDate(item.sentAt))}</span>
+    <em>${escapeHtml(item.status || "Sent")}</em>
+    ${item.respondedAt ? `<em>Reply ${escapeHtml(formatDate(item.respondedAt))}</em>` : ""}
+    ${item.viewedAt ? `<em>Viewed ${escapeHtml(formatDate(item.viewedAt))}</em>` : ""}
+  `;
+}
+
+function renderHistoryButton(row, count) {
+  return `
+    <button class="ghost-button compact history-button" type="button" data-history-contact="${escapeAttr(row.id)}">
+      <i data-lucide="history"></i>
+      History (${count})
+    </button>
+  `;
+}
+
+function sortValue(row, sortKey) {
+  if (sortKey === "sentAt") return emailHistoryFor(row.id)[0]?.sentAt || row.sentAt || "";
+  return row[sortKey];
+}
+
 function worksheetLabel() {
   if (worksheetGroup === "d1") return "D1";
   if (worksheetGroup === "juco") return "JUCO / two-year";
   return "D2 / NAIA / other";
+}
+
+function openHistory(contactId) {
+  activeHistoryContactId = contactId;
+  const row = worksheetContacts.find((contact) => contact.id === contactId);
+  const history = emailHistoryFor(contactId);
+  pageRefs.historyTitle.textContent = `${row?.displayName || row?.school || "School"} Email History`;
+  pageRefs.historyBody.innerHTML = history.length
+    ? `<div class="history-list">${history.map(renderHistoryEntry).join("")}</div>`
+    : `<div class="empty-state">No saved emails for this school yet. Mark a draft sent or run a campaign from the admin page to start the history.</div>`;
+  pageRefs.historyModal.hidden = false;
+  refreshWorksheetIcons();
+}
+
+function closeHistory() {
+  pageRefs.historyModal.hidden = true;
+}
+
+function renderHistoryEntry(item) {
+  return `
+    <article class="history-entry">
+      <div class="history-meta">
+        <strong>${escapeHtml(item.subject || "Recruiting email")}</strong>
+        <span>To: ${escapeHtml(item.email || "No recipient saved")}</span>
+        <span>Sent: ${escapeHtml(formatDateTime(item.sentAt))} | Status: ${escapeHtml(item.status || "Sent")}</span>
+        <span>Responded: ${item.respondedAt ? escapeHtml(formatDateTime(item.respondedAt)) : "No response marked"}</span>
+        <span>Viewed: ${item.viewedAt ? escapeHtml(formatDateTime(item.viewedAt)) : "Not tracked automatically"}</span>
+      </div>
+      <pre>${escapeHtml(item.body || "")}</pre>
+      <div class="history-actions">
+        <button class="ghost-button compact" type="button" data-history-action="responded" data-history-id="${escapeAttr(item.id)}">
+          <i data-lucide="message-square-reply"></i>
+          Mark Responded
+        </button>
+        <button class="ghost-button compact" type="button" data-history-action="viewed" data-history-id="${escapeAttr(item.id)}">
+          <i data-lucide="eye"></i>
+          Mark Viewed
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function updateHistoryItem(historyId, action) {
+  const history = loadEmailHistory();
+  const item = history.find((entry) => entry.id === historyId);
+  if (!item) return;
+  if (action === "responded") item.respondedAt = new Date().toISOString();
+  if (action === "viewed") item.viewedAt = new Date().toISOString();
+  saveEmailHistory(history);
+  openHistory(activeHistoryContactId);
+  renderWorksheet();
+  toast(action === "responded" ? "Response marked." : "View marked.");
+}
+
+function emailHistoryFor(contactId) {
+  return loadEmailHistory()
+    .filter((item) => item.contactId === contactId)
+    .sort((a, b) => new Date(b.sentAt || 0) - new Date(a.sentAt || 0));
+}
+
+function loadEmailHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(EMAIL_HISTORY_KEY) || "[]");
+    return Array.isArray(history) ? history : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveEmailHistory(history) {
+  localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(history.slice(0, 500)));
 }
 
 function exportVisibleContacts() {
@@ -194,10 +308,26 @@ function exportVisibleContacts() {
     "staffDirectoryUrl",
     "sourceStatus",
     "sentAt",
-    "respondedAt"
+    "respondedAt",
+    "lastEmail1",
+    "lastEmail2",
+    "lastEmail3",
+    "emailHistoryCount"
   ];
   const csv = [headers.join(",")]
-    .concat(rows.map((row) => headers.map((header) => csvCell(row[header] || "")).join(",")))
+    .concat(
+      rows.map((row) => {
+        const history = emailHistoryFor(row.id);
+        const enriched = {
+          ...row,
+          lastEmail1: history[0]?.sentAt || "",
+          lastEmail2: history[1]?.sentAt || "",
+          lastEmail3: history[2]?.sentAt || "",
+          emailHistoryCount: history.length
+        };
+        return headers.map((header) => csvCell(enriched[header] || "")).join(",");
+      })
+    )
     .join("\n");
   downloadBlob(new Blob([csv], { type: "text/csv" }), `royce-castle-${worksheetGroup}-contacts.csv`);
 }
@@ -219,6 +349,11 @@ function downloadBlob(blob, filename) {
 
 function formatDate(value) {
   return new Intl.DateTimeFormat(undefined, { year: "numeric", month: "short", day: "numeric" }).format(new Date(value));
+}
+
+function formatDateTime(value) {
+  if (!value) return "";
+  return new Intl.DateTimeFormat(undefined, { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(value));
 }
 
 function escapeHtml(value) {

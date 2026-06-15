@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260614-public-admin4">
+    <link rel="stylesheet" href="../styles.css?v=20260615-template-history">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -111,7 +111,26 @@
                 <label>CC<input id="admin-cc-email" placeholder="Optional CC list"></label>
               </div>
               <label>Subject<input id="admin-subject"></label>
-              <label>Email draft<textarea id="admin-email-body" rows="10"></textarea></label>
+              <label class="template-label">
+                Email template
+                <div id="admin-email-template" class="template-editor" contenteditable="true" spellcheck="true" aria-label="Email template"></div>
+              </label>
+              <div class="placeholder-help" aria-label="Available email template placeholders">
+                <span>{{coach_last_name}}</span>
+                <span>{{school_name}}</span>
+                <span>{{height}}</span>
+                <span>{{primary_role}}</span>
+                <span>{{secondary_role}}</span>
+                <span>{{high_school}}</span>
+                <span>{{grad_year}}</span>
+                <span>{{gpa}}</span>
+                <span>{{from_email}}</span>
+              </div>
+              <div class="button-row">
+                <button class="ghost-button compact" id="save-template" type="button"><i data-lucide="save"></i>Save Template</button>
+                <button class="ghost-button compact" id="reset-template" type="button"><i data-lucide="rotate-ccw"></i>Reset Template</button>
+              </div>
+              <label>Email preview<textarea id="admin-email-body" rows="8" readonly></textarea></label>
               <div class="button-row">
                 <button class="primary-button" id="admin-copy-email" type="button"><i data-lucide="copy"></i>Copy Draft</button>
                 <button class="secondary-button" id="admin-open-email" type="button"><i data-lucide="mail"></i>Open Draft</button>
@@ -209,6 +228,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260601"></script>
-    <script src="admin.js?v=20260614-public-admin2"></script>
+    <script src="admin.js?v=20260615-template-history"></script>
   </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Admin Workbook | Royce Castle</title>
     <link rel="canonical" href="https://roycecastle.com/contacts.html">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="styles.css?v=20260614-public-admin4">
+    <link rel="stylesheet" href="styles.css?v=20260615-template-history">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="contacts-page">
@@ -114,7 +114,10 @@
                 <th>Phone</th>
                 <th>Scholarship / NIL Notes</th>
                 <th>Links</th>
-                <th>Sent / Reply</th>
+                <th>Last Email 1</th>
+                <th>Last Email 2</th>
+                <th>Last Email 3</th>
+                <th>Email History</th>
                 <th>Source Status</th>
                 <th>Use</th>
               </tr>
@@ -125,9 +128,22 @@
       </section>
     </main>
 
+    <div class="history-modal" id="history-modal" hidden>
+      <div class="history-dialog" role="dialog" aria-modal="true" aria-labelledby="history-title">
+        <div class="section-heading row">
+          <div>
+            <p class="eyebrow">Outreach History</p>
+            <h2 id="history-title">Email History</h2>
+          </div>
+          <button class="ghost-button compact" id="close-history" type="button"><i data-lucide="x"></i>Close</button>
+        </div>
+        <div class="history-body" id="history-body"></div>
+      </div>
+    </div>
+
     <div class="toast" id="toast" role="status"></div>
     <script src="admin/admin-auth.js?v=20260614-public-admin"></script>
     <script src="contacts-data.js?v=20260601"></script>
-    <script src="contacts-page.js?v=20260614-public-admin"></script>
+    <script src="contacts-page.js?v=20260615-template-history"></script>
   </body>
 </html>
