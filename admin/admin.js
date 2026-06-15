@@ -536,6 +536,9 @@ I try to bring lockdown defensive effort and high-motor workhorse energy every d
 
 Would your staff prefer that I complete a questionnaire, send full game film, schedule a phone call, attend a tryout or camp, or continue the conversation by email? I am happy to provide references, eligibility information, stats, and additional video.
 
+You can view my recruiting profile, highlight video, and action photo library here:
+{{website_link}}
+
 Quick reply option, no typing required:
 {{quick_response_link}}
 
@@ -573,7 +576,7 @@ function saveTemplateFromEditor() {
     toast("Add template text before saving.");
     return;
   }
-  settings.emailTemplate = ensureQuickResponseTemplate(template);
+  settings.emailTemplate = ensureRequiredEmailTemplate(template);
   persistSettings();
   renderTemplateEditor();
   updateEmailPreview();
@@ -597,6 +600,7 @@ function templateValues(contact = {}) {
   return {
     coach_last_name: coachLastName(contact),
     school_name: contact.displayName || contact.school || "your program",
+    website_link: `${PUBLIC_SITE_ORIGIN}/`,
     quick_response_link: buildQuickResponseLink(contact),
     height: `6'5"`,
     primary_role: "Shooting Guard",
@@ -621,8 +625,25 @@ function buildQuickResponseLink(contact = {}) {
   return `${PUBLIC_SITE_ORIGIN}/respond.html?${params.toString()}`;
 }
 
+function ensureRequiredEmailTemplate(template) {
+  let cleanTemplate = stripGradePointTemplate(template || defaultEmailTemplate()).trim();
+  cleanTemplate = ensureWebsiteLinkTemplate(cleanTemplate);
+  return ensureQuickResponseTemplate(cleanTemplate);
+}
+
+function ensureWebsiteLinkTemplate(template) {
+  const cleanTemplate = String(template || "").trim();
+  if (/\{\{website_link\}\}|(?:https?:\/\/)?(?:www\.)?roycecastle\.com\/?(?:\s|$)/i.test(cleanTemplate)) return cleanTemplate;
+  const websiteBlock = `You can view my recruiting profile, highlight video, and action photo library here:
+{{website_link}}`;
+  if (/Quick reply option, no typing required:/i.test(cleanTemplate)) {
+    return cleanTemplate.replace(/\n*Quick reply option, no typing required:/i, `\n\n${websiteBlock}\n\nQuick reply option, no typing required:`);
+  }
+  return `${cleanTemplate}\n\n${websiteBlock}`;
+}
+
 function ensureQuickResponseTemplate(template) {
-  const cleanTemplate = stripGradePointTemplate(template || defaultEmailTemplate()).trim();
+  const cleanTemplate = String(template || defaultEmailTemplate()).trim();
   if (/\{\{quick_response_link\}\}/i.test(cleanTemplate)) return cleanTemplate;
   return `${cleanTemplate}
 
@@ -693,10 +714,11 @@ function csvCell(value) {
 function loadSettings() {
   try {
     const loadedSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {}) };
-    loadedSettings.emailTemplate = ensureQuickResponseTemplate(loadedSettings.emailTemplate);
+    loadedSettings.emailTemplate = ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
+    localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(loadedSettings));
     return loadedSettings;
   } catch {
-    return { ...defaultSettings, emailTemplate: ensureQuickResponseTemplate(defaultSettings.emailTemplate) };
+    return { ...defaultSettings, emailTemplate: ensureRequiredEmailTemplate(defaultSettings.emailTemplate) };
   }
 }
 
