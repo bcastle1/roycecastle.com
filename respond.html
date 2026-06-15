@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quick Reply | Royce Castle Recruiting</title>
+    <link rel="canonical" href="https://roycecastle.com/respond.html">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css?v=20260615-quick-reply">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  </head>
+  <body class="response-page public-page">
+    <header class="topbar public-topbar">
+      <a class="brand" href="/" aria-label="Royce Castle recruiting profile">
+        <span class="brand-mark">RC</span>
+        <span>
+          <strong>Royce Castle</strong>
+          <small>Basketball recruiting profile</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/#profile"><i data-lucide="user-round"></i>Profile</a>
+        <a href="/#video"><i data-lucide="play-square"></i>Film</a>
+        <a href="/#contact"><i data-lucide="mail"></i>Contact</a>
+      </nav>
+      <div class="top-actions">
+        <a class="back-button public-cta" href="/#video"><i data-lucide="play"></i>Watch Film</a>
+      </div>
+    </header>
+
+    <main class="response-main">
+      <section class="response-hero">
+        <div class="response-copy">
+          <p class="availability">Coach quick reply</p>
+          <h1>Thanks for taking a look at Royce Castle.</h1>
+          <p id="response-context">
+            Choose the closest fit and your email app will open with a prefilled response you can review and send.
+          </p>
+        </div>
+
+        <div class="response-panel">
+          <div class="response-school" id="response-school">Royce Castle recruiting response</div>
+          <div class="response-options" aria-label="Quick response options">
+            <button class="response-option high" type="button" data-interest="high">
+              <i data-lucide="flame"></i>
+              <span>
+                <strong>Highly Interested</strong>
+                <small>Please follow up. I expect to respond within 1-2 days.</small>
+              </span>
+            </button>
+            <button class="response-option moderate" type="button" data-interest="moderate">
+              <i data-lucide="timer"></i>
+              <span>
+                <strong>Moderately Interested</strong>
+                <small>Keep me in the loop. I expect to respond within 1-2 weeks.</small>
+              </span>
+            </button>
+            <button class="response-option exploring" type="button" data-interest="exploring">
+              <i data-lucide="search-check"></i>
+              <span>
+                <strong>Interested / Exploring Fit</strong>
+                <small>We will review fit and needs, and may reach out.</small>
+              </span>
+            </button>
+          </div>
+          <label class="quick-note">Optional note
+            <textarea id="response-note" rows="4" placeholder="Add anything helpful before opening the reply email."></textarea>
+          </label>
+          <p class="form-status" id="response-status">No message is sent until you review and send it from your email app.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer public-footer">
+      <span><i data-lucide="shield-check"></i>Work hard. Be coachable. Lead with effort.</span>
+      <span>Royce Castle Recruiting</span>
+    </footer>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="respond.js?v=20260615-quick-reply"></script>
+  </body>
+</html>

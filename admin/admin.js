@@ -4,6 +4,7 @@ const ADMIN_SETTINGS_KEY = "royceCastleRecruitingStudio.adminSettings.v1";
 const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
 const RUN_LOG_KEY = "royceCastleRecruitingStudio.runLog.v1";
 const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
+const PUBLIC_SITE_ORIGIN = "https://roycecastle.com";
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
@@ -535,6 +536,11 @@ Academically, I carried a {{gpa}} high school GPA. I also try to bring lockdown 
 
 Would your staff prefer that I complete a questionnaire, send full game film, schedule a phone call, attend a tryout or camp, or continue the conversation by email? I am happy to provide references, academic information, stats, and additional video.
 
+Quick reply option, no typing required:
+{{quick_response_link}}
+
+That link lets your staff choose highly interested, moderately interested, or still exploring fit, and it opens a prefilled response email.
+
 Thank you for your time and consideration.
 
 Sincerely,
@@ -591,6 +597,7 @@ function templateValues(contact = {}) {
   return {
     coach_last_name: coachLastName(contact),
     school_name: contact.displayName || contact.school || "your program",
+    quick_response_link: buildQuickResponseLink(contact),
     height: `6'5"`,
     primary_role: "Shooting Guard",
     secondary_role: "Playmaker",
@@ -603,6 +610,27 @@ function templateValues(contact = {}) {
 
 function buildEmail(contact) {
   return resolveTemplate(settings.emailTemplate || defaultEmailTemplate(), contact || {});
+}
+
+function buildQuickResponseLink(contact = {}) {
+  const params = new URLSearchParams({
+    school: contact.displayName || contact.school || "",
+    coach: coachLastName(contact),
+    contact_id: contact.id || "",
+    reply_to: settings.forwardEmail || settings.fromEmail || defaultSettings.forwardEmail
+  });
+  return `${PUBLIC_SITE_ORIGIN}/respond.html?${params.toString()}`;
+}
+
+function ensureQuickResponseTemplate(template) {
+  const cleanTemplate = String(template || defaultEmailTemplate()).trim();
+  if (/\{\{quick_response_link\}\}/i.test(cleanTemplate)) return cleanTemplate;
+  return `${cleanTemplate}
+
+Quick reply option, no typing required:
+{{quick_response_link}}
+
+That link lets your staff choose highly interested, moderately interested, or still exploring fit, and it opens a prefilled response email.`;
 }
 
 function coachLastName(contact) {
@@ -657,9 +685,11 @@ function csvCell(value) {
 
 function loadSettings() {
   try {
-    return { ...defaultSettings, ...(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {}) };
+    const loadedSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {}) };
+    loadedSettings.emailTemplate = ensureQuickResponseTemplate(loadedSettings.emailTemplate);
+    return loadedSettings;
   } catch {
-    return { ...defaultSettings };
+    return { ...defaultSettings, emailTemplate: ensureQuickResponseTemplate(defaultSettings.emailTemplate) };
   }
 }
 

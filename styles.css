@@ -1417,6 +1417,139 @@ body.contacts-page .contacts-main {
   object-fit: cover;
 }
 
+.response-main {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 36px);
+}
+
+.response-hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(320px, 0.72fr);
+  gap: 18px;
+  align-items: stretch;
+  min-height: calc(100vh - 190px);
+}
+
+.response-copy,
+.response-panel {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--soft-shadow);
+}
+
+.response-copy {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: clamp(26px, 5vw, 62px);
+  color: #ffffff;
+  background:
+    linear-gradient(90deg, rgba(5, 12, 22, 0.84), rgba(122, 16, 38, 0.76)),
+    url("assets/basketball-court.jpg") center / cover;
+}
+
+.response-copy h1 {
+  max-width: 720px;
+}
+
+.response-copy p:not(.availability) {
+  max-width: 680px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 720;
+}
+
+.response-panel {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+  padding: clamp(18px, 3vw, 30px);
+  background: #ffffff;
+}
+
+.response-school {
+  padding: 13px 14px;
+  border-radius: var(--radius);
+  background: #f8fafc;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--maroon);
+  color: var(--ink);
+  font-weight: 950;
+}
+
+.response-options {
+  display: grid;
+  gap: 10px;
+}
+
+.response-option {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  min-height: 92px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: #ffffff;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(9, 17, 31, 0.07);
+}
+
+.response-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(122, 16, 38, 0.28);
+  box-shadow: 0 16px 34px rgba(9, 17, 31, 0.12);
+}
+
+.response-option svg {
+  width: 38px;
+  height: 38px;
+  padding: 8px;
+  border-radius: 999px;
+  color: #ffffff;
+}
+
+.response-option.high svg {
+  background: linear-gradient(135deg, var(--maroon), var(--maroon-2));
+}
+
+.response-option.moderate svg {
+  background: linear-gradient(135deg, var(--blue), #2266ad);
+}
+
+.response-option.exploring svg {
+  background: linear-gradient(135deg, #315342, var(--green));
+}
+
+.response-option strong,
+.response-option small {
+  display: block;
+}
+
+.response-option strong {
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.response-option small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 760;
+  line-height: 1.35;
+}
+
+.quick-note textarea {
+  min-height: 104px;
+}
+
 .media-section {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr 1fr;
@@ -1885,6 +2018,7 @@ body.contacts-page .contacts-main {
 @media (max-width: 1100px) {
   .landing-hero,
   .video-showcase,
+  .response-hero,
   .contact-section,
   .prospectus-grid,
   .admin-grid.two-col,
@@ -1916,6 +2050,7 @@ body.contacts-page .contacts-main {
 
 @media (max-width: 720px) {
   .public-main,
+  .response-main,
   .admin-main {
     padding: 10px;
   }
@@ -1954,5 +2089,21 @@ body.contacts-page .contacts-main {
   .admin-corner-link {
     right: 10px;
     bottom: 10px;
+  }
+
+  .response-copy,
+  .response-panel {
+    padding: 20px;
+  }
+
+  .response-option {
+    grid-template-columns: 34px 1fr;
+    min-height: 86px;
+    padding: 12px;
+  }
+
+  .response-option svg {
+    width: 34px;
+    height: 34px;
   }
 }
