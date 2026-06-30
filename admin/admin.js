@@ -4,13 +4,19 @@ const ADMIN_SETTINGS_KEY = "royceCastleRecruitingStudio.adminSettings.v1";
 const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
 const RUN_LOG_KEY = "royceCastleRecruitingStudio.runLog.v1";
 const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
+const OPT_OUT_KEY = "royceCastleRecruitingStudio.optOutEmails.v1";
 const PUBLIC_SITE_ORIGIN = "https://roycecastle.com";
+const DEFAULT_MAILBOX = "info@roycecastle.com";
+const DEFAULT_WEBMAIL_URL = "https://privateemail.com/";
+const LEGACY_DEFAULT_EMAIL = "erik@puricloud.com";
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
 const defaultSettings = {
-  forwardEmail: "erik@puricloud.com",
-  fromEmail: "erik@puricloud.com",
+  forwardEmail: DEFAULT_MAILBOX,
+  fromEmail: DEFAULT_MAILBOX,
+  webmailEmail: DEFAULT_MAILBOX,
+  webmailUrl: DEFAULT_WEBMAIL_URL,
   ccEmail: "",
   frequency: "manual",
   day: "Monday",
@@ -21,6 +27,7 @@ const defaultSettings = {
 };
 
 let settings = loadSettings();
+let optOutEmails = loadOptOutEmails();
 let selectedContactIds = new Set();
 const requestedContactId = new URLSearchParams(location.search).get("select");
 let currentContactId = contactsWithEmail.some((contact) => contact.id === requestedContactId)
@@ -53,12 +60,18 @@ function collectRefs() {
     "metric-contacts",
     "metric-selected",
     "metric-messages",
+    "metric-opt-outs",
     "metric-progress",
     "metric-run-label",
+    "webmail-email-display",
+    "open-webmail-header",
+    "open-webmail-panel",
     "message-list",
     "clear-messages",
     "setting-forward",
     "setting-from",
+    "setting-webmail-email",
+    "setting-webmail-url",
     "setting-code",
     "setting-code-confirm",
     "save-settings",
@@ -80,6 +93,8 @@ function collectRefs() {
     "schedule-delay",
     "manual-email",
     "open-drafts-during-run",
+    "open-webmail-run",
+    "run-suppression-summary",
     "start-run",
     "save-schedule",
     "progress-panel",
@@ -89,6 +104,10 @@ function collectRefs() {
     "toggle-progress",
     "toggle-log",
     "run-log",
+    "opt-out-list",
+    "save-opt-outs",
+    "opt-out-current",
+    "opt-in-current",
     "download-workbook",
     "admin-contact-search",
     "admin-contact-group",
@@ -138,6 +157,9 @@ function bindAdminEvents() {
     persistSettings();
   });
   refs.adminEmailTemplate.addEventListener("input", updateEmailPreview);
+  refs.optOutList.addEventListener("input", () => {
+    refs.runSuppressionSummary.textContent = "Unsaved opt-out changes.";
+  });
 }
 
 function handleAdminClick(event) {
@@ -178,6 +200,15 @@ function handleAdminClick(event) {
     case "save-schedule":
       saveSchedule();
       break;
+    case "save-opt-outs":
+      saveOptOutsFromForm();
+      break;
+    case "opt-out-current":
+      optOutCurrentContact();
+      break;
+    case "opt-in-current":
+      optInCurrentContact();
+      break;
     case "toggle-progress":
       refs.progressPanel.hidden = !refs.progressPanel.hidden;
       break;
@@ -206,6 +237,8 @@ function handleAdminClick(event) {
 function hydrateSettings() {
   refs.settingForward.value = settings.forwardEmail;
   refs.settingFrom.value = settings.fromEmail;
+  refs.settingWebmailEmail.value = settings.webmailEmail;
+  refs.settingWebmailUrl.value = settings.webmailUrl;
   refs.scheduleFrequency.value = settings.frequency;
   refs.scheduleDay.value = settings.day;
   refs.scheduleTime.value = settings.time;
@@ -219,6 +252,8 @@ function renderAll() {
   renderMessages();
   renderComposer();
   renderContacts();
+  renderOptOuts();
+  renderWebmailLinks();
   renderRunLog();
   window.lucide?.createIcons();
 }
@@ -227,6 +262,7 @@ function renderMetrics() {
   refs.metricContacts.textContent = contacts.length.toLocaleString();
   refs.metricSelected.textContent = selectedContactIds.size.toLocaleString();
   refs.metricMessages.textContent = loadMessages().length.toLocaleString();
+  refs.metricOptOuts.textContent = optOutEmails.size.toLocaleString();
   refs.metricProgress.textContent = runState.total ? `${Math.round((runState.sent / runState.total) * 100)}%` : "0%";
   refs.metricRunLabel.textContent = runState.active ? "Run in progress" : "Ready";
 }
@@ -272,8 +308,10 @@ function renderComposer() {
   renderTemplateEditor();
   if (contact) {
     refs.adminSelectedSchool.textContent = contact.displayName || contact.school || "Selected contact";
-    refs.adminSelectedMeta.textContent = [contact.assistantCoach, contact.headCoach, contact.division, contact.conference].filter(Boolean).join(" | ");
-    refs.adminToEmail.value = contactEmail(contact);
+    refs.adminSelectedMeta.textContent = [contact.assistantCoach, contact.headCoach, contact.division, contact.conference, contactOptOutStatus(contact)]
+      .filter(Boolean)
+      .join(" | ");
+    refs.adminToEmail.value = contactTargetEmail(contact);
     refs.adminSubject.value = `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`;
     updateEmailPreview();
     return;
@@ -311,18 +349,30 @@ function renderContacts() {
 
   refs.adminContactList.innerHTML = visibleContacts
     .map(
-      (contact) => `
+      (contact) => {
+        const optStatus = contactOptOutStatus(contact);
+        const isSuppressed = isContactSuppressed(contact);
+        return `
         <article class="admin-contact-row ${contact.id === currentContactId ? "active" : ""}">
           <label class="check-row">
             <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
             <span>
               <strong>${escapeHtml(contact.displayName || contact.school)}</strong>
               <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
+              <em class="contact-status ${isSuppressed ? "suppressed" : optStatus.includes("opted out") ? "partial" : "clear"}">${escapeHtml(optStatus)}</em>
             </span>
           </label>
-          <button class="ghost-button compact" type="button" data-load-contact="${escapeAttr(contact.id)}">Load Draft</button>
+          <div class="contact-row-actions">
+            <button class="ghost-button compact" type="button" data-load-contact="${escapeAttr(contact.id)}">Load Draft</button>
+            ${
+              isSuppressed
+                ? `<button class="ghost-button compact" type="button" data-opt-in-contact="${escapeAttr(contact.id)}">Opt In</button>`
+                : `<button class="ghost-button compact" type="button" data-opt-out-contact="${escapeAttr(contact.id)}">Opt Out</button>`
+            }
+          </div>
         </article>
-      `
+      `;
+      }
     )
     .join("");
 
@@ -340,6 +390,14 @@ function renderContacts() {
       renderAll();
       document.querySelector("#campaign").scrollIntoView({ behavior: "smooth" });
     });
+  });
+
+  refs.adminContactList.querySelectorAll("[data-opt-out-contact]").forEach((button) => {
+    button.addEventListener("click", () => optOutContactById(button.dataset.optOutContact));
+  });
+
+  refs.adminContactList.querySelectorAll("[data-opt-in-contact]").forEach((button) => {
+    button.addEventListener("click", () => optInContactById(button.dataset.optInContact));
   });
 }
 
@@ -362,7 +420,10 @@ function saveSettingsFromForm() {
 
   settings.forwardEmail = refs.settingForward.value.trim() || defaultSettings.forwardEmail;
   settings.fromEmail = refs.settingFrom.value.trim() || defaultSettings.fromEmail;
+  settings.webmailEmail = refs.settingWebmailEmail.value.trim() || defaultSettings.webmailEmail;
+  settings.webmailUrl = normalizeWebmailUrl(refs.settingWebmailUrl.value.trim()) || defaultSettings.webmailUrl;
   persistSettings();
+  renderWebmailLinks();
   toast("Settings saved.");
 }
 
@@ -388,6 +449,9 @@ function startSendRun() {
   persistSettings();
 
   const targets = runTargets();
+  if (runTargets.skippedOptOuts?.length) {
+    logRun(`${runTargets.skippedOptOuts.length} selected contact${runTargets.skippedOptOuts.length === 1 ? "" : "s"} skipped because all saved emails are opted out.`);
+  }
   if (!targets.length) {
     toast("Select contacts or enter a manual email first.");
     return;
@@ -424,10 +488,14 @@ function startSendRun() {
 }
 
 function runTargets() {
+  runTargets.skippedOptOuts = [];
   const selectedContacts = [...selectedContactIds].map((id) => contacts.find((contact) => contact.id === id)).filter(Boolean);
   const targets = selectedContacts.flatMap((contact) => {
-    const email = contactEmail(contact);
-    if (!email) return [];
+    const email = contactTargetEmail(contact);
+    if (!email) {
+      runTargets.skippedOptOuts.push(contact.displayName || contact.school || contact.id);
+      return [];
+    }
     return [
       {
         contactId: contact.id,
@@ -441,20 +509,30 @@ function runTargets() {
 
   const manualEmail = refs.manualEmail.value.trim();
   if (manualEmail) {
-    targets.push({
-      email: manualEmail,
-      label: "manual recipient",
-      subject: refs.adminSubject.value,
-      body: refs.adminEmailBody.value
-    });
+    const activeManualEmail = activeEmailsFromString(manualEmail);
+    if (activeManualEmail) {
+      targets.push({
+        email: activeManualEmail,
+        label: "manual recipient",
+        subject: refs.adminSubject.value,
+        body: refs.adminEmailBody.value
+      });
+    } else {
+      runTargets.skippedOptOuts.push("manual recipient");
+    }
   }
   if (!targets.length && refs.adminToEmail.value.trim()) {
-    targets.push({
-      email: refs.adminToEmail.value.trim(),
-      label: "current draft recipient",
-      subject: refs.adminSubject.value,
-      body: refs.adminEmailBody.value
-    });
+    const activeDraftEmail = activeEmailsFromString(refs.adminToEmail.value);
+    if (activeDraftEmail) {
+      targets.push({
+        email: activeDraftEmail,
+        label: "current draft recipient",
+        subject: refs.adminSubject.value,
+        body: refs.adminEmailBody.value
+      });
+    } else {
+      runTargets.skippedOptOuts.push("current draft recipient");
+    }
   }
   return targets;
 }
@@ -474,8 +552,10 @@ async function copyDraft() {
 }
 
 function openMailDraft(target = currentEmailTarget(), quiet = false) {
-  if (!target.email) {
-    toast("Add a recipient email first.");
+  const enteredEmails = parseEmails(target.email);
+  const activeEmail = activeEmailsFromString(target.email);
+  if (!activeEmail) {
+    toast(enteredEmails.length ? "All recipients are opted out. Opt in before sending." : "Add a recipient email first.");
     return;
   }
   const params = new URLSearchParams({
@@ -483,7 +563,7 @@ function openMailDraft(target = currentEmailTarget(), quiet = false) {
     subject: target.subject || refs.adminSubject.value,
     body: target.body || refs.adminEmailBody.value
   });
-  window.open(`mailto:${target.email}?${params.toString()}`, "_blank");
+  window.open(`mailto:${activeEmail}?${params.toString()}`, "_blank");
   if (!quiet) toast("Draft opened in your mail app.");
 }
 
@@ -493,10 +573,15 @@ function markCurrentSent() {
     toast("Manual draft marked ready.");
     return;
   }
+  const activeEmail = contactTargetEmail(contact);
+  if (!activeEmail) {
+    toast("This contact is opted out. Opt them in before marking sent.");
+    return;
+  }
   recordEmailHistory(
     {
       contactId: contact.id,
-      email: refs.adminToEmail.value.trim() || contactEmail(contact),
+      email: activeEmail,
       label: contact.displayName || contact.school,
       subject: refs.adminSubject.value,
       body: refs.adminEmailBody.value
@@ -522,7 +607,135 @@ function currentContact() {
 }
 
 function contactEmail(contact) {
-  return [contact.headEmail, contact.assistantEmail].filter(Boolean).join(", ");
+  return contactEmails(contact).join(", ");
+}
+
+function contactEmails(contact = {}) {
+  return [contact.headEmail, contact.assistantEmail].flatMap(parseEmails);
+}
+
+function contactTargetEmail(contact = {}) {
+  return contactEmails(contact)
+    .filter((email) => !optOutEmails.has(normalizeEmail(email)))
+    .join(", ");
+}
+
+function activeEmailsFromString(value = "") {
+  return parseEmails(value)
+    .filter((email) => !optOutEmails.has(normalizeEmail(email)))
+    .join(", ");
+}
+
+function isContactSuppressed(contact = {}) {
+  const emails = contactEmails(contact);
+  return emails.length > 0 && emails.every((email) => optOutEmails.has(normalizeEmail(email)));
+}
+
+function contactOptOutStatus(contact = {}) {
+  const emails = contactEmails(contact);
+  if (!emails.length) return "No saved email";
+  const blocked = emails.filter((email) => optOutEmails.has(normalizeEmail(email))).length;
+  if (!blocked) return "Opted in";
+  if (blocked === emails.length) return "Opted out";
+  return `${blocked} of ${emails.length} opted out`;
+}
+
+function renderWebmailLinks() {
+  const url = normalizeWebmailUrl(settings.webmailUrl) || defaultSettings.webmailUrl;
+  [refs.openWebmailHeader, refs.openWebmailPanel, refs.openWebmailRun].filter(Boolean).forEach((link) => {
+    link.href = url;
+    link.title = `Open webmail for ${settings.webmailEmail || defaultSettings.webmailEmail}`;
+  });
+  if (refs.webmailEmailDisplay) refs.webmailEmailDisplay.textContent = settings.webmailEmail || defaultSettings.webmailEmail;
+}
+
+function renderOptOuts() {
+  if (refs.optOutList && document.activeElement !== refs.optOutList) {
+    refs.optOutList.value = [...optOutEmails].sort().join("\n");
+  }
+  if (refs.runSuppressionSummary) {
+    refs.runSuppressionSummary.textContent = optOutEmails.size
+      ? `${optOutEmails.size.toLocaleString()} opted-out email${optOutEmails.size === 1 ? "" : "s"} excluded from runs.`
+      : "No opt-outs saved.";
+  }
+}
+
+function saveOptOutsFromForm() {
+  optOutEmails = new Set(parseEmails(refs.optOutList.value));
+  persistOptOutEmails();
+  renderAll();
+  toast("Opt-out list saved.");
+}
+
+function optOutCurrentContact() {
+  const contact = currentContact();
+  const emails = contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
+  if (!emails.length) {
+    toast("Load a contact or enter an email to opt out.");
+    return;
+  }
+  emails.forEach((email) => optOutEmails.add(normalizeEmail(email)));
+  persistOptOutEmails();
+  renderAll();
+  toast(`${emails.length} email${emails.length === 1 ? "" : "s"} opted out.`);
+}
+
+function optInCurrentContact() {
+  const contact = currentContact();
+  const emails = contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
+  if (!emails.length) {
+    toast("Load a contact or enter an email to opt in.");
+    return;
+  }
+  emails.forEach((email) => optOutEmails.delete(normalizeEmail(email)));
+  persistOptOutEmails();
+  renderAll();
+  toast(`${emails.length} email${emails.length === 1 ? "" : "s"} opted in.`);
+}
+
+function optOutContactById(contactId) {
+  const contact = contacts.find((row) => row.id === contactId);
+  if (!contact) return;
+  contactEmails(contact).forEach((email) => optOutEmails.add(normalizeEmail(email)));
+  persistOptOutEmails();
+  renderAll();
+  toast(`${contact.displayName || contact.school} opted out.`);
+}
+
+function optInContactById(contactId) {
+  const contact = contacts.find((row) => row.id === contactId);
+  if (!contact) return;
+  contactEmails(contact).forEach((email) => optOutEmails.delete(normalizeEmail(email)));
+  persistOptOutEmails();
+  renderAll();
+  toast(`${contact.displayName || contact.school} opted in.`);
+}
+
+function loadOptOutEmails() {
+  try {
+    const emails = JSON.parse(localStorage.getItem(OPT_OUT_KEY) || "[]");
+    return new Set(Array.isArray(emails) ? emails.map(normalizeEmail).filter(Boolean) : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function persistOptOutEmails() {
+  localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+}
+
+function parseEmails(value = "") {
+  return [...new Set(String(value).split(/[\s,;]+/).map(normalizeEmail).filter((email) => email.includes("@")))];
+}
+
+function normalizeEmail(value = "") {
+  return String(value).trim().toLowerCase();
+}
+
+function normalizeWebmailUrl(value = "") {
+  const trimmed = String(value || "").trim();
+  if (!trimmed) return "";
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
 }
 
 function defaultEmailTemplate() {
@@ -714,12 +927,21 @@ function csvCell(value) {
 function loadSettings() {
   try {
     const loadedSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {}) };
+    loadedSettings.forwardEmail = normalizeMailboxSetting(loadedSettings.forwardEmail);
+    loadedSettings.fromEmail = normalizeMailboxSetting(loadedSettings.fromEmail);
+    loadedSettings.webmailEmail = loadedSettings.webmailEmail || DEFAULT_MAILBOX;
+    loadedSettings.webmailUrl = normalizeWebmailUrl(loadedSettings.webmailUrl) || DEFAULT_WEBMAIL_URL;
     loadedSettings.emailTemplate = ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
     localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(loadedSettings));
     return loadedSettings;
   } catch {
     return { ...defaultSettings, emailTemplate: ensureRequiredEmailTemplate(defaultSettings.emailTemplate) };
   }
+}
+
+function normalizeMailboxSetting(value) {
+  const email = String(value || "").trim();
+  return !email || email.toLowerCase() === LEGACY_DEFAULT_EMAIL ? DEFAULT_MAILBOX : email;
 }
 
 function persistSettings() {

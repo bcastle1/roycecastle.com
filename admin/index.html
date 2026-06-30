@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260615-gallery-clean">
+    <link rel="stylesheet" href="../styles.css?v=20260630-email-admin">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -14,7 +14,7 @@
       <div class="login-card">
         <span class="brand-mark">RC</span>
         <h1>Recruiting Admin</h1>
-        <p>Enter the admin code to manage media, contacts, messages, drafts, and outreach scheduling.</p>
+        <p>Enter the admin code to manage media, contacts, messages, drafts, webmail, and outreach runs.</p>
         <form id="admin-login-form">
           <label>Admin code<input id="admin-login-code" type="password" autocomplete="current-password" autofocus></label>
           <button class="primary-button" type="submit"><i data-lucide="lock-keyhole"></i>Log In</button>
@@ -32,6 +32,7 @@
         </a>
         <nav aria-label="Admin navigation">
           <a href="#overview"><i data-lucide="layout-dashboard"></i>Overview</a>
+          <a href="#webmail"><i data-lucide="mail-check"></i>Webmail</a>
           <a href="#messages"><i data-lucide="inbox"></i>Messages</a>
           <a href="#campaign"><i data-lucide="send"></i>Email Runs</a>
           <a href="#workbook"><i data-lucide="table-2"></i>Workbook</a>
@@ -46,9 +47,10 @@
           <div>
             <p class="eyebrow">Recruiting Control Room</p>
             <h1>Royce Castle Admin</h1>
-            <p>Manage the coach workbook, messages, media, email drafts, and scheduled outreach from one private dashboard.</p>
+            <p>Manage the coach workbook, messages, media, webmail access, email drafts, opt-outs, and outreach runs from one private dashboard.</p>
           </div>
           <div class="admin-header-actions">
+            <a class="primary-button" id="open-webmail-header" href="https://privateemail.com/" target="_blank" rel="noreferrer"><i data-lucide="mail-check"></i>Open Webmail</a>
             <button class="secondary-button" id="admin-lock" type="button"><i data-lucide="lock"></i>Lock Admin</button>
             <a class="primary-button" href="../#contact"><i data-lucide="mail"></i>View Contact Form</a>
           </div>
@@ -58,7 +60,37 @@
           <article><small>Contacts</small><strong id="metric-contacts">0</strong><span>Workbook rows loaded</span></article>
           <article><small>Selected</small><strong id="metric-selected">0</strong><span>Ready for next run</span></article>
           <article><small>Messages</small><strong id="metric-messages">0</strong><span>Saved in this browser</span></article>
+          <article><small>Opt-outs</small><strong id="metric-opt-outs">0</strong><span>Suppressed emails</span></article>
           <article><small>Last run</small><strong id="metric-progress">0%</strong><span id="metric-run-label">No active run</span></article>
+        </section>
+
+        <section class="panel admin-panel webmail-panel" id="webmail">
+          <div class="section-heading row">
+            <div>
+              <p class="eyebrow">Mailbox</p>
+              <h2>Royce Webmail</h2>
+            </div>
+            <a class="secondary-button" id="open-webmail-panel" href="https://privateemail.com/" target="_blank" rel="noreferrer">
+              <i data-lucide="external-link"></i>Open Webmail
+            </a>
+          </div>
+          <div class="webmail-grid">
+            <article>
+              <small>Login address</small>
+              <strong id="webmail-email-display">info@roycecastle.com</strong>
+              <span>Use the mailbox password in the webmail login screen.</span>
+            </article>
+            <article>
+              <small>Run workflow</small>
+              <strong>Draft, review, then send</strong>
+              <span>Use email runs to prepare individualized drafts, then open webmail or the mail app to send from the mailbox.</span>
+            </article>
+            <article>
+              <small>Opt-out safety</small>
+              <strong>Suppression list enabled</strong>
+              <span>Selected contacts with opted-out emails are skipped or have those addresses removed from the run.</span>
+            </article>
+          </div>
         </section>
 
         <section class="admin-grid two-col">
@@ -81,6 +113,8 @@
             <div class="field-grid">
               <label>Email forwards to<input id="setting-forward" type="email"></label>
               <label>Send from email<input id="setting-from" type="email"></label>
+              <label>Webmail login email<input id="setting-webmail-email" type="email"></label>
+              <label>Webmail login URL<input id="setting-webmail-url" type="url"></label>
               <label>Change admin code<input id="setting-code" type="password" placeholder="New admin code"></label>
               <label>Confirm code<input id="setting-code-confirm" type="password" placeholder="Repeat new code"></label>
             </div>
@@ -165,6 +199,12 @@
               </div>
               <label>Manual email<input id="manual-email" type="email" placeholder="optional@email.com"></label>
               <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts during run</label>
+              <div class="run-toolbar">
+                <a class="ghost-button compact" id="open-webmail-run" href="https://privateemail.com/" target="_blank" rel="noreferrer">
+                  <i data-lucide="mail-check"></i>Open Webmail
+                </a>
+                <span id="run-suppression-summary">No opt-outs saved.</span>
+              </div>
               <div class="button-row">
                 <button class="primary-button" id="start-run" type="button"><i data-lucide="rocket"></i>Start Send Run</button>
                 <button class="secondary-button" id="save-schedule" type="button"><i data-lucide="calendar-clock"></i>Save Auto-Send Schedule</button>
@@ -174,6 +214,18 @@
                 <div class="progress-track"><span id="progress-bar"></span></div>
               </div>
               <div class="run-log" id="run-log" hidden></div>
+              <div class="suppression-card">
+                <div>
+                  <strong>Opt-out / opt-in controls</strong>
+                  <p>Emails listed here are excluded from runs. Add one email per line, or use a comma-separated list.</p>
+                </div>
+                <label>Suppressed emails<textarea id="opt-out-list" rows="5" placeholder="coach@example.edu"></textarea></label>
+                <div class="button-row">
+                  <button class="ghost-button compact" id="save-opt-outs" type="button"><i data-lucide="save"></i>Save Opt-outs</button>
+                  <button class="ghost-button compact" id="opt-out-current" type="button"><i data-lucide="ban"></i>Opt Out Current</button>
+                  <button class="ghost-button compact" id="opt-in-current" type="button"><i data-lucide="undo-2"></i>Opt In Current</button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -234,6 +286,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260601"></script>
-    <script src="admin.js?v=20260615-website-link"></script>
+    <script src="admin.js?v=20260630-email-admin"></script>
   </body>
 </html>
