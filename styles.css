@@ -36,6 +36,11 @@ body {
   color: var(--ink);
 }
 
+strong,
+b {
+  font-weight: 560;
+}
+
 img,
 video {
   display: block;
@@ -112,6 +117,7 @@ textarea {
 .brand strong {
   font-size: 1.15rem;
   line-height: 1.1;
+  font-weight: 650;
 }
 
 .brand small {
@@ -144,7 +150,7 @@ textarea {
   border-radius: var(--radius);
   border: 1px solid transparent;
   font-size: 0.9rem;
-  font-weight: 850;
+  font-weight: 650;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
@@ -408,7 +414,7 @@ main {
   margin: 0;
   color: var(--maroon);
   font-size: 0.75rem;
-  font-weight: 950;
+  font-weight: 650;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -488,7 +494,7 @@ textarea:focus {
   color: var(--ink);
   background: #ffffff;
   font-size: 0.9rem;
-  font-weight: 620;
+  font-weight: 500;
   line-height: 1.5;
   white-space: pre-wrap;
   box-shadow: inset 0 1px 0 rgba(13, 24, 41, 0.02);
@@ -507,7 +513,7 @@ textarea:focus {
   padding: 0 3px 1px;
   background: rgba(250, 191, 45, 0.18);
   color: #5d0d1d;
-  font-weight: 950;
+  font-weight: 600;
 }
 
 .placeholder-help {
@@ -524,7 +530,7 @@ textarea:focus {
   background: #fff8e8;
   color: #5d0d1d;
   font-size: 0.74rem;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 textarea {
@@ -1157,6 +1163,14 @@ body.contacts-page .contacts-main {
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+
+.public-main strong,
+.admin-main strong,
+.contacts-main strong,
+.response-main strong,
+.app-footer strong {
+  font-weight: 560;
 }
 
 /* 2026 public prospectus + admin studio */
@@ -1836,7 +1850,7 @@ body.contacts-page .contacts-main {
 
 .admin-metrics {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
 }
 
@@ -1852,12 +1866,13 @@ body.contacts-page .contacts-main {
 
 .admin-metrics small {
   color: var(--muted);
-  font-weight: 900;
+  font-weight: 650;
   text-transform: uppercase;
 }
 
 .admin-metrics strong {
   font-size: 2.2rem;
+  font-weight: 560;
 }
 
 .admin-metrics span {
@@ -1905,6 +1920,7 @@ body.contacts-page .contacts-main {
 .webmail-grid strong {
   overflow-wrap: anywhere;
   font-size: 1.2rem;
+  font-weight: 560;
 }
 
 .webmail-grid span,
@@ -1996,6 +2012,7 @@ body.contacts-page .contacts-main {
 .suppression-card strong {
   display: block;
   margin-bottom: 4px;
+  font-weight: 560;
 }
 
 .suppression-card textarea {
@@ -2083,10 +2100,11 @@ body.contacts-page .contacts-main {
 
 .admin-contact-list {
   display: grid;
-  max-height: 580px;
+  max-height: min(680px, 72vh);
   overflow: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  overscroll-behavior: contain;
 }
 
 .admin-contact-row {
@@ -2110,6 +2128,26 @@ body.contacts-page .contacts-main {
 
 .admin-contact-row small {
   color: var(--muted);
+}
+
+.admin-contact-row .check-row {
+  align-items: center;
+}
+
+.school-logo-mini {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--school-color, #164b88);
+  color: var(--school-accent, #ffffff);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px rgba(13, 24, 41, 0.14), 0 8px 18px rgba(9, 17, 31, 0.1);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .contact-row-actions {

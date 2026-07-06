@@ -2,8 +2,8 @@ const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
 const ADMIN_SETTINGS_KEY = "royceCastleRecruitingStudio.adminSettings.v1";
 
 const defaultPublicSettings = {
-  forwardEmail: "erik@puricloud.com",
-  fromEmail: "erik@puricloud.com"
+  forwardEmail: "info@roycecastle.com",
+  fromEmail: "info@roycecastle.com"
 };
 
 const contactForm = document.querySelector("#public-contact-form");
@@ -26,7 +26,7 @@ function initPublicPage() {
   window.addEventListener("load", () => window.lucide?.createIcons());
 }
 
-function handleContactSubmit(event) {
+async function handleContactSubmit(event) {
   event.preventDefault();
   const settings = loadPublicSettings();
   const message = {
@@ -40,10 +40,6 @@ function handleContactSubmit(event) {
     status: "New"
   };
 
-  const messages = loadMessages();
-  messages.unshift(message);
-  localStorage.setItem(PUBLIC_MESSAGES_KEY, JSON.stringify(messages.slice(0, 100)));
-
   const subject = `Royce Castle recruiting inquiry from ${message.program}`;
   const body = [
     `Name: ${message.name}`,
@@ -51,13 +47,44 @@ function handleContactSubmit(event) {
     `Program: ${message.program}`,
     `Role: ${message.role || "Not provided"}`,
     "",
+    "Royce profile: https://roycecastle.com/",
+    "Highlight video: https://roycecastle.com/#video",
+    "",
     message.body
   ].join("\n");
 
+  contactStatus.textContent = "Saving your message...";
+  toast("Saving message...");
+
+  const serverSaved = await saveMessageToServer(message);
+  const messages = loadMessages();
+  messages.unshift(message);
+  localStorage.setItem(PUBLIC_MESSAGES_KEY, JSON.stringify(messages.slice(0, 100)));
+
+  contactForm.reset();
+  if (serverSaved) {
+    contactStatus.textContent = "Message sent. Thank you for reaching out.";
+    toast("Message sent.");
+    return;
+  }
+
   contactStatus.textContent = "Message saved. Opening your email app so the message can be sent.";
   toast("Message ready to send.");
-  contactForm.reset();
   window.location.href = `mailto:${encodeURIComponent(settings.forwardEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+async function saveMessageToServer(message) {
+  try {
+    const response = await fetch("api/message.php", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(message)
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
 }
 
 function loadPublicSettings() {

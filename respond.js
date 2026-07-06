@@ -1,4 +1,4 @@
-const DEFAULT_REPLY_EMAIL = "erik@puricloud.com";
+const DEFAULT_REPLY_EMAIL = "info@roycecastle.com";
 
 const responseOptions = {
   high: {
@@ -52,6 +52,9 @@ function openReply(level) {
     "",
     option.body,
     note ? `\nAdditional note:\n${note}` : "",
+    "",
+    "Royce profile: https://roycecastle.com/",
+    "Highlight video: https://roycecastle.com/#video",
     "",
     "Sent from the Royce Castle recruiting quick-reply page."
   ]

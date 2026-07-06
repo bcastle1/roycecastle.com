@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260630-email-admin">
+    <link rel="stylesheet" href="../styles.css?v=20260706-email-ready">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -59,7 +59,9 @@
         <section class="admin-metrics">
           <article><small>Contacts</small><strong id="metric-contacts">0</strong><span>Workbook rows loaded</span></article>
           <article><small>Selected</small><strong id="metric-selected">0</strong><span>Ready for next run</span></article>
-          <article><small>Messages</small><strong id="metric-messages">0</strong><span>Saved in this browser</span></article>
+          <article><small>Messages</small><strong id="metric-messages">0</strong><span id="metric-storage-label">Saved locally</span></article>
+          <article><small>Sent</small><strong id="metric-sent">0</strong><span>Logged outreach emails</span></article>
+          <article><small>Opened</small><strong id="metric-opened">0</strong><span>Tracked email opens</span></article>
           <article><small>Opt-outs</small><strong id="metric-opt-outs">0</strong><span>Suppressed emails</span></article>
           <article><small>Last run</small><strong id="metric-progress">0%</strong><span id="metric-run-label">No active run</span></article>
         </section>
@@ -82,8 +84,8 @@
             </article>
             <article>
               <small>Run workflow</small>
-              <strong>Draft, review, then send</strong>
-              <span>Use email runs to prepare individualized drafts, then open webmail or the mail app to send from the mailbox.</span>
+              <strong id="backend-status-title">Draft, review, then send</strong>
+              <span id="backend-status">Static mode is ready to prepare drafts. cPanel mode sends from the mailbox and tracks opens.</span>
             </article>
             <article>
               <small>Opt-out safety</small>
@@ -159,6 +161,7 @@
                 <span>{{grad_year}}</span>
                 <span>{{from_email}}</span>
                 <span>{{website_link}}</span>
+                <span>{{video_link}}</span>
                 <span>{{quick_response_link}}</span>
               </div>
               <div class="button-row">
@@ -198,7 +201,7 @@
                 <label>Delay between emails, seconds<input id="schedule-delay" type="number" min="1" value="4"></label>
               </div>
               <label>Manual email<input id="manual-email" type="email" placeholder="optional@email.com"></label>
-              <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts during run</label>
+              <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts instead of server sending</label>
               <div class="run-toolbar">
                 <a class="ghost-button compact" id="open-webmail-run" href="https://privateemail.com/" target="_blank" rel="noreferrer">
                   <i data-lucide="mail-check"></i>Open Webmail
@@ -251,10 +254,11 @@
                 <option value="other">D2 / NAIA / other</option>
               </select>
             </label>
-            <div class="button-row">
-              <button class="ghost-button compact" id="select-visible" type="button"><i data-lucide="list-checks"></i>Select Visible</button>
-              <button class="ghost-button compact" id="clear-selected" type="button"><i data-lucide="circle-x"></i>Clear Selected</button>
-            </div>
+              <div class="button-row">
+                <button class="ghost-button compact" id="select-visible" type="button"><i data-lucide="list-checks"></i>Select Visible</button>
+                <button class="ghost-button compact" id="select-all-filtered" type="button"><i data-lucide="check-square"></i>Select All Filtered</button>
+                <button class="ghost-button compact" id="clear-selected" type="button"><i data-lucide="circle-x"></i>Clear Selected</button>
+              </div>
           </div>
           <div class="admin-contact-list" id="admin-contact-list"></div>
         </section>
@@ -286,6 +290,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260601"></script>
-    <script src="admin.js?v=20260630-email-admin"></script>
+    <script src="admin.js?v=20260706-email-ready"></script>
   </body>
 </html>

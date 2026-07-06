@@ -53,7 +53,7 @@
         margin: 0 0 8px;
         color: var(--gold);
         font-size: 0.78rem;
-        font-weight: 900;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0;
       }
@@ -83,7 +83,7 @@
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.14);
         border: 1px solid rgba(255, 255, 255, 0.24);
-        font-weight: 900;
+        font-weight: 600;
       }
 
       .photo-box {
@@ -103,7 +103,7 @@
         border: 5px solid #ffffff;
         color: #ffffff;
         font-size: 3rem;
-        font-weight: 950;
+        font-weight: 600;
       }
 
       .photo-frame img {
@@ -145,7 +145,7 @@
       .stat span {
         margin-top: 2px;
         color: var(--muted);
-        font-weight: 800;
+        font-weight: 560;
         text-transform: uppercase;
         font-size: 0.74rem;
       }
@@ -214,7 +214,7 @@
         padding: 10px 14px;
         background: var(--brand);
         color: #ffffff;
-        font-weight: 900;
+        font-weight: 600;
         text-decoration: none;
         cursor: pointer;
       }
@@ -299,7 +299,7 @@
           </div>
           <div class="contact-line">
             <strong>Recruiting Contact</strong>
-            <span id="from-email">erik@puricloud.com</span>
+            <span id="from-email">info@roycecastle.com</span>
           </div>
         </aside>
 
@@ -365,7 +365,7 @@
         if (value) node.textContent = value;
       });
       document.querySelector("#vertical").textContent = athlete.vertical || athlete.weight || "Add";
-      document.querySelector("#from-email").textContent = settings.fromEmail || "erik@puricloud.com";
+      document.querySelector("#from-email").textContent = settings.fromEmail || "info@roycecastle.com";
       const profilePhoto = athlete.photoData || athlete.photoUrl || "assets/royce-castle-rcastle.jpg";
       if (profilePhoto) {
         document.querySelector("#profile-photo").src = profilePhoto;

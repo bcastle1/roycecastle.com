@@ -21,11 +21,12 @@
     document.body.append(overlay);
     window.lucide?.createIcons();
 
-    overlay.querySelector("#page-admin-auth").addEventListener("submit", (event) => {
+    overlay.querySelector("#page-admin-auth").addEventListener("submit", async (event) => {
       event.preventDefault();
       const code = overlay.querySelector("#page-admin-code").value;
       const expected = localStorage.getItem(ADMIN_CODE_KEY) || "Patriot";
-      if (code === expected) {
+      const serverOk = await loginWithServer(code);
+      if (serverOk || code === expected) {
         sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
         overlay.remove();
         return;
@@ -33,4 +34,18 @@
       overlay.querySelector("#page-admin-error").hidden = false;
     });
   });
+
+  async function loginWithServer(code) {
+    try {
+      const response = await fetch("api/admin.php?action=login", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code })
+      });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
 })();

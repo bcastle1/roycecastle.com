@@ -6,6 +6,7 @@ const RUN_LOG_KEY = "royceCastleRecruitingStudio.runLog.v1";
 const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
 const OPT_OUT_KEY = "royceCastleRecruitingStudio.optOutEmails.v1";
 const PUBLIC_SITE_ORIGIN = "https://roycecastle.com";
+const API_BASE = "../api";
 const DEFAULT_MAILBOX = "info@roycecastle.com";
 const DEFAULT_WEBMAIL_URL = "https://privateemail.com/";
 const LEGACY_DEFAULT_EMAIL = "erik@puricloud.com";
@@ -18,6 +19,7 @@ const defaultSettings = {
   webmailEmail: DEFAULT_MAILBOX,
   webmailUrl: DEFAULT_WEBMAIL_URL,
   ccEmail: "",
+  sendMode: "server",
   frequency: "manual",
   day: "Monday",
   time: "09:00",
@@ -36,6 +38,9 @@ let currentContactId = contactsWithEmail.some((contact) => contact.id === reques
 let visibleContacts = [];
 let runTimer = null;
 let runState = { active: false, total: 0, sent: 0 };
+let serverAvailable = false;
+let serverCanSend = false;
+let settingsSyncTimer = null;
 
 const refs = {};
 
@@ -60,9 +65,14 @@ function collectRefs() {
     "metric-contacts",
     "metric-selected",
     "metric-messages",
+    "metric-storage-label",
+    "metric-sent",
+    "metric-opened",
     "metric-opt-outs",
     "metric-progress",
     "metric-run-label",
+    "backend-status-title",
+    "backend-status",
     "webmail-email-display",
     "open-webmail-header",
     "open-webmail-panel",
@@ -112,6 +122,7 @@ function collectRefs() {
     "admin-contact-search",
     "admin-contact-group",
     "select-visible",
+    "select-all-filtered",
     "clear-selected",
     "admin-contact-list",
     "admin-toast"
@@ -121,25 +132,79 @@ function collectRefs() {
 }
 
 function bindLogin() {
-  refs.adminLoginForm.addEventListener("submit", (event) => {
+  refs.adminLoginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (refs.adminLoginCode.value === getAdminCode()) {
+    refs.adminLoginError.hidden = true;
+    toast("Checking admin access...");
+    const code = refs.adminLoginCode.value;
+    const serverLogin = await loginWithServer(code);
+    if (serverLogin || code === getAdminCode()) {
       sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
       refs.adminLoginError.hidden = true;
-      unlockAdmin();
+      await unlockAdmin();
       return;
     }
     refs.adminLoginError.hidden = false;
+    toast("Admin code did not match.");
   });
 }
 
-function unlockAdmin() {
+async function unlockAdmin() {
   refs.adminLogin.hidden = true;
   refs.adminApp.hidden = false;
+  await loadServerState();
   hydrateSettings();
   bindAdminEvents();
   renderAll();
-  toast("Admin unlocked.");
+  toast(serverAvailable ? "Admin unlocked. Server persistence is active." : "Admin unlocked. Static fallback is active.");
+}
+
+async function loginWithServer(code) {
+  const response = await apiRequest("login", { code }, { allowUnauthenticated: true, quiet: true });
+  if (!response?.ok) return false;
+  applyServerState(response);
+  return true;
+}
+
+async function loadServerState() {
+  const response = await apiRequest("state", null, { method: "GET", quiet: true });
+  if (!response?.ok) return false;
+  applyServerState(response);
+  return true;
+}
+
+function applyServerState(state = {}) {
+  serverAvailable = true;
+  serverCanSend = !!state.canSend;
+  if (state.settings) {
+    settings = { ...defaultSettings, ...state.settings };
+    localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(settings));
+  }
+  if (Array.isArray(state.messages)) localStorage.setItem(PUBLIC_MESSAGES_KEY, JSON.stringify(state.messages));
+  if (Array.isArray(state.emailHistory)) localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(state.emailHistory));
+  if (Array.isArray(state.runLog)) localStorage.setItem(RUN_LOG_KEY, JSON.stringify(state.runLog));
+  if (Array.isArray(state.optOutEmails)) {
+    optOutEmails = new Set(state.optOutEmails.map(normalizeEmail).filter(Boolean));
+    localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+  }
+}
+
+async function apiRequest(action, payload, options = {}) {
+  const method = options.method || (payload ? "POST" : "GET");
+  const url = `${API_BASE}/admin.php?action=${encodeURIComponent(action)}`;
+  try {
+    const response = await fetch(url, {
+      method,
+      credentials: "same-origin",
+      headers: payload ? { "Content-Type": "application/json" } : undefined,
+      body: payload ? JSON.stringify(payload) : undefined
+    });
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    if (!options.quiet) toast("Server save is unavailable; saved in this browser for now.");
+    return null;
+  }
 }
 
 function bindAdminEvents() {
@@ -224,6 +289,11 @@ function handleAdminClick(event) {
       renderAll();
       toast(`${visibleContacts.length} visible contacts selected.`);
       break;
+    case "select-all-filtered":
+      filteredContacts().forEach((contact) => selectedContactIds.add(contact.id));
+      renderAll();
+      toast(`${selectedContactIds.size.toLocaleString()} contact${selectedContactIds.size === 1 ? "" : "s"} selected for the run.`);
+      break;
     case "clear-selected":
       selectedContactIds.clear();
       renderAll();
@@ -259,12 +329,25 @@ function renderAll() {
 }
 
 function renderMetrics() {
+  const history = loadEmailHistory();
+  const sentCount = history.filter((item) => /sent|opened|draft opened/i.test(item.status || "")).length;
+  const openedCount = history.filter((item) => item.viewedAt || item.openedAt || Number(item.openCount || 0) > 0).length;
   refs.metricContacts.textContent = contacts.length.toLocaleString();
   refs.metricSelected.textContent = selectedContactIds.size.toLocaleString();
   refs.metricMessages.textContent = loadMessages().length.toLocaleString();
+  refs.metricStorageLabel.textContent = serverAvailable ? "Saved permanently on server" : "Saved in this browser";
+  refs.metricSent.textContent = sentCount.toLocaleString();
+  refs.metricOpened.textContent = openedCount.toLocaleString();
   refs.metricOptOuts.textContent = optOutEmails.size.toLocaleString();
   refs.metricProgress.textContent = runState.total ? `${Math.round((runState.sent / runState.total) * 100)}%` : "0%";
   refs.metricRunLabel.textContent = runState.active ? "Run in progress" : "Ready";
+  if (refs.backendStatusTitle) refs.backendStatusTitle.textContent = serverAvailable && serverCanSend ? "Server sending ready" : "Draft fallback ready";
+  if (refs.backendStatus) {
+    refs.backendStatus.textContent =
+      serverAvailable && serverCanSend
+        ? `Runs send from ${settings.fromEmail || DEFAULT_MAILBOX}; replies go to ${settings.forwardEmail || settings.fromEmail || DEFAULT_MAILBOX}; opens are tracked when images load.`
+        : "Static mode prepares drafts. Upload to cPanel with the API folder to send from the mailbox and track opens.";
+  }
 }
 
 function renderMessages() {
@@ -324,9 +407,46 @@ function renderComposer() {
 }
 
 function renderContacts() {
+  visibleContacts = filteredContacts();
+  refs.adminContactList.innerHTML = visibleContacts.length
+    ? visibleContacts
+        .map(
+          (contact) => {
+            const optStatus = contactOptOutStatus(contact);
+            const isSuppressed = isContactSuppressed(contact);
+            return `
+        <article class="admin-contact-row ${contact.id === currentContactId ? "active" : ""}">
+          <label class="check-row">
+            <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
+            <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(contact.accentColor || "#ffffff")}">${escapeHtml(schoolInitials(contact))}</span>
+            <span>
+              <strong>${escapeHtml(contact.displayName || contact.school)}</strong>
+              <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
+              <em class="contact-status ${isSuppressed ? "suppressed" : optStatus.includes("opted out") ? "partial" : "clear"}">${escapeHtml(optStatus)}</em>
+            </span>
+          </label>
+          <div class="contact-row-actions">
+            <button class="ghost-button compact" type="button" data-load-contact="${escapeAttr(contact.id)}">Load Draft</button>
+            ${
+              isSuppressed
+                ? `<button class="ghost-button compact" type="button" data-opt-in-contact="${escapeAttr(contact.id)}">Opt In</button>`
+                : `<button class="ghost-button compact" type="button" data-opt-out-contact="${escapeAttr(contact.id)}">Opt Out</button>`
+            }
+          </div>
+        </article>
+      `;
+          }
+        )
+        .join("")
+    : `<div class="empty-state">No contacts match the current filters.</div>`;
+
+  bindContactRows();
+}
+
+function filteredContacts() {
   const query = refs.adminContactSearch.value.trim().toLowerCase();
   const group = refs.adminContactGroup.value;
-  visibleContacts = contactsWithEmail
+  return contactsWithEmail
     .filter((contact) => !group || contact.group === group)
     .filter((contact) => {
       if (!query) return true;
@@ -344,38 +464,10 @@ function renderContacts() {
         .join(" ")
         .toLowerCase()
         .includes(query);
-    })
-    .slice(0, 36);
+    });
+}
 
-  refs.adminContactList.innerHTML = visibleContacts
-    .map(
-      (contact) => {
-        const optStatus = contactOptOutStatus(contact);
-        const isSuppressed = isContactSuppressed(contact);
-        return `
-        <article class="admin-contact-row ${contact.id === currentContactId ? "active" : ""}">
-          <label class="check-row">
-            <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
-            <span>
-              <strong>${escapeHtml(contact.displayName || contact.school)}</strong>
-              <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
-              <em class="contact-status ${isSuppressed ? "suppressed" : optStatus.includes("opted out") ? "partial" : "clear"}">${escapeHtml(optStatus)}</em>
-            </span>
-          </label>
-          <div class="contact-row-actions">
-            <button class="ghost-button compact" type="button" data-load-contact="${escapeAttr(contact.id)}">Load Draft</button>
-            ${
-              isSuppressed
-                ? `<button class="ghost-button compact" type="button" data-opt-in-contact="${escapeAttr(contact.id)}">Opt In</button>`
-                : `<button class="ghost-button compact" type="button" data-opt-out-contact="${escapeAttr(contact.id)}">Opt Out</button>`
-            }
-          </div>
-        </article>
-      `;
-      }
-    )
-    .join("");
-
+function bindContactRows() {
   refs.adminContactList.querySelectorAll("[data-select-contact]").forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) selectedContactIds.add(checkbox.dataset.selectContact);
@@ -401,7 +493,20 @@ function renderContacts() {
   });
 }
 
-function saveSettingsFromForm() {
+function schoolInitials(contact = {}) {
+  const source = contact.displayName || contact.school || "RC";
+  return source
+    .replace(/\b(university|college|state|the|of|at|and|community)\b/gi, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 3);
+}
+
+async function saveSettingsFromForm() {
   const newCode = refs.settingCode.value.trim();
   const confirmCode = refs.settingCodeConfirm.value.trim();
   if (newCode || confirmCode) {
@@ -423,20 +528,22 @@ function saveSettingsFromForm() {
   settings.webmailEmail = refs.settingWebmailEmail.value.trim() || defaultSettings.webmailEmail;
   settings.webmailUrl = normalizeWebmailUrl(refs.settingWebmailUrl.value.trim()) || defaultSettings.webmailUrl;
   persistSettings();
+  if (serverAvailable) await syncSettings({ newCode });
   renderWebmailLinks();
-  toast("Settings saved.");
+  toast(serverAvailable ? "Settings saved permanently." : "Settings saved in this browser.");
 }
 
-function saveSchedule() {
+async function saveSchedule() {
   settings.frequency = refs.scheduleFrequency.value;
   settings.day = refs.scheduleDay.value;
   settings.time = refs.scheduleTime.value;
   settings.delaySeconds = Math.max(1, Number(refs.scheduleDelay.value) || 4);
   settings.openDrafts = refs.openDraftsDuringRun.checked;
   persistSettings();
+  if (serverAvailable) await syncSettings();
   logRun(`Auto-send schedule saved: ${settings.frequency}, ${settings.day} at ${settings.time}, ${settings.delaySeconds}s between contacts.`);
   renderRunLog();
-  toast("Schedule saved successfully.");
+  toast(serverAvailable ? "Schedule saved permanently." : "Schedule saved in this browser.");
 }
 
 function startSendRun() {
@@ -463,7 +570,7 @@ function startSendRun() {
   updateProgress();
   toast("Send run started successfully.");
 
-  const step = () => {
+  const step = async () => {
     const target = targets[runState.sent];
     if (!target) {
       runState.active = false;
@@ -476,15 +583,46 @@ function startSendRun() {
     refs.adminToEmail.value = target.email;
     refs.adminSubject.value = target.subject;
     refs.adminEmailBody.value = target.body;
-    logRun(`Prepared individualized draft for ${target.label} <${target.email}>.`);
-    if (settings.openDrafts) openMailDraft(target, true);
-    recordEmailHistory(target, settings.openDrafts ? "Draft opened" : "Prepared");
+    let status = "Prepared";
+    let serverLoggedHistory = false;
+    if (serverAvailable && serverCanSend && !settings.openDrafts) {
+      const result = await sendEmailTarget(target);
+      serverLoggedHistory = result.savedHistory;
+      status = result.sent ? "Sent" : "Send failed";
+      logRun(`${result.sent ? "Sent" : "Could not send"} individualized email for ${target.label} <${target.email}>.`);
+      if (!result.sent) openMailDraft(target, true);
+    } else {
+      logRun(`Prepared individualized draft for ${target.label} <${target.email}>.`);
+      if (settings.openDrafts) openMailDraft(target, true);
+      status = settings.openDrafts ? "Draft opened" : "Prepared";
+    }
+    if (status !== "Sent" && !serverLoggedHistory) recordEmailHistory(target, status);
     runState.sent += 1;
     updateProgress();
     runTimer = setTimeout(step, settings.delaySeconds * 1000);
   };
 
   step();
+}
+
+async function sendEmailTarget(target) {
+  try {
+    const response = await fetch(`${API_BASE}/send-email.php`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(target)
+    });
+    const result = await response.json();
+    if (result?.historyItem) {
+      saveOrUpdateHistoryItem(result.historyItem);
+      return { sent: !!result.sent, savedHistory: true };
+    }
+    return { sent: false, savedHistory: false };
+  } catch {
+    toast("Server send failed; opening a draft fallback.");
+    return { sent: false, savedHistory: false };
+  }
 }
 
 function runTargets() {
@@ -502,7 +640,10 @@ function runTargets() {
         email,
         label: contact.displayName || contact.school,
         subject: `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`,
-        body: buildEmail(contact)
+        body: buildEmail(contact),
+        quickResponseLink: buildQuickResponseLink(contact),
+        websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
+        videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
       }
     ];
   });
@@ -515,7 +656,9 @@ function runTargets() {
         email: activeManualEmail,
         label: "manual recipient",
         subject: refs.adminSubject.value,
-        body: refs.adminEmailBody.value
+        body: refs.adminEmailBody.value,
+        websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
+        videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
       });
     } else {
       runTargets.skippedOptOuts.push("manual recipient");
@@ -528,7 +671,9 @@ function runTargets() {
         email: activeDraftEmail,
         label: "current draft recipient",
         subject: refs.adminSubject.value,
-        body: refs.adminEmailBody.value
+        body: refs.adminEmailBody.value,
+        websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
+        videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
       });
     } else {
       runTargets.skippedOptOuts.push("current draft recipient");
@@ -547,8 +692,12 @@ function updateProgress() {
 }
 
 async function copyDraft() {
-  await navigator.clipboard.writeText(`${refs.adminSubject.value}\n\n${refs.adminEmailBody.value}`);
-  toast("Draft copied.");
+  try {
+    await navigator.clipboard.writeText(`${refs.adminSubject.value}\n\n${refs.adminEmailBody.value}`);
+    toast("Draft copied.");
+  } catch {
+    toast("Clipboard permission was blocked. Select the preview text and copy it manually.");
+  }
 }
 
 function openMailDraft(target = currentEmailTarget(), quiet = false) {
@@ -598,7 +747,10 @@ function currentEmailTarget() {
   return {
     email: refs.adminToEmail.value.trim(),
     subject: refs.adminSubject.value,
-    body: refs.adminEmailBody.value
+    body: refs.adminEmailBody.value,
+    websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
+    videoLink: `${PUBLIC_SITE_ORIGIN}/#video`,
+    quickResponseLink: buildQuickResponseLink(currentContact() || {})
   };
 }
 
@@ -660,11 +812,12 @@ function renderOptOuts() {
   }
 }
 
-function saveOptOutsFromForm() {
+async function saveOptOutsFromForm() {
   optOutEmails = new Set(parseEmails(refs.optOutList.value));
   persistOptOutEmails();
+  if (serverAvailable) await syncOptOutEmails();
   renderAll();
-  toast("Opt-out list saved.");
+  toast(serverAvailable ? "Opt-out list saved permanently." : "Opt-out list saved in this browser.");
 }
 
 function optOutCurrentContact() {
@@ -722,6 +875,15 @@ function loadOptOutEmails() {
 
 function persistOptOutEmails() {
   localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+  if (serverAvailable) syncOptOutEmails();
+}
+
+async function syncOptOutEmails() {
+  if (!serverAvailable) return false;
+  const response = await apiRequest("save-opt-outs", { optOutEmails: [...optOutEmails].sort() }, { quiet: true });
+  if (!response?.ok) return false;
+  applyServerState(response);
+  return true;
 }
 
 function parseEmails(value = "") {
@@ -751,6 +913,9 @@ Would your staff prefer that I complete a questionnaire, send full game film, sc
 
 You can view my recruiting profile, highlight video, and action photo library here:
 {{website_link}}
+
+Direct highlight video section:
+{{video_link}}
 
 Quick reply option, no typing required:
 {{quick_response_link}}
@@ -783,7 +948,7 @@ function updateEmailPreview() {
   refs.adminEmailBody.value = resolveTemplate(template, currentContact() || {});
 }
 
-function saveTemplateFromEditor() {
+async function saveTemplateFromEditor() {
   const template = templateEditorText();
   if (!template) {
     toast("Add template text before saving.");
@@ -791,17 +956,19 @@ function saveTemplateFromEditor() {
   }
   settings.emailTemplate = ensureRequiredEmailTemplate(template);
   persistSettings();
+  if (serverAvailable) await syncSettings();
   renderTemplateEditor();
   updateEmailPreview();
-  toast("Email template saved. Future drafts will use it.");
+  toast(serverAvailable ? "Email template saved permanently." : "Email template saved in this browser.");
 }
 
-function resetTemplate() {
+async function resetTemplate() {
   settings.emailTemplate = defaultEmailTemplate();
   persistSettings();
+  if (serverAvailable) await syncSettings();
   renderTemplateEditor();
   updateEmailPreview();
-  toast("Email template reset.");
+  toast(serverAvailable ? "Email template reset and saved." : "Email template reset in this browser.");
 }
 
 function resolveTemplate(template, contact) {
@@ -814,6 +981,7 @@ function templateValues(contact = {}) {
     coach_last_name: coachLastName(contact),
     school_name: contact.displayName || contact.school || "your program",
     website_link: `${PUBLIC_SITE_ORIGIN}/`,
+    video_link: `${PUBLIC_SITE_ORIGIN}/#video`,
     quick_response_link: buildQuickResponseLink(contact),
     height: `6'5"`,
     primary_role: "Shooting Guard",
@@ -841,6 +1009,7 @@ function buildQuickResponseLink(contact = {}) {
 function ensureRequiredEmailTemplate(template) {
   let cleanTemplate = stripGradePointTemplate(template || defaultEmailTemplate()).trim();
   cleanTemplate = ensureWebsiteLinkTemplate(cleanTemplate);
+  cleanTemplate = ensureVideoLinkTemplate(cleanTemplate);
   return ensureQuickResponseTemplate(cleanTemplate);
 }
 
@@ -853,6 +1022,17 @@ function ensureWebsiteLinkTemplate(template) {
     return cleanTemplate.replace(/\n*Quick reply option, no typing required:/i, `\n\n${websiteBlock}\n\nQuick reply option, no typing required:`);
   }
   return `${cleanTemplate}\n\n${websiteBlock}`;
+}
+
+function ensureVideoLinkTemplate(template) {
+  const cleanTemplate = String(template || "").trim();
+  if (/\{\{video_link\}\}|(?:https?:\/\/)?(?:www\.)?roycecastle\.com\/?#video/i.test(cleanTemplate)) return cleanTemplate;
+  const videoBlock = `Direct highlight video section:
+{{video_link}}`;
+  if (/Quick reply option, no typing required:/i.test(cleanTemplate)) {
+    return cleanTemplate.replace(/\n*Quick reply option, no typing required:/i, `\n\n${videoBlock}\n\nQuick reply option, no typing required:`);
+  }
+  return `${cleanTemplate}\n\n${videoBlock}`;
 }
 
 function ensureQuickResponseTemplate(template) {
@@ -881,8 +1061,9 @@ function coachLastName(contact) {
 
 function clearMessages() {
   localStorage.setItem(PUBLIC_MESSAGES_KEY, "[]");
+  if (serverAvailable) apiRequest("clear-messages", {}, { quiet: true });
   renderAll();
-  toast("Messages cleared.");
+  toast(serverAvailable ? "Messages cleared permanently." : "Messages cleared in this browser.");
 }
 
 function downloadWorkbookCsv() {
@@ -946,6 +1127,21 @@ function normalizeMailboxSetting(value) {
 
 function persistSettings() {
   localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(settings));
+  if (serverAvailable) {
+    clearTimeout(settingsSyncTimer);
+    settingsSyncTimer = setTimeout(() => syncSettings(), 500);
+  }
+}
+
+async function syncSettings(extra = {}) {
+  if (!serverAvailable) return false;
+  const response = await apiRequest("save-settings", { settings, ...extra }, { quiet: true });
+  if (!response?.ok) {
+    toast("Server save did not complete; browser copy is still updated.");
+    return false;
+  }
+  applyServerState(response);
+  return true;
 }
 
 function getAdminCode() {
@@ -963,8 +1159,7 @@ function loadMessages() {
 
 function recordEmailHistory(target, status = "Sent") {
   if (!target.contactId) return;
-  const history = loadEmailHistory();
-  history.unshift({
+  const item = {
     id: `email-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     contactId: target.contactId,
     school: target.label || "",
@@ -974,8 +1169,21 @@ function recordEmailHistory(target, status = "Sent") {
     status,
     sentAt: new Date().toISOString(),
     respondedAt: "",
-    viewedAt: ""
-  });
+    viewedAt: "",
+    openCount: 0
+  };
+  const history = loadEmailHistory();
+  history.unshift(item);
+  localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(history.slice(0, 500)));
+  if (serverAvailable) apiRequest("record-history", { historyItem: item }, { quiet: true });
+}
+
+function saveOrUpdateHistoryItem(item) {
+  if (!item?.id) return;
+  const history = loadEmailHistory();
+  const index = history.findIndex((entry) => entry.id === item.id || (item.trackingId && entry.trackingId === item.trackingId));
+  if (index >= 0) history[index] = { ...history[index], ...item };
+  else history.unshift(item);
   localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(history.slice(0, 500)));
 }
 
@@ -990,8 +1198,10 @@ function loadEmailHistory() {
 
 function logRun(message) {
   const log = loadRunLog();
-  log.unshift({ message, createdAt: new Date().toISOString() });
+  const item = { message, createdAt: new Date().toISOString() };
+  log.unshift(item);
   localStorage.setItem(RUN_LOG_KEY, JSON.stringify(log.slice(0, 80)));
+  if (serverAvailable) apiRequest("log-run", { logItem: item }, { quiet: true });
 }
 
 function loadRunLog() {

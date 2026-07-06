@@ -24,12 +24,24 @@ let activeHistoryContactId = "";
 
 initContactsPage();
 
-function initContactsPage() {
+async function initContactsPage() {
+  await syncServerState();
   renderMetrics();
   populateDivisionFilter();
   renderWorksheet();
   bindContactsPageEvents();
   refreshWorksheetIcons();
+}
+
+async function syncServerState() {
+  try {
+    const response = await fetch("api/admin.php?action=state", { credentials: "same-origin" });
+    if (!response.ok) return;
+    const state = await response.json();
+    if (Array.isArray(state.emailHistory)) localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(state.emailHistory));
+  } catch {
+    // Static hosting keeps using browser-local history.
+  }
 }
 
 function bindContactsPageEvents() {
@@ -192,7 +204,7 @@ function renderHistorySummary(item) {
     <span>${escapeHtml(formatDate(item.sentAt))}</span>
     <em>${escapeHtml(item.status || "Sent")}</em>
     ${item.respondedAt ? `<em>Reply ${escapeHtml(formatDate(item.respondedAt))}</em>` : ""}
-    ${item.viewedAt ? `<em>Viewed ${escapeHtml(formatDate(item.viewedAt))}</em>` : ""}
+    ${item.viewedAt || item.openedAt ? `<em>Opened ${escapeHtml(formatDate(item.viewedAt || item.openedAt))}${item.openCount ? ` (${escapeHtml(item.openCount)}x)` : ""}</em>` : ""}
   `;
 }
 
@@ -240,7 +252,7 @@ function renderHistoryEntry(item) {
         <span>To: ${escapeHtml(item.email || "No recipient saved")}</span>
         <span>Sent: ${escapeHtml(formatDateTime(item.sentAt))} | Status: ${escapeHtml(item.status || "Sent")}</span>
         <span>Responded: ${item.respondedAt ? escapeHtml(formatDateTime(item.respondedAt)) : "No response marked"}</span>
-        <span>Viewed: ${item.viewedAt ? escapeHtml(formatDateTime(item.viewedAt)) : "Not tracked automatically"}</span>
+        <span>Opened: ${item.viewedAt || item.openedAt ? escapeHtml(formatDateTime(item.viewedAt || item.openedAt)) : "Not opened yet"}${item.openCount ? ` (${escapeHtml(item.openCount)} total)` : ""}</span>
       </div>
       <pre>${escapeHtml(item.body || "")}</pre>
       <div class="history-actions">
