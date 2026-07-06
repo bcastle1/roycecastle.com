@@ -7,6 +7,16 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $message = request_json();
+$name = trim(substr((string)($message['name'] ?? ''), 0, 120));
+$email = normalize_email(substr((string)($message['email'] ?? ''), 0, 180));
+$program = trim(substr((string)($message['program'] ?? ''), 0, 180));
+$role = trim(substr((string)($message['role'] ?? ''), 0, 120));
+$bodyText = trim(substr((string)($message['body'] ?? ''), 0, 4000));
+
+if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $program === '' || $bodyText === '') {
+    respond_json(['ok' => false, 'error' => 'Valid name, email, program, and message are required.'], 422);
+}
+
 $message['id'] = (string)($message['id'] ?? ('message-' . time() . '-' . bin2hex(random_bytes(3))));
 $message['createdAt'] = (string)($message['createdAt'] ?? gmdate('c'));
 $message['status'] = 'New';
@@ -14,11 +24,11 @@ $message['status'] = 'New';
 $messages = read_json_file('messages.json', []);
 array_unshift($messages, [
     'id' => $message['id'],
-    'name' => trim((string)($message['name'] ?? '')),
-    'email' => normalize_email((string)($message['email'] ?? '')),
-    'program' => trim((string)($message['program'] ?? '')),
-    'role' => trim((string)($message['role'] ?? '')),
-    'body' => trim((string)($message['body'] ?? '')),
+    'name' => $name,
+    'email' => $email,
+    'program' => $program,
+    'role' => $role,
+    'body' => $bodyText,
     'createdAt' => $message['createdAt'],
     'status' => 'New',
 ]);
@@ -28,19 +38,19 @@ $settings = load_settings();
 $to = normalize_email((string)($settings['forwardEmail'] ?? RC_DEFAULT_MAILBOX));
 if (!filter_var($to, FILTER_VALIDATE_EMAIL)) $to = RC_DEFAULT_MAILBOX;
 
-$sender = normalize_email((string)($message['email'] ?? ''));
-$subject = 'Royce Castle recruiting inquiry from ' . safe_header_value((string)($message['program'] ?? 'a coach/contact'));
-$body = "Name: " . (string)($message['name'] ?? '') . "\n"
+$sender = $email;
+$subject = 'Royce Castle recruiting inquiry from ' . safe_header_value($program);
+$body = "Name: " . $name . "\n"
     . "Email: " . $sender . "\n"
-    . "Program: " . (string)($message['program'] ?? '') . "\n"
-    . "Role: " . (string)($message['role'] ?? '') . "\n\n"
+    . "Program: " . $program . "\n"
+    . "Role: " . ($role ?: 'Not provided') . "\n\n"
     . "Royce profile: " . RC_PUBLIC_ORIGIN . "/\n"
     . "Highlight video: " . RC_PUBLIC_ORIGIN . "/#video\n\n"
-    . (string)($message['body'] ?? '');
+    . $bodyText;
 
 $headers = [
     'From: Royce Castle Site <' . RC_DEFAULT_MAILBOX . '>',
-    'Reply-To: ' . (filter_var($sender, FILTER_VALIDATE_EMAIL) ? $sender : $to),
+    'Reply-To: ' . $sender,
     'Content-Type: text/plain; charset=UTF-8',
     'X-Mailer: Royce Castle Recruiting',
 ];

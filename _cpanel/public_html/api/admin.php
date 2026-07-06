@@ -36,6 +36,7 @@ switch ($action) {
             'time',
             'delaySeconds',
             'openDrafts',
+            'emailTemplateVersion',
             'emailTemplate',
         ];
         foreach ($allowed as $key) {
@@ -44,7 +45,7 @@ switch ($action) {
         if (!empty($body['newCode'])) {
             $settings['adminCodeHash'] = password_hash((string)$body['newCode'], PASSWORD_DEFAULT);
         }
-        write_json_file('settings.json', $settings);
+        write_json_file('settings.json', normalize_settings($settings));
         respond_json(state_payload());
         break;
 

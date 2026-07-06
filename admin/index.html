@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260706-email-ready">
+    <link rel="stylesheet" href="../styles.css?v=20260706-email-ready-2">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -28,7 +28,7 @@
       <aside class="admin-sidebar">
         <a class="admin-brand" href="#overview">
           <span class="brand-mark">RC</span>
-          <span><strong>Admin Studio</strong><small>Royce recruiting operations</small></span>
+          <span><span class="brand-title">Admin Studio</span><small>Royce recruiting operations</small></span>
         </a>
         <nav aria-label="Admin navigation">
           <a href="#overview"><i data-lucide="layout-dashboard"></i>Overview</a>
@@ -57,13 +57,13 @@
         </header>
 
         <section class="admin-metrics">
-          <article><small>Contacts</small><strong id="metric-contacts">0</strong><span>Workbook rows loaded</span></article>
-          <article><small>Selected</small><strong id="metric-selected">0</strong><span>Ready for next run</span></article>
-          <article><small>Messages</small><strong id="metric-messages">0</strong><span id="metric-storage-label">Saved locally</span></article>
-          <article><small>Sent</small><strong id="metric-sent">0</strong><span>Logged outreach emails</span></article>
-          <article><small>Opened</small><strong id="metric-opened">0</strong><span>Tracked email opens</span></article>
-          <article><small>Opt-outs</small><strong id="metric-opt-outs">0</strong><span>Suppressed emails</span></article>
-          <article><small>Last run</small><strong id="metric-progress">0%</strong><span id="metric-run-label">No active run</span></article>
+          <article><small>Contacts</small><span class="metric-value" id="metric-contacts">0</span><span>Workbook rows loaded</span></article>
+          <article><small>Selected</small><span class="metric-value" id="metric-selected">0</span><span>Ready for next run</span></article>
+          <article><small>Messages</small><span class="metric-value" id="metric-messages">0</span><span id="metric-storage-label">Saved locally</span></article>
+          <article><small>Sent</small><span class="metric-value" id="metric-sent">0</span><span>Logged outreach emails</span></article>
+          <article><small>Opened</small><span class="metric-value" id="metric-opened">0</span><span>Tracked email opens</span></article>
+          <article><small>Opt-outs</small><span class="metric-value" id="metric-opt-outs">0</span><span>Suppressed emails</span></article>
+          <article><small>Last run</small><span class="metric-value" id="metric-progress">0%</span><span id="metric-run-label">No active run</span></article>
         </section>
 
         <section class="panel admin-panel webmail-panel" id="webmail">
@@ -79,17 +79,17 @@
           <div class="webmail-grid">
             <article>
               <small>Login address</small>
-              <strong id="webmail-email-display">info@roycecastle.com</strong>
+              <span class="webmail-value" id="webmail-email-display">info@roycecastle.com</span>
               <span>Use the mailbox password in the webmail login screen.</span>
             </article>
             <article>
               <small>Run workflow</small>
-              <strong id="backend-status-title">Draft, review, then send</strong>
+              <span class="webmail-value" id="backend-status-title">Draft, review, then send</span>
               <span id="backend-status">Static mode is ready to prepare drafts. cPanel mode sends from the mailbox and tracks opens.</span>
             </article>
             <article>
               <small>Opt-out safety</small>
-              <strong>Suppression list enabled</strong>
+              <span class="webmail-value">Suppression list enabled</span>
               <span>Selected contacts with opted-out emails are skipped or have those addresses removed from the run.</span>
             </article>
           </div>
@@ -139,7 +139,7 @@
           <div class="admin-campaign-grid">
             <div class="composer-card">
               <div class="school-strip admin-school-strip">
-                <strong id="admin-selected-school">Select a contact</strong>
+                <span class="school-title" id="admin-selected-school">Select a contact</span>
                 <span id="admin-selected-meta">Choose from the workbook or enter a manual email.</span>
               </div>
               <div class="field-grid">
@@ -219,7 +219,7 @@
               <div class="run-log" id="run-log" hidden></div>
               <div class="suppression-card">
                 <div>
-                  <strong>Opt-out / opt-in controls</strong>
+                  <span class="section-title">Opt-out / opt-in controls</span>
                   <p>Emails listed here are excluded from runs. Add one email per line, or use a comma-separated list.</p>
                 </div>
                 <label>Suppressed emails<textarea id="opt-out-list" rows="5" placeholder="coach@example.edu"></textarea></label>
@@ -274,22 +274,22 @@
             </a>
           </div>
           <div class="admin-media-grid">
-            <article><img src="../assets/royce-castle-rcastle.jpg" alt="Royce Castle holding basketball" loading="lazy" decoding="async"><strong>Primary landing portrait</strong></article>
-            <article><img src="../assets/royce-castle-profile-poster.png" alt="Royce Castle poster backdrop" loading="lazy" decoding="async"><strong>Poster backdrop</strong></article>
-            <article><img src="../assets/royce-castle-profile.jpg" alt="Royce Castle profile image" loading="lazy" decoding="async"><strong>Profile image</strong></article>
-            <article><img src="../assets/basketball-court.jpg" alt="Basketball court background" loading="lazy" decoding="async"><strong>Court background</strong></article>
-            <article><img src="../assets/royce-game-high-release.jpg" alt="Royce Castle shooting over a defender" loading="lazy" decoding="async"><strong>Action: high release jumper</strong></article>
-            <article><img src="../assets/royce-game-paint-touch.jpg" alt="Royce Castle catching the ball near the rim" loading="lazy" decoding="async"><strong>Action: paint touch</strong></article>
-            <article><img src="../assets/royce-game-shot-release.jpg" alt="Royce Castle rising into a jump shot" loading="lazy" decoding="async"><strong>Action: shot release</strong></article>
-            <article><img src="../assets/royce-game-drive-defense.jpg" alt="Royce Castle handling defensive pressure" loading="lazy" decoding="async"><strong>Action: pressure read</strong></article>
-            <article><img src="../assets/royce-game-box-out.jpg" alt="Royce Castle boxing out for a rebound" loading="lazy" decoding="async"><strong>Action: box out and rebound</strong></article>
+            <article><img src="../assets/royce-castle-rcastle.jpg" alt="Royce Castle holding basketball" loading="lazy" decoding="async"><span class="media-label">Primary landing portrait</span></article>
+            <article><img src="../assets/royce-castle-profile-poster.png" alt="Royce Castle poster backdrop" loading="lazy" decoding="async"><span class="media-label">Poster backdrop</span></article>
+            <article><img src="../assets/royce-castle-profile.jpg" alt="Royce Castle profile image" loading="lazy" decoding="async"><span class="media-label">Profile image</span></article>
+            <article><img src="../assets/basketball-court.jpg" alt="Basketball court background" loading="lazy" decoding="async"><span class="media-label">Court background</span></article>
+            <article><img src="../assets/royce-game-high-release.jpg" alt="Royce Castle shooting over a defender" loading="lazy" decoding="async"><span class="media-label">Action: high release jumper</span></article>
+            <article><img src="../assets/royce-game-paint-touch.jpg" alt="Royce Castle catching the ball near the rim" loading="lazy" decoding="async"><span class="media-label">Action: paint touch</span></article>
+            <article><img src="../assets/royce-game-shot-release.jpg" alt="Royce Castle rising into a jump shot" loading="lazy" decoding="async"><span class="media-label">Action: shot release</span></article>
+            <article><img src="../assets/royce-game-drive-defense.jpg" alt="Royce Castle handling defensive pressure" loading="lazy" decoding="async"><span class="media-label">Action: pressure read</span></article>
+            <article><img src="../assets/royce-game-box-out.jpg" alt="Royce Castle boxing out for a rebound" loading="lazy" decoding="async"><span class="media-label">Action: box out and rebound</span></article>
           </div>
         </section>
       </main>
     </div>
 
     <div id="admin-toast" class="toast" role="status"></div>
-    <script src="../contacts-data.js?v=20260601"></script>
-    <script src="admin.js?v=20260706-email-ready"></script>
+    <script src="../contacts-data.js?v=20260706-colors"></script>
+    <script src="admin.js?v=20260706-email-ready-2"></script>
   </body>
 </html>

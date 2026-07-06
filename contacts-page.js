@@ -170,7 +170,7 @@ function renderRow(row) {
   return `
     <tr>
       <td>
-        <strong>${escapeHtml(row.displayName || row.school)}</strong>
+        <span class="item-title">${escapeHtml(row.displayName || row.school)}</span>
         <span>${escapeHtml(row.school || "")}</span>
       </td>
       <td>${escapeHtml(row.state || "")}</td>
@@ -248,7 +248,7 @@ function renderHistoryEntry(item) {
   return `
     <article class="history-entry">
       <div class="history-meta">
-        <strong>${escapeHtml(item.subject || "Recruiting email")}</strong>
+        <span class="item-title">${escapeHtml(item.subject || "Recruiting email")}</span>
         <span>To: ${escapeHtml(item.email || "No recipient saved")}</span>
         <span>Sent: ${escapeHtml(formatDateTime(item.sentAt))} | Status: ${escapeHtml(item.status || "Sent")}</span>
         <span>Responded: ${item.respondedAt ? escapeHtml(formatDateTime(item.respondedAt)) : "No response marked"}</span>

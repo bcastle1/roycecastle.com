@@ -10,6 +10,7 @@ const API_BASE = "../api";
 const DEFAULT_MAILBOX = "info@roycecastle.com";
 const DEFAULT_WEBMAIL_URL = "https://privateemail.com/";
 const LEGACY_DEFAULT_EMAIL = "erik@puricloud.com";
+const EMAIL_TEMPLATE_VERSION = 3;
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
@@ -25,6 +26,7 @@ const defaultSettings = {
   time: "09:00",
   delaySeconds: 4,
   openDrafts: false,
+  emailTemplateVersion: EMAIL_TEMPLATE_VERSION,
   emailTemplate: defaultEmailTemplate()
 };
 
@@ -177,7 +179,7 @@ function applyServerState(state = {}) {
   serverAvailable = true;
   serverCanSend = !!state.canSend;
   if (state.settings) {
-    settings = { ...defaultSettings, ...state.settings };
+    settings = normalizeSettings(state.settings);
     localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(settings));
   }
   if (Array.isArray(state.messages)) localStorage.setItem(PUBLIC_MESSAGES_KEY, JSON.stringify(state.messages));
@@ -358,7 +360,7 @@ function renderMessages() {
           (message) => `
             <article class="message-item">
               <div>
-                <strong>${escapeHtml(message.name || "Unknown sender")}</strong>
+                <span class="item-title">${escapeHtml(message.name || "Unknown sender")}</span>
                 <span>${escapeHtml(message.program || "Program not provided")} ${message.role ? `| ${escapeHtml(message.role)}` : ""}</span>
               </div>
               <p>${escapeHtml(message.body || "")}</p>
@@ -420,7 +422,7 @@ function renderContacts() {
             <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
             <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(logoTextColor(contact))}">${escapeHtml(schoolInitials(contact))}</span>
             <span>
-              <strong>${escapeHtml(contact.displayName || contact.school)}</strong>
+              <span class="item-title">${escapeHtml(contact.displayName || contact.school)}</span>
               <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
               <em class="contact-status ${isSuppressed ? "suppressed" : optStatus.includes("opted out") ? "partial" : "clear"}">${escapeHtml(optStatus)}</em>
             </span>
@@ -976,6 +978,7 @@ async function saveTemplateFromEditor() {
     return;
   }
   settings.emailTemplate = ensureRequiredEmailTemplate(template);
+  settings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
   persistSettings();
   if (serverAvailable) await syncSettings();
   renderTemplateEditor();
@@ -985,6 +988,7 @@ async function saveTemplateFromEditor() {
 
 async function resetTemplate() {
   settings.emailTemplate = defaultEmailTemplate();
+  settings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
   persistSettings();
   if (serverAvailable) await syncSettings();
   renderTemplateEditor();
@@ -1128,17 +1132,31 @@ function csvCell(value) {
 
 function loadSettings() {
   try {
-    const loadedSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {}) };
-    loadedSettings.forwardEmail = normalizeMailboxSetting(loadedSettings.forwardEmail);
-    loadedSettings.fromEmail = normalizeMailboxSetting(loadedSettings.fromEmail);
-    loadedSettings.webmailEmail = loadedSettings.webmailEmail || DEFAULT_MAILBOX;
-    loadedSettings.webmailUrl = normalizeWebmailUrl(loadedSettings.webmailUrl) || DEFAULT_WEBMAIL_URL;
-    loadedSettings.emailTemplate = ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
+    const loadedSettings = normalizeSettings(JSON.parse(localStorage.getItem(ADMIN_SETTINGS_KEY) || "{}") || {});
     localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(loadedSettings));
     return loadedSettings;
   } catch {
-    return { ...defaultSettings, emailTemplate: ensureRequiredEmailTemplate(defaultSettings.emailTemplate) };
+    return normalizeSettings({});
   }
+}
+
+function normalizeSettings(rawSettings = {}) {
+  const loadedSettings = { ...defaultSettings, ...(rawSettings || {}) };
+  const savedTemplateVersion = rawSettings?.emailTemplateVersion;
+  loadedSettings.forwardEmail = normalizeMailboxSetting(loadedSettings.forwardEmail);
+  loadedSettings.fromEmail = normalizeMailboxSetting(loadedSettings.fromEmail);
+  loadedSettings.webmailEmail = loadedSettings.webmailEmail || DEFAULT_MAILBOX;
+  loadedSettings.webmailUrl = normalizeWebmailUrl(loadedSettings.webmailUrl) || DEFAULT_WEBMAIL_URL;
+  loadedSettings.emailTemplate = shouldUpgradeLegacyTemplate(loadedSettings.emailTemplate, savedTemplateVersion)
+    ? defaultEmailTemplate()
+    : ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
+  loadedSettings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
+  return loadedSettings;
+}
+
+function shouldUpgradeLegacyTemplate(template, version) {
+  if (Number(version || 0) >= EMAIL_TEMPLATE_VERSION) return false;
+  return /Royce Castle would be grateful for an evaluation conversation\s+with\s+\{\{school_name\}\}/i.test(String(template || ""));
 }
 
 function normalizeMailboxSetting(value) {

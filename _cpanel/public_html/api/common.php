@@ -14,6 +14,7 @@ session_start();
 const RC_DEFAULT_MAILBOX = 'info@roycecastle.com';
 const RC_DEFAULT_WEBMAIL_URL = 'https://privateemail.com/';
 const RC_PUBLIC_ORIGIN = 'https://roycecastle.com';
+const RC_EMAIL_TEMPLATE_VERSION = 3;
 
 function data_dir(): string
 {
@@ -82,20 +83,37 @@ function default_settings(): array
         'time' => '09:00',
         'delaySeconds' => 4,
         'openDrafts' => false,
+        'emailTemplateVersion' => RC_EMAIL_TEMPLATE_VERSION,
         'emailTemplate' => default_email_template(),
     ];
 }
 
 function load_settings(): array
 {
-    $settings = array_merge(default_settings(), read_json_file('settings.json', []));
+    return normalize_settings(read_json_file('settings.json', []));
+}
+
+function normalize_settings(array $raw): array
+{
+    $settings = array_merge(default_settings(), $raw);
+    $savedTemplateVersion = $raw['emailTemplateVersion'] ?? 0;
     foreach (['forwardEmail', 'fromEmail', 'webmailEmail'] as $key) {
         if (empty($settings[$key])) $settings[$key] = RC_DEFAULT_MAILBOX;
     }
     if (empty($settings['webmailUrl'])) $settings['webmailUrl'] = RC_DEFAULT_WEBMAIL_URL;
     if (empty($settings['emailTemplate'])) $settings['emailTemplate'] = default_email_template();
+    if (should_upgrade_legacy_template((string)$settings['emailTemplate'], $savedTemplateVersion)) {
+        $settings['emailTemplate'] = default_email_template();
+    }
+    $settings['emailTemplateVersion'] = RC_EMAIL_TEMPLATE_VERSION;
     $settings['delaySeconds'] = max(1, (int)($settings['delaySeconds'] ?? 4));
     return $settings;
+}
+
+function should_upgrade_legacy_template(string $template, $version): bool
+{
+    if ((int)$version >= RC_EMAIL_TEMPLATE_VERSION) return false;
+    return preg_match('/Royce Castle would be grateful for an evaluation conversation\s+with\s+\{\{school_name\}\}/i', $template) === 1;
 }
 
 function public_settings(array $settings): array
