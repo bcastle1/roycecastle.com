@@ -1,0 +1,5 @@
+exclude:
+  - _cpanel
+  - tools
+  - CPANEL_DEPLOYMENT.md
+  - README.md
