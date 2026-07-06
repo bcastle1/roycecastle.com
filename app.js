@@ -81,7 +81,9 @@ async function saveMessageToServer(message) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(message)
     });
-    return response.ok;
+    if (!response.ok) return false;
+    const result = await response.json();
+    return !!result?.ok;
   } catch {
     return false;
   }
