@@ -35,7 +35,11 @@ check("Contact database has at least 1,300 rows", contacts.length >= 1300);
 check("Contact database has at least 500 email-ready rows", withEmail.length >= 500);
 
 const genericColorRows = contacts.filter((contact) => contact.primaryColor === "#164b88" && contact.accentColor === "#f2b84b").length;
-console.log(JSON.stringify({ contacts: contacts.length, withEmail: withEmail.length, genericColorRows }, null, 2));
+const sourcedColorRows = contacts.filter((contact) => contact.colorSource).length;
+const unsourcedCustomColors = contacts.filter((contact) => contact.primaryColor !== "#164b88" && contact.accentColor !== "#f2b84b" && !contact.colorSource).length;
+check("Contact database has at least 300 sourced school colors", sourcedColorRows >= 300);
+check("Custom school colors include source labels", unsourcedCustomColors === 0);
+console.log(JSON.stringify({ contacts: contacts.length, withEmail: withEmail.length, sourcedColorRows, genericColorRows }, null, 2));
 
 if (checks.some((item) => !item.pass)) {
   for (const item of checks) {

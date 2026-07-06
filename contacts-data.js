@@ -35,8 +35,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Falcons",
     "slogan": "Go Falcons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0061AA",
+    "accentColor": "#FFFFFF",
     "headCoach": "Joe Crispin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -49,7 +49,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goairforcefalcons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-air-force-falcons"
+    "id": "d1-air-force-falcons",
+    "colorSource": "ncaa-team-colors:air force falcons"
   },
   {
     "group": "d1",
@@ -60,8 +61,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Zips",
     "slogan": "Go Zips",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000E41",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dustin Ford",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "dford@uakron.edu",
@@ -74,7 +75,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gozips.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-akron-zips"
+    "id": "d1-akron-zips",
+    "colorSource": "ncaa-team-colors:akron zips"
   },
   {
     "group": "d1",
@@ -85,8 +87,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#750000",
+    "accentColor": "#FFFFFF",
     "headCoach": "Donte Jackson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -99,7 +101,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://aamusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-alabama-a-and-m-bulldogs"
+    "id": "d1-alabama-a-and-m-bulldogs",
+    "colorSource": "ncaa-team-colors:alabama a and m bulldogs"
   },
   {
     "group": "d1",
@@ -110,8 +113,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Crimson Tide",
     "slogan": "Go Crimson Tide",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A80532",
+    "accentColor": "#CACCCE",
     "headCoach": "Nate Oats",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -124,7 +127,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://rolltide.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-alabama-crimson-tide"
+    "id": "d1-alabama-crimson-tide",
+    "colorSource": "ncaa-team-colors:alabama crimson tide"
   },
   {
     "group": "d1",
@@ -135,8 +139,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Hornets",
     "slogan": "Go Hornets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FECB09",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Wright",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -149,7 +153,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bamastatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-alabama-state-hornets"
+    "id": "d1-alabama-state-hornets",
+    "colorSource": "ncaa-team-colors:alabama state hornets"
   },
   {
     "group": "d1",
@@ -160,8 +165,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Great Danes",
     "slogan": "Go Great Danes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#3D2777",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dwayne Killings",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -174,7 +179,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://ualbanysports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-albany-great-danes"
+    "id": "d1-albany-great-danes",
+    "colorSource": "ncaa-team-colors:albany great danes"
   },
   {
     "group": "d1",
@@ -185,8 +191,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Braves",
     "slogan": "Go Braves",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#42094A",
+    "accentColor": "#FCF5BA",
     "headCoach": "Jake Morton",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "athletics@alcorn.edu",
@@ -199,7 +205,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://alcornsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-alcorn-state-braves"
+    "id": "d1-alcorn-state-braves",
+    "colorSource": "ncaa-team-colors:alcorn state braves"
   },
   {
     "group": "d1",
@@ -210,8 +217,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#C41130",
+    "accentColor": "#FFFFFF",
     "headCoach": "Duane Simpkins",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "dsimpkins@american.edu",
@@ -224,7 +231,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://aueagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-american-eagles"
+    "id": "d1-american-eagles",
+    "colorSource": "ncaa-team-colors:american university eagles"
   },
   {
     "group": "d1",
@@ -235,8 +243,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Mountaineers",
     "slogan": "Go Mountaineers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFC520",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dustin Kerns",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -249,7 +257,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://appstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-appalachian-state-mountaineers"
+    "id": "d1-appalachian-state-mountaineers",
+    "colorSource": "ncaa-team-colors:appalachian state mountaineers"
   },
   {
     "group": "d1",
@@ -260,8 +269,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Sun Devils",
     "slogan": "Go Sun Devils",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#96203D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Randy Bennett",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -274,7 +283,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-arizona-state-sun-devils"
+    "id": "d1-arizona-state-sun-devils",
+    "colorSource": "ncaa-team-colors:arizona state sun devils"
   },
   {
     "group": "d1",
@@ -285,8 +295,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BB003A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tommy Lloyd",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "coaches@arizona.edu",
@@ -299,7 +309,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://arizonawildcats.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-arizona-wildcats"
+    "id": "d1-arizona-wildcats",
+    "colorSource": "ncaa-team-colors:arizona wildcats"
   },
   {
     "group": "d1",
@@ -310,8 +321,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Razorbacks",
     "slogan": "Go Razorbacks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CD1041",
+    "accentColor": "#FFFFFF",
     "headCoach": "John Calipari",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -324,7 +335,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://arkansasrazorbacks.com/staff-directory/#coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-arkansas-razorbacks"
+    "id": "d1-arkansas-razorbacks",
+    "colorSource": "ncaa-team-colors:arkansas razorbacks"
   },
   {
     "group": "d1",
@@ -335,8 +347,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Red Wolves",
     "slogan": "Go Red Wolves",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#ED1B2E",
+    "accentColor": "#C8C7C7",
     "headCoach": "Ryan Pannone",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mensbball@astate.edu",
@@ -349,19 +361,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://astateredwolves.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-arkansas-state-red-wolves"
+    "id": "d1-arkansas-state-red-wolves",
+    "colorSource": "ncaa-team-colors:arkansas state red wolves"
   },
   {
     "group": "d1",
     "school": "University of Arkansas at Pine Bluff",
-    "displayName": "Arkansas\u2013Pine Bluff Golden Lions",
+    "displayName": "Arkansas–Pine Bluff Golden Lions",
     "state": "AR",
     "division": "NCAA D1",
     "conference": "Southwestern",
     "mascot": "Golden Lions",
     "slogan": "Go Golden Lions",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#EEBB00",
+    "accentColor": "#FFFFFF",
     "headCoach": "Solomon Bozeman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "bozemane@uapb.edu",
@@ -374,7 +387,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://uapblionsroar.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-arkansas-pine-bluff-golden-lions"
+    "id": "d1-arkansas-pine-bluff-golden-lions",
+    "colorSource": "ncaa-team-colors:arkansas pine bluff golden lions"
   },
   {
     "group": "d1",
@@ -385,8 +399,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D19D00",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kevin Kuwik",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -399,7 +413,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-army-black-knights"
+    "id": "d1-army-black-knights",
+    "colorSource": "ncaa-team-colors:army black knights"
   },
   {
     "group": "d1",
@@ -410,8 +425,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#172240",
+    "accentColor": "#FFFFFF",
     "headCoach": "Steven Pearl",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -424,7 +439,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://auburntigers.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-auburn-tigers"
+    "id": "d1-auburn-tigers",
+    "colorSource": "ncaa-team-colors:auburn tigers"
   },
   {
     "group": "d1",
@@ -435,8 +451,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "United Athletic",
     "mascot": "Governors",
     "slogan": "Go Governors",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#8E0B0B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Corey Gipson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -449,7 +465,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://letsgopeay.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-austin-peay-governors"
+    "id": "d1-austin-peay-governors",
+    "colorSource": "ncaa-team-colors:austin peay governors"
   },
   {
     "group": "d1",
@@ -460,8 +477,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
-    "primaryColor": "#002e5d",
-    "accentColor": "#ffffff",
+    "primaryColor": "#002E5D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kevin Young",
     "assistantCoach": "Samantha Young",
     "headEmail": "",
@@ -474,7 +491,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "BYU row enriched from BYU official men's basketball/staff-directory pages. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-byu-cougars"
+    "id": "d1-byu-cougars",
+    "colorSource": "manual:byu-athletics-blue-white"
   },
   {
     "group": "d1",
@@ -485,8 +503,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Cardinals",
     "slogan": "Go Cardinals",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#DA0000",
+    "accentColor": "#000000",
     "headCoach": "Chris Capko",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -499,7 +517,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ballstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-ball-state-cardinals"
+    "id": "d1-ball-state-cardinals",
+    "colorSource": "ncaa-team-colors:ball state cardinals"
   },
   {
     "group": "d1",
@@ -510,8 +529,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#008649",
+    "accentColor": "#FFFFFF",
     "headCoach": "Scott Drew",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Scott_Drew@Baylor.edu",
@@ -524,7 +543,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://baylorbears.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-baylor-bears"
+    "id": "d1-baylor-bears",
+    "colorSource": "ncaa-team-colors:baylor bears"
   },
   {
     "group": "d1",
@@ -560,8 +580,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Bruins",
     "slogan": "Go Bruins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E82645",
+    "accentColor": "#FFFFFF",
     "headCoach": "Evan Bradds",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -574,7 +594,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://belmontbruins.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-belmont-bruins"
+    "id": "d1-belmont-bruins",
+    "colorSource": "ncaa-team-colors:belmont bruins"
   },
   {
     "group": "d1",
@@ -585,8 +606,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#841B35",
+    "accentColor": "#FEB65F",
     "headCoach": "Reggie Theus",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -599,7 +620,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://bcuathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-bethune-cookman-wildcats"
+    "id": "d1-bethune-cookman-wildcats",
+    "colorSource": "ncaa-team-colors:bethune cookman wildcats"
   },
   {
     "group": "d1",
@@ -610,8 +632,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Bearcats",
     "slogan": "Go Bearcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#006F53",
+    "accentColor": "#B3B5B8",
     "headCoach": "Levell Sanders",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "twilliams14@binghamton.edu",
@@ -624,7 +646,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://binghamtonbearcats.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-binghamton-bearcats"
+    "id": "d1-binghamton-bearcats",
+    "colorSource": "ncaa-team-colors:binghamton bearcats"
   },
   {
     "group": "d1",
@@ -635,8 +658,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Broncos",
     "slogan": "Bleed Blue",
-    "primaryColor": "#0033a0",
-    "accentColor": "#d64309",
+    "primaryColor": "#2D4492",
+    "accentColor": "#FFFFFF",
     "headCoach": "Leon Rice",
     "assistantCoach": "Mike Burns",
     "headEmail": "leonrice@boisestate.edu",
@@ -649,7 +672,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Boise State row enriched from Broncos official men's basketball coaches page and retirement notice for Tim Duryea. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-boise-state-broncos"
+    "id": "d1-boise-state-broncos",
+    "colorSource": "ncaa-team-colors:boise state broncos"
   },
   {
     "group": "d1",
@@ -660,8 +684,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#821E1E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Luke Murray",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -674,7 +698,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-boston-college-eagles"
+    "id": "d1-boston-college-eagles",
+    "colorSource": "ncaa-team-colors:boston college eagles"
   },
   {
     "group": "d1",
@@ -685,8 +710,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Terriers",
     "slogan": "Go Terriers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#DD072E",
+    "accentColor": "#000000",
     "headCoach": "Joe Jones",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jjones11@bu.edu",
@@ -699,7 +724,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goterriers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-boston-university-terriers"
+    "id": "d1-boston-university-terriers",
+    "colorSource": "ncaa-team-colors:boston university terriers"
   },
   {
     "group": "d1",
@@ -710,8 +736,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Falcons",
     "slogan": "Go Falcons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#4E2400",
+    "accentColor": "#FFFFFF",
     "headCoach": "Todd Simon",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mensbasketball@bgsu.edu",
@@ -724,7 +750,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bgsufalcons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-bowling-green-falcons"
+    "id": "d1-bowling-green-falcons",
+    "colorSource": "ncaa-team-colors:bowling green falcons"
   },
   {
     "group": "d1",
@@ -735,8 +762,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Braves",
     "slogan": "Go Braves",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF151A",
+    "accentColor": "#000000",
     "headCoach": "Brian Wardle",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -749,7 +776,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bradleybraves.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-bradley-braves"
+    "id": "d1-bradley-braves",
+    "colorSource": "ncaa-team-colors:bradley braves"
   },
   {
     "group": "d1",
@@ -760,8 +788,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#8A1E04",
+    "accentColor": "#000000",
     "headCoach": "Mike Martin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -774,7 +802,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://brownbears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-brown-bears"
+    "id": "d1-brown-bears",
+    "colorSource": "ncaa-team-colors:brown bears"
   },
   {
     "group": "d1",
@@ -785,8 +814,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#702D07",
+    "accentColor": "#A59474",
     "headCoach": "Jamion Christian",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -799,7 +828,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bryantbulldogs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-bryant-bulldogs"
+    "id": "d1-bryant-bulldogs",
+    "colorSource": "ncaa-team-colors:bryant university bulldogs"
   },
   {
     "group": "d1",
@@ -810,8 +840,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Bison",
     "slogan": "Go Bison",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000064",
+    "accentColor": "#FFFFFF",
     "headCoach": "John Griffin III",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -824,7 +854,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bucknellbison.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-bucknell-bison"
+    "id": "d1-bucknell-bison",
+    "colorSource": "ncaa-team-colors:bucknell bison"
   },
   {
     "group": "d1",
@@ -835,8 +866,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Bulls",
     "slogan": "Go Bulls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0068B4",
+    "accentColor": "#000000",
     "headCoach": "George Halcovage",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "ub-mensbasketball@buffalo.edu",
@@ -849,7 +880,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://ubbulls.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-buffalo-bulls"
+    "id": "d1-buffalo-bulls",
+    "colorSource": "ncaa-team-colors:buffalo bulls"
   },
   {
     "group": "d1",
@@ -860,8 +892,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0D1361",
+    "accentColor": "#000000",
     "headCoach": "Ronald Nored",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "butlermbb@butler.edu",
@@ -874,7 +906,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://butlersports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-butler-bulldogs"
+    "id": "d1-butler-bulldogs",
+    "colorSource": "ncaa-team-colors:butler bulldogs"
   },
   {
     "group": "d1",
@@ -885,8 +918,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Mustangs",
     "slogan": "Go Mustangs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#123C31",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike DeGeorge",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mbb@calpoly.edu",
@@ -899,7 +932,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gopoly.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cal-poly-mustangs"
+    "id": "d1-cal-poly-mustangs",
+    "colorSource": "ncaa-team-colors:cal poly mustangs"
   },
   {
     "group": "d1",
@@ -910,8 +944,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005DAB",
+    "accentColor": "#FFFFFF",
     "headCoach": "Todd Lee",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -924,7 +958,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cal-state-bakersfield-roadrunners"
+    "id": "d1-cal-state-bakersfield-roadrunners",
+    "colorSource": "ncaa-team-colors:cal state bakersfield roadrunners"
   },
   {
     "group": "d1",
@@ -935,8 +970,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Titans",
     "slogan": "Go Titans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003768",
+    "accentColor": "#F68F1E",
     "headCoach": "Dedrique Taylor",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mensbasketball@fullerton.edu",
@@ -949,7 +984,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://fullertontitans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cal-state-fullerton-titans"
+    "id": "d1-cal-state-fullerton-titans",
+    "colorSource": "ncaa-team-colors:cal state fullerton titans"
   },
   {
     "group": "d1",
@@ -960,8 +996,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CD1041",
+    "accentColor": "#231F20",
     "headCoach": "Andy Newman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -974,7 +1010,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gomatadors.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cal-state-northridge-matadors"
+    "id": "d1-cal-state-northridge-matadors",
+    "colorSource": "ncaa-team-colors:cal state northridge matadors"
   },
   {
     "group": "d1",
@@ -1010,8 +1047,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Golden Bears",
     "slogan": "Go Golden Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003768",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mark Madsen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1024,7 +1061,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://calbears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-california-golden-bears"
+    "id": "d1-california-golden-bears",
+    "colorSource": "ncaa-team-colors:california golden bears"
   },
   {
     "group": "d1",
@@ -1035,8 +1073,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Fighting Camels",
     "slogan": "Go Fighting Camels",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF8931",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jimmie Williams",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1049,7 +1087,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gocamels.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-campbell-fighting-camels"
+    "id": "d1-campbell-fighting-camels",
+    "colorSource": "ncaa-team-colors:campbell fighting camels"
   },
   {
     "group": "d1",
@@ -1060,8 +1099,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Golden Griffins",
     "slogan": "Go Golden Griffins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002859",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jim Christian",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "christ41@canisius.edu",
@@ -1074,7 +1113,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gogriffs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-canisius-golden-griffins"
+    "id": "d1-canisius-golden-griffins",
+    "colorSource": "ncaa-team-colors:canisius golden griffins"
   },
   {
     "group": "d1",
@@ -1085,8 +1125,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "United Athletic",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#4F2683",
+    "accentColor": "#939BA1",
     "headCoach": "John Shulman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Jshulman@uca.edu",
@@ -1099,7 +1139,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ucasports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-central-arkansas-bears"
+    "id": "d1-central-arkansas-bears",
+    "colorSource": "ncaa-team-colors:central arkansas bears"
   },
   {
     "group": "d1",
@@ -1135,8 +1176,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Chippewas",
     "slogan": "Go Chippewas",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#780006",
+    "accentColor": "#E2A253",
     "headCoach": "Andy Bronkema",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1149,7 +1190,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://cmuchippewas.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-central-michigan-chippewas"
+    "id": "d1-central-michigan-chippewas",
+    "colorSource": "ncaa-team-colors:central michigan chippewas"
   },
   {
     "group": "d1",
@@ -1160,8 +1202,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#6A0018",
+    "accentColor": "#FFFFFF",
     "headCoach": "John Groce",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "perruccia@cofc.edu",
@@ -1174,7 +1216,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://cofcsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-charleston-cougars"
+    "id": "d1-charleston-cougars",
+    "colorSource": "ncaa-team-colors:charleston cougars"
   },
   {
     "group": "d1",
@@ -1185,8 +1228,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Buccaneers",
     "slogan": "Go Buccaneers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00447C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Saah Nimley",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "snimley@csuniv.edu",
@@ -1199,7 +1242,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from http://www.csusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-charleston-southern-buccaneers"
+    "id": "d1-charleston-southern-buccaneers",
+    "colorSource": "ncaa-team-colors:charleston southern buccaneers"
   },
   {
     "group": "d1",
@@ -1210,8 +1254,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "49ers",
     "slogan": "Go 49ers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#006331",
+    "accentColor": "#949431",
     "headCoach": "Wes Miller",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "CharlotteMBB@charlotte.edu",
@@ -1224,7 +1268,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from official Charlotte men's basketball coaches search result/snippet and page URL. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-charlotte-49ers"
+    "id": "d1-charlotte-49ers",
+    "colorSource": "ncaa-team-colors:charlotte 49ers"
   },
   {
     "group": "d1",
@@ -1235,8 +1280,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Mocs",
     "slogan": "Go Mocs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00437B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dan Earl",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1249,7 +1294,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-chattanooga-mocs"
+    "id": "d1-chattanooga-mocs",
+    "colorSource": "ncaa-team-colors:chattanooga mocs"
   },
   {
     "group": "d1",
@@ -1260,8 +1306,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Northeast",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#006700",
+    "accentColor": "#FFFFFF",
     "headCoach": "Landon Bussie",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "csumensbasketball@csu.edu",
@@ -1274,7 +1320,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://www.gocsucougars.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-chicago-state-cougars"
+    "id": "d1-chicago-state-cougars",
+    "colorSource": "ncaa-team-colors:chicago state cougars"
   },
   {
     "group": "d1",
@@ -1285,8 +1332,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Bearcats",
     "slogan": "Go Bearcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FD0026",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jerrod Calhoun",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "hecimoay@ucmail.uc.edu",
@@ -1299,7 +1346,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gobearcats.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cincinnati-bearcats"
+    "id": "d1-cincinnati-bearcats",
+    "colorSource": "ncaa-team-colors:cincinnati bearcats"
   },
   {
     "group": "d1",
@@ -1310,8 +1358,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#441F6F",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brad Brownell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "coachb@clemson.edu",
@@ -1324,7 +1372,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://clemsontigers.com/staff-directory/. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-clemson-tigers"
+    "id": "d1-clemson-tigers",
+    "colorSource": "ncaa-team-colors:clemson tigers"
   },
   {
     "group": "d1",
@@ -1335,8 +1384,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Vikings",
     "slogan": "Go Vikings",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00573D",
+    "accentColor": "#A7A9AC",
     "headCoach": "Rob Summers",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1349,7 +1398,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://csuvikings.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cleveland-state-vikings"
+    "id": "d1-cleveland-state-vikings",
+    "colorSource": "ncaa-team-colors:cleveland state vikings"
   },
   {
     "group": "d1",
@@ -1360,8 +1410,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Chanticleers",
     "slogan": "Go Chanticleers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#009297",
+    "accentColor": "#D59C3A",
     "headCoach": "Justin Gray",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "ccohen2@coastal.edu",
@@ -1374,7 +1424,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goccusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-coastal-carolina-chanticleers"
+    "id": "d1-coastal-carolina-chanticleers",
+    "colorSource": "ncaa-team-colors:coastal carolina chanticleers"
   },
   {
     "group": "d1",
@@ -1385,8 +1436,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Raiders",
     "slogan": "Go Raiders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#8B011D",
+    "accentColor": "#241F20",
     "headCoach": "Matt Langel",
     "assistantCoach": "Trey Montgomery",
     "headEmail": "mlangel@colgate.edu",
@@ -1399,7 +1450,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Colgate row enriched from official Colgate men's basketball coaches page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-colgate-raiders"
+    "id": "d1-colgate-raiders",
+    "colorSource": "ncaa-team-colors:colgate raiders"
   },
   {
     "group": "d1",
@@ -1410,8 +1462,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Buffaloes",
     "slogan": "Go Buffaloes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D9C994",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tad Boyle",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "marge.marcy@colorado.edu",
@@ -1424,7 +1476,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://cubuffs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-colorado-buffaloes"
+    "id": "d1-colorado-buffaloes",
+    "colorSource": "ncaa-team-colors:colorado buffaloes"
   },
   {
     "group": "d1",
@@ -1435,8 +1488,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Rams",
     "slogan": "Go Rams",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#008C75",
+    "accentColor": "#F8E793",
     "headCoach": "Ali Farokhmanesh",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1449,7 +1502,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-colorado-state-rams"
+    "id": "d1-colorado-state-rams",
+    "colorSource": "ncaa-team-colors:colorado state rams"
   },
   {
     "group": "d1",
@@ -1460,8 +1514,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Lions",
     "slogan": "Go Lions",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004B85",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kevin Hovde",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "culionsmbb@columbia.edu",
@@ -1474,7 +1528,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gocolumbialions.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-columbia-lions"
+    "id": "d1-columbia-lions",
+    "colorSource": "ncaa-team-colors:columbia lions"
   },
   {
     "group": "d1",
@@ -1485,8 +1540,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2E3192",
+    "accentColor": "#FFF500",
     "headCoach": "Larry Stewart",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "lastewart@coppin.edu",
@@ -1499,7 +1554,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://coppinstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-coppin-state-eagles"
+    "id": "d1-coppin-state-eagles",
+    "colorSource": "ncaa-team-colors:coppin state eagles"
   },
   {
     "group": "d1",
@@ -1510,8 +1566,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Big Red",
     "slogan": "Go Big Red",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D60027",
+    "accentColor": "#000000",
     "headCoach": "Jon Jaques",
     "assistantCoach": "Nat Graham",
     "headEmail": "menshoops@cornell.edu",
@@ -1524,7 +1580,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Cornell row enriched from official Cornell 2025-26 men's basketball coaches page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-cornell-big-red"
+    "id": "d1-cornell-big-red",
+    "colorSource": "ncaa-team-colors:cornell big red"
   },
   {
     "group": "d1",
@@ -1535,8 +1592,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Bluejays",
     "slogan": "Go Bluejays",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#192DAA",
+    "accentColor": "#FFFFFF",
     "headCoach": "Alan Huss",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "alanhuss@creighton.edu",
@@ -1549,7 +1606,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gocreighton.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-creighton-bluejays"
+    "id": "d1-creighton-bluejays",
+    "colorSource": "ncaa-team-colors:creighton bluejays"
   },
   {
     "group": "d1",
@@ -1560,8 +1618,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Big Green",
     "slogan": "Go Big Green",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005730",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brett MacConnell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1574,7 +1632,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://dartmouthsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-dartmouth-big-green"
+    "id": "d1-dartmouth-big-green",
+    "colorSource": "ncaa-team-colors:dartmouth big green"
   },
   {
     "group": "d1",
@@ -1585,8 +1644,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E51937",
+    "accentColor": "#FFFFFF",
     "headCoach": "Matt McKillop",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mamckillop@davidson.edu",
@@ -1599,7 +1658,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://davidsonwildcats.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-davidson-wildcats"
+    "id": "d1-davidson-wildcats",
+    "colorSource": "ncaa-team-colors:davidson wildcats"
   },
   {
     "group": "d1",
@@ -1610,8 +1670,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Flyers",
     "slogan": "Go Flyers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E70808",
+    "accentColor": "#FFFFFF",
     "headCoach": "Anthony Grant",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1624,7 +1684,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://daytonflyers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-dayton-flyers"
+    "id": "d1-dayton-flyers",
+    "colorSource": "ncaa-team-colors:dayton flyers"
   },
   {
     "group": "d1",
@@ -1635,8 +1696,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Blue Demons",
     "slogan": "Go Blue Demons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BD0F10",
+    "accentColor": "#000000",
     "headCoach": "Chris Holtmann",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1649,7 +1710,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://depaulbluedemons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-depaul-blue-demons"
+    "id": "d1-depaul-blue-demons",
+    "colorSource": "ncaa-team-colors:depaul blue demons"
   },
   {
     "group": "d1",
@@ -1660,8 +1722,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Fightin' Blue Hens",
     "slogan": "Go Fightin' Blue Hens",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#100A04",
+    "accentColor": "#FFFFFF",
     "headCoach": "Martin Ingelsby",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1674,7 +1736,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://bluehens.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-delaware-fightin-blue-hens"
+    "id": "d1-delaware-fightin-blue-hens",
+    "colorSource": "ncaa-team-colors:delaware fightin blue hens"
   },
   {
     "group": "d1",
@@ -1685,8 +1748,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Hornets",
     "slogan": "Go Hornets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F11A2D",
+    "accentColor": "#261511",
     "headCoach": "Stan Waterman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "swaterman@desu.edu",
@@ -1699,7 +1762,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://dsuhornets.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-delaware-state-hornets"
+    "id": "d1-delaware-state-hornets",
+    "colorSource": "ncaa-team-colors:delaware state hornets"
   },
   {
     "group": "d1",
@@ -1710,8 +1774,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Pioneers",
     "slogan": "Go Pioneers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#98002E",
+    "accentColor": "#AA976C",
     "headCoach": "Tim Bergstraser",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Timothy.Bergstraser@du.edu",
@@ -1724,7 +1788,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://denverpioneers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-denver-pioneers"
+    "id": "d1-denver-pioneers",
+    "colorSource": "ncaa-team-colors:denver pioneers"
   },
   {
     "group": "d1",
@@ -1735,8 +1800,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Titans",
     "slogan": "Go Titans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E51937",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mark Montgomery",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1749,7 +1814,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://detroittitans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-detroit-mercy-titans"
+    "id": "d1-detroit-mercy-titans",
+    "colorSource": "ncaa-team-colors:detroit titans"
   },
   {
     "group": "d1",
@@ -1760,8 +1826,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0053A0",
+    "accentColor": "#B4B6B8",
     "headCoach": "Eric Henderson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "eric.henderson@drake.edu",
@@ -1774,7 +1840,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://godrakebulldogs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-drake-bulldogs"
+    "id": "d1-drake-bulldogs",
+    "colorSource": "ncaa-team-colors:drake bulldogs"
   },
   {
     "group": "d1",
@@ -1785,8 +1852,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Dragons",
     "slogan": "Go Dragons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#010160",
+    "accentColor": "#FFFFFF",
     "headCoach": "Zach Spiker",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "zjs36@drexel.edu",
@@ -1799,7 +1866,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://drexeldragons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-drexel-dragons"
+    "id": "d1-drexel-dragons",
+    "colorSource": "ncaa-team-colors:drexel dragons"
   },
   {
     "group": "d1",
@@ -1810,8 +1878,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Blue Devils",
     "slogan": "Go Blue Devils",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004C7D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jon Scheyer",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mikaela.staton@duke.edu",
@@ -1824,7 +1892,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goduke.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-duke-blue-devils"
+    "id": "d1-duke-blue-devils",
+    "colorSource": "ncaa-team-colors:duke blue devils"
   },
   {
     "group": "d1",
@@ -1835,8 +1904,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Dukes",
     "slogan": "Go Dukes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002D62",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dru Joyce III",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mensbasketball@duq.edu",
@@ -1849,7 +1918,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://goduquesne.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-duquesne-dukes"
+    "id": "d1-duquesne-dukes",
+    "colorSource": "ncaa-team-colors:duquesne dukes"
   },
   {
     "group": "d1",
@@ -1860,8 +1930,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Pirates",
     "slogan": "Go Pirates",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#4A1F68",
+    "accentColor": "#000000",
     "headCoach": "Michael Schwartz",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1874,7 +1944,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ecupirates.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-east-carolina-pirates"
+    "id": "d1-east-carolina-pirates",
+    "colorSource": "ncaa-team-colors:east carolina pirates"
   },
   {
     "group": "d1",
@@ -1885,8 +1956,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Buccaneers",
     "slogan": "Go Buccaneers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#025BA3",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brooks Savage",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "etsubasketball@etsu.edu",
@@ -1899,7 +1970,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://etsubucs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-east-tennessee-state-buccaneers"
+    "id": "d1-east-tennessee-state-buccaneers",
+    "colorSource": "ncaa-team-colors:east tennessee state buccaneers"
   },
   {
     "group": "d1",
@@ -1935,8 +2007,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ohio Valley",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0675D0",
+    "accentColor": "#FFFFFF",
     "headCoach": "Marty Simmons",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mrsimmons@eiu.edu",
@@ -1949,7 +2021,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://eiupanthers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-eastern-illinois-panthers"
+    "id": "d1-eastern-illinois-panthers",
+    "colorSource": "ncaa-team-colors:eastern illinois panthers"
   },
   {
     "group": "d1",
@@ -1960,8 +2033,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "United Athletic",
     "mascot": "Colonels",
     "slogan": "Go Colonels",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#730B27",
+    "accentColor": "#A7AAAB",
     "headCoach": "A. W. Hamilton",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "aw.hamilton@eku.edu",
@@ -1974,7 +2047,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ekusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-eastern-kentucky-colonels"
+    "id": "d1-eastern-kentucky-colonels",
+    "colorSource": "ncaa-team-colors:eastern kentucky colonels"
   },
   {
     "group": "d1",
@@ -1985,8 +2059,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0B5F24",
+    "accentColor": "#7F7F7F",
     "headCoach": "Billy Donlon",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -1999,7 +2073,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://emueagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-eastern-michigan-eagles"
+    "id": "d1-eastern-michigan-eagles",
+    "colorSource": "ncaa-team-colors:eastern michigan eagles"
   },
   {
     "group": "d1",
@@ -2010,8 +2085,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D72E34",
+    "accentColor": "#000000",
     "headCoach": "Dan Monson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Dmonson1@ewu.edu",
@@ -2024,7 +2099,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goeags.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-eastern-washington-eagles"
+    "id": "d1-eastern-washington-eagles",
+    "colorSource": "ncaa-team-colors:eastern washington eagles"
   },
   {
     "group": "d1",
@@ -2035,8 +2111,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Phoenix",
     "slogan": "Go Phoenix",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#9E0152",
+    "accentColor": "#FFFFFF",
     "headCoach": "Billy Taylor",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2049,7 +2125,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://elonphoenix.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-elon-phoenix"
+    "id": "d1-elon-phoenix",
+    "colorSource": "ncaa-team-colors:elon phoenix"
   },
   {
     "group": "d1",
@@ -2110,8 +2187,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Stags",
     "slogan": "Go Stags",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D4290F",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Casey",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2124,7 +2201,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://fairfieldstags.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-fairfield-stags"
+    "id": "d1-fairfield-stags",
+    "colorSource": "ncaa-team-colors:fairfield stags"
   },
   {
     "group": "d1",
@@ -2135,8 +2213,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Northeast",
     "mascot": "Knights",
     "slogan": "Go Knights",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#B00C23",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jack Castleberry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2149,7 +2227,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://fduknights.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-fairleigh-dickinson-knights"
+    "id": "d1-fairleigh-dickinson-knights",
+    "colorSource": "ncaa-team-colors:fairleigh dickinson knights"
   },
   {
     "group": "d1",
@@ -2160,8 +2239,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Rattlers",
     "slogan": "Go Rattlers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00B552",
+    "accentColor": "#FFFFFF",
     "headCoach": "Charlie Ward",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2174,7 +2253,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://famuathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-florida-a-and-m-rattlers"
+    "id": "d1-florida-a-and-m-rattlers",
+    "colorSource": "ncaa-team-colors:florida a and m rattlers"
   },
   {
     "group": "d1",
@@ -2185,8 +2265,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Owls",
     "slogan": "Go Owls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004B85",
+    "accentColor": "#CD1041",
     "headCoach": "John Jakus",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2199,7 +2279,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://fausports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-florida-atlantic-owls"
+    "id": "d1-florida-atlantic-owls",
+    "colorSource": "ncaa-team-colors:florida atlantic owls"
   },
   {
     "group": "d1",
@@ -2210,8 +2291,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Gators",
     "slogan": "Go Gators",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2139CE",
+    "accentColor": "#39734A",
     "headCoach": "Todd Golden",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2224,7 +2305,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://floridagators.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-florida-gators"
+    "id": "d1-florida-gators",
+    "colorSource": "ncaa-team-colors:florida gators"
   },
   {
     "group": "d1",
@@ -2235,8 +2317,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Sun",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#702D07",
+    "accentColor": "#D1B07F",
     "headCoach": "Pat Chambers",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "MBB@fgcu.edu",
@@ -2249,7 +2331,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://fgcuathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-florida-gulf-coast-eagles"
+    "id": "d1-florida-gulf-coast-eagles",
+    "colorSource": "ncaa-team-colors:florida gulf coast eagles"
   },
   {
     "group": "d1",
@@ -2260,8 +2343,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Seminoles",
     "slogan": "Go Seminoles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#900028",
+    "accentColor": "#FFFFFF",
     "headCoach": "Luke Loucks",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2274,7 +2357,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-florida-state-seminoles"
+    "id": "d1-florida-state-seminoles",
+    "colorSource": "ncaa-team-colors:florida state seminoles"
   },
   {
     "group": "d1",
@@ -2285,8 +2369,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Rams",
     "slogan": "Go Rams",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#830032",
+    "accentColor": "#1E1A1B",
     "headCoach": "Mike Magpayo",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2299,7 +2383,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://fordhamsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-fordham-rams"
+    "id": "d1-fordham-rams",
+    "colorSource": "ncaa-team-colors:fordham rams"
   },
   {
     "group": "d1",
@@ -2310,8 +2395,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00427A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Vance Walberg",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2324,7 +2409,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-fresno-state-bulldogs"
+    "id": "d1-fresno-state-bulldogs",
+    "colorSource": "ncaa-team-colors:fresno state bulldogs"
   },
   {
     "group": "d1",
@@ -2335,8 +2421,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Paladins",
     "slogan": "Go Paladins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#3A1769",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bob Richey",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Bob.Richey@Furman.edu",
@@ -2349,19 +2435,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://furmanpaladins.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-furman-paladins"
+    "id": "d1-furman-paladins",
+    "colorSource": "ncaa-team-colors:furman paladins"
   },
   {
     "group": "d1",
-    "school": "Gardner\u2013Webb University",
-    "displayName": "Gardner\u2013Webb Runnin' Bulldogs",
+    "school": "Gardner–Webb University",
+    "displayName": "Gardner–Webb Runnin' Bulldogs",
     "state": "NC",
     "division": "NCAA D1",
     "conference": "Big South",
     "mascot": "Runnin' Bulldogs",
     "slogan": "Go Runnin' Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BF2C37",
+    "accentColor": "#231F20",
     "headCoach": "Jeremy Luther",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jluther@gardner-webb.edu",
@@ -2374,7 +2461,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gwusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-gardner-webb-runnin-bulldogs"
+    "id": "d1-gardner-webb-runnin-bulldogs",
+    "colorSource": "ncaa-team-colors:gardner webb runnin bulldogs"
   },
   {
     "group": "d1",
@@ -2385,8 +2473,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Patriots",
     "slogan": "Go Patriots",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#01010C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tony Skinn",
     "assistantCoach": "Mark Bialkoski",
     "headEmail": "masonmbb@gmu.edu",
@@ -2399,7 +2487,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "George Mason row enriched from official men's basketball coaches page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-george-mason-patriots"
+    "id": "d1-george-mason-patriots",
+    "colorSource": "ncaa-team-colors:george mason patriots"
   },
   {
     "group": "d1",
@@ -2435,8 +2524,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Hoyas",
     "slogan": "Go Hoyas",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#49487C",
+    "accentColor": "#AC928A",
     "headCoach": "Ed Cooley",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "menshoops@georgetown.edu",
@@ -2449,7 +2538,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://guhoyas.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-georgetown-hoyas"
+    "id": "d1-georgetown-hoyas",
+    "colorSource": "ncaa-team-colors:georgetown hoyas"
   },
   {
     "group": "d1",
@@ -2460,8 +2550,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A0000B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike White",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2474,7 +2564,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-georgia-bulldogs"
+    "id": "d1-georgia-bulldogs",
+    "colorSource": "ncaa-team-colors:georgia bulldogs"
   },
   {
     "group": "d1",
@@ -2485,8 +2576,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003775",
+    "accentColor": "#9DB7C4",
     "headCoach": "Charlie Henry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2499,7 +2590,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gseagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-georgia-southern-eagles"
+    "id": "d1-georgia-southern-eagles",
+    "colorSource": "ncaa-team-colors:georgia southern eagles"
   },
   {
     "group": "d1",
@@ -2510,8 +2602,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F8112B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jon Cremins",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2524,7 +2616,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://georgiastatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-georgia-state-panthers"
+    "id": "d1-georgia-state-panthers",
+    "colorSource": "ncaa-team-colors:georgia state panthers"
   },
   {
     "group": "d1",
@@ -2535,8 +2628,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Yellow Jackets",
     "slogan": "Go Yellow Jackets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#160A06",
+    "accentColor": "#FFFFFF",
     "headCoach": "Scott Cross",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2549,7 +2642,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ramblinwreck.com/staff-directory/. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-georgia-tech-yellow-jackets"
+    "id": "d1-georgia-tech-yellow-jackets",
+    "colorSource": "ncaa-team-colors:georgia tech yellow jackets"
   },
   {
     "group": "d1",
@@ -2560,8 +2654,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2D2161",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mark Few",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2574,7 +2668,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gozags.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-gonzaga-bulldogs"
+    "id": "d1-gonzaga-bulldogs",
+    "colorSource": "ncaa-team-colors:gonzaga bulldogs"
   },
   {
     "group": "d1",
@@ -2585,8 +2680,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#101008",
+    "accentColor": "#FFFFFF",
     "headCoach": "Patrick Crarey II",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2599,7 +2694,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gsutigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-grambling-state-tigers"
+    "id": "d1-grambling-state-tigers",
+    "colorSource": "ncaa-team-colors:grambling state tigers"
   },
   {
     "group": "d1",
@@ -2628,15 +2724,15 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "d1",
-    "school": "University of Wisconsin\u2013Green Bay",
+    "school": "University of Wisconsin–Green Bay",
     "displayName": "Green Bay Phoenix",
     "state": "WI",
     "division": "NCAA D1",
     "conference": "Horizon League",
     "mascot": "Phoenix",
     "slogan": "Go Phoenix",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#B20838",
+    "accentColor": "#A7A9AC",
     "headCoach": "Doug Gottlieb",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2649,7 +2745,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://greenbayphoenix.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-green-bay-phoenix"
+    "id": "d1-green-bay-phoenix",
+    "colorSource": "ncaa-team-colors:green bay phoenix"
   },
   {
     "group": "d1",
@@ -2660,8 +2757,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Pirates",
     "slogan": "Go Pirates",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0067AC",
+    "accentColor": "#E5B67D",
     "headCoach": "Ivan Thomas",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2674,7 +2771,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://hamptonpirates.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-hampton-pirates"
+    "id": "d1-hampton-pirates",
+    "colorSource": "ncaa-team-colors:hampton pirates"
   },
   {
     "group": "d1",
@@ -2685,8 +2783,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Crimson",
     "slogan": "Go Crimson",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#C41130",
+    "accentColor": "#231F20",
     "headCoach": "Tommy Amaker",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2699,7 +2797,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gocrimson.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-harvard-crimson"
+    "id": "d1-harvard-crimson",
+    "colorSource": "ncaa-team-colors:harvard crimson"
   },
   {
     "group": "d1",
@@ -2735,8 +2834,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#342B88",
+    "accentColor": "#FFFFFF",
     "headCoach": "Flynn Clayman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "fclayman@highpoint.edu",
@@ -2749,7 +2848,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://highpointpanthers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-high-point-panthers"
+    "id": "d1-high-point-panthers",
+    "colorSource": "ncaa-team-colors:high point panthers"
   },
   {
     "group": "d1",
@@ -2760,8 +2860,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Pride",
     "slogan": "Go Pride",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0756A4",
+    "accentColor": "#FFFFFF",
     "headCoach": "Speedy Claxton",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "craig.e.claxton@hofstra.edu",
@@ -2774,7 +2874,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gohofstra.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-hofstra-pride"
+    "id": "d1-hofstra-pride",
+    "colorSource": "ncaa-team-colors:hofstra pride"
   },
   {
     "group": "d1",
@@ -2785,8 +2886,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Crusaders",
     "slogan": "Go Crusaders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1B2154",
+    "accentColor": "#909095",
     "headCoach": "Dave Paulsen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2799,7 +2900,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goholycross.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-holy-cross-crusaders"
+    "id": "d1-holy-cross-crusaders",
+    "colorSource": "ncaa-team-colors:holy cross crusaders"
   },
   {
     "group": "d1",
@@ -2810,8 +2912,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Huskies",
     "slogan": "Go Huskies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#702D07",
+    "accentColor": "#FFFFFF",
     "headCoach": "Craig Doty",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2824,7 +2926,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://hcuhuskies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-houston-christian-huskies"
+    "id": "d1-houston-christian-huskies",
+    "colorSource": "ncaa-team-colors:houston baptist huskies"
   },
   {
     "group": "d1",
@@ -2835,8 +2938,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#012259",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kelvin Sampson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "rjchampa@central.uh.edu",
@@ -2849,7 +2952,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://uhcougars.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-houston-cougars"
+    "id": "d1-houston-cougars",
+    "colorSource": "ncaa-team-colors:houston cougars"
   },
   {
     "group": "d1",
@@ -2860,8 +2964,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Bison",
     "slogan": "Go Bison",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#09347A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kenny Blakeney",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -2874,7 +2978,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://hubison.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-howard-bison"
+    "id": "d1-howard-bison",
+    "colorSource": "ncaa-team-colors:howard bison"
   },
   {
     "group": "d1",
@@ -2910,8 +3015,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Bengals",
     "slogan": "Go Bengals",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF8400",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bill Evans",
     "assistantCoach": "Joe White",
     "headEmail": "evanwill@isu.edu",
@@ -2924,7 +3029,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Idaho State row enriched from official Bengals coach pages surfaced in research. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-idaho-state-bengals"
+    "id": "d1-idaho-state-bengals",
+    "colorSource": "ncaa-team-colors:idaho state bengals"
   },
   {
     "group": "d1",
@@ -2935,8 +3041,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Vandals",
     "slogan": "Go Vandals",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFCC13",
+    "accentColor": "#FFFFFF",
     "headCoach": "Alex Pribble",
     "assistantCoach": "Matt Jones",
     "headEmail": "",
@@ -2949,7 +3055,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "University of Idaho row enriched from official Vandals 2025-26 men's basketball coaching staff page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-idaho-vandals"
+    "id": "d1-idaho-vandals",
+    "colorSource": "ncaa-team-colors:idaho vandals"
   },
   {
     "group": "d1",
@@ -2960,8 +3067,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Fighting Illini",
     "slogan": "Go Fighting Illini",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1B4178",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brad Underwood",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "coachunderwood@illinois.edu",
@@ -2974,7 +3081,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from official Illinois staff directory; local email parts were listed under @illinois.edu. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-illinois-fighting-illini"
+    "id": "d1-illinois-fighting-illini",
+    "colorSource": "ncaa-team-colors:illinois fighting illini"
   },
   {
     "group": "d1",
@@ -2985,8 +3093,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Redbirds",
     "slogan": "Go Redbirds",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#010000",
+    "accentColor": "#FEE818",
     "headCoach": "Ryan Pedon",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "RedbirdMBB@ilstu.edu",
@@ -2999,7 +3107,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goredbirds.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-illinois-state-redbirds"
+    "id": "d1-illinois-state-redbirds",
+    "colorSource": "ncaa-team-colors:illinois state redbirds"
   },
   {
     "group": "d1",
@@ -3035,8 +3144,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Hoosiers",
     "slogan": "Go Hoosiers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A82B3D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Darian DeVries",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3049,7 +3158,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-indiana-hoosiers"
+    "id": "d1-indiana-hoosiers",
+    "colorSource": "ncaa-team-colors:indiana hoosiers"
   },
   {
     "group": "d1",
@@ -3060,8 +3170,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Sycamores",
     "slogan": "Go Sycamores",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00669A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Matthew Graves",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Logan.Spung@indstate.edu",
@@ -3074,7 +3184,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gosycamores.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-indiana-state-sycamores"
+    "id": "d1-indiana-state-sycamores",
+    "colorSource": "ncaa-team-colors:indiana state sycamores"
   },
   {
     "group": "d1",
@@ -3085,8 +3196,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Gaels",
     "slogan": "Go Gaels",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#910126",
+    "accentColor": "#0F0E12",
     "headCoach": "Dan Geriot",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3099,7 +3210,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://icgaels.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-iona-gaels"
+    "id": "d1-iona-gaels",
+    "colorSource": "ncaa-team-colors:iona gaels"
   },
   {
     "group": "d1",
@@ -3110,8 +3222,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Hawkeyes",
     "slogan": "Go Hawkeyes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFD700",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ben McCollum",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "ben-mccollum@uiowa.edu",
@@ -3124,7 +3236,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://hawkeyesports.com/staff-directory/department/mens-basketball. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-iowa-hawkeyes"
+    "id": "d1-iowa-hawkeyes",
+    "colorSource": "ncaa-team-colors:iowa hawkeyes"
   },
   {
     "group": "d1",
@@ -3135,8 +3248,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Cyclones",
     "slogan": "Go Cyclones",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#840A2C",
+    "accentColor": "#FFFFFF",
     "headCoach": "T. J. Otzelberger",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3149,7 +3262,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://cyclones.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-iowa-state-cyclones"
+    "id": "d1-iowa-state-cyclones",
+    "colorSource": "ncaa-team-colors:iowa state cyclones"
   },
   {
     "group": "d1",
@@ -3160,8 +3274,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#123297",
+    "accentColor": "#FFFFFF",
     "headCoach": "Trey Johnson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "maurice.r.williams@jsums.edu",
@@ -3174,7 +3288,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gojsutigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-jackson-state-tigers"
+    "id": "d1-jackson-state-tigers",
+    "colorSource": "ncaa-team-colors:jackson state tigers"
   },
   {
     "group": "d1",
@@ -3185,8 +3300,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Sun",
     "mascot": "Dolphins",
     "slogan": "Go Dolphins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#008568",
+    "accentColor": "#8B8B8B",
     "headCoach": "Jordan Mincy",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3199,7 +3314,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://judolphins.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-jacksonville-dolphins"
+    "id": "d1-jacksonville-dolphins",
+    "colorSource": "ncaa-team-colors:jacksonville dolphins"
   },
   {
     "group": "d1",
@@ -3210,8 +3326,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Gamecocks",
     "slogan": "Go Gamecocks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E53F40",
+    "accentColor": "#1D1819",
     "headCoach": "Ray Harper",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "harper@jsu.edu",
@@ -3224,7 +3340,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://jsugamecocksports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-jacksonville-state-gamecocks"
+    "id": "d1-jacksonville-state-gamecocks",
+    "colorSource": "ncaa-team-colors:jacksonville state gamecocks"
   },
   {
     "group": "d1",
@@ -3235,8 +3352,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Dukes",
     "slogan": "Go Dukes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#263997",
+    "accentColor": "#B3B5B8",
     "headCoach": "Preston Spradlin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3249,11 +3366,12 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-james-madison-dukes"
+    "id": "d1-james-madison-dukes",
+    "colorSource": "ncaa-team-colors:james madison dukes"
   },
   {
     "group": "d1",
-    "school": "University of Missouri\u2013Kansas City",
+    "school": "University of Missouri–Kansas City",
     "displayName": "Kansas City Roos",
     "state": "MO",
     "division": "NCAA D1",
@@ -3285,8 +3403,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Jayhawks",
     "slogan": "Go Jayhawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E51837",
+    "accentColor": "#FFD204",
     "headCoach": "Bill Self",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "billself@ku.edu",
@@ -3299,7 +3417,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://kuathletics.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-kansas-jayhawks"
+    "id": "d1-kansas-jayhawks",
+    "colorSource": "ncaa-team-colors:kansas jayhawks"
   },
   {
     "group": "d1",
@@ -3310,8 +3429,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#633194",
+    "accentColor": "#FFFFFF",
     "headCoach": "Casey Alexander",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3324,7 +3443,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://www.kstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-kansas-state-wildcats"
+    "id": "d1-kansas-state-wildcats",
+    "colorSource": "ncaa-team-colors:kansas state wildcats"
   },
   {
     "group": "d1",
@@ -3335,8 +3455,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Owls",
     "slogan": "Go Owls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F0B410",
+    "accentColor": "#FFFFFF",
     "headCoach": "Antoine Pettway",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3349,7 +3469,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ksuowls.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-kennesaw-state-owls"
+    "id": "d1-kennesaw-state-owls",
+    "colorSource": "ncaa-team-colors:kennesaw state owls"
   },
   {
     "group": "d1",
@@ -3360,8 +3481,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Golden Flashes",
     "slogan": "Go Golden Flashes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#131149",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rob Senderoff",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "rsendero@kent.edu",
@@ -3374,7 +3495,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://kentstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-kent-state-golden-flashes"
+    "id": "d1-kent-state-golden-flashes",
+    "colorSource": "ncaa-team-colors:kent state golden flashes"
   },
   {
     "group": "d1",
@@ -3385,8 +3507,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003399",
+    "accentColor": "#EBEBE4",
     "headCoach": "Mark Pope",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3399,7 +3521,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ukathletics.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-kentucky-wildcats"
+    "id": "d1-kentucky-wildcats",
+    "colorSource": "ncaa-team-colors:kentucky wildcats"
   },
   {
     "group": "d1",
@@ -3435,8 +3558,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#33297B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Will Wade",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3449,7 +3572,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-lsu-tigers"
+    "id": "d1-lsu-tigers",
+    "colorSource": "ncaa-team-colors:lsu tigers"
   },
   {
     "group": "d1",
@@ -3460,8 +3584,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Explorers",
     "slogan": "Go Explorers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000F4C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Darris Nichols",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3474,7 +3598,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-la-salle-explorers"
+    "id": "d1-la-salle-explorers",
+    "colorSource": "ncaa-team-colors:la salle explorers"
   },
   {
     "group": "d1",
@@ -3485,8 +3610,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Leopards",
     "slogan": "Go Leopards",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#9A0024",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike McGarvey",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mcgarvml@lafayette.edu",
@@ -3499,7 +3624,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goleopards.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-lafayette-leopards"
+    "id": "d1-lafayette-leopards",
+    "colorSource": "ncaa-team-colors:lafayette leopards"
   },
   {
     "group": "d1",
@@ -3510,8 +3636,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Cardinals",
     "slogan": "Go Cardinals",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#ED1B2E",
+    "accentColor": "#FCB131",
     "headCoach": "Jordan Fee",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3524,7 +3650,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://lamarcardinals.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-lamar-cardinals"
+    "id": "d1-lamar-cardinals",
+    "colorSource": "ncaa-team-colors:lamar cardinals"
   },
   {
     "group": "d1",
@@ -3560,8 +3687,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Mountain Hawks",
     "slogan": "Go Mountain Hawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#653600",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brett Reed",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "lehighmbb@lehigh.edu",
@@ -3574,7 +3701,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://lehighsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-lehigh-mountain-hawks"
+    "id": "d1-lehigh-mountain-hawks",
+    "colorSource": "ncaa-team-colors:lehigh mountain hawks"
   },
   {
     "group": "d1",
@@ -3585,8 +3713,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Flames",
     "slogan": "Go Flames",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#02298A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ritchie McKay",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3599,7 +3727,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://libertyflames.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-liberty-flames"
+    "id": "d1-liberty-flames",
+    "colorSource": "ncaa-team-colors:liberty flames"
   },
   {
     "group": "d1",
@@ -3635,8 +3764,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Sun",
     "mascot": "Bisons",
     "slogan": "Go Bisons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#122A65",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kevin Carroll",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3649,7 +3778,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://lipscombsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-lipscomb-bisons"
+    "id": "d1-lipscomb-bisons",
+    "colorSource": "ncaa-team-colors:lipscomb bisons"
   },
   {
     "group": "d1",
@@ -3710,8 +3840,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Lancers",
     "slogan": "Go Lancers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004990",
+    "accentColor": "#B9B9BB",
     "headCoach": "Ronnie Thomas",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "thomasr@longwood.edu",
@@ -3724,7 +3854,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://longwoodlancers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-longwood-lancers"
+    "id": "d1-longwood-lancers",
+    "colorSource": "ncaa-team-colors:longwood lancers"
   },
   {
     "group": "d1",
@@ -3760,8 +3891,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#006AB5",
+    "accentColor": "#FFFFFF",
     "headCoach": "Talvin Hester",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3774,19 +3905,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-louisiana-tech-bulldogs"
+    "id": "d1-louisiana-tech-bulldogs",
+    "colorSource": "ncaa-team-colors:louisiana tech bulldogs"
   },
   {
     "group": "d1",
-    "school": "Louisiana\u2013Monroe",
-    "displayName": "Louisiana\u2013Monroe Warhawks",
+    "school": "Louisiana–Monroe",
+    "displayName": "Louisiana–Monroe Warhawks",
     "state": "",
     "division": "NCAA D1",
     "conference": "Sun Belt",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#98012E",
+    "accentColor": "#B38807",
     "headCoach": "Ryan Cross",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3799,7 +3931,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-louisiana-monroe-warhawks"
+    "id": "d1-louisiana-monroe-warhawks",
+    "colorSource": "ncaa-team-colors:louisiana monroe warhawks"
   },
   {
     "group": "d1",
@@ -3810,8 +3943,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Cardinals",
     "slogan": "Go Cardinals",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FD0B20",
+    "accentColor": "#FFC010",
     "headCoach": "Pat Kelsey",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3824,7 +3957,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gocards.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-louisville-cardinals"
+    "id": "d1-louisville-cardinals",
+    "colorSource": "ncaa-team-colors:louisville cardinals"
   },
   {
     "group": "d1",
@@ -3885,8 +4019,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Lions",
     "slogan": "Go Lions",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#8C0029",
+    "accentColor": "#FFFFFF",
     "headCoach": "Stan Johnson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3899,7 +4033,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://lmulions.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-loyola-marymount-lions"
+    "id": "d1-loyola-marymount-lions",
+    "colorSource": "ncaa-team-colors:loyola marymount lions"
   },
   {
     "group": "d1",
@@ -3910,8 +4045,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Black Bears",
     "slogan": "Go Black Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2E8DC4",
+    "accentColor": "#000000",
     "headCoach": "Chris Markwood",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3924,7 +4059,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goblackbears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-maine-black-bears"
+    "id": "d1-maine-black-bears",
+    "colorSource": "ncaa-team-colors:maine black bears"
   },
   {
     "group": "d1",
@@ -3935,8 +4071,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Jaspers",
     "slogan": "Go Jaspers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#528C39",
+    "accentColor": "#DEDEDE",
     "headCoach": "John Gallagher",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3949,7 +4085,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gojaspers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-manhattan-jaspers"
+    "id": "d1-manhattan-jaspers",
+    "colorSource": "ncaa-team-colors:manhattan jaspers"
   },
   {
     "group": "d1",
@@ -3960,8 +4097,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Red Foxes",
     "slogan": "Go Red Foxes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#210203",
+    "accentColor": "#FFFFFF",
     "headCoach": "John Dunne",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mens.basketball@marist.edu",
@@ -3974,7 +4111,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://goredfoxes.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-marist-red-foxes"
+    "id": "d1-marist-red-foxes",
+    "colorSource": "ncaa-team-colors:marist red foxes"
   },
   {
     "group": "d1",
@@ -3985,8 +4123,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Golden Eagles",
     "slogan": "Go Golden Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002F78",
+    "accentColor": "#FFFFFF",
     "headCoach": "Shaka Smart",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -3999,7 +4137,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gomarquette.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-marquette-golden-eagles"
+    "id": "d1-marquette-golden-eagles",
+    "colorSource": "ncaa-team-colors:marquette golden eagles"
   },
   {
     "group": "d1",
@@ -4010,8 +4149,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Thundering Herd",
     "slogan": "Go Thundering Herd",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#01592F",
+    "accentColor": "#000000",
     "headCoach": "Cornelius Jackson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jackso61@marshall.edu",
@@ -4024,7 +4163,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://herdzone.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-marshall-thundering-herd"
+    "id": "d1-marshall-thundering-herd",
+    "colorSource": "ncaa-team-colors:marshall thundering herd"
   },
   {
     "group": "d1",
@@ -4035,8 +4175,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Hawks",
     "slogan": "Go Hawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#98012E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Cleo Hill Jr.",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "chill2@umes.edu",
@@ -4049,7 +4189,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://easternshorehawks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-maryland-eastern-shore-hawks"
+    "id": "d1-maryland-eastern-shore-hawks",
+    "colorSource": "ncaa-team-colors:maryland eastern shore hawks"
   },
   {
     "group": "d1",
@@ -4060,8 +4201,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Terrapins",
     "slogan": "Go Terrapins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D5002B",
+    "accentColor": "#C68746",
     "headCoach": "Buzz Williams",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4074,7 +4215,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-maryland-terrapins"
+    "id": "d1-maryland-terrapins",
+    "colorSource": "ncaa-team-colors:maryland terrapins"
   },
   {
     "group": "d1",
@@ -4085,8 +4227,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Cowboys",
     "slogan": "Go Cowboys",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00529C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bill Armstrong",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4099,7 +4241,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://mcneesesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-mcneese-cowboys"
+    "id": "d1-mcneese-cowboys",
+    "colorSource": "ncaa-team-colors:mcneese state cowboys"
   },
   {
     "group": "d1",
@@ -4110,8 +4253,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2A2A9B",
+    "accentColor": "#FEC003",
     "headCoach": "Penny Hardaway",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4124,7 +4267,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-memphis-tigers"
+    "id": "d1-memphis-tigers",
+    "colorSource": "ncaa-team-colors:memphis tigers"
   },
   {
     "group": "d1",
@@ -4135,8 +4279,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF7F27",
+    "accentColor": "#000000",
     "headCoach": "Ryan Ridder",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4149,7 +4293,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://mercerbears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-mercer-bears"
+    "id": "d1-mercer-bears",
+    "colorSource": "ncaa-team-colors:mercer bears"
   },
   {
     "group": "d1",
@@ -4260,8 +4405,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Spartans",
     "slogan": "Go Spartans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1C453A",
+    "accentColor": "#000000",
     "headCoach": "Tom Izzo",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "msuhoops@ath.msu.edu",
@@ -4274,7 +4419,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://msuspartans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-michigan-state-spartans"
+    "id": "d1-michigan-state-spartans",
+    "colorSource": "ncaa-team-colors:michigan state spartans"
   },
   {
     "group": "d1",
@@ -4285,8 +4431,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Wolverines",
     "slogan": "Go Wolverines",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#272341",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dusty May",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4299,7 +4445,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-michigan-wolverines"
+    "id": "d1-michigan-wolverines",
+    "colorSource": "ncaa-team-colors:michigan wolverines"
   },
   {
     "group": "d1",
@@ -4310,8 +4457,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Blue Raiders",
     "slogan": "Go Blue Raiders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0079C2",
+    "accentColor": "#231F20",
     "headCoach": "Nick McDevitt",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "nick.mcdevitt@mtsu.edu",
@@ -4324,19 +4471,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goblueraiders.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-middle-tennessee-blue-raiders"
+    "id": "d1-middle-tennessee-blue-raiders",
+    "colorSource": "ncaa-team-colors:middle tennessee blue raiders"
   },
   {
     "group": "d1",
-    "school": "University of Wisconsin\u2013Milwaukee",
+    "school": "University of Wisconsin–Milwaukee",
     "displayName": "Milwaukee Panthers",
     "state": "WI",
     "division": "NCAA D1",
     "conference": "Horizon League",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#445266",
+    "accentColor": "#F0B432",
     "headCoach": "Bart Lundy",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4349,7 +4497,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://mkepanthers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-milwaukee-panthers"
+    "id": "d1-milwaukee-panthers",
+    "colorSource": "ncaa-team-colors:milwaukee panthers"
   },
   {
     "group": "d1",
@@ -4360,8 +4509,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Golden Gophers",
     "slogan": "Go Golden Gophers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#7F011B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Niko Medved",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4374,7 +4523,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-minnesota-golden-gophers"
+    "id": "d1-minnesota-golden-gophers",
+    "colorSource": "ncaa-team-colors:minnesota golden gophers"
   },
   {
     "group": "d1",
@@ -4385,8 +4535,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#762123",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Jans",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4399,7 +4549,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://hailstate.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-mississippi-state-bulldogs"
+    "id": "d1-mississippi-state-bulldogs",
+    "colorSource": "ncaa-team-colors:mississippi state bulldogs"
   },
   {
     "group": "d1",
@@ -4410,8 +4561,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Delta Devils",
     "slogan": "Go Delta Devils",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#054105",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike Davis",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4424,7 +4575,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://mvsusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-mississippi-valley-state-delta-devils"
+    "id": "d1-mississippi-valley-state-delta-devils",
+    "colorSource": "ncaa-team-colors:mississippi valley state delta devils"
   },
   {
     "group": "d1",
@@ -4435,8 +4587,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#5F0000",
+    "accentColor": "#000000",
     "headCoach": "Cuonzo Martin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4449,19 +4601,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://missouristatebears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-missouri-state-bears"
+    "id": "d1-missouri-state-bears",
+    "colorSource": "ncaa-team-colors:missouri state bears"
   },
   {
     "group": "d1",
-    "school": "University of Missouri\u2013Columbia",
+    "school": "University of Missouri–Columbia",
     "displayName": "Missouri Tigers",
     "state": "MO",
     "division": "NCAA D1",
     "conference": "Southeastern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E8AF11",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dennis Gates",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4474,7 +4627,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://mutigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-missouri-tigers"
+    "id": "d1-missouri-tigers",
+    "colorSource": "ncaa-team-colors:missouri tigers"
   },
   {
     "group": "d1",
@@ -4485,8 +4639,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Hawks",
     "slogan": "Go Hawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#051844",
+    "accentColor": "#D7D8D8",
     "headCoach": "King Rice",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4499,7 +4653,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://monmouthhawks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-monmouth-hawks"
+    "id": "d1-monmouth-hawks",
+    "colorSource": "ncaa-team-colors:monmouth hawks"
   },
   {
     "group": "d1",
@@ -4510,8 +4665,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Grizzlies",
     "slogan": "Go Grizzlies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#751D4A",
+    "accentColor": "#181829",
     "headCoach": "Travis DeCuire",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "caleigh.cookson@mso.umt.edu",
@@ -4524,7 +4679,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gogriz.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-montana-grizzlies"
+    "id": "d1-montana-grizzlies",
+    "colorSource": "ncaa-team-colors:montana grizzlies"
   },
   {
     "group": "d1",
@@ -4535,8 +4691,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Bobcats",
     "slogan": "Go Bobcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003875",
+    "accentColor": "#FFFFFF",
     "headCoach": "Matt Logie",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4549,7 +4705,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-montana-state-bobcats"
+    "id": "d1-montana-state-bobcats",
+    "colorSource": "ncaa-team-colors:montana state bobcats"
   },
   {
     "group": "d1",
@@ -4560,8 +4717,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ohio Valley",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#094FA3",
+    "accentColor": "#040204",
     "headCoach": "Jonathan Mattox",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4574,7 +4731,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://msueagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-morehead-state-eagles"
+    "id": "d1-morehead-state-eagles",
+    "colorSource": "ncaa-team-colors:morehead state eagles"
   },
   {
     "group": "d1",
@@ -4585,8 +4743,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#014786",
+    "accentColor": "#231F20",
     "headCoach": "Kevin Broadus",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "kevin.broadus@morgan.edu",
@@ -4599,7 +4757,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://morganstatebears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-morgan-state-bears"
+    "id": "d1-morgan-state-bears",
+    "colorSource": "ncaa-team-colors:morgan state bears"
   },
   {
     "group": "d1",
@@ -4610,8 +4769,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Mountaineers",
     "slogan": "Go Mountaineers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005596",
+    "accentColor": "#A59260",
     "headCoach": "Donny Lind",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4624,7 +4783,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://mountathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-mount-st-marys-mountaineers"
+    "id": "d1-mount-st-marys-mountaineers",
+    "colorSource": "ncaa-team-colors:mount saint mary s mountaineers"
   },
   {
     "group": "d1",
@@ -4635,8 +4795,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Racers",
     "slogan": "Go Racers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002148",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ryan Miller",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4649,7 +4809,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goracers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-murray-state-racers"
+    "id": "d1-murray-state-racers",
+    "colorSource": "ncaa-team-colors:murray state racers"
   },
   {
     "group": "d1",
@@ -4710,8 +4871,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Patriot League",
     "mascot": "Midshipmen",
     "slogan": "Go Midshipmen",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#131630",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jon Perry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "navybasketballrecruiting@usna.edu",
@@ -4724,19 +4885,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://navysports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-navy-midshipmen"
+    "id": "d1-navy-midshipmen",
+    "colorSource": "ncaa-team-colors:navy midshipmen"
   },
   {
     "group": "d1",
-    "school": "University of Nebraska\u2013Lincoln",
+    "school": "University of Nebraska–Lincoln",
     "displayName": "Nebraska Cornhuskers",
     "state": "NE",
     "division": "NCAA D1",
     "conference": "Big Ten",
     "mascot": "Cornhuskers",
     "slogan": "Go Cornhuskers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F20017",
+    "accentColor": "#FFFFFF",
     "headCoach": "Fred Hoiberg",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "sburbach@huskers.com",
@@ -4749,7 +4911,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://huskers.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-nebraska-cornhuskers"
+    "id": "d1-nebraska-cornhuskers",
+    "colorSource": "ncaa-team-colors:nebraska cornhuskers"
   },
   {
     "group": "d1",
@@ -4760,8 +4923,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Wolf Pack",
     "slogan": "Go Wolf Pack",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#153E5F",
+    "accentColor": "#FFFFFF",
     "headCoach": "Steve Alford",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4774,7 +4937,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nevadawolfpack.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-nevada-wolf-pack"
+    "id": "d1-nevada-wolf-pack",
+    "colorSource": "ncaa-team-colors:nevada wolf pack"
   },
   {
     "group": "d1",
@@ -4785,8 +4949,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004990",
+    "accentColor": "#C3C4C6",
     "headCoach": "Nathan Davis",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "nathan.davis@unh.edu",
@@ -4799,7 +4963,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://unhwildcats.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-new-hampshire-wildcats"
+    "id": "d1-new-hampshire-wildcats",
+    "colorSource": "ncaa-team-colors:new hampshire wildcats"
   },
   {
     "group": "d1",
@@ -4835,8 +5000,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Lobos",
     "slogan": "Go Lobos",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D41045",
+    "accentColor": "#C4C4C4",
     "headCoach": "Eric Olen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4849,7 +5014,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-new-mexico-lobos"
+    "id": "d1-new-mexico-lobos",
+    "colorSource": "ncaa-team-colors:new mexico lobos"
   },
   {
     "group": "d1",
@@ -4860,8 +5026,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Aggies",
     "slogan": "Go Aggies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#891216",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jason Hooten",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "beckv@nmsu.edu",
@@ -4874,7 +5040,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nmstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-new-mexico-state-aggies"
+    "id": "d1-new-mexico-state-aggies",
+    "colorSource": "ncaa-team-colors:new mexico state aggies"
   },
   {
     "group": "d1",
@@ -4885,8 +5052,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Privateers",
     "slogan": "Go Privateers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FD1A41",
+    "accentColor": "#000000",
     "headCoach": "Stacy Hollowell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "shollowe@uno.edu",
@@ -4899,7 +5066,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://unoprivateers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-new-orleans-privateers"
+    "id": "d1-new-orleans-privateers",
+    "colorSource": "ncaa-team-colors:new orleans privateers"
   },
   {
     "group": "d1",
@@ -4910,8 +5078,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Purple Eagles",
     "slogan": "Go Purple Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#69207E",
+    "accentColor": "#201C1D",
     "headCoach": "Greg Paulus",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -4924,7 +5092,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://purpleeagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-niagara-purple-eagles"
+    "id": "d1-niagara-purple-eagles",
+    "colorSource": "ncaa-team-colors:niagara purple eagles"
   },
   {
     "group": "d1",
@@ -4960,8 +5129,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Spartans",
     "slogan": "Go Spartans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#046546",
+    "accentColor": "#F1C409",
     "headCoach": "Robert Jones",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "spartanbasketball@nsu.edu",
@@ -4974,7 +5143,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nsuspartans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-norfolk-state-spartans"
+    "id": "d1-norfolk-state-spartans",
+    "colorSource": "ncaa-team-colors:norfolk state spartans"
   },
   {
     "group": "d1",
@@ -5010,9 +5180,9 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Aggies",
     "slogan": "Go Aggies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
-    "headCoach": "Mont\u00e9 Ross",
+    "primaryColor": "#0505AA",
+    "accentColor": "#FFFF63",
+    "headCoach": "Monté Ross",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Eross2@ncat.edu",
     "assistantEmail": "rsmoore2@ncat.edu",
@@ -5024,7 +5194,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://ncataggies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-carolina-a-and-t-aggies"
+    "id": "d1-north-carolina-a-and-t-aggies",
+    "colorSource": "ncaa-team-colors:north carolina a and t aggies"
   },
   {
     "group": "d1",
@@ -5035,8 +5206,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#880023",
+    "accentColor": "#8E9093",
     "headCoach": "LeVelle Moton",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "lmoton@nccu.edu",
@@ -5049,7 +5220,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nccueaglepride.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-carolina-central-eagles"
+    "id": "d1-north-carolina-central-eagles",
+    "colorSource": "ncaa-team-colors:north carolina central eagles"
   },
   {
     "group": "d1",
@@ -5060,8 +5232,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Tar Heels",
     "slogan": "Go Tar Heels",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00275D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Michael Malone",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5074,7 +5246,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goheels.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-carolina-tar-heels"
+    "id": "d1-north-carolina-tar-heels",
+    "colorSource": "ncaa-team-colors:north carolina tar heels"
   },
   {
     "group": "d1",
@@ -5085,8 +5258,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Summit League",
     "mascot": "Fighting Hawks",
     "slogan": "Go Fighting Hawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#4CBB17",
+    "accentColor": "#FFFFFF",
     "headCoach": "Paul Sather",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "paul.sather@und.edu",
@@ -5099,7 +5272,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://fightinghawks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-dakota-fighting-hawks"
+    "id": "d1-north-dakota-fighting-hawks",
+    "colorSource": "ncaa-team-colors:north dakota fighting hawks"
   },
   {
     "group": "d1",
@@ -5110,8 +5284,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Summit League",
     "mascot": "Bison",
     "slogan": "Go Bison",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#01402A",
+    "accentColor": "#221E1F",
     "headCoach": "David Richman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5124,7 +5298,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gobison.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-dakota-state-bison"
+    "id": "d1-north-dakota-state-bison",
+    "colorSource": "ncaa-team-colors:north dakota state bison"
   },
   {
     "group": "d1",
@@ -5135,8 +5310,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Sun",
     "mascot": "Ospreys",
     "slogan": "Go Ospreys",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0A548D",
+    "accentColor": "#9F9E9D",
     "headCoach": "Bobby Kennen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "r.kennen@unf.edu",
@@ -5149,7 +5324,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://unfospreys.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-florida-ospreys"
+    "id": "d1-north-florida-ospreys",
+    "colorSource": "ncaa-team-colors:north florida ospreys"
   },
   {
     "group": "d1",
@@ -5160,8 +5336,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Mean Green",
     "slogan": "Go Mean Green",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00853D",
+    "accentColor": "#2D2327",
     "headCoach": "Daniyal Robinson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5174,7 +5350,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://meangreensports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-north-texas-mean-green"
+    "id": "d1-north-texas-mean-green",
+    "colorSource": "ncaa-team-colors:north texas mean green"
   },
   {
     "group": "d1",
@@ -5185,8 +5362,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Huskies",
     "slogan": "Go Huskies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1A1100",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bill Coen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5199,7 +5376,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nuhuskies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northeastern-huskies"
+    "id": "d1-northeastern-huskies",
+    "colorSource": "ncaa-team-colors:northeastern huskies"
   },
   {
     "group": "d1",
@@ -5210,8 +5388,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Lumberjacks",
     "slogan": "Go Lumberjacks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003976",
+    "accentColor": "#FFD51F",
     "headCoach": "Shane Burcar",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "naumensbasketball@nau.edu",
@@ -5224,7 +5402,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nauathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northern-arizona-lumberjacks"
+    "id": "d1-northern-arizona-lumberjacks",
+    "colorSource": "ncaa-team-colors:northern arizona lumberjacks"
   },
   {
     "group": "d1",
@@ -5235,8 +5414,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Bears",
     "slogan": "Go Bears",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#13558D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Steve Smiley",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "stephen.smiley@unco.edu",
@@ -5249,7 +5428,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://uncbears.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northern-colorado-bears"
+    "id": "d1-northern-colorado-bears",
+    "colorSource": "ncaa-team-colors:northern colorado bears"
   },
   {
     "group": "d1",
@@ -5260,8 +5440,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Huskies",
     "slogan": "Go Huskies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F1122C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Matt Majkrzak",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5274,7 +5454,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://niuhuskies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northern-illinois-huskies"
+    "id": "d1-northern-illinois-huskies",
+    "colorSource": "ncaa-team-colors:northern illinois huskies"
   },
   {
     "group": "d1",
@@ -5285,8 +5466,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#473282",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kyle Green",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5299,7 +5480,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://unipanthers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northern-iowa-panthers"
+    "id": "d1-northern-iowa-panthers",
+    "colorSource": "ncaa-team-colors:northern iowa panthers"
   },
   {
     "group": "d1",
@@ -5310,8 +5492,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Norse",
     "slogan": "Go Norse",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFC72C",
+    "accentColor": "#000000",
     "headCoach": "Darrin Horn",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5324,7 +5506,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nkunorse.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northern-kentucky-norse"
+    "id": "d1-northern-kentucky-norse",
+    "colorSource": "ncaa-team-colors:northern kentucky university norse"
   },
   {
     "group": "d1",
@@ -5335,8 +5518,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Demons",
     "slogan": "Go Demons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#492F91",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rick Cabrera",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "cabrerah@nsula.edu",
@@ -5349,7 +5532,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://nsudemons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northwestern-state-demons"
+    "id": "d1-northwestern-state-demons",
+    "colorSource": "ncaa-team-colors:northwestern state demons"
   },
   {
     "group": "d1",
@@ -5360,8 +5544,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#393996",
+    "accentColor": "#000000",
     "headCoach": "Chris Collins",
     "assistantCoach": "Brian James",
     "headEmail": "",
@@ -5374,7 +5558,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Northwestern row enriched from official men's basketball coaches page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-northwestern-wildcats"
+    "id": "d1-northwestern-wildcats",
+    "colorSource": "ncaa-team-colors:northwestern wildcats"
   },
   {
     "group": "d1",
@@ -5385,8 +5570,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Fighting Irish",
     "slogan": "Go Fighting Irish",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00122B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Micah Shrewsberry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5399,7 +5584,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-notre-dame-fighting-irish"
+    "id": "d1-notre-dame-fighting-irish",
+    "colorSource": "ncaa-team-colors:notre dame fighting irish"
   },
   {
     "group": "d1",
@@ -5410,8 +5596,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Golden Grizzlies",
     "slogan": "Go Golden Grizzlies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#998448",
+    "accentColor": "#FFFFFF",
     "headCoach": "Greg Kampe",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5424,7 +5610,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goldengrizzlies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oakland-golden-grizzlies"
+    "id": "d1-oakland-golden-grizzlies",
+    "colorSource": "ncaa-team-colors:oakland golden grizzlies"
   },
   {
     "group": "d1",
@@ -5435,8 +5622,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Bobcats",
     "slogan": "Go Bobcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#295A29",
+    "accentColor": "#313139",
     "headCoach": "Jeff Boals",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5449,7 +5636,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-ohio-bobcats"
+    "id": "d1-ohio-bobcats",
+    "colorSource": "ncaa-team-colors:ohio bobcats"
   },
   {
     "group": "d1",
@@ -5460,8 +5648,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Buckeyes",
     "slogan": "Go Buckeyes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#DE3121",
+    "accentColor": "#C5CCCF",
     "headCoach": "Jake Diebler",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "diebler.11@osu.edu",
@@ -5474,7 +5662,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ohiostatebuckeyes.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-ohio-state-buckeyes"
+    "id": "d1-ohio-state-buckeyes",
+    "colorSource": "ncaa-team-colors:ohio state buckeyes"
   },
   {
     "group": "d1",
@@ -5485,8 +5674,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Sooners",
     "slogan": "Go Sooners",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BA0034",
+    "accentColor": "#000000",
     "headCoach": "Porter Moser",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5499,19 +5688,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oklahoma-sooners"
+    "id": "d1-oklahoma-sooners",
+    "colorSource": "ncaa-team-colors:oklahoma sooners"
   },
   {
     "group": "d1",
-    "school": "Oklahoma State University\u2013Stillwater",
+    "school": "Oklahoma State University–Stillwater",
     "displayName": "Oklahoma State Cowboys",
     "state": "OK",
     "division": "NCAA D1",
     "conference": "Big 12",
     "mascot": "Cowboys",
     "slogan": "Go Cowboys",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF6500",
+    "accentColor": "#FFFFFF",
     "headCoach": "Steve Lutz",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5524,7 +5714,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://okstate.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oklahoma-state-cowboys"
+    "id": "d1-oklahoma-state-cowboys",
+    "colorSource": "ncaa-team-colors:oklahoma state cowboys"
   },
   {
     "group": "d1",
@@ -5535,8 +5726,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Monarchs",
     "slogan": "Go Monarchs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00507D",
+    "accentColor": "#999DA0",
     "headCoach": "Mike Jones",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "mensbasketball@odu.edu",
@@ -5549,7 +5740,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://odusports.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-old-dominion-monarchs"
+    "id": "d1-old-dominion-monarchs",
+    "colorSource": "ncaa-team-colors:old dominion monarchs"
   },
   {
     "group": "d1",
@@ -5610,8 +5802,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Summit League",
     "mascot": "Golden Eagles",
     "slogan": "Go Golden Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002E70",
+    "accentColor": "#D39B16",
     "headCoach": "Kory Barnett",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5624,7 +5816,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://oruathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oral-roberts-golden-eagles"
+    "id": "d1-oral-roberts-golden-eagles",
+    "colorSource": "ncaa-team-colors:oral roberts golden eagles"
   },
   {
     "group": "d1",
@@ -5635,8 +5828,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Ducks",
     "slogan": "Go Ducks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#044520",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dana Altman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5649,7 +5842,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goducks.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oregon-ducks"
+    "id": "d1-oregon-ducks",
+    "colorSource": "ncaa-team-colors:oregon ducks"
   },
   {
     "group": "d1",
@@ -5660,8 +5854,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Beavers",
     "slogan": "Go Beavers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000203",
+    "accentColor": "#FFFFFF",
     "headCoach": "Justin Joyner",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5674,7 +5868,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://osubeavers.com/staff-directory. Verify before sending. Auto-enriched 2026-06-01 from https://osubeavers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-oregon-state-beavers"
+    "id": "d1-oregon-state-beavers",
+    "colorSource": "ncaa-team-colors:oregon state beavers"
   },
   {
     "group": "d1",
@@ -5685,8 +5880,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F47820",
+    "accentColor": "#FFFFFF",
     "headCoach": "Dave Smart",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "dsmart@pacific.edu",
@@ -5699,7 +5894,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://pacifictigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-pacific-tigers"
+    "id": "d1-pacific-tigers",
+    "colorSource": "ncaa-team-colors:pacific tigers"
   },
   {
     "group": "d1",
@@ -5735,8 +5931,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Nittany Lions",
     "slogan": "Go Nittany Lions",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00265D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike Rhoades",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5749,7 +5945,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-penn-state-nittany-lions"
+    "id": "d1-penn-state-nittany-lions",
+    "colorSource": "ncaa-team-colors:penn state nittany lions"
   },
   {
     "group": "d1",
@@ -5760,8 +5957,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Waves",
     "slogan": "Go Waves",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003A72",
+    "accentColor": "#FFFFFF",
     "headCoach": "Griff Aldrich",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5774,7 +5971,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-pepperdine-waves"
+    "id": "d1-pepperdine-waves",
+    "colorSource": "ncaa-team-colors:pepperdine waves"
   },
   {
     "group": "d1",
@@ -5785,8 +5983,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003263",
+    "accentColor": "#242021",
     "headCoach": "Jeff Capel III",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5799,7 +5997,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-pittsburgh-panthers"
+    "id": "d1-pittsburgh-panthers",
+    "colorSource": "ncaa-team-colors:pittsburgh panthers"
   },
   {
     "group": "d1",
@@ -5810,8 +6009,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Pilots",
     "slogan": "Go Pilots",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0E034E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Shantay Legans",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "legans@up.edu",
@@ -5824,7 +6023,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://portlandpilots.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-portland-pilots"
+    "id": "d1-portland-pilots",
+    "colorSource": "ncaa-team-colors:portland pilots"
   },
   {
     "group": "d1",
@@ -5835,8 +6035,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Vikings",
     "slogan": "Go Vikings",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005E60",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jase Coburn",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jase.coburn@pdx.edu",
@@ -5849,7 +6049,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goviks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-portland-state-vikings"
+    "id": "d1-portland-state-vikings",
+    "colorSource": "ncaa-team-colors:portland state vikings"
   },
   {
     "group": "d1",
@@ -5860,8 +6061,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Panthers",
     "slogan": "Go Panthers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#5A185C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Byron Smith",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "bbsmith@pvamu.edu",
@@ -5874,7 +6075,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://pvpanthers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-prairie-view-a-and-m-panthers"
+    "id": "d1-prairie-view-a-and-m-panthers",
+    "colorSource": "ncaa-team-colors:prairie view a and m panthers"
   },
   {
     "group": "d1",
@@ -5885,8 +6087,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Blue Hose",
     "slogan": "Go Blue Hose",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#AA153B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Quinton Ferrell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "qmferrell@presby.edu",
@@ -5899,7 +6101,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gobluehose.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-presbyterian-blue-hose"
+    "id": "d1-presbyterian-blue-hose",
+    "colorSource": "ncaa-team-colors:presbyterian blue hose"
   },
   {
     "group": "d1",
@@ -5910,8 +6113,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#F9A13A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mitch Henderson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5924,7 +6127,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goprincetontigers.com/staff-directory. Verify before sending. Auto-enriched 2026-06-01 from https://goprincetontigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-princeton-tigers"
+    "id": "d1-princeton-tigers",
+    "colorSource": "ncaa-team-colors:princeton tigers"
   },
   {
     "group": "d1",
@@ -5935,8 +6139,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Friars",
     "slogan": "Go Friars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000000",
+    "accentColor": "#C4C4C4",
     "headCoach": "Bryan Hodgson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5949,7 +6153,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://friars.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-providence-friars"
+    "id": "d1-providence-friars",
+    "colorSource": "ncaa-team-colors:providence friars"
   },
   {
     "group": "d1",
@@ -5960,8 +6165,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Boilermakers",
     "slogan": "Go Boilermakers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#B89D29",
+    "accentColor": "#9FA3A6",
     "headCoach": "Matt Painter",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5974,7 +6179,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-purdue-boilermakers"
+    "id": "d1-purdue-boilermakers",
+    "colorSource": "ncaa-team-colors:purdue boilermakers"
   },
   {
     "group": "d1",
@@ -5985,8 +6191,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Mastodons",
     "slogan": "Go Mastodons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1B3F95",
+    "accentColor": "#131111",
     "headCoach": "Jon Coffman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -5999,7 +6205,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gomastodons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-purdue-fort-wayne-mastodons"
+    "id": "d1-purdue-fort-wayne-mastodons",
+    "colorSource": "ncaa-team-colors:ipfw mastodons"
   },
   {
     "group": "d1",
@@ -6035,8 +6242,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Bobcats",
     "slogan": "Go Bobcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#041B43",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tom Pecora",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "lori.landino@qu.edu",
@@ -6049,7 +6256,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gobobcats.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-quinnipiac-bobcats"
+    "id": "d1-quinnipiac-bobcats",
+    "colorSource": "ncaa-team-colors:quinnipiac bobcats"
   },
   {
     "group": "d1",
@@ -6060,8 +6268,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Highlanders",
     "slogan": "Go Highlanders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BC1515",
+    "accentColor": "#292B2A",
     "headCoach": "Zach Chu",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6074,7 +6282,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-radford-highlanders"
+    "id": "d1-radford-highlanders",
+    "colorSource": "ncaa-team-colors:radford highlanders"
   },
   {
     "group": "d1",
@@ -6085,8 +6294,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Rams",
     "slogan": "Go Rams",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003559",
+    "accentColor": "#FFFFFF",
     "headCoach": "Archie Miller",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6099,7 +6308,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gorhody.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-rhode-island-rams"
+    "id": "d1-rhode-island-rams",
+    "colorSource": "ncaa-team-colors:rhode island rams"
   },
   {
     "group": "d1",
@@ -6110,8 +6320,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Owls",
     "slogan": "Go Owls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003D7D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rob Lanier",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6124,7 +6334,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-rice-owls"
+    "id": "d1-rice-owls",
+    "colorSource": "ncaa-team-colors:rice owls"
   },
   {
     "group": "d1",
@@ -6135,8 +6346,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Spiders",
     "slogan": "Go Spiders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003256",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Mooney",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6149,7 +6360,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-richmond-spiders"
+    "id": "d1-richmond-spiders",
+    "colorSource": "ncaa-team-colors:richmond spiders"
   },
   {
     "group": "d1",
@@ -6160,8 +6372,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Broncs",
     "slogan": "Go Broncs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A80532",
+    "accentColor": "#000000",
     "headCoach": "Kevin Baggett",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6174,7 +6386,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gobroncs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-rider-broncs"
+    "id": "d1-rider-broncs",
+    "colorSource": "ncaa-team-colors:rider broncs"
   },
   {
     "group": "d1",
@@ -6185,8 +6398,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Colonials",
     "slogan": "Go Colonials",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00214D",
+    "accentColor": "#BEB9B4",
     "headCoach": "Andrew Toole",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "toole@rmu.edu",
@@ -6199,19 +6412,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://rmucolonials.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-robert-morris-colonials"
+    "id": "d1-robert-morris-colonials",
+    "colorSource": "ncaa-team-colors:robert morris colonials"
   },
   {
     "group": "d1",
-    "school": "Rutgers University\u2013New Brunswick",
+    "school": "Rutgers University–New Brunswick",
     "displayName": "Rutgers Scarlet Knights",
     "state": "NJ",
     "division": "NCAA D1",
     "conference": "Big Ten",
     "mascot": "Scarlet Knights",
     "slogan": "Go Scarlet Knights",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#EE363D",
+    "accentColor": "#0E1112",
     "headCoach": "Steve Pikiell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6224,7 +6438,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://scarletknights.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-rutgers-scarlet-knights"
+    "id": "d1-rutgers-scarlet-knights",
+    "colorSource": "ncaa-team-colors:rutgers scarlet knights"
   },
   {
     "group": "d1",
@@ -6235,8 +6450,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ohio Valley",
     "mascot": "",
     "slogan": "",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#000004",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brian Barone",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6249,7 +6464,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-siu-edwardsville-cougars"
+    "id": "d1-siu-edwardsville-cougars",
+    "colorSource": "ncaa-team-colors:siu edwardsville cougars"
   },
   {
     "group": "d1",
@@ -6285,8 +6501,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Hornets",
     "slogan": "Go Hornets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00573C",
+    "accentColor": "#B4985A",
     "headCoach": "Mike Bibby",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "m.bibby@csus.edu",
@@ -6299,7 +6515,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://hornetsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-sacramento-state-hornets"
+    "id": "d1-sacramento-state-hornets",
+    "colorSource": "ncaa-team-colors:sacramento state hornets"
   },
   {
     "group": "d1",
@@ -6310,8 +6527,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Pioneers",
     "slogan": "Go Pioneers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CE1040",
+    "accentColor": "#B1B3B6",
     "headCoach": "Anthony Latina",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "latinaa@sacredheart.edu",
@@ -6324,7 +6541,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://sacredheartpioneers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-sacred-heart-pioneers"
+    "id": "d1-sacred-heart-pioneers",
+    "colorSource": "ncaa-team-colors:sacred heart pioneers"
   },
   {
     "group": "d1",
@@ -6335,8 +6553,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Hawks",
     "slogan": "Go Hawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#C2071B",
+    "accentColor": "#B4B5B8",
     "headCoach": "Steve Donahue",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6349,7 +6567,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://sjuhawks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-saint-josephs-hawks"
+    "id": "d1-saint-josephs-hawks",
+    "colorSource": "ncaa-team-colors:saint joseph s hawks"
   },
   {
     "group": "d1",
@@ -6360,8 +6579,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Billikens",
     "slogan": "Go Billikens",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00539C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Josh Schertz",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6374,7 +6593,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://slubillikens.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-saint-louis-billikens"
+    "id": "d1-saint-louis-billikens",
+    "colorSource": "ncaa-team-colors:saint louis billikens"
   },
   {
     "group": "d1",
@@ -6385,8 +6605,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Gaels",
     "slogan": "Go Gaels",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003768",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mickey McConnell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6399,7 +6619,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://smcgaels.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-saint-marys-gaels"
+    "id": "d1-saint-marys-gaels",
+    "colorSource": "ncaa-team-colors:saint mary s gaels"
   },
   {
     "group": "d1",
@@ -6410,8 +6631,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Peacocks",
     "slogan": "Go Peacocks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004CC2",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bashir Mason",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "bmason@saintpeters.edu",
@@ -6424,7 +6645,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://saintpeterspeacocks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-saint-peters-peacocks"
+    "id": "d1-saint-peters-peacocks",
+    "colorSource": "ncaa-team-colors:saint peter s peacocks"
   },
   {
     "group": "d1",
@@ -6460,8 +6682,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005485",
+    "accentColor": "#FFFFFF",
     "headCoach": "Lennie Acuff",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "cacuff2@samford.edu",
@@ -6474,7 +6696,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://samfordsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-samford-bulldogs"
+    "id": "d1-samford-bulldogs",
+    "colorSource": "ncaa-team-colors:samford bulldogs"
   },
   {
     "group": "d1",
@@ -6485,8 +6708,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Aztecs",
     "slogan": "Go Aztecs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BF2C37",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brian Dutcher",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "headcoachdutcher@sdsu.edu",
@@ -6499,7 +6722,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goaztecs.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-san-diego-state-aztecs"
+    "id": "d1-san-diego-state-aztecs",
+    "colorSource": "ncaa-team-colors:san diego state aztecs"
   },
   {
     "group": "d1",
@@ -6510,8 +6734,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Toreros",
     "slogan": "Go Toreros",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00275D",
+    "accentColor": "#FFFFFF",
     "headCoach": "JR Blount",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6524,7 +6748,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://usdtoreros.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-san-diego-toreros"
+    "id": "d1-san-diego-toreros",
+    "colorSource": "ncaa-team-colors:san diego toreros"
   },
   {
     "group": "d1",
@@ -6535,8 +6760,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Dons",
     "slogan": "Go Dons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#22523F",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Gerlufsen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6549,7 +6774,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://usfdons.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-san-francisco-dons"
+    "id": "d1-san-francisco-dons",
+    "colorSource": "ncaa-team-colors:san francisco dons"
   },
   {
     "group": "d1",
@@ -6560,8 +6786,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Spartans",
     "slogan": "Go Spartans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005893",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tim Miles",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6574,7 +6800,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://sjsuspartans.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-san-jose-state-spartans"
+    "id": "d1-san-jose-state-spartans",
+    "colorSource": "ncaa-team-colors:san jose state spartans"
   },
   {
     "group": "d1",
@@ -6585,8 +6812,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Broncos",
     "slogan": "Go Broncos",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#690B0B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Herb Sendek",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6599,7 +6826,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://santaclarabroncos.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-santa-clara-broncos"
+    "id": "d1-santa-clara-broncos",
+    "colorSource": "ncaa-team-colors:santa clara broncos"
   },
   {
     "group": "d1",
@@ -6610,8 +6838,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "West Coast",
     "mascot": "Redhawks",
     "slogan": "Go Redhawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BF2E1A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chris Victor",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6624,7 +6852,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goseattleu.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-seattle-redhawks"
+    "id": "d1-seattle-redhawks",
+    "colorSource": "ncaa-team-colors:seattle redhawks"
   },
   {
     "group": "d1",
@@ -6635,8 +6864,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Pirates",
     "slogan": "Go Pirates",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#0857B1",
+    "accentColor": "#A2ABB2",
     "headCoach": "Shaheen Holloway",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6649,7 +6878,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://shupirates.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-seton-hall-pirates"
+    "id": "d1-seton-hall-pirates",
+    "colorSource": "ncaa-team-colors:seton hall pirates"
   },
   {
     "group": "d1",
@@ -6660,8 +6890,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Metro Atlantic",
     "mascot": "Saints",
     "slogan": "Go Saints",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#037961",
+    "accentColor": "#FFFFFF",
     "headCoach": "Nevada Smith",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6674,7 +6904,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://sienasaints.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-siena-saints"
+    "id": "d1-siena-saints",
+    "colorSource": "ncaa-team-colors:siena saints"
   },
   {
     "group": "d1",
@@ -6685,8 +6916,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Jaguars",
     "slogan": "Go Jaguars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003E7E",
+    "accentColor": "#D11241",
     "headCoach": "Richie Riley",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "rileyconroy@southalabama.edu",
@@ -6699,7 +6930,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://usajaguars.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-alabama-jaguars"
+    "id": "d1-south-alabama-jaguars",
+    "colorSource": "ncaa-team-colors:south alabama jaguars"
   },
   {
     "group": "d1",
@@ -6710,8 +6942,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Gamecocks",
     "slogan": "Go Gamecocks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CD0000",
+    "accentColor": "#FFFFFF",
     "headCoach": "Lamont Paris",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6724,7 +6956,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-carolina-gamecocks"
+    "id": "d1-south-carolina-gamecocks",
+    "colorSource": "ncaa-team-colors:south carolina gamecocks"
   },
   {
     "group": "d1",
@@ -6735,8 +6968,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-Eastern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#080D35",
+    "accentColor": "#FFFFFF",
     "headCoach": "Erik Martin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6749,7 +6982,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://www.scsuathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-carolina-state-bulldogs"
+    "id": "d1-south-carolina-state-bulldogs",
+    "colorSource": "ncaa-team-colors:south carolina state bulldogs"
   },
   {
     "group": "d1",
@@ -6785,8 +7019,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Summit League",
     "mascot": "Coyotes",
     "slogan": "Go Coyotes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CD1241",
+    "accentColor": "#FFFFFF",
     "headCoach": "Eric Peterson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -6799,7 +7033,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goyotes.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-dakota-coyotes"
+    "id": "d1-south-dakota-coyotes",
+    "colorSource": "ncaa-team-colors:south dakota coyotes"
   },
   {
     "group": "d1",
@@ -6810,8 +7045,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Summit League",
     "mascot": "Jackrabbits",
     "slogan": "Go Jackrabbits",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005DAB",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bryan Petersen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Bryan.Petersen@sdstate.edu",
@@ -6824,7 +7059,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gojacks.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-dakota-state-jackrabbits"
+    "id": "d1-south-dakota-state-jackrabbits",
+    "colorSource": "ncaa-team-colors:south dakota state jackrabbits"
   },
   {
     "group": "d1",
@@ -6835,8 +7071,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Bulls",
     "slogan": "Go Bulls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004A36",
+    "accentColor": "#A08B4D",
     "headCoach": "Chris Mack",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "ath-mbasketballrecruiting@usf.edu",
@@ -6849,7 +7085,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gousfbulls.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-south-florida-bulls"
+    "id": "d1-south-florida-bulls",
+    "colorSource": "ncaa-team-colors:south florida bulls"
   },
   {
     "group": "d1",
@@ -6885,8 +7122,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Lions",
     "slogan": "Go Lions",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#007550",
+    "accentColor": "#FFFFFF",
     "headCoach": "David Kiefer",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "david.kiefer@southeastern.edu",
@@ -6899,7 +7136,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://lionsports.net/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-southeastern-louisiana-lions"
+    "id": "d1-southeastern-louisiana-lions",
+    "colorSource": "ncaa-team-colors:southeastern louisiana lions"
   },
   {
     "group": "d1",
@@ -6910,8 +7148,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Missouri Valley",
     "mascot": "Salukis",
     "slogan": "Go Salukis",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#85283D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Scott Nagy",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "siubball@siu.edu",
@@ -6924,7 +7162,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://siusalukis.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-southern-illinois-salukis"
+    "id": "d1-southern-illinois-salukis",
+    "colorSource": "ncaa-team-colors:southern illinois salukis"
   },
   {
     "group": "d1",
@@ -6985,8 +7224,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Golden Eagles",
     "slogan": "Go Golden Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#201C1D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jay Ladner",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jay.ladner@usm.edu",
@@ -6999,7 +7238,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://southernmiss.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-southern-miss-golden-eagles"
+    "id": "d1-southern-miss-golden-eagles",
+    "colorSource": "ncaa-team-colors:southern miss golden eagles"
   },
   {
     "group": "d1",
@@ -7010,8 +7250,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Thunderbirds",
     "slogan": "Go Thunderbirds",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D12947",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rob Jeter",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7024,7 +7264,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://suutbirds.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-southern-utah-thunderbirds"
+    "id": "d1-southern-utah-thunderbirds",
+    "colorSource": "ncaa-team-colors:southern utah thunderbirds"
   },
   {
     "group": "d1",
@@ -7035,8 +7276,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic 10",
     "mascot": "Bonnies",
     "slogan": "Go Bonnies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#70261D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike MacDonald",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7049,7 +7290,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://gobonnies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-st-bonaventure-bonnies"
+    "id": "d1-st-bonaventure-bonnies",
+    "colorSource": "ncaa-team-colors:saint bonaventure bonnies"
   },
   {
     "group": "d1",
@@ -7060,8 +7302,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Red Storm",
     "slogan": "Go Red Storm",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#D31145",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rick Pitino",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7074,7 +7316,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-st-johns-red-storm"
+    "id": "d1-st-johns-red-storm",
+    "colorSource": "ncaa-team-colors:saint john s red storm"
   },
   {
     "group": "d1",
@@ -7110,8 +7353,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Cardinal",
     "slogan": "Go Cardinal",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A80532",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kyle Smith",
     "assistantCoach": "Eric Reveno",
     "headEmail": "mens_hoops@stanford.edu",
@@ -7124,7 +7367,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Stanford row enriched from official Cardinal staff-directory page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gostanford.com/staff-directory/department/mens-basketball. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-stanford-cardinal"
+    "id": "d1-stanford-cardinal",
+    "colorSource": "ncaa-team-colors:stanford cardinal"
   },
   {
     "group": "d1",
@@ -7135,8 +7379,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southland",
     "mascot": "Lumberjacks",
     "slogan": "Go Lumberjacks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#393996",
+    "accentColor": "#FFFFFF",
     "headCoach": "Matt Braeuer",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Matthew.Braeuer@sfasu.edu",
@@ -7149,7 +7393,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://sfajacks.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-stephen-f-austin-lumberjacks"
+    "id": "d1-stephen-f-austin-lumberjacks",
+    "colorSource": "ncaa-team-colors:stephen f austin lumberjacks"
   },
   {
     "group": "d1",
@@ -7160,8 +7405,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Sun",
     "mascot": "Hatters",
     "slogan": "Go Hatters",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#18581C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Donnie Jones",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "djones18@stetson.edu",
@@ -7174,7 +7419,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gohatters.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-stetson-hatters"
+    "id": "d1-stetson-hatters",
+    "colorSource": "ncaa-team-colors:stetson hatters"
   },
   {
     "group": "d1",
@@ -7210,8 +7456,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Seawolves",
     "slogan": "Go Seawolves",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#115F9A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Geno Ford",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7224,7 +7470,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://stonybrookathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-stony-brook-seawolves"
+    "id": "d1-stony-brook-seawolves",
+    "colorSource": "ncaa-team-colors:stony brook seawolves"
   },
   {
     "group": "d1",
@@ -7235,8 +7482,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Orange",
     "slogan": "Go Orange",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002D62",
+    "accentColor": "#FFFFFF",
     "headCoach": "Gerry McNamara",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7249,7 +7496,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-syracuse-orange"
+    "id": "d1-syracuse-orange",
+    "colorSource": "ncaa-team-colors:syracuse orange"
   },
   {
     "group": "d1",
@@ -7260,8 +7508,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Horned Frogs",
     "slogan": "Go Horned Frogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#3C377D",
+    "accentColor": "#1E1B1C",
     "headCoach": "Jamie Dixon",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7274,7 +7522,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gofrogs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tcu-horned-frogs"
+    "id": "d1-tcu-horned-frogs",
+    "colorSource": "ncaa-team-colors:tcu horned frogs"
   },
   {
     "group": "d1",
@@ -7310,8 +7559,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Owls",
     "slogan": "Go Owls",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A80532",
+    "accentColor": "#000000",
     "headCoach": "Adam Fisher",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7324,7 +7573,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://owlsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-temple-owls"
+    "id": "d1-temple-owls",
+    "colorSource": "ncaa-team-colors:temple owls"
   },
   {
     "group": "d1",
@@ -7335,8 +7585,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ohio Valley",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#383C84",
+    "accentColor": "#060607",
     "headCoach": "Nolan Smith",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "nsmit118@tnstate.edu",
@@ -7349,7 +7599,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://tsutigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tennessee-state-tigers"
+    "id": "d1-tennessee-state-tigers",
+    "colorSource": "ncaa-team-colors:tennessee state tigers"
   },
   {
     "group": "d1",
@@ -7360,8 +7611,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Golden Eagles",
     "slogan": "Go Golden Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#5A4099",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tobin Anderson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7374,7 +7625,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://www.ttusports.com/information/directory/index. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tennessee-tech-golden-eagles"
+    "id": "d1-tennessee-tech-golden-eagles",
+    "colorSource": "ncaa-team-colors:tennessee tech golden eagles"
   },
   {
     "group": "d1",
@@ -7385,8 +7637,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Volunteers",
     "slogan": "Go Volunteers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FF8200",
+    "accentColor": "#FFFFFF",
     "headCoach": "Rick Barnes",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "rick.barnes@tennessee.edu",
@@ -7399,7 +7651,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://utsports.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tennessee-volunteers"
+    "id": "d1-tennessee-volunteers",
+    "colorSource": "ncaa-team-colors:tennessee volunteers"
   },
   {
     "group": "d1",
@@ -7410,8 +7663,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Aggies",
     "slogan": "Go Aggies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#5C0025",
+    "accentColor": "#FFFFFF",
     "headCoach": "Bucky McMillan",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7424,12 +7677,13 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-texas-a-and-m-aggies"
+    "id": "d1-texas-a-and-m-aggies",
+    "colorSource": "ncaa-team-colors:texas a and m aggies"
   },
   {
     "group": "d1",
-    "school": "Texas A&M University\u2013Corpus Christi",
-    "displayName": "Texas A&M\u2013Corpus Christi Islanders",
+    "school": "Texas A&M University–Corpus Christi",
+    "displayName": "Texas A&M–Corpus Christi Islanders",
     "state": "TX",
     "division": "NCAA D1",
     "conference": "Southland",
@@ -7460,8 +7714,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Longhorns",
     "slogan": "Go Longhorns",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#EE7524",
+    "accentColor": "#FFFFFF",
     "headCoach": "Sean Miller",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7474,7 +7728,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-texas-longhorns"
+    "id": "d1-texas-longhorns",
+    "colorSource": "ncaa-team-colors:texas longhorns"
   },
   {
     "group": "d1",
@@ -7485,8 +7740,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southwestern",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#6A0403",
+    "accentColor": "#FFFFFF",
     "headCoach": "Shyrone Chatman (interim)",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7499,7 +7754,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://tsusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-texas-southern-tigers"
+    "id": "d1-texas-southern-tigers",
+    "colorSource": "ncaa-team-colors:texas southern tigers"
   },
   {
     "group": "d1",
@@ -7510,8 +7766,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Bobcats",
     "slogan": "Go Bobcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#744143",
+    "accentColor": "#FFFFFF",
     "headCoach": "Terrence Johnson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "tjj51@txstate.edu",
@@ -7524,7 +7780,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://txstatebobcats.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-texas-state-bobcats"
+    "id": "d1-texas-state-bobcats",
+    "colorSource": "ncaa-team-colors:texas state bobcats"
   },
   {
     "group": "d1",
@@ -7535,8 +7792,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Red Raiders",
     "slogan": "Go Red Raiders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#C80025",
+    "accentColor": "#FFFFFF",
     "headCoach": "Grant McCasland",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7549,7 +7806,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-texas-tech-red-raiders"
+    "id": "d1-texas-tech-red-raiders",
+    "colorSource": "ncaa-team-colors:texas tech red raiders"
   },
   {
     "group": "d1",
@@ -7560,8 +7818,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002B5C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ed Conroy",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "conroye1@citadel.edu",
@@ -7574,7 +7832,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://citadelsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-the-citadel-bulldogs"
+    "id": "d1-the-citadel-bulldogs",
+    "colorSource": "ncaa-team-colors:citadel bulldogs"
   },
   {
     "group": "d1",
@@ -7585,8 +7844,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Rockets",
     "slogan": "Go Rockets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00488F",
+    "accentColor": "#FFFFFF",
     "headCoach": "Tod Kowalczyk",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7599,7 +7858,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://utrockets.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-toledo-rockets"
+    "id": "d1-toledo-rockets",
+    "colorSource": "ncaa-team-colors:toledo rockets"
   },
   {
     "group": "d1",
@@ -7610,8 +7870,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFC229",
+    "accentColor": "#FFFFFF",
     "headCoach": "Pat Skerry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "pskerry@towson.edu",
@@ -7624,7 +7884,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://towsontigers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-towson-tigers"
+    "id": "d1-towson-tigers",
+    "colorSource": "ncaa-team-colors:towson tigers"
   },
   {
     "group": "d1",
@@ -7635,8 +7896,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Sun Belt",
     "mascot": "Trojans",
     "slogan": "Go Trojans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#AE0210",
+    "accentColor": "#000000",
     "headCoach": "Adam Howard",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "cahoward@troy.edu",
@@ -7649,7 +7910,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://troytrojans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-troy-trojans"
+    "id": "d1-troy-trojans",
+    "colorSource": "ncaa-team-colors:troy trojans"
   },
   {
     "group": "d1",
@@ -7660,8 +7922,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Green Wave",
     "slogan": "Go Green Wave",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005837",
+    "accentColor": "#00A6EB",
     "headCoach": "Ron Hunter",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7674,7 +7936,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tulane-green-wave"
+    "id": "d1-tulane-green-wave",
+    "colorSource": "ncaa-team-colors:tulane green wave"
   },
   {
     "group": "d1",
@@ -7685,8 +7948,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Golden Hurricane",
     "slogan": "Go Golden Hurricane",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004371",
+    "accentColor": "#000000",
     "headCoach": "Eric Konkol",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7699,7 +7962,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://tulsahurricane.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-tulsa-golden-hurricane"
+    "id": "d1-tulsa-golden-hurricane",
+    "colorSource": "ncaa-team-colors:tulsa golden hurricane"
   },
   {
     "group": "d1",
@@ -7710,8 +7974,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Blazers",
     "slogan": "Go Blazers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#054338",
+    "accentColor": "#E7BD05",
     "headCoach": "Andy Kennedy",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7724,7 +7988,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-uab-blazers"
+    "id": "d1-uab-blazers",
+    "colorSource": "ncaa-team-colors:uab blazers"
   },
   {
     "group": "d1",
@@ -7735,8 +8000,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Aggies",
     "slogan": "Go Aggies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#183563",
+    "accentColor": "#CCCCCD",
     "headCoach": "Jim Les",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "aggiebasketball@ucdavis.edu",
@@ -7749,7 +8014,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ucdavisaggies.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-uc-davis-aggies"
+    "id": "d1-uc-davis-aggies",
+    "colorSource": "ncaa-team-colors:uc davis aggies"
   },
   {
     "group": "d1",
@@ -7760,8 +8026,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Anteaters",
     "slogan": "Go Anteaters",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002B5C",
+    "accentColor": "#FFFFFF",
     "headCoach": "Russell Turner",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7774,7 +8040,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-uc-irvine-anteaters"
+    "id": "d1-uc-irvine-anteaters",
+    "colorSource": "ncaa-team-colors:uc irvine anteaters"
   },
   {
     "group": "d1",
@@ -7785,8 +8052,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Highlanders",
     "slogan": "Go Highlanders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#14234F",
+    "accentColor": "#247BC2",
     "headCoach": "Gus Argenal",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "agustin.argenal@ucr.edu",
@@ -7799,7 +8066,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gohighlanders.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-uc-riverside-highlanders"
+    "id": "d1-uc-riverside-highlanders",
+    "colorSource": "ncaa-team-colors:uc riverside highlanders"
   },
   {
     "group": "d1",
@@ -7835,8 +8103,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Gauchos",
     "slogan": "Go Gauchos",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#1D1160",
+    "accentColor": "#FBCB55",
     "headCoach": "Joe Pasternack",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "Joe.Pasternack@athletics.ucsb.edu",
@@ -7849,7 +8117,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ucsbgauchos.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-uc-santa-barbara-gauchos"
+    "id": "d1-uc-santa-barbara-gauchos",
+    "colorSource": "ncaa-team-colors:uc santa barbara gauchos"
   },
   {
     "group": "d1",
@@ -7860,8 +8129,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Knights",
     "slogan": "Go Knights",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#B4985A",
+    "accentColor": "#FFFFFF",
     "headCoach": "Johnny Dawkins",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "kpufko@athletics.ucf.edu",
@@ -7874,7 +8143,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ucfknights.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-ucf-knights"
+    "id": "d1-ucf-knights",
+    "colorSource": "ncaa-team-colors:ucf knights"
   },
   {
     "group": "d1",
@@ -7885,8 +8155,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Bruins",
     "slogan": "Go Bruins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#005C8E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mick Cronin",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7899,7 +8169,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://uclabruins.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-ucla-bruins"
+    "id": "d1-ucla-bruins",
+    "colorSource": "ncaa-team-colors:ucla bruins"
   },
   {
     "group": "d1",
@@ -7960,8 +8231,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Retrievers",
     "slogan": "Go Retrievers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#AF8706",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jim Ferry",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -7974,7 +8245,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://umbcretrievers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-umbc-retrievers"
+    "id": "d1-umbc-retrievers",
+    "colorSource": "ncaa-team-colors:umbc retrievers"
   },
   {
     "group": "d1",
@@ -8060,8 +8332,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Spartans",
     "slogan": "Go Spartans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003559",
+    "accentColor": "#FFFFFF",
     "headCoach": "Jerod Haase",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8074,7 +8346,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-unc-greensboro-spartans"
+    "id": "d1-unc-greensboro-spartans",
+    "colorSource": "ncaa-team-colors:unc greensboro spartans"
   },
   {
     "group": "d1",
@@ -8135,8 +8408,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Trojans",
     "slogan": "Go Trojans",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#AE2531",
+    "accentColor": "#FFFFFF",
     "headCoach": "Eric Musselman",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "uschoops@usc.edu",
@@ -8149,7 +8422,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://usctrojans.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-usc-trojans"
+    "id": "d1-usc-trojans",
+    "colorSource": "ncaa-team-colors:usc trojans"
   },
   {
     "group": "d1",
@@ -8210,8 +8484,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Miners",
     "slogan": "Go Miners",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002843",
+    "accentColor": "#C2BFBC",
     "headCoach": "Joe Golding",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "lambriz2@utep.edu",
@@ -8224,7 +8498,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://utepminers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-utep-miners"
+    "id": "d1-utep-miners",
+    "colorSource": "ncaa-team-colors:utep miners"
   },
   {
     "group": "d1",
@@ -8285,8 +8560,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Aggies",
     "slogan": "Go Aggies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#003263",
+    "accentColor": "#000000",
     "headCoach": "Ben Jacobson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8299,7 +8574,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-utah-state-aggies"
+    "id": "d1-utah-state-aggies",
+    "colorSource": "ncaa-team-colors:utah state aggies"
   },
   {
     "group": "d1",
@@ -8335,8 +8611,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Utes",
     "slogan": "Go Utes",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#CD1041",
+    "accentColor": "#FFFFFF",
     "headCoach": "Alex Jensen",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8349,7 +8625,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://utahutes.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-utah-utes"
+    "id": "d1-utah-utes",
+    "colorSource": "ncaa-team-colors:utah utes"
   },
   {
     "group": "d1",
@@ -8360,8 +8637,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big West",
     "mascot": "Wolverines",
     "slogan": "Go Wolverines",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004812",
+    "accentColor": "#C0A000",
     "headCoach": "Todd Phillips",
     "assistantCoach": "Todd Okeson",
     "headEmail": "",
@@ -8374,7 +8651,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Utah Valley row enriched from public coach-contact listing surfaced in research; recheck official UVU page before sending. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-utah-valley-wolverines"
+    "id": "d1-utah-valley-wolverines",
+    "colorSource": "ncaa-team-colors:utah valley wolverines"
   },
   {
     "group": "d1",
@@ -8410,8 +8688,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Keydets",
     "slogan": "Go Keydets",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E52D37",
+    "accentColor": "#FFFFFF",
     "headCoach": "Andrew Wilson",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8424,7 +8702,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://vmikeydets.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-vmi-keydets"
+    "id": "d1-vmi-keydets",
+    "colorSource": "ncaa-team-colors:virginia military institute keydets"
   },
   {
     "group": "d1",
@@ -8460,8 +8739,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southeastern",
     "mascot": "Commodores",
     "slogan": "Go Commodores",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#BB8D09",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mark Byington",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8474,7 +8753,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-vanderbilt-commodores"
+    "id": "d1-vanderbilt-commodores",
+    "colorSource": "ncaa-team-colors:vanderbilt commodores"
   },
   {
     "group": "d1",
@@ -8485,8 +8765,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "America East",
     "mascot": "Catamounts",
     "slogan": "Go Catamounts",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#013C24",
+    "accentColor": "#030202",
     "headCoach": "John Becker",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8499,7 +8779,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://uvmathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-vermont-catamounts"
+    "id": "d1-vermont-catamounts",
+    "colorSource": "ncaa-team-colors:vermont catamounts"
   },
   {
     "group": "d1",
@@ -8510,8 +8791,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#123D7C",
+    "accentColor": "#80FBFF",
     "headCoach": "Kevin Willard",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "kwillard@villanova.edu",
@@ -8524,7 +8805,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://villanova.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-villanova-wildcats"
+    "id": "d1-villanova-wildcats",
+    "colorSource": "ncaa-team-colors:villanova wildcats"
   },
   {
     "group": "d1",
@@ -8535,8 +8817,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Cavaliers",
     "slogan": "Go Cavaliers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00204E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ryan Odom",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8549,7 +8831,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://virginiasports.com/sports/mens-basketball/roster. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-virginia-cavaliers"
+    "id": "d1-virginia-cavaliers",
+    "colorSource": "ncaa-team-colors:virginia cavaliers"
   },
   {
     "group": "d1",
@@ -8560,8 +8843,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Hokies",
     "slogan": "Go Hokies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#74232D",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mike Young",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8574,7 +8857,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-virginia-tech-hokies"
+    "id": "d1-virginia-tech-hokies",
+    "colorSource": "ncaa-team-colors:virginia tech hokies"
   },
   {
     "group": "d1",
@@ -8585,8 +8869,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Northeast",
     "mascot": "Seahawks",
     "slogan": "Go Seahawks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#00483A",
+    "accentColor": "#BABCBE",
     "headCoach": "Dwan McMillan",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "dwan.mcmillan@wagner.edu",
@@ -8599,7 +8883,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wagnerathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wagner-seahawks"
+    "id": "d1-wagner-seahawks",
+    "colorSource": "ncaa-team-colors:wagner seahawks"
   },
   {
     "group": "d1",
@@ -8610,8 +8895,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Atlantic Coast",
     "mascot": "Demon Deacons",
     "slogan": "Go Demon Deacons",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#C49544",
+    "accentColor": "#FFFFFF",
     "headCoach": "Steve Forbes",
     "assistantCoach": "Jason Shay",
     "headEmail": "wfmbb@wfu.edu",
@@ -8624,7 +8909,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "Wake Forest row enriched from official men's basketball coaches page. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wake-forest-demon-deacons"
+    "id": "d1-wake-forest-demon-deacons",
+    "colorSource": "ncaa-team-colors:wake forest demon deacons"
   },
   {
     "group": "d1",
@@ -8635,8 +8921,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Ten",
     "mascot": "Huskies",
     "slogan": "Go Huskies",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#2B2F64",
+    "accentColor": "#FFFFFF",
     "headCoach": "Danny Sprinkle",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8649,7 +8935,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-washington-huskies"
+    "id": "d1-washington-huskies",
+    "colorSource": "ncaa-team-colors:washington huskies"
   },
   {
     "group": "d1",
@@ -8660,8 +8947,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Pac-12",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#97002F",
+    "accentColor": "#FFFFFF",
     "headCoach": "David Riley",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8674,7 +8961,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wsucougars.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-washington-state-cougars"
+    "id": "d1-washington-state-cougars",
+    "colorSource": "ncaa-team-colors:washington state cougars"
   },
   {
     "group": "d1",
@@ -8685,8 +8973,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big Sky",
     "mascot": "Wildcats",
     "slogan": "Go Wildcats",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#29086B",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kaleb Canales",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8699,7 +8987,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://weberstatesports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-weber-state-wildcats"
+    "id": "d1-weber-state-wildcats",
+    "colorSource": "ncaa-team-colors:weber state wildcats"
   },
   {
     "group": "d1",
@@ -8760,8 +9049,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big 12",
     "mascot": "Mountaineers",
     "slogan": "Go Mountaineers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFC600",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ross Hodge",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8774,7 +9063,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wvusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-west-virginia-mountaineers"
+    "id": "d1-west-virginia-mountaineers",
+    "colorSource": "ncaa-team-colors:west virginia mountaineers"
   },
   {
     "group": "d1",
@@ -8785,8 +9075,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Catamounts",
     "slogan": "Go Catamounts",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#492F91",
+    "accentColor": "#CFAB7A",
     "headCoach": "Tim Craft",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8799,7 +9089,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://catamountsports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-western-carolina-catamounts"
+    "id": "d1-western-carolina-catamounts",
+    "colorSource": "ncaa-team-colors:western carolina catamounts"
   },
   {
     "group": "d1",
@@ -8810,8 +9101,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ohio Valley",
     "mascot": "Leathernecks",
     "slogan": "Go Leathernecks",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#6812BB",
+    "accentColor": "#FFFFFF",
     "headCoach": "Chad Boudreau",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "c-boudreau@wiu.edu",
@@ -8824,7 +9115,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goleathernecks.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-western-illinois-leathernecks"
+    "id": "d1-western-illinois-leathernecks",
+    "colorSource": "ncaa-team-colors:western illinois leathernecks"
   },
   {
     "group": "d1",
@@ -8835,8 +9127,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Conference USA",
     "mascot": "Hilltoppers",
     "slogan": "Go Hilltoppers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#010000",
+    "accentColor": "#FFFFFF",
     "headCoach": "Hank Plona",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8849,7 +9141,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wkusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-western-kentucky-hilltoppers"
+    "id": "d1-western-kentucky-hilltoppers",
+    "colorSource": "ncaa-team-colors:western kentucky hilltoppers"
   },
   {
     "group": "d1",
@@ -8860,8 +9153,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mid-American",
     "mascot": "Broncos",
     "slogan": "Go Broncos",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#7E3E09",
+    "accentColor": "#1D1B1B",
     "headCoach": "Kahil Fennell",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8874,7 +9167,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wmubroncos.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-western-michigan-broncos"
+    "id": "d1-western-michigan-broncos",
+    "colorSource": "ncaa-team-colors:western michigan broncos"
   },
   {
     "group": "d1",
@@ -8885,8 +9179,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "American",
     "mascot": "Shockers",
     "slogan": "Go Shockers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#101008",
+    "accentColor": "#FFFFFF",
     "headCoach": "Paul Mills",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "rhillard@goshockers.com",
@@ -8899,7 +9193,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goshockers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wichita-state-shockers"
+    "id": "d1-wichita-state-shockers",
+    "colorSource": "ncaa-team-colors:wichita state shockers"
   },
   {
     "group": "d1",
@@ -8910,8 +9205,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Coastal",
     "mascot": "Tribe",
     "slogan": "Go Tribe",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#103217",
+    "accentColor": "#FFFFFF",
     "headCoach": "Brian Earl",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8924,7 +9219,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Web recheck 2026-06-01 from https://tribeathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-william-and-mary-tribe"
+    "id": "d1-william-and-mary-tribe",
+    "colorSource": "ncaa-team-colors:william and mary tribe"
   },
   {
     "group": "d1",
@@ -8935,8 +9231,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big South",
     "mascot": "Eagles",
     "slogan": "Go Eagles",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#9E0B0E",
+    "accentColor": "#FFFFFF",
     "headCoach": "Mark Prosser",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "prosserm@winthrop.edu",
@@ -8949,19 +9245,20 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://winthropeagles.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-winthrop-eagles"
+    "id": "d1-winthrop-eagles",
+    "colorSource": "ncaa-team-colors:winthrop eagles"
   },
   {
     "group": "d1",
-    "school": "University of Wisconsin\u2013Madison",
+    "school": "University of Wisconsin–Madison",
     "displayName": "Wisconsin Badgers",
     "state": "WI",
     "division": "NCAA D1",
     "conference": "Big Ten",
     "mascot": "Badgers",
     "slogan": "Go Badgers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#A00000",
+    "accentColor": "#FFFFFF",
     "headCoach": "Greg Gard",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8974,7 +9271,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://uwbadgers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wisconsin-badgers"
+    "id": "d1-wisconsin-badgers",
+    "colorSource": "ncaa-team-colors:wisconsin badgers"
   },
   {
     "group": "d1",
@@ -8985,8 +9283,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Southern",
     "mascot": "Terriers",
     "slogan": "Go Terriers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#FFD700",
+    "accentColor": "#FFFFFF",
     "headCoach": "Kevin Giltner",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -8999,7 +9297,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://woffordterriers.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wofford-terriers"
+    "id": "d1-wofford-terriers",
+    "colorSource": "ncaa-team-colors:wofford terriers"
   },
   {
     "group": "d1",
@@ -9010,8 +9309,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Raiders",
     "slogan": "Go Raiders",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#006F53",
+    "accentColor": "#FFFFFF",
     "headCoach": "Clint Sargent",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "clint.sargent@wright.edu",
@@ -9024,7 +9323,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://wsuraiders.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wright-state-raiders"
+    "id": "d1-wright-state-raiders",
+    "colorSource": "ncaa-team-colors:wright state raiders"
   },
   {
     "group": "d1",
@@ -9035,8 +9335,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Mountain West",
     "mascot": "Cowboys",
     "slogan": "Go Cowboys",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#533B22",
+    "accentColor": "#FFFFFF",
     "headCoach": "Sundance Wicks",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -9049,7 +9349,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://gowyo.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-wyoming-cowboys"
+    "id": "d1-wyoming-cowboys",
+    "colorSource": "ncaa-team-colors:wyoming cowboys"
   },
   {
     "group": "d1",
@@ -9060,8 +9361,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Big East",
     "mascot": "Musketeers",
     "slogan": "Go Musketeers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#002144",
+    "accentColor": "#B0B1B6",
     "headCoach": "Richard Pitino",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "coachpitino@xavier.edu",
@@ -9074,7 +9375,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://goxavier.com/staff-directory. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-xavier-musketeers"
+    "id": "d1-xavier-musketeers",
+    "colorSource": "ncaa-team-colors:xavier musketeers"
   },
   {
     "group": "d1",
@@ -9085,8 +9387,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Ivy League",
     "mascot": "Bulldogs",
     "slogan": "Go Bulldogs",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#004A81",
+    "accentColor": "#FFFFFF",
     "headCoach": "James Jones",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -9099,7 +9401,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://yalebulldogs.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-yale-bulldogs"
+    "id": "d1-yale-bulldogs",
+    "colorSource": "ncaa-team-colors:yale bulldogs"
   },
   {
     "group": "d1",
@@ -9110,8 +9413,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "Horizon League",
     "mascot": "Penguins",
     "slogan": "Go Penguins",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#E51937",
+    "accentColor": "#FFFFFF",
     "headCoach": "Ethan Faulkner",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "jdosborne@ysu.edu",
@@ -9124,7 +9427,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "D1 program and head-coach starter data imported from public D1 program/current-coach tables; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ysusports.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "d1-youngstown-state-penguins"
+    "id": "d1-youngstown-state-penguins",
+    "colorSource": "ncaa-team-colors:youngstown state penguins"
   },
   {
     "group": "juco",
@@ -20782,7 +21086,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Aquinas College Saints",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Saints",
     "slogan": "Go Saints",
     "primaryColor": "#164b88",
@@ -21228,8 +21532,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Brewton\u2013Parker Christian University",
-    "displayName": "Brewton\u2013Parker Christian University Barons",
+    "school": "Brewton–Parker Christian University",
+    "displayName": "Brewton–Parker Christian University Barons",
     "state": "GA",
     "division": "NAIA",
     "conference": "Southern States Athletic Conference",
@@ -21557,7 +21861,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Cleary University Cougars",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Cougars",
     "slogan": "Go Cougars",
     "primaryColor": "#164b88",
@@ -21753,8 +22057,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Concordia University\u2013Nebraska",
-    "displayName": "Concordia University\u2013Nebraska Bulldogs",
+    "school": "Concordia University–Nebraska",
+    "displayName": "Concordia University–Nebraska Bulldogs",
     "state": "NE",
     "division": "NAIA",
     "conference": "Great Plains Athletic Conference",
@@ -21807,7 +22111,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Cornerstone University Golden Eagles",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Golden Eagles",
     "slogan": "Go Golden Eagles",
     "primaryColor": "#164b88",
@@ -21878,8 +22182,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Culver\u2013Stockton College",
-    "displayName": "Culver\u2013Stockton College Wildcats",
+    "school": "Culver–Stockton College",
+    "displayName": "Culver–Stockton College Wildcats",
     "state": "MO",
     "division": "NAIA",
     "conference": "Heart of America Athletic Conference",
@@ -22007,7 +22311,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Defiance College Yellow Jackets and Lady Jackets",
     "state": "OH",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Yellow Jackets and Lady Jackets",
     "slogan": "Go Yellow Jackets and Lady Jackets",
     "primaryColor": "#164b88",
@@ -22153,8 +22457,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Embry\u2013Riddle Aeronautical University, Prescott",
-    "displayName": "Embry\u2013Riddle Aeronautical University, Prescott Eagles",
+    "school": "Embry–Riddle Aeronautical University, Prescott",
+    "displayName": "Embry–Riddle Aeronautical University, Prescott Eagles",
     "state": "AZ",
     "division": "NAIA",
     "conference": "Great Southwest Athletic Conference",
@@ -22353,8 +22657,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Freed\u2013Hardeman University",
-    "displayName": "Freed\u2013Hardeman University Lions",
+    "school": "Freed–Hardeman University",
+    "displayName": "Freed–Hardeman University Lions",
     "state": "TN",
     "division": "NAIA",
     "conference": "Mid-South Conference",
@@ -22578,8 +22882,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Hannibal\u2013LaGrange University",
-    "displayName": "Hannibal\u2013LaGrange University Trojans",
+    "school": "Hannibal–LaGrange University",
+    "displayName": "Hannibal–LaGrange University Trojans",
     "state": "MO",
     "division": "NAIA",
     "conference": "American Midwest Conference",
@@ -22603,8 +22907,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Harris\u2013Stowe State University",
-    "displayName": "Harris\u2013Stowe State University Hornets",
+    "school": "Harris–Stowe State University",
+    "displayName": "Harris–Stowe State University Hornets",
     "state": "MO",
     "division": "NAIA",
     "conference": "American Midwest Conference",
@@ -22778,8 +23082,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Huston\u2013Tillotson University",
-    "displayName": "Huston\u2013Tillotson University Rams",
+    "school": "Huston–Tillotson University",
+    "displayName": "Huston–Tillotson University Rams",
     "state": "TX",
     "division": "NAIA",
     "conference": "HBCU Athletic Conference",
@@ -22807,7 +23111,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Indiana Institute of Technology (Indiana Tech) Warriors",
     "state": "IN",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Warriors",
     "slogan": "Go Warriors",
     "primaryColor": "#164b88",
@@ -23232,7 +23536,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Lawrence Technological University (Lawrence Tech) Blue Devils",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Blue Devils",
     "slogan": "Go Blue Devils",
     "primaryColor": "#164b88",
@@ -23253,8 +23557,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Lewis\u2013Clark State College",
-    "displayName": "Lewis\u2013Clark State College Warriors",
+    "school": "Lewis–Clark State College",
+    "displayName": "Lewis–Clark State College Warriors",
     "state": "ID",
     "division": "NAIA",
     "conference": "Cascade Collegiate Conference",
@@ -23432,7 +23736,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Lourdes University Gray Wolves",
     "state": "OH",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Gray Wolves",
     "slogan": "Go Gray Wolves",
     "primaryColor": "#164b88",
@@ -23482,7 +23786,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Madonna University Crusaders",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Crusaders",
     "slogan": "Go Crusaders",
     "primaryColor": "#164b88",
@@ -23778,8 +24082,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Montana State University\u2013Northern",
-    "displayName": "Montana State University\u2013Northern Lights and Skylights",
+    "school": "Montana State University–Northern",
+    "displayName": "Montana State University–Northern Lights and Skylights",
     "state": "MT",
     "division": "NAIA",
     "conference": "Frontier Conference",
@@ -24607,7 +24911,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Rochester Christian University Warriors",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Warriors",
     "slogan": "Go Warriors",
     "primaryColor": "#164b88",
@@ -24753,8 +25057,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Savannah College of Art and Design\u2013Atlanta*",
-    "displayName": "Savannah College of Art and Design\u2013Atlanta* Bees",
+    "school": "Savannah College of Art and Design–Atlanta*",
+    "displayName": "Savannah College of Art and Design–Atlanta* Bees",
     "state": "GA",
     "division": "NAIA",
     "conference": "Appalachian Athletic Conference",
@@ -24807,7 +25111,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "Siena Heights University Saints",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Saints",
     "slogan": "Go Saints",
     "primaryColor": "#164b88",
@@ -25303,8 +25607,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Texas A&M University\u2013San Antonio",
-    "displayName": "Texas A&M University\u2013San Antonio Jaguars",
+    "school": "Texas A&M University–San Antonio",
+    "displayName": "Texas A&M University–San Antonio Jaguars",
     "state": "TX",
     "division": "NAIA",
     "conference": "Red River Athletic Conference",
@@ -25328,8 +25632,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Texas A&M University\u2013Texarkana",
-    "displayName": "Texas A&M University\u2013Texarkana Eagles",
+    "school": "Texas A&M University–Texarkana",
+    "displayName": "Texas A&M University–Texarkana Eagles",
     "state": "TX",
     "division": "NAIA",
     "conference": "Red River Athletic Conference",
@@ -25353,8 +25657,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Texas A&M University\u2013Victoria*",
-    "displayName": "Texas A&M University\u2013Victoria* Jaguars",
+    "school": "Texas A&M University–Victoria*",
+    "displayName": "Texas A&M University–Victoria* Jaguars",
     "state": "TX",
     "division": "NAIA",
     "conference": "Red River Athletic Conference",
@@ -25678,11 +25982,11 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "University of Michigan\u2013Dearborn",
-    "displayName": "University of Michigan\u2013Dearborn Wolverines",
+    "school": "University of Michigan–Dearborn",
+    "displayName": "University of Michigan–Dearborn Wolverines",
     "state": "MI",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Wolverines",
     "slogan": "Go Wolverines",
     "primaryColor": "#164b88",
@@ -25728,8 +26032,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "University of Montana\u2013Western",
-    "displayName": "University of Montana\u2013Western Bulldogs",
+    "school": "University of Montana–Western",
+    "displayName": "University of Montana–Western Bulldogs",
     "state": "MT",
     "division": "NAIA",
     "conference": "Frontier Conference",
@@ -25782,7 +26086,7 @@ window.RECRUITING_CONTACTS = [
     "displayName": "University of Northwestern Ohio (UNOH) Racers",
     "state": "OH",
     "division": "NAIA",
-    "conference": "Wolverine\u2013Hoosier Athletic Conference",
+    "conference": "Wolverine–Hoosier Athletic Conference",
     "mascot": "Racers",
     "slogan": "Go Racers",
     "primaryColor": "#164b88",
@@ -26653,8 +26957,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Alabama\u2013Huntsville",
-    "displayName": "Alabama\u2013Huntsville",
+    "school": "Alabama–Huntsville",
+    "displayName": "Alabama–Huntsville",
     "state": "AL",
     "division": "NCAA D2",
     "conference": "GSC",
@@ -26878,8 +27182,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Arkansas\u2013Fort Smith",
-    "displayName": "Arkansas\u2013Fort Smith",
+    "school": "Arkansas–Fort Smith",
+    "displayName": "Arkansas–Fort Smith",
     "state": "AR",
     "division": "NCAA D2",
     "conference": "MIAA",
@@ -26903,8 +27207,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Arkansas\u2013Monticello",
-    "displayName": "Arkansas\u2013Monticello",
+    "school": "Arkansas–Monticello",
+    "displayName": "Arkansas–Monticello",
     "state": "AR",
     "division": "NCAA D2",
     "conference": "GAC",
@@ -27703,8 +28007,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Carson\u2013Newman",
-    "displayName": "Carson\u2013Newman Eagles",
+    "school": "Carson–Newman",
+    "displayName": "Carson–Newman Eagles",
     "state": "TN",
     "division": "NCAA D2",
     "conference": "SAC",
@@ -28303,8 +28607,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Concordia\u2013Irvine",
-    "displayName": "Concordia\u2013Irvine",
+    "school": "Concordia–Irvine",
+    "displayName": "Concordia–Irvine",
     "state": "CA",
     "division": "NCAA D2",
     "conference": "PacWest",
@@ -28328,8 +28632,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Concordia\u2013St. Paul",
-    "displayName": "Concordia\u2013St. Paul",
+    "school": "Concordia–St. Paul",
+    "displayName": "Concordia–St. Paul",
     "state": "MN",
     "division": "NCAA D2",
     "conference": "NSIC",
@@ -28778,8 +29082,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Embry\u2013Riddle",
-    "displayName": "Embry\u2013Riddle",
+    "school": "Embry–Riddle",
+    "displayName": "Embry–Riddle",
     "state": "FL",
     "division": "NCAA D2",
     "conference": "Sunshine State",
@@ -29428,8 +29732,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Goldey\u2013Beacom",
-    "displayName": "Goldey\u2013Beacom Lightning",
+    "school": "Goldey–Beacom",
+    "displayName": "Goldey–Beacom Lightning",
     "state": "DE",
     "division": "NCAA D2",
     "conference": "CACC",
@@ -29528,8 +29832,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Hawai\u02bbi\u2013Hilo",
-    "displayName": "Hawai\u02bbi\u2013Hilo",
+    "school": "Hawaiʻi–Hilo",
+    "displayName": "Hawaiʻi–Hilo",
     "state": "HI",
     "division": "NCAA D2",
     "conference": "PacWest",
@@ -29628,8 +29932,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Illinois\u2013Springfield",
-    "displayName": "Illinois\u2013Springfield",
+    "school": "Illinois–Springfield",
+    "displayName": "Illinois–Springfield",
     "state": "IL",
     "division": "NCAA D2",
     "conference": "GLVC",
@@ -30003,8 +30307,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "LeMoyne\u2013Owen",
-    "displayName": "LeMoyne\u2013Owen Magicians",
+    "school": "LeMoyne–Owen",
+    "displayName": "LeMoyne–Owen Magicians",
     "state": "TN",
     "division": "NCAA D2",
     "conference": "SIAC",
@@ -30053,8 +30357,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Lees\u2013McRae",
-    "displayName": "Lees\u2013McRae Bobcats",
+    "school": "Lees–McRae",
+    "displayName": "Lees–McRae Bobcats",
     "state": "NC",
     "division": "NCAA D2",
     "conference": "Carolinas",
@@ -30078,8 +30382,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Lenoir\u2013Rhyne",
-    "displayName": "Lenoir\u2013Rhyne Bears",
+    "school": "Lenoir–Rhyne",
+    "displayName": "Lenoir–Rhyne Bears",
     "state": "NC",
     "division": "NCAA D2",
     "conference": "SAC",
@@ -30678,8 +30982,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Minnesota State\u2013Moorhead",
-    "displayName": "Minnesota State\u2013Moorhead Dragons",
+    "school": "Minnesota State–Moorhead",
+    "displayName": "Minnesota State–Moorhead Dragons",
     "state": "MN",
     "division": "NCAA D2",
     "conference": "NSIC",
@@ -30703,8 +31007,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Minnesota\u2013Crookston",
-    "displayName": "Minnesota\u2013Crookston",
+    "school": "Minnesota–Crookston",
+    "displayName": "Minnesota–Crookston",
     "state": "MN",
     "division": "NCAA D2",
     "conference": "NSIC",
@@ -30728,8 +31032,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Minnesota\u2013Duluth",
-    "displayName": "Minnesota\u2013Duluth",
+    "school": "Minnesota–Duluth",
+    "displayName": "Minnesota–Duluth",
     "state": "MN",
     "division": "NCAA D2",
     "conference": "NSIC",
@@ -30903,8 +31207,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Montana State\u2013Billings",
-    "displayName": "Montana State\u2013Billings Yellowjackets",
+    "school": "Montana State–Billings",
+    "displayName": "Montana State–Billings Yellowjackets",
     "state": "MT",
     "division": "NCAA D2",
     "conference": "GNAC",
@@ -31003,8 +31307,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Nebraska\u2013Kearney",
-    "displayName": "Nebraska\u2013Kearney",
+    "school": "Nebraska–Kearney",
+    "displayName": "Nebraska–Kearney",
     "state": "NE",
     "division": "NCAA D2",
     "conference": "MIAA",
@@ -31503,8 +31807,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Parkside (Wisconsin\u2013Parkside)",
-    "displayName": "Parkside (Wisconsin\u2013Parkside)",
+    "school": "Parkside (Wisconsin–Parkside)",
+    "displayName": "Parkside (Wisconsin–Parkside)",
     "state": "WI",
     "division": "NCAA D2",
     "conference": "GLIAC",
@@ -31553,8 +31857,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Pittsburgh\u2013Johnstown",
-    "displayName": "Pittsburgh\u2013Johnstown",
+    "school": "Pittsburgh–Johnstown",
+    "displayName": "Pittsburgh–Johnstown",
     "state": "PA",
     "division": "NCAA D2",
     "conference": "PSAC",
@@ -32060,8 +32364,8 @@ window.RECRUITING_CONTACTS = [
     "conference": "SIAC",
     "mascot": "Tigers",
     "slogan": "Go Tigers",
-    "primaryColor": "#164b88",
-    "accentColor": "#f2b84b",
+    "primaryColor": "#280298",
+    "accentColor": "#FFFFFF",
     "headCoach": "Verify current head coach",
     "assistantCoach": "Verify recruiting contact",
     "headEmail": "",
@@ -32074,7 +32378,8 @@ window.RECRUITING_CONTACTS = [
     "sourceStatus": "NCAA D2 men's basketball program imported from public D2 program list; staff-directory link imported where available from CollegePipe metadata. Verify email, phone, staff role, ranking, scholarship/NIL info, and recruiting process on the official athletics site before sending. Auto-enriched 2026-06-01 from https://ssuathletics.com/sports/mens-basketball/coaches. Verify before sending.",
     "sentAt": "",
     "respondedAt": "",
-    "id": "other-d2-savannah-state"
+    "id": "other-d2-savannah-state",
+    "colorSource": "ncaa-team-colors:savannah state tigers"
   },
   {
     "group": "other",
@@ -32778,8 +33083,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "Texas A&M\u2013Kingsville",
-    "displayName": "Texas A&M\u2013Kingsville",
+    "school": "Texas A&M–Kingsville",
+    "displayName": "Texas A&M–Kingsville",
     "state": "TX",
     "division": "NCAA D2",
     "conference": "LSC",
@@ -33028,8 +33333,8 @@ window.RECRUITING_CONTACTS = [
   },
   {
     "group": "other",
-    "school": "UMSL (Missouri\u2013St. Louis)",
-    "displayName": "UMSL (Missouri\u2013St. Louis)",
+    "school": "UMSL (Missouri–St. Louis)",
+    "displayName": "UMSL (Missouri–St. Louis)",
     "state": "MO",
     "division": "NCAA D2",
     "conference": "GLVC",

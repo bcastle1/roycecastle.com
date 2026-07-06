@@ -418,7 +418,7 @@ function renderContacts() {
         <article class="admin-contact-row ${contact.id === currentContactId ? "active" : ""}">
           <label class="check-row">
             <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
-            <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(contact.accentColor || "#ffffff")}">${escapeHtml(schoolInitials(contact))}</span>
+            <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(logoTextColor(contact))}">${escapeHtml(schoolInitials(contact))}</span>
             <span>
               <strong>${escapeHtml(contact.displayName || contact.school)}</strong>
               <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
@@ -504,6 +504,27 @@ function schoolInitials(contact = {}) {
     .join("")
     .toUpperCase()
     .slice(0, 3);
+}
+
+function logoTextColor(contact = {}) {
+  const background = contact.primaryColor || "#164b88";
+  const accent = contact.accentColor || "#ffffff";
+  if (contrastRatio(background, accent) >= 4.5) return accent;
+  return contrastRatio(background, "#07111F") > contrastRatio(background, "#FFFFFF") ? "#07111F" : "#FFFFFF";
+}
+
+function contrastRatio(a, b) {
+  const l1 = relativeLuminance(a);
+  const l2 = relativeLuminance(b);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+}
+
+function relativeLuminance(hex) {
+  const clean = String(hex || "").replace("#", "");
+  if (!/^[0-9a-f]{6}$/i.test(clean)) return 0;
+  const values = [0, 2, 4].map((offset) => parseInt(clean.slice(offset, offset + 2), 16) / 255);
+  const linear = values.map((value) => (value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
 }
 
 async function saveSettingsFromForm() {
