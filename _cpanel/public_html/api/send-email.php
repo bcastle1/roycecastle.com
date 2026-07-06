@@ -93,7 +93,7 @@ function send_recruiting_email(array $emails, string $subject, string $text, arr
         . $html . "\r\n\r\n"
         . "--{$boundary}--";
 
-    return mail($toLine, $subject, $message, implode("\r\n", $headers));
+    return mail($toLine, $subject, $message, implode("\r\n", $headers), '-f' . $from);
 }
 
 function email_html(string $text, array $settings, array $target, string $trackingId): string

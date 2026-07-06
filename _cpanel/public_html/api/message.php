@@ -45,6 +45,6 @@ $headers = [
     'X-Mailer: Royce Castle Recruiting',
 ];
 
-$notified = function_exists('mail') ? mail($to, $subject, $body, implode("\r\n", $headers)) : false;
+$notified = function_exists('mail') ? mail($to, $subject, $body, implode("\r\n", $headers), '-f' . RC_DEFAULT_MAILBOX) : false;
 
 respond_json(['ok' => true, 'notified' => $notified]);
