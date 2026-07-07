@@ -22,9 +22,9 @@ const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "
 
 check("Public app uses current cache key", index.includes("20260707-light-type-1"));
 check("Admin app uses current cache key", admin.includes("20260707-light-type-1"));
-check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-1"));
-check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-1"));
-check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v4"));
+check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-2"));
+check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-2"));
+check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v5"));
 check("Public fallback email is info@roycecastle.com", app.includes('forwardEmail: "info@roycecastle.com"'));
 check("Quick reply fallback email is info@roycecastle.com", respond.includes('DEFAULT_REPLY_EMAIL = "info@roycecastle.com"'));
 check("Admin template enforces website link", adminJs.includes("ensureWebsiteLinkTemplate"));

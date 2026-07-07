@@ -10,6 +10,7 @@ const LIMIT = Number(process.env.ENRICH_LIMIT || 0);
 const GROUP = process.env.ENRICH_GROUP || "";
 const ONLY_MISSING_EMAIL = process.env.ENRICH_ONLY_MISSING_EMAIL !== "0";
 const ALLOW_STAFF_DIRECTORIES = process.env.ENRICH_ALLOW_DIRECTORIES === "1";
+const DISCOVER_URLS = process.env.ENRICH_DISCOVER === "1";
 const WRITE = process.env.ENRICH_WRITE !== "0";
 
 const contacts = loadContacts();
@@ -22,6 +23,7 @@ const stats = {
   candidates: candidates.length,
   fetched: 0,
   failed: 0,
+  discoveredUrls: 0,
   pagesWithStaff: 0,
   enriched: 0,
   headNamesAdded: 0,
@@ -57,6 +59,9 @@ console.log(
 
 async function enrichContact(contact) {
   const urls = candidateUrls(contact);
+  if (DISCOVER_URLS && shouldDiscover(contact)) {
+    urls.push(...(await discoverUrls(contact)));
+  }
   let best = null;
 
   for (const url of urls) {
@@ -134,7 +139,7 @@ function applyStaff(contact, staff, sourceUrl) {
 function extractStaff(html, url, contact) {
   const cleanHtml = String(html).replace(/\\u003C/gi, "<").replace(/\\u003E/gi, ">");
   const chunks = extractChunks(cleanHtml);
-  const staff = [];
+  const staff = extractDirectoryStaff(cleanHtml, url, contact);
 
   for (const chunk of chunks) {
     if (!/coach|basketball|mailto:|@[a-z0-9.-]+\.[a-z]{2,}/i.test(chunk)) continue;
@@ -154,6 +159,44 @@ function extractStaff(html, url, contact) {
   return dedupeStaff(staff)
     .sort((a, b) => roleRank(a.roleType, a.role) - roleRank(b.roleType, b.role))
     .slice(0, 8);
+}
+
+function extractDirectoryStaff(html, url, contact) {
+  const text = htmlToText(html);
+  const section = menBasketballSection(text);
+  if (!section) return [];
+  const lines = section
+    .split("\n")
+    .map((line) => normalizeSpaces(line))
+    .filter(Boolean);
+  const staff = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const windowText = lines.slice(index, index + 4).join(" ");
+    if (!/coach/i.test(windowText)) continue;
+    const roleType = roleTypeFromText(windowText);
+    if (!roleType) continue;
+    const email = extractEmails(windowText)[0] || "";
+    const role = extractRole(windowText);
+    const name = extractName(windowText, role);
+    if (name && !validCoachName(name, contact)) continue;
+    if (!name && !email) continue;
+    staff.push({ name, role, roleType, email, sourceUrl: url });
+  }
+
+  return dedupeStaff(staff);
+}
+
+function menBasketballSection(text = "") {
+  const normalized = normalizeSpaces(text);
+  const startMatch = normalized.match(/\b(Men's Basketball|Mens Basketball|Men Basketball|M Basketball|MBB)\b/i);
+  if (!startMatch || startMatch.index == null) return "";
+  const after = normalized.slice(startMatch.index);
+  const stopMatch = after.slice(startMatch[0].length).match(
+    /\n(?:Women's Basketball|Womens Basketball|Women Basketball|Baseball|Football|Softball|Volleyball|Soccer|Cross Country|Men's Golf|Women's Golf|Gymnastics|Men's Track|Women's Track|Track & Field|Swimming|Tennis|Lacrosse|Wrestling|Bowling|Esports|Cheer|Dance)\b/i
+  );
+  const section = stopMatch ? after.slice(0, startMatch[0].length + stopMatch.index) : after.slice(0, 5000);
+  return section;
 }
 
 function extractChunks(html) {
@@ -218,13 +261,13 @@ function extractName(text, role) {
 }
 
 function cleanNameCandidate(value = "") {
-  return decodeEntities(value)
+  return collapseRepeatedName(decodeEntities(value)
     .replace(/[\w.+-]+@[\w.-]+\.[a-z]{2,}/gi, " ")
     .replace(/\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}/g, " ")
-    .replace(/\b(Head Coach|Associate Head Coach|Assistant Coach|Men's Basketball|Mens Basketball|Basketball|Roster|Coaches|Staff|Email|Phone|Title|Name|Twitter|X)\b/gi, " ")
+    .replace(/\b(Head Coach|Associate Head Coach|Assistant Coach|Men's Basketball|Mens Basketball|Basketball|Roster|Coaches|Staff|Email|Phone|Title|Name|Twitter|Ext|Extension|X)\b/gi, " ")
     .replace(/[^A-Za-z.'\-\s]/g, " ")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim());
 }
 
 function looksLikeName(value = "") {
@@ -232,13 +275,23 @@ function looksLikeName(value = "") {
   if (words.length < 2 || words.length > 5) return false;
   const joined = words.join(" ");
   if (
-    /\b(coach|basketball|staff|department|athletic|university|college|state|men|women|email|phone|manager|coordinator|development|recruiting|offensive|defensive|line|swimming|soccer|baseball|softball|volleyball|football|track|field|cross country|jumps|throws|distance)\b/i.test(
+    /\b(coach|basketball|staff|department|athletics?|affairs|student|campus|part-time|graduate|residential|life|instructor|division|chair|ext|extension|athletic|university|college|state|men|women|email|phone|manager|coordinator|development|recruiting|offensive|defensive|line|swimming|soccer|baseball|softball|volleyball|football|track|field|cross country|jumps|throws|distance)\b/i.test(
       joined
     )
   ) {
     return false;
   }
+  if (words.length === 4 && words.every((word) => /^[A-Z][A-Za-z.'-]{1,}$/.test(word))) return false;
   return words.every((word) => /^[A-Z][A-Za-z.'-]{1,}$/.test(word));
+}
+
+function collapseRepeatedName(value = "") {
+  const words = String(value).split(/\s+/).filter(Boolean);
+  if (words.length % 2 !== 0 || words.length < 4) return String(value).trim();
+  const half = words.length / 2;
+  const first = words.slice(0, half).join(" ").toLowerCase();
+  const second = words.slice(half).join(" ").toLowerCase();
+  return first === second ? words.slice(0, half).join(" ") : String(value).trim();
 }
 
 function validCoachName(name = "", contact = {}) {
@@ -356,6 +409,55 @@ function candidateUrls(contact) {
   if (ALLOW_STAFF_DIRECTORIES && !isBasketballPage(sourceUrl)) pushUrl(urls, sourceUrl);
   if (ALLOW_STAFF_DIRECTORIES && !isBasketballPage(officialStaff)) pushUrl(urls, officialStaff);
   return urls.slice(0, 14);
+}
+
+function shouldDiscover(contact = {}) {
+  return !candidateUrls(contact).some((url) => isBasketballPage(url)) || /google\.com\/search/i.test(contact.staffDirectoryUrl || "");
+}
+
+async function discoverUrls(contact = {}) {
+  const query = `${contact.displayName || contact.school} men's basketball coaches official athletics email`;
+  const html = await fetchPage(`https://duckduckgo.com/html/?q=${encodeURIComponent(query)}`);
+  const urls = [];
+  for (const url of extractResultUrls(html)) {
+    if (!isUsefulDiscoveredUrl(url)) continue;
+    pushUrl(urls, url);
+    try {
+      const origin = new URL(url).origin;
+      for (const path of [
+        "/sports/mens-basketball/coaches",
+        "/sports/mens-basketball/roster/coaches",
+        "/sports/mbkb/coaches",
+        "/sports/mbball/coaches",
+        "/sports/m-basketball/coaches"
+      ]) {
+        pushUrl(urls, `${origin}${path}`);
+      }
+    } catch {
+      // Ignore malformed search result URLs.
+    }
+  }
+  stats.discoveredUrls += urls.length;
+  return urls.slice(0, 8);
+}
+
+function extractResultUrls(html = "") {
+  const urls = [];
+  for (const match of String(html).matchAll(/href="([^"]+)"/gi)) {
+    let href = decodeEntities(match[1]);
+    const uddg = href.match(/[?&]uddg=([^&]+)/);
+    if (uddg) href = decodeURIComponent(uddg[1]);
+    if (/^\/l\/\?kh=/.test(href)) continue;
+    if (/^\/\//.test(href)) href = `https:${href}`;
+    pushUrl(urls, href);
+  }
+  return urls;
+}
+
+function isUsefulDiscoveredUrl(url = "") {
+  if (!/^https?:\/\//i.test(url)) return false;
+  if (/(google|bing|duckduckgo|wikipedia|facebook|x\.com|twitter|instagram|youtube|linkedin|sidearmstats|sidearmsports)\./i.test(url)) return false;
+  return /athletic|sports|gobluedevils|go[a-z0-9-]+|[a-z0-9-]+sports|\/sports\/|staff-directory|coaches/i.test(url);
 }
 
 function isBasketballPage(url = "") {
