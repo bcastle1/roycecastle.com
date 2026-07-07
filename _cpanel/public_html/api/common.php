@@ -13,6 +13,9 @@ session_start();
 
 const RC_DEFAULT_MAILBOX = 'info@roycecastle.com';
 const RC_DEFAULT_WEBMAIL_URL = 'https://privateemail.com/';
+const RC_DEFAULT_SMTP_HOST = 'mail.privateemail.com';
+const RC_DEFAULT_SMTP_PORT = 465;
+const RC_DEFAULT_SMTP_SECURITY = 'ssl';
 const RC_PUBLIC_ORIGIN = 'https://roycecastle.com';
 const RC_EMAIL_TEMPLATE_VERSION = 3;
 
@@ -77,6 +80,11 @@ function default_settings(): array
         'webmailEmail' => RC_DEFAULT_MAILBOX,
         'webmailUrl' => RC_DEFAULT_WEBMAIL_URL,
         'ccEmail' => '',
+        'smtpHost' => RC_DEFAULT_SMTP_HOST,
+        'smtpPort' => RC_DEFAULT_SMTP_PORT,
+        'smtpSecurity' => RC_DEFAULT_SMTP_SECURITY,
+        'smtpUser' => RC_DEFAULT_MAILBOX,
+        'smtpPassword' => '',
         'sendMode' => 'server',
         'frequency' => 'manual',
         'day' => 'Monday',
@@ -100,6 +108,12 @@ function normalize_settings(array $raw): array
     foreach (['forwardEmail', 'fromEmail', 'webmailEmail'] as $key) {
         if (empty($settings[$key])) $settings[$key] = RC_DEFAULT_MAILBOX;
     }
+    if (empty($settings['smtpHost'])) $settings['smtpHost'] = RC_DEFAULT_SMTP_HOST;
+    $settings['smtpPort'] = max(1, (int)($settings['smtpPort'] ?? RC_DEFAULT_SMTP_PORT));
+    if (empty($settings['smtpSecurity']) || !in_array($settings['smtpSecurity'], ['ssl', 'tls'], true)) {
+        $settings['smtpSecurity'] = RC_DEFAULT_SMTP_SECURITY;
+    }
+    if (empty($settings['smtpUser'])) $settings['smtpUser'] = $settings['fromEmail'] ?: RC_DEFAULT_MAILBOX;
     if (empty($settings['webmailUrl'])) $settings['webmailUrl'] = RC_DEFAULT_WEBMAIL_URL;
     if (empty($settings['emailTemplate'])) $settings['emailTemplate'] = default_email_template();
     if (should_upgrade_legacy_template((string)$settings['emailTemplate'], $savedTemplateVersion)) {
@@ -118,8 +132,22 @@ function should_upgrade_legacy_template(string $template, $version): bool
 
 function public_settings(array $settings): array
 {
+    $settings['smtpPasswordSet'] = smtp_configured($settings);
     unset($settings['adminCodeHash']);
+    unset($settings['smtpPassword']);
     return $settings;
+}
+
+function smtp_password(array $settings): string
+{
+    return (string)(getenv('RC_SMTP_PASSWORD') ?: ($settings['smtpPassword'] ?? ''));
+}
+
+function smtp_configured(array $settings): bool
+{
+    return !empty($settings['smtpHost'])
+        && !empty($settings['smtpUser'])
+        && smtp_password($settings) !== '';
 }
 
 function request_json(): array

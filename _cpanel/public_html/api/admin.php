@@ -30,6 +30,10 @@ switch ($action) {
             'webmailEmail',
             'webmailUrl',
             'ccEmail',
+            'smtpHost',
+            'smtpPort',
+            'smtpSecurity',
+            'smtpUser',
             'sendMode',
             'frequency',
             'day',
@@ -41,6 +45,9 @@ switch ($action) {
         ];
         foreach ($allowed as $key) {
             if (array_key_exists($key, $incoming)) $settings[$key] = $incoming[$key];
+        }
+        if (array_key_exists('smtpPassword', $body) && (string)$body['smtpPassword'] !== '') {
+            $settings['smtpPassword'] = (string)$body['smtpPassword'];
         }
         if (!empty($body['newCode'])) {
             $settings['adminCodeHash'] = password_hash((string)$body['newCode'], PASSWORD_DEFAULT);
@@ -108,7 +115,9 @@ function state_payload(): array
     return [
         'ok' => true,
         'serverMode' => true,
-        'canSend' => function_exists('mail'),
+        'canSend' => smtp_configured($settings) || function_exists('mail'),
+        'smtpReady' => smtp_configured($settings),
+        'mailAvailable' => function_exists('mail'),
         'settings' => public_settings($settings),
         'messages' => read_json_file('messages.json', []),
         'optOutEmails' => read_json_file('opt-outs.json', []),

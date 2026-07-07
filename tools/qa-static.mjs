@@ -14,6 +14,8 @@ const admin = fs.readFileSync("admin/index.html", "utf8");
 const app = fs.readFileSync("app.js", "utf8");
 const adminJs = fs.readFileSync("admin/admin.js", "utf8");
 const respond = fs.readFileSync("respond.js", "utf8");
+const apiCommon = fs.readFileSync("_cpanel/public_html/api/common.php", "utf8");
+const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "utf8");
 
 check("Public app uses current cache key", index.includes("20260706-email-ready-2"));
 check("Admin app uses current cache key", admin.includes("20260706-email-ready"));
@@ -24,6 +26,11 @@ check("Admin template enforces video link", adminJs.includes("ensureVideoLinkTem
 check("Admin template enforces quick response link", adminJs.includes("ensureQuickResponseTemplate"));
 check("Admin has opened metric", admin.includes("metric-opened"));
 check("Admin has select all filtered control", admin.includes("select-all-filtered"));
+check("Admin exposes SMTP settings fields", ["setting-smtp-host", "setting-smtp-port", "setting-smtp-security", "setting-smtp-user", "setting-smtp-password", "setting-smtp-status"].every((id) => admin.includes(id)));
+check("Admin defaults to Namecheap Private Email SMTP", adminJs.includes('DEFAULT_SMTP_HOST = "mail.privateemail.com"') && adminJs.includes("DEFAULT_SMTP_PORT = 465"));
+check("Admin strips SMTP password from browser storage", adminJs.includes("settingsForBrowserStorage") && adminJs.includes("delete copy.smtpPassword"));
+check("Server never returns SMTP password in public settings", apiCommon.includes("unset($settings['smtpPassword'])"));
+check("Server SMTP sender authenticates with mailbox credentials", apiSendEmail.includes("send_recruiting_email_smtp") && apiSendEmail.includes("AUTH LOGIN"));
 check("Public contact API requires JSON result", app.includes("await response.json()") && app.includes("!!result?.ok"));
 
 const sandbox = { window: {} };
