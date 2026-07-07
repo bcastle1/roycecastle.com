@@ -11,6 +11,9 @@ This repo is ready for two hosting modes.
      `node tools/build-cpanel-package.mjs`
    - Upload the contents of `dist/cpanel-public-html` to the `roycecastle.com` document root.
    - In the current Namecheap account, that document root appears in File Manager as `/home/xromiats/roycecastle.com`. `xromiats` is the cPanel account username/path, not the source of truth and not a public URL.
+   - If cPanel Terminal is available, deploy the current GitHub `main` branch with:
+     `bash <(curl -fsSL https://raw.githubusercontent.com/bcastle1/roycecastle.com/main/tools/deploy-royce-cpanel-from-github.sh)`
+     This preserves the live `data/` folder while replacing the app files and API package.
    - Keep the generated `api/`, `data/`, `.htaccess`, `robots.txt`, and `sitemap.xml` files.
    - Visit `https://roycecastle.com/api/health.php` after upload. It should report `ok: true`, `mailAvailable: true`, `smtpReady`, and `dataWritable: true`.
 
