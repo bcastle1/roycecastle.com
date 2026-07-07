@@ -22,9 +22,9 @@ const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "
 
 check("Public app uses current cache key", index.includes("20260707-light-type-1"));
 check("Admin app uses current cache key", admin.includes("20260707-light-type-1"));
-check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-2"));
-check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-2"));
-check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v5"));
+check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-3"));
+check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-3"));
+check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v6"));
 check("Public fallback email is info@roycecastle.com", app.includes('forwardEmail: "info@roycecastle.com"'));
 check("Quick reply fallback email is info@roycecastle.com", respond.includes('DEFAULT_REPLY_EMAIL = "info@roycecastle.com"'));
 check("Admin template enforces website link", adminJs.includes("ensureWebsiteLinkTemplate"));
@@ -83,9 +83,13 @@ check("Contact database assistant names pass sanity filter", suspiciousAssistant
 const genericColorRows = contacts.filter((contact) => contact.primaryColor === "#164b88" && contact.accentColor === "#f2b84b").length;
 const sourcedColorRows = contacts.filter((contact) => contact.colorSource).length;
 const unsourcedCustomColors = contacts.filter((contact) => contact.primaryColor !== "#164b88" && contact.accentColor !== "#f2b84b" && !contact.colorSource).length;
+const d3Rows = contacts.filter((contact) => contact.division === "NCAA D3");
+const d3HeadEmails = d3Rows.filter((contact) => /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(contact.headEmail || ""));
 check("Contact database has at least 340 sourced school colors", sourcedColorRows >= 340);
 check("Custom school colors include source labels", unsourcedCustomColors === 0);
-console.log(JSON.stringify({ contacts: contacts.length, withEmail: withEmail.length, individualRecipientCount, sourcedColorRows, genericColorRows, invalidEmails: invalidEmails.length }, null, 2));
+check("Contact database includes imported NCAA D3 head-coach rows", d3Rows.length >= 400);
+check("Imported NCAA D3 rows include head-coach emails", d3HeadEmails.length === d3Rows.length);
+console.log(JSON.stringify({ contacts: contacts.length, withEmail: withEmail.length, individualRecipientCount, d3Rows: d3Rows.length, sourcedColorRows, genericColorRows, invalidEmails: invalidEmails.length }, null, 2));
 
 if (checks.some((item) => !item.pass)) {
   for (const item of checks) {
