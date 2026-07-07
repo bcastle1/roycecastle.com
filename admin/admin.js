@@ -365,12 +365,15 @@ function renderMetrics() {
   const history = loadEmailHistory();
   const sentCount = history.filter((item) => /sent|opened|draft opened/i.test(item.status || "")).length;
   const openedCount = history.filter((item) => item.viewedAt || item.openedAt || Number(item.openCount || 0) > 0).length;
+  const totalRecipientCount = contactsWithEmail.reduce((total, contact) => total + contactRecipientTargets(contact).length, 0);
+  const selectedContacts = [...selectedContactIds].map((id) => contacts.find((contact) => contact.id === id)).filter(Boolean);
+  const selectedRecipientCount = selectedContacts.reduce((total, contact) => total + activeContactRecipientTargets(contact).length, 0);
   refs.metricContacts.textContent = contacts.length.toLocaleString();
-  refs.metricSelected.textContent = selectedContactIds.size.toLocaleString();
-  refs.metricContactsLabel.textContent = `${contactsWithEmail.length.toLocaleString()} email-ready recipients`;
+  refs.metricSelected.textContent = selectedRecipientCount.toLocaleString();
+  refs.metricContactsLabel.textContent = `${totalRecipientCount.toLocaleString()} individual coach emails`;
   refs.metricSelectedLabel.textContent =
     selectedContactIds.size > 0
-      ? `${selectedContactIds.size.toLocaleString()} of ${contactsWithEmail.length.toLocaleString()} email-ready selected`
+      ? `${selectedContactIds.size.toLocaleString()} schools selected for ${selectedRecipientCount.toLocaleString()} individual emails`
       : "Email-ready for next run";
   refs.metricMessages.textContent = loadMessages().length.toLocaleString();
   refs.metricStorageLabel.textContent = serverAvailable ? "Saved permanently on server" : "Saved in this browser";
@@ -473,7 +476,7 @@ function renderContacts() {
             <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(logoTextColor(contact))}">${escapeHtml(schoolInitials(contact))}</span>
             <span>
               <span class="item-title">${escapeHtml(contact.displayName || contact.school)}</span>
-              <small>${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
+              <small>${contactRecipientTargets(contact).length.toLocaleString()} recipient${contactRecipientTargets(contact).length === 1 ? "" : "s"} | ${escapeHtml(contactEmail(contact) || "No email")} | ${escapeHtml(contact.division || "")}</small>
               <em class="contact-status ${isSuppressed ? "suppressed" : optStatus.includes("opted out") ? "partial" : "clear"}">${escapeHtml(optStatus)}</em>
             </span>
           </label>
@@ -719,52 +722,41 @@ function runTargets() {
   runTargets.skippedOptOuts = [];
   const selectedContacts = [...selectedContactIds].map((id) => contacts.find((contact) => contact.id === id)).filter(Boolean);
   const targets = selectedContacts.flatMap((contact) => {
-    const email = contactTargetEmail(contact);
-    if (!email) {
+    const recipients = activeContactRecipientTargets(contact);
+    if (!recipients.length) {
       runTargets.skippedOptOuts.push(contact.displayName || contact.school || contact.id);
       return [];
     }
-    return [
-      {
-        contactId: contact.id,
-        email,
-        label: contact.displayName || contact.school,
-        subject: `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`,
-        body: buildEmail(contact),
-        quickResponseLink: buildQuickResponseLink(contact),
-        websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
-        videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
-      }
-    ];
+    return recipients.map((recipient) => targetFromRecipient(contact, recipient));
   });
 
   const manualEmail = refs.manualEmail.value.trim();
   if (manualEmail) {
-    const activeManualEmail = activeEmailsFromString(manualEmail);
-    if (activeManualEmail) {
-      targets.push({
-        email: activeManualEmail,
+    const activeManualEmails = activeEmailListFromString(manualEmail);
+    if (activeManualEmails.length) {
+      activeManualEmails.forEach((email) => targets.push({
+        email,
         label: "manual recipient",
         subject: refs.adminSubject.value,
         body: refs.adminEmailBody.value,
         websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
         videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
-      });
+      }));
     } else {
       runTargets.skippedOptOuts.push("manual recipient");
     }
   }
   if (!targets.length && refs.adminToEmail.value.trim()) {
-    const activeDraftEmail = activeEmailsFromString(refs.adminToEmail.value);
-    if (activeDraftEmail) {
-      targets.push({
-        email: activeDraftEmail,
+    const activeDraftEmails = activeEmailListFromString(refs.adminToEmail.value);
+    if (activeDraftEmails.length) {
+      activeDraftEmails.forEach((email) => targets.push({
+        email,
         label: "current draft recipient",
         subject: refs.adminSubject.value,
         body: refs.adminEmailBody.value,
         websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
         videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
-      });
+      }));
     } else {
       runTargets.skippedOptOuts.push("current draft recipient");
     }
@@ -812,25 +804,16 @@ function markCurrentSent() {
     toast("Manual draft marked ready.");
     return;
   }
-  const activeEmail = contactTargetEmail(contact);
-  if (!activeEmail) {
+  const recipients = activeContactRecipientTargets(contact);
+  if (!recipients.length) {
     toast("This contact is opted out. Opt them in before marking sent.");
     return;
   }
-  recordEmailHistory(
-    {
-      contactId: contact.id,
-      email: activeEmail,
-      label: contact.displayName || contact.school,
-      subject: refs.adminSubject.value,
-      body: refs.adminEmailBody.value
-    },
-    "Sent"
-  );
-  logRun(`Marked sent for ${contact.displayName || contact.school}.`);
+  recipients.forEach((recipient) => recordEmailHistory(targetFromRecipient(contact, recipient), "Sent"));
+  logRun(`Marked sent for ${recipients.length} individual email${recipients.length === 1 ? "" : "s"} for ${contact.displayName || contact.school}.`);
   selectedContactIds.delete(contact.id);
   renderAll();
-  toast("Marked sent.");
+  toast(`${recipients.length} individual email${recipients.length === 1 ? "" : "s"} marked sent.`);
 }
 
 function currentEmailTarget() {
@@ -856,16 +839,85 @@ function contactEmails(contact = {}) {
   return [contact.headEmail, contact.assistantEmail].flatMap(parseEmails);
 }
 
+function contactRecipientTargets(contact = {}) {
+  const recipients = [];
+  const headNames = splitNames(contact.headCoach);
+  const assistantNames = splitNames(contact.assistantCoach);
+
+  parseEmails(contact.headEmail).forEach((email, index) => {
+    recipients.push({
+      email,
+      name: isUsableCoachName(headNames[index]) ? headNames[index] : isUsableCoachName(contact.headCoach) ? contact.headCoach : "",
+      role: "Head Coach"
+    });
+  });
+
+  parseEmails(contact.assistantEmail).forEach((email, index) => {
+    recipients.push({
+      email,
+      name: isUsableCoachName(assistantNames[index]) ? assistantNames[index] : "",
+      role: "Assistant Coach"
+    });
+  });
+
+  const byEmail = new Map();
+  recipients.forEach((recipient) => {
+    const key = normalizeEmail(recipient.email);
+    const existing = byEmail.get(key);
+    if (!existing) {
+      byEmail.set(key, { ...recipient, email: key });
+      return;
+    }
+    if (!existing.name && recipient.name) existing.name = recipient.name;
+    if (existing.role !== "Head Coach" && recipient.role === "Head Coach") existing.role = "Head Coach";
+  });
+  return [...byEmail.values()];
+}
+
+function activeContactRecipientTargets(contact = {}) {
+  return contactRecipientTargets(contact).filter((recipient) => !optOutEmails.has(normalizeEmail(recipient.email)));
+}
+
+function targetFromRecipient(contact = {}, recipient = {}) {
+  const context = recipientContext(contact, recipient);
+  const schoolLabel = contact.displayName || contact.school || "Selected contact";
+  const recipientLabel = recipient.name ? `${schoolLabel} - ${recipient.name}` : `${schoolLabel} - ${recipient.role || "Coach"}`;
+  return {
+    contactId: contact.id,
+    email: normalizeEmail(recipient.email),
+    label: recipientLabel,
+    school: schoolLabel,
+    recipientName: recipient.name || "",
+    recipientRole: recipient.role || "",
+    subject: `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`,
+    body: buildEmail(context),
+    quickResponseLink: buildQuickResponseLink(context),
+    websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
+    videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
+  };
+}
+
+function recipientContext(contact = {}, recipient = {}) {
+  return {
+    ...contact,
+    recipientEmail: normalizeEmail(recipient.email),
+    recipientName: recipient.name || "",
+    recipientRole: recipient.role || ""
+  };
+}
+
 function contactTargetEmail(contact = {}) {
   return contactEmails(contact)
     .filter((email) => !optOutEmails.has(normalizeEmail(email)))
     .join(", ");
 }
 
+function activeEmailListFromString(value = "") {
+  return parseEmails(value).filter((email) => !optOutEmails.has(normalizeEmail(email)));
+}
+
 function activeEmailsFromString(value = "") {
-  return parseEmails(value)
-    .filter((email) => !optOutEmails.has(normalizeEmail(email)))
-    .join(", ");
+  return activeEmailListFromString(value).join(", ");
 }
 
 function isContactSuppressed(contact = {}) {
@@ -1071,6 +1123,8 @@ function resolveTemplate(template, contact) {
 function templateValues(contact = {}) {
   return {
     coach_last_name: coachLastName(contact),
+    coach_name: contact.recipientName || contact.headCoach || contact.assistantCoach || "",
+    coach_role: contact.recipientRole || "",
     school_name: contact.displayName || contact.school || "your program",
     website_link: `${PUBLIC_SITE_ORIGIN}/`,
     video_link: `${PUBLIC_SITE_ORIGIN}/#video`,
@@ -1098,8 +1152,9 @@ function polishEmailCopy(copy = "") {
 function buildQuickResponseLink(contact = {}) {
   const params = new URLSearchParams({
     school: contact.displayName || contact.school || "",
-    coach: coachLastName(contact),
+    coach: contact.recipientName || coachLastName(contact),
     contact_id: contact.id || "",
+    recipient: contact.recipientEmail || "",
     reply_to: settings.forwardEmail || settings.fromEmail || defaultSettings.forwardEmail
   });
   return `${PUBLIC_SITE_ORIGIN}/respond.html?${params.toString()}`;
@@ -1154,8 +1209,21 @@ function stripGradePointTemplate(template) {
 }
 
 function coachLastName(contact) {
+  if (isUsableCoachName(contact?.recipientName)) return contact.recipientName.split(" ").slice(-1)[0];
   const name = contact?.headCoach && !contact.headCoach.toLowerCase().includes("verify") ? contact.headCoach : contact?.assistantCoach || "";
-  return name && !name.toLowerCase().includes("verify") ? name.split(" ").slice(-1)[0] : "";
+  return isUsableCoachName(name) ? name.split(" ").slice(-1)[0] : "";
+}
+
+function splitNames(value = "") {
+  return String(value)
+    .split(/[,;]+/)
+    .map((name) => name.trim())
+    .filter(Boolean);
+}
+
+function isUsableCoachName(value = "") {
+  const name = String(value || "").trim();
+  return !!name && !/\b(verify|staff|basketball|athletics?|department|coach|contact)\b/i.test(name);
 }
 
 function clearMessages() {
