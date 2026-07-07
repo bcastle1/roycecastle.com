@@ -14,6 +14,9 @@
   --shadow: 0 18px 46px rgba(9, 17, 31, 0.12);
   --soft-shadow: 0 8px 24px rgba(9, 17, 31, 0.09);
   --radius: 8px;
+  --weight-regular: 400;
+  --weight-soft: 430;
+  --weight-polished: 460;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -34,11 +37,15 @@ body {
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
+  font-weight: var(--weight-regular);
 }
 
 strong,
-b {
-  font-weight: 560;
+b,
+th,
+dt,
+summary {
+  font-weight: var(--weight-polished);
 }
 
 img,
@@ -100,7 +107,7 @@ textarea {
   color: var(--gold);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.35rem;
-  font-weight: 620;
+  font-weight: var(--weight-polished);
   line-height: 1;
   text-shadow:
     -1px -1px 0 var(--maroon),
@@ -117,14 +124,14 @@ textarea {
 .brand-title {
   font-size: 1.15rem;
   line-height: 1.1;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .brand small {
   margin-top: 3px;
   color: rgba(255, 255, 255, 0.72);
   font-size: 0.82rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .main-nav {
@@ -150,7 +157,7 @@ textarea {
   border-radius: var(--radius);
   border: 1px solid transparent;
   font-size: 0.9rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
@@ -333,7 +340,7 @@ main {
   gap: 10px;
   color: #ffffff;
   font-size: 1.08rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .profile-facts svg {
@@ -368,7 +375,7 @@ main {
 .stat-tiles small {
   color: rgba(255, 255, 255, 0.84);
   font-size: 0.7rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   text-transform: uppercase;
 }
 
@@ -414,7 +421,7 @@ main {
   margin: 6px 0 0;
   color: var(--muted);
   font-size: 0.92rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   line-height: 1.45;
 }
 
@@ -422,7 +429,7 @@ main {
   margin: 0;
   color: var(--maroon);
   font-size: 0.75rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -430,14 +437,20 @@ main {
 h1,
 h2,
 h3,
+h4,
+h5,
+h6,
 p {
   margin-top: 0;
 }
 
 h1,
 h2,
-h3 {
-  font-weight: 560;
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--weight-polished);
 }
 
 h1 {
@@ -469,7 +482,7 @@ label {
   gap: 6px;
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 input,
@@ -482,7 +495,7 @@ textarea {
   color: var(--ink);
   background: #ffffff;
   font-size: 0.9rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   box-shadow: inset 0 1px 0 rgba(13, 24, 41, 0.02);
 }
 
@@ -508,7 +521,7 @@ textarea:focus {
   color: var(--ink);
   background: #ffffff;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: var(--weight-soft);
   line-height: 1.5;
   white-space: pre-wrap;
   box-shadow: inset 0 1px 0 rgba(13, 24, 41, 0.02);
@@ -527,7 +540,7 @@ textarea:focus {
   padding: 0 3px 1px;
   background: rgba(250, 191, 45, 0.18);
   color: #5d0d1d;
-  font-weight: 600;
+  font-weight: var(--weight-polished);
 }
 
 .placeholder-help {
@@ -544,7 +557,7 @@ textarea:focus {
   background: #fff8e8;
   color: #5d0d1d;
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: var(--weight-polished);
 }
 
 textarea {
@@ -575,13 +588,13 @@ textarea {
 .school-title {
   display: block;
   font-size: 1.14rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .school-strip span,
 .status {
   color: var(--muted);
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .email-footer {
@@ -662,7 +675,7 @@ textarea {
   border: 3px solid #ffffff;
   box-shadow: 0 0 0 1px rgba(13, 24, 41, 0.12), 0 8px 18px rgba(9, 17, 31, 0.12);
   font-size: 1.02rem;
-  font-weight: 600;
+  font-weight: var(--weight-polished);
 }
 
 .queue strong {
@@ -684,7 +697,7 @@ textarea {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .queue-footer span {
@@ -702,7 +715,7 @@ textarea {
   background: var(--maroon);
   color: #ffffff;
   font-size: 0.76rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .video-frame {
@@ -723,7 +736,7 @@ textarea {
   margin: -4px 0 0;
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .songs {
@@ -800,7 +813,7 @@ textarea {
   border-radius: var(--radius);
   background: var(--ink);
   color: #ffffff;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   box-shadow: var(--shadow);
   transform: translateY(18px);
   opacity: 0;
@@ -822,7 +835,7 @@ textarea {
   background: #06101d;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.84rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .app-footer span {
@@ -882,14 +895,14 @@ body.contacts-page .contacts-main {
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.13);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   text-transform: uppercase;
 }
 
 .contacts-metrics .metric-value {
   color: #ffffff;
   font-size: 2rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .worksheet-tabs {
@@ -906,7 +919,7 @@ body.contacts-page .contacts-main {
   border-bottom: 3px solid transparent;
   background: transparent;
   color: var(--muted);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   cursor: pointer;
 }
 
@@ -924,7 +937,7 @@ body.contacts-page .contacts-main {
 
 .table-summary {
   color: var(--muted);
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .table-wrap {
@@ -954,6 +967,7 @@ body.contacts-page .contacts-main {
   background: #f7f9fc;
   color: var(--muted);
   font-size: 0.78rem;
+  font-weight: var(--weight-soft);
   text-transform: uppercase;
 }
 
@@ -975,7 +989,7 @@ body.contacts-page .contacts-main {
 
 .contacts-table td a {
   color: var(--blue);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .contacts-table .history-button {
@@ -1032,13 +1046,13 @@ body.contacts-page .contacts-main {
   gap: 4px;
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .history-meta .item-title {
   color: var(--ink);
   font-size: 1rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .history-entry pre {
@@ -1072,7 +1086,7 @@ body.contacts-page .contacts-main {
   border: 1px dashed var(--line);
   color: var(--muted);
   text-align: center;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 @media (max-width: 1280px) {
@@ -1209,7 +1223,7 @@ body.contacts-page .contacts-main {
 .contacts-main strong,
 .response-main strong,
 .app-footer strong {
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 /* 2026 public prospectus + admin studio */
@@ -1282,7 +1296,7 @@ body.contacts-page .contacts-main {
   margin: 0;
   color: var(--gold);
   font-size: 0.95rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .landing-copy h1 {
@@ -1297,7 +1311,7 @@ body.contacts-page .contacts-main {
   color: rgba(255, 255, 255, 0.82);
   font-size: clamp(1.05rem, 1.35vw, 1.28rem);
   line-height: 1.55;
-  font-weight: 620;
+  font-weight: var(--weight-polished);
 }
 
 .landing-actions {
@@ -1333,13 +1347,13 @@ body.contacts-page .contacts-main {
 .hero-proof small {
   color: rgba(255, 255, 255, 0.66);
   font-size: 0.72rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   text-transform: uppercase;
 }
 
 .hero-proof .fact-value {
   font-size: clamp(1rem, 1.5vw, 1.45rem);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   line-height: 1.05;
 }
 
@@ -1388,7 +1402,7 @@ body.contacts-page .contacts-main {
   margin: 0;
   color: var(--muted);
   line-height: 1.58;
-  font-weight: 580;
+  font-weight: var(--weight-polished);
 }
 
 .prospectus-section {
@@ -1496,7 +1510,7 @@ body.contacts-page .contacts-main {
   color: rgba(255, 255, 255, 0.84);
   font-size: 1rem;
   line-height: 1.6;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .response-panel {
@@ -1514,7 +1528,7 @@ body.contacts-page .contacts-main {
   border: 1px solid var(--line);
   border-left: 6px solid var(--maroon);
   color: var(--ink);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .response-options {
@@ -1572,7 +1586,7 @@ body.contacts-page .contacts-main {
 
 .response-option .option-title {
   font-size: 1rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   line-height: 1.15;
 }
 
@@ -1580,7 +1594,7 @@ body.contacts-page .contacts-main {
   margin-top: 5px;
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   line-height: 1.35;
 }
 
@@ -1692,7 +1706,7 @@ body.contacts-page .contacts-main {
   border-radius: var(--radius);
   background: #07111f;
   color: #ffffff;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .contact-note svg {
@@ -1715,7 +1729,7 @@ body.contacts-page .contacts-main {
   margin: 0;
   color: var(--muted);
   font-size: 0.84rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .admin-corner-link {
@@ -1735,7 +1749,7 @@ body.contacts-page .contacts-main {
   box-shadow: var(--shadow);
   text-decoration: none;
   font-size: 0.82rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .admin-page {
@@ -1790,7 +1804,7 @@ body.contacts-page .contacts-main {
 
 .login-error {
   color: var(--maroon) !important;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .admin-shell {
@@ -1827,7 +1841,7 @@ body.contacts-page .contacts-main {
 .admin-brand small {
   color: rgba(255, 255, 255, 0.64);
   font-size: 0.76rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .admin-sidebar nav {
@@ -1844,7 +1858,7 @@ body.contacts-page .contacts-main {
   border-radius: var(--radius);
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .admin-sidebar nav a:hover {
@@ -1907,20 +1921,20 @@ body.contacts-page .contacts-main {
 
 .admin-metrics small {
   color: var(--muted);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   text-transform: uppercase;
 }
 
 .admin-metrics .metric-value {
   font-size: 2.2rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   color: var(--ink);
 }
 
 .admin-metrics article > span:not(.metric-value) {
   color: var(--muted);
   font-size: 0.82rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .admin-grid.two-col,
@@ -1955,7 +1969,7 @@ body.contacts-page .contacts-main {
 .webmail-grid small,
 .suppression-card small {
   color: var(--muted);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   text-transform: uppercase;
 }
 
@@ -1963,7 +1977,7 @@ body.contacts-page .contacts-main {
   display: block;
   overflow-wrap: anywhere;
   font-size: 1.2rem;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   color: var(--ink);
 }
 
@@ -1973,7 +1987,7 @@ body.contacts-page .contacts-main {
   margin: 0;
   color: var(--muted);
   font-size: 0.86rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
   line-height: 1.42;
 }
 
@@ -2004,7 +2018,7 @@ body.contacts-page .contacts-main {
 
 .message-item .item-title {
   color: var(--ink);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .message-item span,
@@ -2061,7 +2075,7 @@ body.contacts-page .contacts-main {
 .suppression-card .section-title {
   display: block;
   margin-bottom: 4px;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .suppression-card textarea {
@@ -2096,7 +2110,7 @@ body.contacts-page .contacts-main {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 .progress-track {
@@ -2137,7 +2151,7 @@ body.contacts-page .contacts-main {
 
 .run-log time {
   color: var(--gold);
-  font-weight: 560;
+  font-weight: var(--weight-polished);
 }
 
 .contact-tools {
@@ -2195,7 +2209,7 @@ body.contacts-page .contacts-main {
   border: 2px solid #ffffff;
   box-shadow: 0 0 0 1px rgba(13, 24, 41, 0.14), 0 8px 18px rgba(9, 17, 31, 0.1);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: var(--weight-polished);
   letter-spacing: 0;
 }
 
@@ -2214,7 +2228,7 @@ body.contacts-page .contacts-main {
   border-radius: 999px;
   font-size: 0.72rem;
   font-style: normal;
-  font-weight: 560;
+  font-weight: var(--weight-polished);
   line-height: 1;
 }
 
@@ -2257,7 +2271,7 @@ body.contacts-page .contacts-main {
 
 .admin-media-grid .media-label {
   font-size: 0.9rem;
-  font-weight: 520;
+  font-weight: var(--weight-soft);
 }
 
 @media (max-width: 1100px) {
