@@ -17,8 +17,8 @@ const respond = fs.readFileSync("respond.js", "utf8");
 const apiCommon = fs.readFileSync("_cpanel/public_html/api/common.php", "utf8");
 const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "utf8");
 
-check("Public app uses current cache key", index.includes("20260706-email-ready-2"));
-check("Admin app uses current cache key", admin.includes("20260706-email-ready"));
+check("Public app uses current cache key", index.includes("20260707-light-type-1"));
+check("Admin app uses current cache key", admin.includes("20260707-light-type-1"));
 check("Public fallback email is info@roycecastle.com", app.includes('forwardEmail: "info@roycecastle.com"'));
 check("Quick reply fallback email is info@roycecastle.com", respond.includes('DEFAULT_REPLY_EMAIL = "info@roycecastle.com"'));
 check("Admin template enforces website link", adminJs.includes("ensureWebsiteLinkTemplate"));
