@@ -9,9 +9,12 @@ const genericAccent = "#f2b84b";
 const contacts = loadContacts();
 const colorRows = JSON.parse(fs.readFileSync(colorFile, "utf8"));
 const colorIndex = new Map();
+const colorEntries = [];
 
 for (const row of colorRows) {
-  colorIndex.set(normalize(row.name), row.colors || []);
+  const key = normalize(row.name);
+  colorIndex.set(key, row.colors || []);
+  colorEntries.push({ key, colors: row.colors || [] });
 }
 
 const manualColors = new Map([
@@ -66,6 +69,7 @@ const aliases = new Map([
 
 let exact = 0;
 let alias = 0;
+let fuzzy = 0;
 let skipped = 0;
 
 for (const contact of contacts) {
@@ -103,11 +107,21 @@ for (const contact of contacts) {
       break;
     }
     const aliased = aliases.get(candidate);
-    if (aliased && colorIndex.has(aliased)) {
-      matchColors = colorIndex.get(aliased);
-      sourceName = aliased;
+    const normalizedAlias = aliased ? normalize(aliased) : "";
+    if (normalizedAlias && colorIndex.has(normalizedAlias)) {
+      matchColors = colorIndex.get(normalizedAlias);
+      sourceName = normalizedAlias;
       alias += 1;
       break;
+    }
+  }
+
+  if (!matchColors) {
+    const fuzzyMatch = uniqueFuzzyColorMatch(candidates);
+    if (fuzzyMatch) {
+      matchColors = fuzzyMatch.colors;
+      sourceName = fuzzyMatch.key;
+      fuzzy += 1;
     }
   }
 
@@ -123,7 +137,7 @@ fs.writeFileSync(contactFile, `// Generated contact starter database for Royce C
 
 const enriched = contacts.filter((contact) => contact.colorSource).length;
 const generic = contacts.filter((contact) => contact.primaryColor === genericPrimary && contact.accentColor === genericAccent).length;
-console.log(JSON.stringify({ exact, alias, skipped, enriched, generic, total: contacts.length }, null, 2));
+console.log(JSON.stringify({ exact, alias, fuzzy, skipped, enriched, generic, total: contacts.length }, null, 2));
 
 function loadContacts() {
   const sandbox = { window: {} };
@@ -144,14 +158,62 @@ function normalize(value = "") {
 }
 
 function normalizePalette(colors) {
-  const clean = [...new Set(colors.map((color) => String(color || "").trim().toUpperCase()).filter(/^#[0-9A-F]{6}$/i.test.bind(/^#[0-9A-F]{6}$/i)))];
+  const clean = [
+    ...new Set(
+      colors
+        .map((color) => {
+          const value = String(color || "").trim().toUpperCase();
+          return /^[0-9A-F]{6}$/i.test(value) ? `#${value}` : value;
+        })
+        .filter((color) => /^#[0-9A-F]{6}$/i.test(color))
+    )
+  ];
   if (!clean.length) return null;
   const nonWhite = clean.filter((color) => !["#FFFFFF", "#FFFFFE", "#FDFDFD"].includes(color));
   const colorful = nonWhite.filter((color) => colorStats(color).saturation > 0.12);
   const primaryPool = colorful.length ? colorful : nonWhite;
   const primary = primaryPool.sort((a, b) => primaryScore(b) - primaryScore(a))[0] || clean[0];
-  const accent = clean.find((color) => color !== primary) || (primary === "#FFFFFF" ? "#07111F" : "#FFFFFF");
+  const accent = chooseAccent(clean, primary);
   return { primary, accent };
+}
+
+function chooseAccent(colors, primary) {
+  const options = colors.filter((color) => color !== primary);
+  if (!options.length) return primary === "#FFFFFF" ? "#07111F" : "#FFFFFF";
+  const primaryLuminance = colorStats(primary).luminance;
+  if (primaryLuminance > 0.65) {
+    return options.sort((a, b) => colorStats(a).luminance - colorStats(b).luminance)[0];
+  }
+  if (options.includes("#FFFFFF")) return "#FFFFFF";
+  return options.sort((a, b) => colorStats(b).luminance - colorStats(a).luminance)[0];
+}
+
+function uniqueFuzzyColorMatch(candidates) {
+  const matches = [];
+  for (const candidate of candidates) {
+    const candidateTokens = tokenSet(candidate);
+    if (candidateTokens.size < 2) continue;
+    for (const entry of colorEntries) {
+      const entryTokens = tokenSet(entry.key);
+      if (entryTokens.size < 2) continue;
+      const overlap = [...candidateTokens].filter((token) => entryTokens.has(token)).length;
+      const subset =
+        [...candidateTokens].every((token) => entryTokens.has(token)) ||
+        [...entryTokens].every((token) => candidateTokens.has(token));
+      if (subset && overlap >= 2) matches.push(entry);
+    }
+  }
+  const unique = [...new Map(matches.map((entry) => [entry.key, entry])).values()];
+  return unique.length === 1 ? unique[0] : null;
+}
+
+function tokenSet(value = "") {
+  return new Set(
+    normalize(value)
+      .split(" ")
+      .filter((token) => token.length > 1)
+      .filter((token) => !["the", "of", "and", "university", "college"].includes(token))
+  );
 }
 
 function primaryScore(color) {

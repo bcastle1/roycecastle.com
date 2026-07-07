@@ -1065,7 +1065,7 @@ async function resetTemplate() {
 
 function resolveTemplate(template, contact) {
   const values = templateValues(contact);
-  return String(template || defaultEmailTemplate()).replace(/\{\{([a-z0-9_]+)\}\}/gi, (_, key) => values[key] ?? "");
+  return polishEmailCopy(String(template || defaultEmailTemplate()).replace(/\{\{([a-z0-9_]+)\}\}/gi, (_, key) => values[key] ?? ""));
 }
 
 function templateValues(contact = {}) {
@@ -1086,6 +1086,13 @@ function templateValues(contact = {}) {
 
 function buildEmail(contact) {
   return resolveTemplate(settings.emailTemplate || defaultEmailTemplate(), contact || {});
+}
+
+function polishEmailCopy(copy = "") {
+  return String(copy)
+    .replace(/^Coach\s*,/gim, "Coach,")
+    .replace(/[ \t]+,/g, ",")
+    .replace(/[ \t]+$/gm, "");
 }
 
 function buildQuickResponseLink(contact = {}) {

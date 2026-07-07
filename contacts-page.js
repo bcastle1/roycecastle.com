@@ -1,4 +1,4 @@
-const CONTACTS_APP_KEY = "royceCastleRecruitingStudio.v3";
+const CONTACTS_APP_KEY = "royceCastleRecruitingStudio.v4";
 const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
 
 const pageRefs = {
