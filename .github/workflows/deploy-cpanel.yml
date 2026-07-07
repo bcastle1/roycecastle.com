@@ -1,0 +1,76 @@
+name: Deploy to Namecheap cPanel
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: roycecastle-cpanel-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: QA and deploy live site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run static QA
+        run: node tools/qa-static.mjs
+
+      - name: Deploy current main to cPanel
+        env:
+          CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+          CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
+          CPANEL_TARGET: ${{ secrets.CPANEL_TARGET }}
+          CPANEL_SSH_PRIVATE_KEY: ${{ secrets.CPANEL_SSH_PRIVATE_KEY }}
+          CPANEL_SSH_PASSWORD: ${{ secrets.CPANEL_SSH_PASSWORD }}
+          CPANEL_KNOWN_HOSTS: ${{ secrets.CPANEL_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          HOST="${CPANEL_HOST:-premium126.web-hosting.com}"
+          USER="${CPANEL_USER:-xromiats}"
+          PORT="${CPANEL_PORT:-21098}"
+          TARGET="${CPANEL_TARGET:-/home/xromiats/roycecastle.com}"
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
+          if [ -n "${CPANEL_KNOWN_HOSTS:-}" ]; then
+            printf '%s\n' "$CPANEL_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          fi
+
+          SSH_OPTS=(-p "$PORT" -o StrictHostKeyChecking=accept-new)
+
+          if [ -n "${CPANEL_SSH_PRIVATE_KEY:-}" ]; then
+            printf '%s\n' "$CPANEL_SSH_PRIVATE_KEY" > ~/.ssh/cpanel_deploy_key
+            chmod 600 ~/.ssh/cpanel_deploy_key
+            ssh "${SSH_OPTS[@]}" -i ~/.ssh/cpanel_deploy_key "$USER@$HOST" "ROYCE_TARGET='$TARGET' bash -s" < tools/deploy-royce-cpanel-from-github.sh
+          elif [ -n "${CPANEL_SSH_PASSWORD:-}" ]; then
+            sudo apt-get update
+            sudo apt-get install -y sshpass
+            sshpass -p "$CPANEL_SSH_PASSWORD" ssh "${SSH_OPTS[@]}" "$USER@$HOST" "ROYCE_TARGET='$TARGET' bash -s" < tools/deploy-royce-cpanel-from-github.sh
+          else
+            echo "::error::Set either CPANEL_SSH_PRIVATE_KEY or CPANEL_SSH_PASSWORD in GitHub repository secrets."
+            exit 1
+          fi
+
+      - name: Verify live health
+        run: |
+          set -euo pipefail
+          curl -fsS https://roycecastle.com/api/health.php

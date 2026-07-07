@@ -25,6 +25,28 @@ This repo is ready for two hosting modes.
 - Do not treat `/home/xromiats/roycecastle.com` as the editable source; it is only the live hosting destination for files generated from GitHub.
 - If the domain is pointed directly at GitHub Pages, the coach-facing static site will work, but the PHP-backed admin send runs, permanent server saves, and open tracking will not.
 
+## Automatic GitHub-to-cPanel Deploy
+
+The workflow `.github/workflows/deploy-cpanel.yml` runs on every push to `main` and can also be run manually from GitHub Actions. It runs `node tools/qa-static.mjs`, SSHes into Namecheap/cPanel, runs `tools/deploy-royce-cpanel-from-github.sh`, and verifies `https://roycecastle.com/api/health.php`.
+
+Add these GitHub repository secrets once:
+
+- `CPANEL_HOST`: `premium126.web-hosting.com`
+- `CPANEL_USER`: `xromiats`
+- `CPANEL_PORT`: Namecheap SSH port, usually `21098`
+- `CPANEL_TARGET`: `/home/xromiats/roycecastle.com`
+- `CPANEL_SSH_PRIVATE_KEY`: preferred, the private key for a cPanel SSH key authorized for `xromiats`
+
+Alternative to the key secret:
+
+- `CPANEL_SSH_PASSWORD`: cPanel SSH password, if key-based SSH is not configured
+
+Optional:
+
+- `CPANEL_KNOWN_HOSTS`: pinned SSH host key output for `premium126.web-hosting.com`
+
+After those secrets exist, future pushes to `main` deploy live automatically without opening Namecheap or cPanel in the browser.
+
 ## Namecheap Email Setup
 
 For `info@roycecastle.com` webmail, the domain must use the mail service that owns the mailbox.
