@@ -1,22 +1,22 @@
 :root {
   --ink: #07111f;
   --ink-2: #0c1728;
-  --muted: #5e6879;
-  --line: rgba(13, 24, 41, 0.13);
-  --paper: #f4f6f9;
-  --paper-2: #eef2f6;
+  --muted: #606a7a;
+  --line: rgba(13, 24, 41, 0.11);
+  --paper: #f6f8fb;
+  --paper-2: #eef2f7;
   --panel: #ffffff;
   --maroon: #7a1026;
   --maroon-2: #9f1e34;
   --gold: #f0b323;
   --blue: #164b88;
   --green: #16834f;
-  --shadow: 0 18px 46px rgba(9, 17, 31, 0.12);
-  --soft-shadow: 0 8px 24px rgba(9, 17, 31, 0.09);
+  --shadow: 0 24px 70px rgba(9, 17, 31, 0.12);
+  --soft-shadow: 0 12px 34px rgba(9, 17, 31, 0.08);
   --radius: 8px;
   --weight-regular: 400;
-  --weight-soft: 430;
-  --weight-polished: 460;
+  --weight-soft: 405;
+  --weight-polished: 410;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -35,9 +35,14 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--paper);
+  background:
+    radial-gradient(960px 460px at 6% -12%, rgba(122, 16, 38, 0.055), transparent 56%),
+    linear-gradient(180deg, #f9fbfd 0, var(--paper) 42%, #f7f9fc 100%);
   color: var(--ink);
   font-weight: var(--weight-regular);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 strong,
@@ -45,7 +50,7 @@ b,
 th,
 dt,
 summary {
-  font-weight: var(--weight-polished);
+  font-weight: var(--weight-soft);
 }
 
 img,
@@ -2274,6 +2279,371 @@ body.contacts-page .contacts-main {
   font-weight: var(--weight-soft);
 }
 
+/* Premium SaaS polish: hierarchy comes from scale, color, and surface quality instead of bold type. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand-title,
+.item-title,
+.section-title,
+.metric-value,
+.webmail-value,
+.fact-value,
+.school-title,
+.option-title,
+label,
+button,
+a,
+th,
+strong,
+b {
+  font-weight: var(--weight-polished);
+}
+
+p,
+small,
+span,
+li,
+td,
+input,
+select,
+textarea,
+.section-note,
+.form-status {
+  font-weight: var(--weight-regular);
+}
+
+.topbar,
+.admin-sidebar,
+.admin-header,
+.landing-hero,
+.action-gallery,
+.contacts-hero,
+.response-copy {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.topbar {
+  background:
+    linear-gradient(135deg, rgba(5, 13, 24, 0.98), rgba(9, 24, 40, 0.96)),
+    #06101d;
+  box-shadow: 0 16px 44px rgba(4, 10, 19, 0.18);
+}
+
+.brand-mark {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  text-shadow:
+    -1px -1px 0 rgba(122, 16, 38, 0.95),
+    1px -1px 0 rgba(122, 16, 38, 0.95),
+    -1px 1px 0 rgba(122, 16, 38, 0.95),
+    1px 1px 0 rgba(122, 16, 38, 0.95);
+}
+
+.main-nav a,
+.admin-sidebar nav a {
+  border: 1px solid transparent;
+  transition: background 170ms ease, border-color 170ms ease, color 170ms ease, transform 170ms ease;
+}
+
+.main-nav a:hover,
+.admin-sidebar nav a:hover,
+.main-nav a:focus-visible,
+.admin-sidebar nav a:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button,
+.back-button {
+  min-height: 42px;
+  transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease, background 170ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover,
+.back-button:hover,
+.response-option:hover,
+.queue button:hover,
+.admin-contact-row:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)),
+    linear-gradient(135deg, var(--maroon), var(--maroon-2));
+  box-shadow: 0 14px 32px rgba(122, 16, 38, 0.22);
+}
+
+.secondary-button {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0)),
+    var(--ink);
+  box-shadow: 0 12px 28px rgba(7, 17, 31, 0.12);
+}
+
+.ghost-button,
+.response-option,
+.admin-contact-row,
+.message-item,
+.webmail-grid article,
+.admin-media-grid article,
+.prospect-card,
+.impact-band article,
+.contact-section,
+.video-showcase,
+.panel,
+.workspace {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.92)),
+    #ffffff;
+  border-color: rgba(13, 24, 41, 0.105);
+}
+
+.panel,
+.workspace,
+.admin-metrics article,
+.webmail-grid article,
+.message-item,
+.response-panel,
+.prospect-card,
+.impact-band article,
+.contact-section,
+.video-showcase {
+  box-shadow: 0 14px 42px rgba(9, 17, 31, 0.07);
+}
+
+input,
+select,
+textarea,
+.template-editor {
+  min-height: 42px;
+  background:
+    linear-gradient(180deg, #ffffff, #fbfcfe);
+  border-color: rgba(13, 24, 41, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+textarea,
+.template-editor {
+  line-height: 1.54;
+}
+
+.public-page {
+  background:
+    radial-gradient(840px 380px at 100% 0, rgba(240, 179, 35, 0.06), transparent 58%),
+    linear-gradient(180deg, #fafbfc 0, #eef2f7 52%, #f8fafc 100%);
+}
+
+.landing-hero,
+.action-gallery,
+.contacts-hero,
+.response-copy,
+.admin-header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.landing-hero::before,
+.action-gallery::before,
+.contacts-hero::before,
+.response-copy::before,
+.admin-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.075), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 34%);
+  pointer-events: none;
+}
+
+.landing-hero > *,
+.action-gallery > *,
+.contacts-hero > *,
+.response-copy > *,
+.admin-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-photo {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow:
+    0 26px 74px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.landing-copy h1,
+.response-copy h1,
+.admin-header h1,
+.contacts-hero h1 {
+  font-weight: var(--weight-regular);
+}
+
+.landing-lede,
+.impact-band p,
+.prospect-card p,
+.section-intro p,
+.video-copy p,
+.contact-copy p,
+.response-copy p:not(.availability),
+.admin-header p {
+  font-weight: var(--weight-regular);
+}
+
+.hero-proof > span,
+.contacts-metrics > span {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.07));
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.impact-band article,
+.prospect-card,
+.video-showcase,
+.contact-section {
+  position: relative;
+}
+
+.impact-band article::before,
+.prospect-card:not(.featured)::before,
+.video-showcase::before,
+.contact-section::before,
+.admin-metrics article::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--maroon), var(--gold), var(--blue));
+  opacity: 0.8;
+}
+
+.gallery-frame,
+.public-video-frame,
+.admin-media-grid img {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  filter: saturate(1.04) contrast(1.02);
+}
+
+.admin-page {
+  background:
+    radial-gradient(960px 500px at 100% -10%, rgba(22, 75, 136, 0.08), transparent 58%),
+    linear-gradient(180deg, #f8fafc 0, #edf1f6 100%);
+}
+
+.admin-sidebar {
+  background:
+    linear-gradient(180deg, rgba(10, 26, 44, 0.74), rgba(6, 16, 29, 0.98)),
+    #06101d;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 18px 0 42px rgba(7, 17, 31, 0.08);
+}
+
+.admin-sidebar nav a {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.admin-sidebar nav a:hover {
+  color: #ffffff;
+}
+
+.admin-header {
+  min-height: 214px;
+  align-items: center;
+  box-shadow: 0 20px 58px rgba(7, 17, 31, 0.16);
+}
+
+.admin-header-actions {
+  align-items: center;
+}
+
+.admin-metrics article {
+  position: relative;
+  overflow: hidden;
+  min-height: 148px;
+  background:
+    linear-gradient(180deg, #ffffff, #f9fbfd);
+}
+
+.admin-metrics .metric-value,
+.contacts-metrics .metric-value {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.webmail-grid article,
+.run-toolbar,
+.progress-panel,
+.admin-school-strip,
+.message-item,
+.admin-contact-row,
+.admin-media-grid article {
+  background:
+    linear-gradient(180deg, #fbfcfe, #f7f9fc);
+}
+
+.admin-contact-list {
+  background: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.admin-contact-row {
+  transition: background 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+}
+
+.admin-contact-row.active {
+  background:
+    linear-gradient(90deg, rgba(122, 16, 38, 0.065), rgba(248, 250, 252, 0.98));
+}
+
+.school-logo,
+.school-logo-mini {
+  box-shadow:
+    0 0 0 1px rgba(13, 24, 41, 0.12),
+    0 10px 22px rgba(9, 17, 31, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.contact-status {
+  font-weight: var(--weight-regular);
+}
+
+.template-token,
+.placeholder-help span,
+.count-pill {
+  font-weight: var(--weight-regular);
+}
+
+.run-log {
+  background:
+    linear-gradient(180deg, #07111f, #0b1829);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toast {
+  background:
+    linear-gradient(135deg, #07111f, #102139);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-weight: var(--weight-regular);
+}
+
 @media (max-width: 1100px) {
   .landing-hero,
   .video-showcase,
@@ -2318,6 +2688,50 @@ body.contacts-page .contacts-main {
 }
 
 @media (max-width: 720px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    min-height: auto;
+    padding: 10px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+  }
+
+  .main-nav {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 84%, transparent);
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+    padding: 10px 12px;
+  }
+
+  .top-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .public-topbar .top-actions {
+    display: none;
+  }
+
   .public-main,
   .response-main,
   .admin-main {

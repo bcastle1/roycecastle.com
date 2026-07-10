@@ -20,8 +20,8 @@ const respond = fs.readFileSync("respond.js", "utf8");
 const apiCommon = fs.readFileSync("_cpanel/public_html/api/common.php", "utf8");
 const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "utf8");
 
-check("Public app uses current cache key", index.includes("20260707-light-type-1"));
-check("Admin app uses current cache key", admin.includes("20260707-light-type-1"));
+check("Public app uses current cache key", index.includes("20260710-premium-type-1"));
+check("Admin app uses current cache key", admin.includes("20260710-premium-type-1"));
 check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-3"));
 check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-3"));
 check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v6"));
