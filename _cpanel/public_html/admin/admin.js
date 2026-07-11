@@ -14,6 +14,9 @@ const DEFAULT_SMTP_PORT = 465;
 const DEFAULT_SMTP_SECURITY = "ssl";
 const LEGACY_DEFAULT_EMAIL = "erik@puricloud.com";
 const EMAIL_TEMPLATE_VERSION = 3;
+const NAMECHEAP_HOURLY_EMAIL_LIMIT = 500;
+const MIN_EMAIL_DELAY_SECONDS = Math.ceil(3600 / NAMECHEAP_HOURLY_EMAIL_LIMIT);
+const DEFAULT_EMAIL_DELAY_SECONDS = MIN_EMAIL_DELAY_SECONDS;
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
@@ -32,7 +35,7 @@ const defaultSettings = {
   frequency: "manual",
   day: "Monday",
   time: "09:00",
-  delaySeconds: 4,
+  delaySeconds: DEFAULT_EMAIL_DELAY_SECONDS,
   openDrafts: false,
   emailTemplateVersion: EMAIL_TEMPLATE_VERSION,
   emailTemplate: defaultEmailTemplate()
@@ -345,7 +348,11 @@ function hydrateSettings() {
   refs.scheduleFrequency.value = settings.frequency;
   refs.scheduleDay.value = settings.day;
   refs.scheduleTime.value = settings.time;
+  refs.scheduleDelay.min = String(MIN_EMAIL_DELAY_SECONDS);
+  refs.scheduleDelay.step = "1";
+  settings.delaySeconds = normalizeRunDelaySeconds(settings.delaySeconds);
   refs.scheduleDelay.value = settings.delaySeconds;
+  refs.scheduleDelay.title = `Minimum ${MIN_EMAIL_DELAY_SECONDS} seconds keeps runs under ${NAMECHEAP_HOURLY_EMAIL_LIMIT} emails per hour.`;
   refs.openDraftsDuringRun.checked = !!settings.openDrafts;
   refs.adminCcEmail.value = settings.ccEmail || "";
 }
@@ -630,13 +637,13 @@ async function saveSchedule() {
   settings.frequency = refs.scheduleFrequency.value;
   settings.day = refs.scheduleDay.value;
   settings.time = refs.scheduleTime.value;
-  settings.delaySeconds = Math.max(1, Number(refs.scheduleDelay.value) || 4);
+  settings.delaySeconds = readRunDelaySeconds();
   settings.openDrafts = refs.openDraftsDuringRun.checked;
   persistSettings();
   if (serverAvailable) await syncSettings();
-  logRun(`Auto-send schedule saved: ${settings.frequency}, ${settings.day} at ${settings.time}, ${settings.delaySeconds}s between contacts.`);
+  logRun(`Auto-send schedule saved: ${settings.frequency}, ${settings.day} at ${settings.time}, ${settings.delaySeconds}s between contacts (${emailsPerHour(settings.delaySeconds)} emails/hour max).`);
   renderRunLog();
-  toast(serverAvailable ? "Schedule saved permanently." : "Schedule saved in this browser.");
+  toast(serverAvailable ? `Schedule saved permanently at ${settings.delaySeconds}s between emails.` : `Schedule saved at ${settings.delaySeconds}s between emails.`);
 }
 
 function startSendRun() {
@@ -644,7 +651,7 @@ function startSendRun() {
     toast("A send run is already active.");
     return;
   }
-  settings.delaySeconds = Math.max(1, Number(refs.scheduleDelay.value) || 4);
+  settings.delaySeconds = readRunDelaySeconds();
   settings.openDrafts = refs.openDraftsDuringRun.checked;
   persistSettings();
 
@@ -659,7 +666,7 @@ function startSendRun() {
 
   refs.progressPanel.hidden = false;
   runState = { active: true, total: targets.length, sent: 0 };
-  logRun(`Send run started for ${targets.length} recipient${targets.length === 1 ? "" : "s"}.`);
+  logRun(`Send run started for ${targets.length} recipient${targets.length === 1 ? "" : "s"} at ${settings.delaySeconds}s between emails (${emailsPerHour(settings.delaySeconds)} emails/hour max).`);
   updateProgress();
   toast("Send run started successfully.");
 
@@ -1295,6 +1302,7 @@ function normalizeSettings(rawSettings = {}) {
   loadedSettings.smtpSecurity = normalizeSmtpSecurity(loadedSettings.smtpSecurity);
   loadedSettings.smtpUser = normalizeMailboxSetting(loadedSettings.smtpUser || loadedSettings.fromEmail || DEFAULT_MAILBOX);
   loadedSettings.smtpPasswordSet = !!rawSettings?.smtpPasswordSet;
+  loadedSettings.delaySeconds = normalizeRunDelaySeconds(loadedSettings.delaySeconds);
   loadedSettings.emailTemplate = shouldUpgradeLegacyTemplate(loadedSettings.emailTemplate, savedTemplateVersion)
     ? defaultEmailTemplate()
     : ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
@@ -1305,6 +1313,22 @@ function normalizeSettings(rawSettings = {}) {
 function shouldUpgradeLegacyTemplate(template, version) {
   if (Number(version || 0) >= EMAIL_TEMPLATE_VERSION) return false;
   return /Royce Castle would be grateful for an evaluation conversation\s+with\s+\{\{school_name\}\}/i.test(String(template || ""));
+}
+
+function readRunDelaySeconds() {
+  const delaySeconds = normalizeRunDelaySeconds(refs.scheduleDelay.value);
+  refs.scheduleDelay.value = delaySeconds;
+  return delaySeconds;
+}
+
+function normalizeRunDelaySeconds(value) {
+  const parsed = Number(value);
+  const requestedDelay = Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_EMAIL_DELAY_SECONDS;
+  return Math.max(MIN_EMAIL_DELAY_SECONDS, Math.ceil(requestedDelay));
+}
+
+function emailsPerHour(delaySeconds) {
+  return Math.floor(3600 / normalizeRunDelaySeconds(delaySeconds));
 }
 
 function normalizeMailboxSetting(value) {

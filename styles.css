@@ -1987,6 +1987,7 @@ body.contacts-page .contacts-main {
 }
 
 .webmail-grid article > span:not(.webmail-value),
+.field-note,
 .suppression-card p,
 .run-toolbar span {
   margin: 0;
@@ -1994,6 +1995,11 @@ body.contacts-page .contacts-main {
   font-size: 0.86rem;
   font-weight: var(--weight-soft);
   line-height: 1.42;
+}
+
+.field-note {
+  display: block;
+  margin-top: 6px;
 }
 
 .admin-panel {

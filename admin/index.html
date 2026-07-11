@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260710-premium-type-1">
+    <link rel="stylesheet" href="../styles.css?v=20260711-email-rate">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -209,7 +209,10 @@
                   </select>
                 </label>
                 <label>Time<input id="schedule-time" type="time" value="09:00"></label>
-                <label>Delay between emails, seconds<input id="schedule-delay" type="number" min="1" value="4"></label>
+                <label>Delay between emails, seconds
+                  <input id="schedule-delay" type="number" min="8" step="1" value="8">
+                  <span class="field-note">Minimum 8 seconds keeps runs under Namecheap's 500 emails/hour limit.</span>
+                </label>
               </div>
               <label>Manual email<input id="manual-email" type="email" placeholder="optional@email.com"></label>
               <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts instead of server sending</label>
@@ -302,6 +305,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260707-workbook-enriched-3"></script>
-    <script src="admin.js?v=20260710-premium-type-1"></script>
+    <script src="admin.js?v=20260711-email-rate"></script>
   </body>
 </html>
