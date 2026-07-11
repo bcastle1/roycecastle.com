@@ -21,7 +21,7 @@ const apiCommon = fs.readFileSync("_cpanel/public_html/api/common.php", "utf8");
 const apiSendEmail = fs.readFileSync("_cpanel/public_html/api/send-email.php", "utf8");
 
 check("Public app uses current cache key", index.includes("20260710-premium-type-1"));
-check("Admin app uses current cache key", admin.includes("20260711-email-rate"));
+check("Admin app uses current cache key", admin.includes("20260711-consent-dates-v1"));
 check("Admin loads enriched contact data cache key", admin.includes("20260707-workbook-enriched-3"));
 check("Workbook loads enriched contact data cache key", contactsPage.includes("20260707-workbook-enriched-3"));
 check("Workbook storage key was bumped for enriched contacts", contactsPageJs.includes("royceCastleRecruitingStudio.v6"));
@@ -36,6 +36,8 @@ check("Admin personalizes email targets by recipient", adminJs.includes("functio
 check("cPanel admin copy matches source admin", cpanelAdminJs === adminJs);
 check("Admin has opened metric", admin.includes("metric-opened"));
 check("Admin has select all filtered control", admin.includes("select-all-filtered"));
+check("Admin records dated consent before selecting recipients", admin.includes("consent-date") && adminJs.includes("CONSENT_DATES_KEY") && adminJs.includes("isEmailConsented"));
+check("cPanel sender requires saved consent dates", apiSendEmail.includes("consent-dates.json") && apiSendEmail.includes("active saved consent date"));
 check("Admin exposes SMTP settings fields", ["setting-smtp-host", "setting-smtp-port", "setting-smtp-security", "setting-smtp-user", "setting-smtp-password", "setting-smtp-status"].every((id) => admin.includes(id)));
 check("Admin defaults to Namecheap Private Email SMTP", adminJs.includes('DEFAULT_SMTP_HOST = "mail.privateemail.com"') && adminJs.includes("DEFAULT_SMTP_PORT = 465"));
 check("Admin strips SMTP password from browser storage", adminJs.includes("settingsForBrowserStorage") && adminJs.includes("delete copy.smtpPassword"));

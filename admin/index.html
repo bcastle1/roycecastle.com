@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260711-email-rate">
+    <link rel="stylesheet" href="../styles.css?v=20260711-consent-dates-v1">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -62,6 +62,7 @@
           <article><small>Messages</small><span class="metric-value" id="metric-messages">0</span><span id="metric-storage-label">Saved locally</span></article>
           <article><small>Sent</small><span class="metric-value" id="metric-sent">0</span><span>Logged outreach emails</span></article>
           <article><small>Opened</small><span class="metric-value" id="metric-opened">0</span><span>Tracked email opens</span></article>
+          <article><small>Consented</small><span class="metric-value" id="metric-consents">0</span><span>Dated opt-ins</span></article>
           <article><small>Opt-outs</small><span class="metric-value" id="metric-opt-outs">0</span><span>Suppressed emails</span></article>
           <article><small>Last run</small><span class="metric-value" id="metric-progress">0%</span><span id="metric-run-label">No active run</span></article>
         </section>
@@ -233,14 +234,15 @@
               <div class="run-log" id="run-log" hidden></div>
               <div class="suppression-card">
                 <div>
-                  <span class="section-title">Opt-out / opt-in controls</span>
-                  <p>Emails listed here are excluded from runs. Add one email per line, or use a comma-separated list.</p>
+                  <span class="section-title">Email consent and opt-outs</span>
+                  <p>Save the date each recipient consented. Opted-out addresses remain excluded even when an older consent date exists.</p>
                 </div>
+                <label>Consent date<input id="consent-date" type="date"></label>
                 <label>Suppressed emails<textarea id="opt-out-list" rows="5" placeholder="coach@example.edu"></textarea></label>
                 <div class="button-row">
                   <button class="ghost-button compact" id="save-opt-outs" type="button"><i data-lucide="save"></i>Save Opt-outs</button>
                   <button class="ghost-button compact" id="opt-out-current" type="button"><i data-lucide="ban"></i>Opt Out Current</button>
-                  <button class="ghost-button compact" id="opt-in-current" type="button"><i data-lucide="undo-2"></i>Opt In Current</button>
+                  <button class="ghost-button compact" id="opt-in-current" type="button"><i data-lucide="calendar-check"></i>Record Consent</button>
                 </div>
               </div>
             </div>
@@ -270,8 +272,8 @@
               </select>
             </label>
               <div class="button-row">
-                <button class="ghost-button compact" id="select-visible" type="button"><i data-lucide="list-checks"></i>Select Visible Email-Ready</button>
-                <button class="ghost-button compact" id="select-all-filtered" type="button"><i data-lucide="check-square"></i>Select All Email-Ready</button>
+                <button class="ghost-button compact" id="select-visible" type="button"><i data-lucide="list-checks"></i>Select Visible Consented</button>
+                <button class="ghost-button compact" id="select-all-filtered" type="button"><i data-lucide="check-square"></i>Select All Consented</button>
                 <button class="ghost-button compact" id="clear-selected" type="button"><i data-lucide="circle-x"></i>Clear Selected</button>
               </div>
           </div>
@@ -305,6 +307,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260707-workbook-enriched-3"></script>
-    <script src="admin.js?v=20260711-email-rate"></script>
+    <script src="admin.js?v=20260711-consent-dates-v1"></script>
   </body>
 </html>

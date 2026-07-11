@@ -5,6 +5,7 @@ const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
 const RUN_LOG_KEY = "royceCastleRecruitingStudio.runLog.v1";
 const EMAIL_HISTORY_KEY = "royceCastleRecruitingStudio.emailHistory.v1";
 const OPT_OUT_KEY = "royceCastleRecruitingStudio.optOutEmails.v1";
+const CONSENT_DATES_KEY = "royceCastleRecruitingStudio.consentDates.v1";
 const PUBLIC_SITE_ORIGIN = "https://roycecastle.com";
 const API_BASE = "../api";
 const DEFAULT_MAILBOX = "info@roycecastle.com";
@@ -43,6 +44,7 @@ const defaultSettings = {
 
 let settings = loadSettings();
 let optOutEmails = loadOptOutEmails();
+let consentDates = loadConsentDates();
 let selectedContactIds = new Set();
 const requestedContactId = new URLSearchParams(location.search).get("select");
 let currentContactId = contactsWithEmail.some((contact) => contact.id === requestedContactId)
@@ -85,6 +87,7 @@ function collectRefs() {
     "metric-storage-label",
     "metric-sent",
     "metric-opened",
+    "metric-consents",
     "metric-opt-outs",
     "metric-progress",
     "metric-run-label",
@@ -138,6 +141,7 @@ function collectRefs() {
     "toggle-log",
     "run-log",
     "opt-out-list",
+    "consent-date",
     "save-opt-outs",
     "opt-out-current",
     "opt-in-current",
@@ -212,6 +216,10 @@ function applyServerState(state = {}) {
   if (Array.isArray(state.optOutEmails)) {
     optOutEmails = new Set(state.optOutEmails.map(normalizeEmail).filter(Boolean));
     localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+  }
+  if (state.consentDates && typeof state.consentDates === "object") {
+    consentDates = normalizeConsentDates(state.consentDates);
+    localStorage.setItem(CONSENT_DATES_KEY, JSON.stringify(Object.fromEntries(consentDates)));
   }
 }
 
@@ -311,15 +319,16 @@ function handleAdminClick(event) {
       downloadWorkbookCsv();
       break;
     case "select-visible":
-      visibleContacts.forEach((contact) => selectedContactIds.add(contact.id));
+      const visibleEligible = visibleContacts.filter((contact) => activeContactRecipientTargets(contact).length > 0);
+      visibleEligible.forEach((contact) => selectedContactIds.add(contact.id));
       renderAll();
-      toast(`${visibleContacts.length.toLocaleString()} visible email-ready contact${visibleContacts.length === 1 ? "" : "s"} selected.`);
+      toast(`${visibleEligible.length.toLocaleString()} visible consented contact${visibleEligible.length === 1 ? "" : "s"} selected.`);
       break;
     case "select-all-filtered":
-      const filtered = filteredContacts();
+      const filtered = filteredContacts().filter((contact) => activeContactRecipientTargets(contact).length > 0);
       filtered.forEach((contact) => selectedContactIds.add(contact.id));
       renderAll();
-      toast(`${filtered.length.toLocaleString()} email-ready contact${filtered.length === 1 ? "" : "s"} selected from the current filters.`);
+      toast(`${filtered.length.toLocaleString()} consented contact${filtered.length === 1 ? "" : "s"} selected from the current filters.`);
       break;
     case "clear-selected":
       selectedContactIds.clear();
@@ -355,6 +364,7 @@ function hydrateSettings() {
   refs.scheduleDelay.title = `Minimum ${MIN_EMAIL_DELAY_SECONDS} seconds keeps runs under ${NAMECHEAP_HOURLY_EMAIL_LIMIT} emails per hour.`;
   refs.openDraftsDuringRun.checked = !!settings.openDrafts;
   refs.adminCcEmail.value = settings.ccEmail || "";
+  refs.consentDate.value = refs.consentDate.value || todayDateValue();
 }
 
 function renderAll() {
@@ -386,6 +396,7 @@ function renderMetrics() {
   refs.metricStorageLabel.textContent = serverAvailable ? "Saved permanently on server" : "Saved in this browser";
   refs.metricSent.textContent = sentCount.toLocaleString();
   refs.metricOpened.textContent = openedCount.toLocaleString();
+  refs.metricConsents.textContent = consentDates.size.toLocaleString();
   refs.metricOptOuts.textContent = optOutEmails.size.toLocaleString();
   refs.metricProgress.textContent = runState.total ? `${Math.round((runState.sent / runState.total) * 100)}%` : "0%";
   refs.metricRunLabel.textContent = runState.active ? "Run in progress" : "Ready";
@@ -452,6 +463,7 @@ function renderComposer() {
       .filter(Boolean)
       .join(" | ");
     refs.adminToEmail.value = contactTargetEmail(contact);
+    refs.consentDate.value = consentDateForContact(contact) || todayDateValue();
     refs.adminSubject.value = `Royce Castle | 6'5" Shooting Guard | Rigby High School 2024`;
     updateEmailPreview();
     return;
@@ -468,7 +480,8 @@ function renderContacts() {
   if (refs.contactSendableNote) {
     const selectedGroup = refs.adminContactGroup.value;
     const groupLabel = selectedGroup ? refs.adminContactGroup.options[refs.adminContactGroup.selectedIndex]?.textContent || "current group" : "all groups";
-    refs.contactSendableNote.textContent = `Showing ${visibleContacts.length.toLocaleString()} email-ready contacts for ${groupLabel} from ${contacts.length.toLocaleString()} total workbook rows.`;
+    const eligibleCount = visibleContacts.filter((contact) => activeContactRecipientTargets(contact).length > 0).length;
+    refs.contactSendableNote.textContent = `Showing ${eligibleCount.toLocaleString()} consented contacts for ${groupLabel} from ${contacts.length.toLocaleString()} total workbook rows.`;
   }
   refs.adminContactList.innerHTML = visibleContacts.length
     ? visibleContacts
@@ -476,10 +489,12 @@ function renderContacts() {
           (contact) => {
             const optStatus = contactOptOutStatus(contact);
             const isSuppressed = isContactSuppressed(contact);
+            const contactConsentDate = consentDateForContact(contact);
+            if (isSuppressed) selectedContactIds.delete(contact.id);
             return `
         <article class="admin-contact-row ${contact.id === currentContactId ? "active" : ""}">
           <label class="check-row">
-            <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""}>
+            <input type="checkbox" data-select-contact="${escapeAttr(contact.id)}" ${selectedContactIds.has(contact.id) ? "checked" : ""} ${isSuppressed ? "disabled" : ""}>
             <span class="school-logo-mini" style="--school-color:${escapeAttr(contact.primaryColor || "#164b88")};--school-accent:${escapeAttr(logoTextColor(contact))}">${escapeHtml(schoolInitials(contact))}</span>
             <span>
               <span class="item-title">${escapeHtml(contact.displayName || contact.school)}</span>
@@ -489,11 +504,9 @@ function renderContacts() {
           </label>
           <div class="contact-row-actions">
             <button class="ghost-button compact" type="button" data-load-contact="${escapeAttr(contact.id)}">Load Draft</button>
-            ${
-              isSuppressed
-                ? `<button class="ghost-button compact" type="button" data-opt-in-contact="${escapeAttr(contact.id)}">Opt In</button>`
-                : `<button class="ghost-button compact" type="button" data-opt-out-contact="${escapeAttr(contact.id)}">Opt Out</button>`
-            }
+            <label class="contact-consent-date">Consent date<input type="date" max="${todayDateValue()}" value="${escapeAttr(contactConsentDate || todayDateValue())}" data-consent-date="${escapeAttr(contact.id)}"></label>
+            <button class="ghost-button compact" type="button" data-opt-in-contact="${escapeAttr(contact.id)}">${contactConsentDate ? "Update Consent" : "Record Consent"}</button>
+            ${!isSuppressed ? `<button class="ghost-button compact" type="button" data-opt-out-contact="${escapeAttr(contact.id)}">Opt Out</button>` : ""}
           </div>
         </article>
       `;
@@ -657,10 +670,10 @@ function startSendRun() {
 
   const targets = runTargets();
   if (runTargets.skippedOptOuts?.length) {
-    logRun(`${runTargets.skippedOptOuts.length} selected contact${runTargets.skippedOptOuts.length === 1 ? "" : "s"} skipped because all saved emails are opted out.`);
+    logRun(`${runTargets.skippedOptOuts.length} selected contact${runTargets.skippedOptOuts.length === 1 ? "" : "s"} skipped because recipients were opted out or missing a consent date.`);
   }
   if (!targets.length) {
-    toast("Select contacts or enter a manual email first.");
+    toast("Select contacts with a saved consent date or record consent for the manual email first.");
     return;
   }
 
@@ -793,7 +806,7 @@ function openMailDraft(target = currentEmailTarget(), quiet = false) {
   const enteredEmails = parseEmails(target.email);
   const activeEmail = activeEmailsFromString(target.email);
   if (!activeEmail) {
-    toast(enteredEmails.length ? "All recipients are opted out. Opt in before sending." : "Add a recipient email first.");
+    toast(enteredEmails.length ? "Recipients are opted out or missing a saved consent date." : "Add a recipient email first.");
     return;
   }
   const params = new URLSearchParams({
@@ -813,7 +826,7 @@ function markCurrentSent() {
   }
   const recipients = activeContactRecipientTargets(contact);
   if (!recipients.length) {
-    toast("This contact is opted out. Opt them in before marking sent.");
+    toast("This contact is opted out or missing a saved consent date.");
     return;
   }
   recipients.forEach((recipient) => recordEmailHistory(targetFromRecipient(contact, recipient), "Sent"));
@@ -882,7 +895,7 @@ function contactRecipientTargets(contact = {}) {
 }
 
 function activeContactRecipientTargets(contact = {}) {
-  return contactRecipientTargets(contact).filter((recipient) => !optOutEmails.has(normalizeEmail(recipient.email)));
+  return contactRecipientTargets(contact).filter((recipient) => isEmailConsented(recipient.email) && !optOutEmails.has(normalizeEmail(recipient.email)));
 }
 
 function targetFromRecipient(contact = {}, recipient = {}) {
@@ -915,12 +928,12 @@ function recipientContext(contact = {}, recipient = {}) {
 
 function contactTargetEmail(contact = {}) {
   return contactEmails(contact)
-    .filter((email) => !optOutEmails.has(normalizeEmail(email)))
+    .filter((email) => isEmailConsented(email) && !optOutEmails.has(normalizeEmail(email)))
     .join(", ");
 }
 
 function activeEmailListFromString(value = "") {
-  return parseEmails(value).filter((email) => !optOutEmails.has(normalizeEmail(email)));
+  return parseEmails(value).filter((email) => isEmailConsented(email) && !optOutEmails.has(normalizeEmail(email)));
 }
 
 function activeEmailsFromString(value = "") {
@@ -928,17 +941,19 @@ function activeEmailsFromString(value = "") {
 }
 
 function isContactSuppressed(contact = {}) {
-  const emails = contactEmails(contact);
-  return emails.length > 0 && emails.every((email) => optOutEmails.has(normalizeEmail(email)));
+  return contactEmails(contact).length > 0 && activeContactRecipientTargets(contact).length === 0;
 }
 
 function contactOptOutStatus(contact = {}) {
   const emails = contactEmails(contact);
   if (!emails.length) return "No saved email";
   const blocked = emails.filter((email) => optOutEmails.has(normalizeEmail(email))).length;
-  if (!blocked) return "Opted in";
+  const consented = emails.filter((email) => isEmailConsented(email) && !optOutEmails.has(normalizeEmail(email))).length;
   if (blocked === emails.length) return "Opted out";
-  return `${blocked} of ${emails.length} opted out`;
+  if (consented === emails.length) return consentDateForContact(contact) ? `Consent ${formatConsentDate(consentDateForContact(contact))}` : "Consented";
+  if (consented > 0) return `${consented} of ${emails.length} consented`;
+  if (blocked > 0) return `${blocked} of ${emails.length} opted out; consent required`;
+  return "Consent date required";
 }
 
 function renderWebmailLinks() {
@@ -955,14 +970,14 @@ function renderOptOuts() {
     refs.optOutList.value = [...optOutEmails].sort().join("\n");
   }
   if (refs.runSuppressionSummary) {
-    refs.runSuppressionSummary.textContent = optOutEmails.size
-      ? `${optOutEmails.size.toLocaleString()} opted-out email${optOutEmails.size === 1 ? "" : "s"} excluded from runs.`
-      : "No opt-outs saved.";
+    refs.runSuppressionSummary.textContent = `${consentDates.size.toLocaleString()} dated consent${consentDates.size === 1 ? "" : "s"}; ${optOutEmails.size.toLocaleString()} opted-out email${optOutEmails.size === 1 ? "" : "s"} excluded.`;
   }
 }
 
 async function saveOptOutsFromForm() {
   optOutEmails = new Set(parseEmails(refs.optOutList.value));
+  optOutEmails.forEach((email) => consentDates.delete(normalizeEmail(email)));
+  persistConsentDates({ sync: false });
   persistOptOutEmails();
   if (serverAvailable) await syncOptOutEmails();
   renderAll();
@@ -976,7 +991,12 @@ function optOutCurrentContact() {
     toast("Load a contact or enter an email to opt out.");
     return;
   }
-  emails.forEach((email) => optOutEmails.add(normalizeEmail(email)));
+  emails.forEach((email) => {
+    const normalized = normalizeEmail(email);
+    optOutEmails.add(normalized);
+    consentDates.delete(normalized);
+  });
+  persistConsentDates({ sync: false });
   persistOptOutEmails();
   renderAll();
   toast(`${emails.length} email${emails.length === 1 ? "" : "s"} opted out.`);
@@ -984,21 +1004,37 @@ function optOutCurrentContact() {
 
 function optInCurrentContact() {
   const contact = currentContact();
-  const emails = contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
+  const manualEmails = parseEmails(refs.manualEmail.value);
+  const emails = manualEmails.length ? manualEmails : contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
+  const consentDate = refs.consentDate.value;
   if (!emails.length) {
     toast("Load a contact or enter an email to opt in.");
     return;
   }
-  emails.forEach((email) => optOutEmails.delete(normalizeEmail(email)));
-  persistOptOutEmails();
+  if (!isValidConsentDate(consentDate)) {
+    toast("Choose a valid consent date that is not in the future.");
+    return;
+  }
+  emails.forEach((email) => {
+    const normalized = normalizeEmail(email);
+    optOutEmails.delete(normalized);
+    consentDates.set(normalized, consentDate);
+  });
+  localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+  persistConsentDates();
   renderAll();
-  toast(`${emails.length} email${emails.length === 1 ? "" : "s"} opted in.`);
+  toast(`${emails.length} consent date${emails.length === 1 ? "" : "s"} saved for ${formatConsentDate(consentDate)}.`);
 }
 
 function optOutContactById(contactId) {
   const contact = contacts.find((row) => row.id === contactId);
   if (!contact) return;
-  contactEmails(contact).forEach((email) => optOutEmails.add(normalizeEmail(email)));
+  contactEmails(contact).forEach((email) => {
+    const normalized = normalizeEmail(email);
+    optOutEmails.add(normalized);
+    consentDates.delete(normalized);
+  });
+  persistConsentDates({ sync: false });
   persistOptOutEmails();
   renderAll();
   toast(`${contact.displayName || contact.school} opted out.`);
@@ -1007,10 +1043,21 @@ function optOutContactById(contactId) {
 function optInContactById(contactId) {
   const contact = contacts.find((row) => row.id === contactId);
   if (!contact) return;
-  contactEmails(contact).forEach((email) => optOutEmails.delete(normalizeEmail(email)));
-  persistOptOutEmails();
+  const input = refs.adminContactList.querySelector(`[data-consent-date="${CSS.escape(contactId || "")}"]`);
+  const consentDate = input?.value || "";
+  if (!isValidConsentDate(consentDate)) {
+    toast("Choose a valid consent date that is not in the future.");
+    return;
+  }
+  contactEmails(contact).forEach((email) => {
+    const normalized = normalizeEmail(email);
+    optOutEmails.delete(normalized);
+    consentDates.set(normalized, consentDate);
+  });
+  localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+  persistConsentDates();
   renderAll();
-  toast(`${contact.displayName || contact.school} opted in.`);
+  toast(`${contact.displayName || contact.school} consent saved for ${formatConsentDate(consentDate)}.`);
 }
 
 function loadOptOutEmails() {
@@ -1022,14 +1069,69 @@ function loadOptOutEmails() {
   }
 }
 
+function loadConsentDates() {
+  try {
+    return normalizeConsentDates(JSON.parse(localStorage.getItem(CONSENT_DATES_KEY) || "{}"));
+  } catch {
+    return new Map();
+  }
+}
+
+function normalizeConsentDates(value = {}) {
+  const entries = value instanceof Map ? [...value] : Object.entries(value || {});
+  return new Map(entries
+    .map(([email, date]) => [normalizeEmail(email), String(date || "").slice(0, 10)])
+    .filter(([email, date]) => email.includes("@") && isValidConsentDate(date)));
+}
+
+function isEmailConsented(email) {
+  return consentDates.has(normalizeEmail(email));
+}
+
+function consentDateForContact(contact = {}) {
+  const dates = [...new Set(contactEmails(contact).map((email) => consentDates.get(normalizeEmail(email))).filter(Boolean))];
+  return dates.length === 1 ? dates[0] : "";
+}
+
+function todayDateValue() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
+}
+
+function isValidConsentDate(value) {
+  const date = String(value || "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || date > todayDateValue()) return false;
+  const parsed = new Date(`${date}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date;
+}
+
+function formatConsentDate(value) {
+  const parsed = new Date(`${value}T12:00:00`);
+  return Number.isNaN(parsed.getTime()) ? value : parsed.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+}
+
 function persistOptOutEmails() {
   localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
   if (serverAvailable) syncOptOutEmails();
 }
 
+function persistConsentDates({ sync = true } = {}) {
+  localStorage.setItem(CONSENT_DATES_KEY, JSON.stringify(Object.fromEntries(consentDates)));
+  if (serverAvailable && sync) syncConsentDates();
+}
+
 async function syncOptOutEmails() {
   if (!serverAvailable) return false;
   const response = await apiRequest("save-opt-outs", { optOutEmails: [...optOutEmails].sort() }, { quiet: true });
+  if (!response?.ok) return false;
+  applyServerState(response);
+  return true;
+}
+
+async function syncConsentDates() {
+  if (!serverAvailable) return false;
+  const response = await apiRequest("save-consents", { consentDates: Object.fromEntries(consentDates) }, { quiet: true });
   if (!response?.ok) return false;
   applyServerState(response);
   return true;

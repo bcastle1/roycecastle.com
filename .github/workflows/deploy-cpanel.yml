@@ -28,6 +28,12 @@ jobs:
       - name: Run static QA
         run: node tools/qa-static.mjs
 
+      - name: Lint cPanel PHP endpoints
+        run: |
+          php -l _cpanel/public_html/api/common.php
+          php -l _cpanel/public_html/api/admin.php
+          php -l _cpanel/public_html/api/send-email.php
+
       - name: Deploy current main to cPanel
         env:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}

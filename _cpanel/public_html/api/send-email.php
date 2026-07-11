@@ -9,10 +9,19 @@ $settings = load_settings();
 $emails = parse_emails((string)($target['email'] ?? ''));
 $optOuts = read_json_file('opt-outs.json', []);
 $optOutMap = array_fill_keys(array_map('normalize_email', $optOuts), true);
-$emails = array_values(array_filter($emails, fn($email) => empty($optOutMap[$email])));
+$savedConsentDates = read_json_file('consent-dates.json', []);
+$consentDates = [];
+foreach ($savedConsentDates as $email => $date) {
+    $normalized = normalize_email((string)$email);
+    $date = substr(trim((string)$date), 0, 10);
+    if (filter_var($normalized, FILTER_VALIDATE_EMAIL) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+        $consentDates[$normalized] = $date;
+    }
+}
+$emails = array_values(array_filter($emails, fn($email) => empty($optOutMap[$email]) && isset($consentDates[$email])));
 
 if (!$emails) {
-    respond_json(['ok' => false, 'sent' => false, 'error' => 'No active recipients.'], 422);
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'No recipients have an active saved consent date.'], 422);
 }
 
 $from = normalize_email((string)($settings['fromEmail'] ?? RC_DEFAULT_MAILBOX));

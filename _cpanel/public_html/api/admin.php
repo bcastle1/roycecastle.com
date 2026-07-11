@@ -64,6 +64,29 @@ switch ($action) {
             if (filter_var($normalized, FILTER_VALIDATE_EMAIL)) $emails[$normalized] = $normalized;
         }
         write_json_file('opt-outs.json', array_values($emails));
+        $consentDates = read_json_file('consent-dates.json', []);
+        foreach ($emails as $email) unset($consentDates[$email]);
+        write_json_file('consent-dates.json', $consentDates);
+        respond_json(state_payload());
+        break;
+
+    case 'save-consents':
+        $body = request_json();
+        $consentDates = [];
+        foreach (($body['consentDates'] ?? []) as $email => $date) {
+            $normalized = normalize_email((string)$email);
+            $date = substr(trim((string)$date), 0, 10);
+            $parsed = DateTimeImmutable::createFromFormat('!Y-m-d', $date, new DateTimeZone('UTC'));
+            if (!filter_var($normalized, FILTER_VALIDATE_EMAIL)) continue;
+            if (!$parsed || $parsed->format('Y-m-d') !== $date || $date > gmdate('Y-m-d')) continue;
+            $consentDates[$normalized] = $date;
+        }
+        write_json_file('consent-dates.json', $consentDates);
+        $optOuts = array_values(array_filter(
+            read_json_file('opt-outs.json', []),
+            fn($email) => !array_key_exists(normalize_email((string)$email), $consentDates),
+        ));
+        write_json_file('opt-outs.json', $optOuts);
         respond_json(state_payload());
         break;
 
@@ -121,6 +144,7 @@ function state_payload(): array
         'settings' => public_settings($settings),
         'messages' => read_json_file('messages.json', []),
         'optOutEmails' => read_json_file('opt-outs.json', []),
+        'consentDates' => read_json_file('consent-dates.json', []),
         'emailHistory' => read_json_file('email-history.json', []),
         'runLog' => read_json_file('run-log.json', []),
     ];
