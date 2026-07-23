@@ -12,6 +12,8 @@ BACKUP=""
 DEPLOY_STARTED=0
 DEPLOY_COMMITTED=0
 KEEP_BACKUP=0
+DATA_PROTECTION_BACKED_UP=0
+DATA_PROTECTION_INSTALLED=0
 declare -a INSTALLED_ITEMS=()
 declare -a BACKED_UP_ITEMS=()
 
@@ -28,6 +30,15 @@ rollback_deploy() {
   local item index rollback_failed=0
 
   echo "Deployment failed after target replacement began; restoring the previous managed files." >&2
+
+  if [ "$DATA_PROTECTION_INSTALLED" -eq 1 ] && [ "$DATA_PROTECTION_BACKED_UP" -eq 1 ]; then
+    if path_exists "$BACKUP/data/.htaccess"; then
+      mkdir -p -- "$TARGET/data" || rollback_failed=1
+      mv -f -- "$BACKUP/data/.htaccess" "$TARGET/data/.htaccess" || rollback_failed=1
+    else
+      rollback_failed=1
+    fi
+  fi
 
   for ((index=${#INSTALLED_ITEMS[@]} - 1; index >= 0; index--)); do
     item="${INSTALLED_ITEMS[$index]}"
@@ -226,10 +237,11 @@ find "$STAGE" -type d -exec chmod 755 {} +
 find "$STAGE" -type f -exec chmod 644 {} +
 chmod 644 "$STAGE/data/.htaccess"
 
-DEPLOY_ITEMS=("${SOURCE_ITEMS[@]}" api data/.htaccess)
+DEPLOY_ITEMS=("${SOURCE_ITEMS[@]}" api)
 for item in "${DEPLOY_ITEMS[@]}"; do
   path_exists "$STAGE/$item" || fail "Staged deployment item is missing: $item"
 done
+path_exists "$STAGE/data/.htaccess" || fail "Staged data protection file is missing."
 echo "Same-filesystem staging preflight passed."
 
 if ! path_exists "$TARGET/data"; then
@@ -326,7 +338,18 @@ php -r '
 ' "$SETTINGS_PATH"
 echo "Live sending forced paused under settings.json.lock before deployment."
 
+if path_exists "$TARGET/data/.htaccess"; then
+  [ -f "$TARGET/data/.htaccess" ] && [ ! -L "$TARGET/data/.htaccess" ] \
+    || fail "The live data protection path must be a regular file."
+  mkdir -p -- "$BACKUP/data"
+  cp -a -- "$TARGET/data/.htaccess" "$BACKUP/data/.htaccess"
+  DATA_PROTECTION_BACKED_UP=1
+fi
+
 DEPLOY_STARTED=1
+DATA_PROTECTION_INSTALLED=1
+mv -f -- "$STAGE/data/.htaccess" "$TARGET/data/.htaccess"
+
 for item in "${DEPLOY_ITEMS[@]}"; do
   TARGET_ITEM="$TARGET/$item"
   BACKUP_ITEM="$BACKUP/$item"
@@ -346,6 +369,7 @@ done
 for item in "${DEPLOY_ITEMS[@]}"; do
   path_exists "$TARGET/$item" || fail "Post-deployment item is missing: $item"
 done
+path_exists "$TARGET/data/.htaccess" || fail "Post-deployment data protection file is missing."
 
 chmod 644 "$TARGET/data/.htaccess"
 find "$TARGET/data" -maxdepth 1 -type f \( -name '*.json' -o -name '*.lock' \) -exec chmod 600 {} +

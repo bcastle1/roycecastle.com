@@ -48,7 +48,7 @@ Alternative to the key secret:
 
 Obtain the host key from a trusted administrator or Namecheap and verify its fingerprint through an independent channel before saving it. The workflow deliberately does not learn or accept a new key during deployment. Password fallback uses `sshpass -e` so the password is not placed in the process argument list.
 
-The remote script only accepts the existing, non-symlink target `/home/<CPANEL_USER>/roycecastle.com`. It preflights the entire archive and PHP syntax before touching the target, then prepares a complete same-filesystem stage and rollback copy before atomically renaming individual managed entries into place. The preserved `data/` directory is never replaced. After those secrets exist, future pushes to `main` deploy live automatically without opening Namecheap or cPanel in the browser.
+The remote script only accepts the existing, non-symlink target `/home/<CPANEL_USER>/roycecastle.com`. It preflights the entire archive and PHP syntax before touching the target, then prepares a complete same-filesystem stage and rollback copy before atomically renaming individual managed entries into place. The preserved `data/` directory is never replaced, and its HTTP deny rule stays continuously installed during deployment and rollback. After those secrets exist, future pushes to `main` deploy live automatically without opening Namecheap or cPanel in the browser.
 
 ## Namecheap Email Setup
 
