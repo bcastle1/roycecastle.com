@@ -6,7 +6,7 @@
     <title>Admin | Royce Castle Recruiting</title>
     <link rel="canonical" href="https://roycecastle.com/admin/">
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="../styles.css?v=20260711-consent-dates-v1">
+    <link rel="stylesheet" href="../styles.css?v=20260723-consent-controlled-send-1">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   </head>
   <body class="admin-page">
@@ -60,8 +60,8 @@
           <article><small>Contacts</small><span class="metric-value" id="metric-contacts">0</span><span id="metric-contacts-label">Workbook rows loaded</span></article>
           <article><small>Selected</small><span class="metric-value" id="metric-selected">0</span><span id="metric-selected-label">Email-ready for next run</span></article>
           <article><small>Messages</small><span class="metric-value" id="metric-messages">0</span><span id="metric-storage-label">Saved locally</span></article>
-          <article><small>Sent</small><span class="metric-value" id="metric-sent">0</span><span>Logged outreach emails</span></article>
-          <article><small>Opened</small><span class="metric-value" id="metric-opened">0</span><span>Tracked email opens</span></article>
+          <article><small>Accepted</small><span class="metric-value" id="metric-sent">0</span><span id="metric-sent-label">Sending-server accepted; delivery not confirmed</span></article>
+          <article><small>Opened</small><span class="metric-value" id="metric-opened">0</span><span>Optional tracked opens</span></article>
           <article><small>Consented</small><span class="metric-value" id="metric-consents">0</span><span>Dated opt-ins</span></article>
           <article><small>Opt-outs</small><span class="metric-value" id="metric-opt-outs">0</span><span>Suppressed emails</span></article>
           <article><small>Last run</small><span class="metric-value" id="metric-progress">0%</span><span id="metric-run-label">No active run</span></article>
@@ -86,7 +86,7 @@
             <article>
               <small>Run workflow</small>
               <span class="webmail-value" id="backend-status-title">Draft, review, then send</span>
-              <span id="backend-status">Static mode is ready to prepare drafts. cPanel mode sends from the mailbox and tracks opens.</span>
+              <span id="backend-status">Draft preparation is ready. Live sending is server-paused until explicitly enabled.</span>
             </article>
             <article>
               <small>Opt-out safety</small>
@@ -129,9 +129,19 @@
               <label>SMTP username<input id="setting-smtp-user" type="email" autocomplete="username"></label>
               <label>SMTP password<input id="setting-smtp-password" type="password" autocomplete="new-password" placeholder="Leave blank to keep saved password"></label>
               <label>SMTP status<input id="setting-smtp-status" readonly value="Password not saved"></label>
+              <label>Email format
+                <select id="setting-email-format">
+                  <option value="plain">Plain text (recommended)</option>
+                  <option value="html">HTML + plain-text alternative</option>
+                </select>
+              </label>
+              <label class="check-row"><input id="setting-track-opens" type="checkbox">Track opens in HTML messages</label>
+              <label>UTC daily live-send attempt limit<input id="setting-daily-send-limit" type="number" min="1" max="25" value="1"></label>
+              <label class="check-row"><input id="setting-sending-enabled" type="checkbox">Enable live sending (paused by default)</label>
               <label>Change admin code<input id="setting-code" type="password" placeholder="New admin code"></label>
               <label>Confirm code<input id="setting-code-confirm" type="password" placeholder="Repeat new code"></label>
             </div>
+            <p class="section-note">Plain text does not add HTML, tracking pixels, or links absent from your template. The daily limit defaults to one attempt; increasing it is an explicit safety decision. Every live send is limited to one separately confirmed recipient and automatically pauses sending again.</p>
             <button class="primary-button" id="save-settings" type="button"><i data-lucide="save"></i>Save Settings</button>
           </article>
         </section>
@@ -145,6 +155,7 @@
             <div class="button-row">
               <button class="ghost-button compact" id="toggle-progress" type="button"><i data-lucide="activity"></i>View Progress</button>
               <button class="ghost-button compact" id="toggle-log" type="button"><i data-lucide="file-text"></i>View Run Log</button>
+              <button class="ghost-button compact" id="toggle-run-history" type="button" aria-controls="run-history-panel" aria-expanded="false"><i data-lucide="history"></i>View Run History</button>
             </div>
           </div>
 
@@ -156,7 +167,7 @@
               </div>
               <div class="field-grid">
                 <label>To<input id="admin-to-email"></label>
-                <label>CC<input id="admin-cc-email" placeholder="Optional CC list"></label>
+                <label>CC (manual drafts only)<input id="admin-cc-email" placeholder="Optional CC list; opt-outs are removed"></label>
               </div>
               <label>Subject<input id="admin-subject"></label>
               <label class="template-label">
@@ -184,7 +195,7 @@
               <div class="button-row">
                 <button class="primary-button" id="admin-copy-email" type="button"><i data-lucide="copy"></i>Copy Draft</button>
                 <button class="secondary-button" id="admin-open-email" type="button"><i data-lucide="mail"></i>Open Draft</button>
-                <button class="ghost-button" id="admin-mark-sent" type="button"><i data-lucide="check"></i>Mark Sent</button>
+                <button class="ghost-button" id="admin-mark-sent" type="button"><i data-lucide="check"></i>Record Manual Send</button>
               </div>
             </div>
 
@@ -210,12 +221,10 @@
                   </select>
                 </label>
                 <label>Time<input id="schedule-time" type="time" value="09:00"></label>
-                <label>Delay between emails, seconds
-                  <input id="schedule-delay" type="number" min="8" step="1" value="8">
-                  <span class="field-note">Minimum 8 seconds keeps runs under Namecheap's 500 emails/hour limit.</span>
-                </label>
+                <label>Delay between emails, seconds<input id="schedule-delay" type="number" min="300" value="300"></label>
               </div>
-              <label>Manual email<input id="manual-email" type="email" placeholder="optional@email.com"></label>
+              <p class="section-note">Each live send requires one explicit recipient, shows that address and subject for confirmation, uses at least 300 seconds between attempts, and cannot exceed the saved UTC daily limit. SMTP acceptance does not prove inbox delivery.</p>
+              <label>Explicit manual run email<input id="manual-email" type="email" placeholder="address-you-control@example.com"></label>
               <label class="check-row"><input id="open-drafts-during-run" type="checkbox">Open mail drafts instead of server sending</label>
               <div class="run-toolbar">
                 <a class="ghost-button compact" id="open-webmail-run" href="https://privateemail.com/" target="_blank" rel="noreferrer">
@@ -231,16 +240,45 @@
                 <div class="progress-meta"><span id="progress-text">0%</span><span id="progress-count">0 of 0</span></div>
                 <div class="progress-track"><span id="progress-bar"></span></div>
               </div>
+              <section class="run-history-card" id="run-history-panel" hidden aria-live="polite">
+                <div class="run-history-toolbar">
+                  <div>
+                    <span class="section-title">Email run history</span>
+                    <p>Choose a run to review its accepted and failed message counts.</p>
+                  </div>
+                  <label>Run<select id="run-history-select" aria-label="Choose an email run" disabled></select></label>
+                </div>
+                <div class="empty-state" id="run-history-empty">No exact run summaries yet. New send runs will appear here.</div>
+                <div class="run-history-detail" id="run-history-detail" hidden>
+                  <div class="run-history-summary">
+                    <div>
+                      <span class="run-history-accepted" id="run-history-accepted">0 of 0 accepted</span>
+                      <span id="run-history-subtitle">0 processed</span>
+                    </div>
+                    <span class="count-pill" id="run-history-status">Complete</span>
+                  </div>
+                  <div class="run-history-grid">
+                    <div><small>Processed</small><span id="run-history-processed">0 of 0</span></div>
+                    <div><small>Failed</small><span id="run-history-failed">0</span></div>
+                    <div><small>Transport</small><span id="run-history-transport">0 SMTP</span></div>
+                    <div><small>Started</small><span id="run-history-started">—</span></div>
+                    <div><small>Finished / activity</small><span id="run-history-finished">—</span></div>
+                    <div><small>Duration</small><span id="run-history-duration">—</span></div>
+                  </div>
+                  <p class="run-history-error" id="run-history-error" hidden></p>
+                </div>
+                <p class="section-note">Accepted means the sending server accepted the message; it does not confirm inbox delivery.</p>
+              </section>
               <div class="run-log" id="run-log" hidden></div>
               <div class="suppression-card">
                 <div>
                   <span class="section-title">Email consent and opt-outs</span>
-                  <p>Save the date each recipient consented. Opted-out addresses remain excluded even when an older consent date exists.</p>
+                  <p>Save the date each recipient consented. Saving suppressions only adds opt-outs; use Record Consent to remove one after renewed consent. Opted-out addresses remain excluded even when an older consent date exists.</p>
                 </div>
                 <label>Consent date<input id="consent-date" type="date"></label>
                 <label>Suppressed emails<textarea id="opt-out-list" rows="5" placeholder="coach@example.edu"></textarea></label>
                 <div class="button-row">
-                  <button class="ghost-button compact" id="save-opt-outs" type="button"><i data-lucide="save"></i>Save Opt-outs</button>
+                  <button class="ghost-button compact" id="save-opt-outs" type="button"><i data-lucide="save"></i>Add / Save Opt-outs</button>
                   <button class="ghost-button compact" id="opt-out-current" type="button"><i data-lucide="ban"></i>Opt Out Current</button>
                   <button class="ghost-button compact" id="opt-in-current" type="button"><i data-lucide="calendar-check"></i>Record Consent</button>
                 </div>
@@ -307,6 +345,6 @@
 
     <div id="admin-toast" class="toast" role="status"></div>
     <script src="../contacts-data.js?v=20260707-workbook-enriched-3"></script>
-    <script src="admin.js?v=20260711-consent-dates-v1"></script>
+    <script src="admin.js?v=20260723-consent-controlled-send-1"></script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-const ADMIN_CODE_KEY = "royceCastleRecruitingStudio.adminCode.v1";
 const ADMIN_SESSION_KEY = "royceCastleRecruitingStudio.adminUnlocked.v1";
 const ADMIN_SETTINGS_KEY = "royceCastleRecruitingStudio.adminSettings.v1";
 const PUBLIC_MESSAGES_KEY = "royceCastleRecruitingStudio.publicMessages.v1";
@@ -13,11 +12,11 @@ const DEFAULT_WEBMAIL_URL = "https://privateemail.com/";
 const DEFAULT_SMTP_HOST = "mail.privateemail.com";
 const DEFAULT_SMTP_PORT = 465;
 const DEFAULT_SMTP_SECURITY = "ssl";
+const PRIVATE_EMAIL_MIN_DELAY_SECONDS = 300;
+const LIVE_RUN_RECIPIENT_LIMIT = 1;
+const DAILY_SEND_LIMIT_MAX = 25;
 const LEGACY_DEFAULT_EMAIL = "erik@puricloud.com";
 const EMAIL_TEMPLATE_VERSION = 3;
-const NAMECHEAP_HOURLY_EMAIL_LIMIT = 500;
-const MIN_EMAIL_DELAY_SECONDS = Math.ceil(3600 / NAMECHEAP_HOURLY_EMAIL_LIMIT);
-const DEFAULT_EMAIL_DELAY_SECONDS = MIN_EMAIL_DELAY_SECONDS;
 
 const contacts = Array.isArray(window.RECRUITING_CONTACTS) ? window.RECRUITING_CONTACTS : [];
 const contactsWithEmail = contacts.filter((contact) => contact.headEmail || contact.assistantEmail);
@@ -33,16 +32,23 @@ const defaultSettings = {
   smtpPasswordSet: false,
   ccEmail: "",
   sendMode: "server",
+  sendingEnabled: false,
+  emailFormat: "plain",
+  trackOpens: false,
+  dailySendLimit: 1,
   frequency: "manual",
   day: "Monday",
   time: "09:00",
-  delaySeconds: DEFAULT_EMAIL_DELAY_SECONDS,
+  delaySeconds: PRIVATE_EMAIL_MIN_DELAY_SECONDS,
   openDrafts: false,
   emailTemplateVersion: EMAIL_TEMPLATE_VERSION,
   emailTemplate: defaultEmailTemplate()
 };
 
 let settings = loadSettings();
+let deliveryStats = null;
+let dailySendStatus = null;
+let selectedRunId = "";
 let optOutEmails = loadOptOutEmails();
 let consentDates = loadConsentDates();
 let selectedContactIds = new Set();
@@ -52,12 +58,11 @@ let currentContactId = contactsWithEmail.some((contact) => contact.id === reques
   : contactsWithEmail.find((contact) => contact.id === "d1-byu-cougars")?.id || contactsWithEmail[0]?.id || "";
 let visibleContacts = [];
 let runTimer = null;
-let runState = { active: false, total: 0, sent: 0 };
+let runState = { active: false, mode: "send", total: 0, processed: 0, accepted: 0, failed: 0, prepared: 0, smtpAccepted: 0, mailAccepted: 0, unknownAccepted: 0, runId: "", startedAt: "", updatedAt: "", completedAt: "", lastError: "" };
 let serverAvailable = false;
 let serverCanSend = false;
 let serverSmtpReady = false;
 let serverMailAvailable = false;
-let settingsSyncTimer = null;
 
 const refs = {};
 
@@ -86,6 +91,7 @@ function collectRefs() {
     "metric-messages",
     "metric-storage-label",
     "metric-sent",
+    "metric-sent-label",
     "metric-opened",
     "metric-consents",
     "metric-opt-outs",
@@ -108,6 +114,10 @@ function collectRefs() {
     "setting-smtp-user",
     "setting-smtp-password",
     "setting-smtp-status",
+    "setting-sending-enabled",
+    "setting-email-format",
+    "setting-track-opens",
+    "setting-daily-send-limit",
     "setting-code",
     "setting-code-confirm",
     "save-settings",
@@ -139,7 +149,22 @@ function collectRefs() {
     "progress-bar",
     "toggle-progress",
     "toggle-log",
+    "toggle-run-history",
     "run-log",
+    "run-history-panel",
+    "run-history-select",
+    "run-history-empty",
+    "run-history-detail",
+    "run-history-accepted",
+    "run-history-subtitle",
+    "run-history-status",
+    "run-history-processed",
+    "run-history-failed",
+    "run-history-transport",
+    "run-history-started",
+    "run-history-finished",
+    "run-history-duration",
+    "run-history-error",
     "opt-out-list",
     "consent-date",
     "save-opt-outs",
@@ -166,7 +191,7 @@ function bindLogin() {
     toast("Checking admin access...");
     const code = refs.adminLoginCode.value;
     const serverLogin = await loginWithServer(code);
-    if (serverLogin || code === getAdminCode()) {
+    if (serverLogin) {
       sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
       refs.adminLoginError.hidden = true;
       await unlockAdmin();
@@ -205,21 +230,32 @@ function applyServerState(state = {}) {
   serverAvailable = true;
   serverSmtpReady = !!state.smtpReady;
   serverMailAvailable = !!state.mailAvailable;
-  serverCanSend = !!state.canSend && serverSmtpReady;
+  if (state.deliveryStats && typeof state.deliveryStats === "object") deliveryStats = normalizeDeliveryStats(state.deliveryStats);
+  if (state.dailySendStatus && typeof state.dailySendStatus === "object") dailySendStatus = normalizeDailySendStatus(state.dailySendStatus);
   if (state.settings) {
     settings = normalizeSettings(state.settings);
-    localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(settingsForBrowserStorage(settings)));
+    storeLocalJson(ADMIN_SETTINGS_KEY, settingsForBrowserStorage(settings));
   }
-  if (Array.isArray(state.messages)) localStorage.setItem(PUBLIC_MESSAGES_KEY, JSON.stringify(state.messages));
-  if (Array.isArray(state.emailHistory)) localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(state.emailHistory));
-  if (Array.isArray(state.runLog)) localStorage.setItem(RUN_LOG_KEY, JSON.stringify(state.runLog));
+  serverCanSend = !!state.canSend && serverSmtpReady && !!settings.sendingEnabled;
+  if (Array.isArray(state.messages)) storeLocalJson(PUBLIC_MESSAGES_KEY, state.messages);
+  if (Array.isArray(state.emailHistory)) storeLocalJson(EMAIL_HISTORY_KEY, state.emailHistory.slice(0, 500));
+  if (Array.isArray(state.runLog)) storeLocalJson(RUN_LOG_KEY, state.runLog.slice(0, 80));
   if (Array.isArray(state.optOutEmails)) {
     optOutEmails = new Set(state.optOutEmails.map(normalizeEmail).filter(Boolean));
-    localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
+    storeLocalJson(OPT_OUT_KEY, [...optOutEmails].sort());
   }
   if (state.consentDates && typeof state.consentDates === "object") {
     consentDates = normalizeConsentDates(state.consentDates);
-    localStorage.setItem(CONSENT_DATES_KEY, JSON.stringify(Object.fromEntries(consentDates)));
+    storeLocalJson(CONSENT_DATES_KEY, Object.fromEntries(consentDates));
+  }
+}
+
+function storeLocalJson(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -248,6 +284,10 @@ function bindAdminEvents() {
   refs.adminApp.addEventListener("click", handleAdminClick);
   refs.adminContactSearch.addEventListener("input", renderContacts);
   refs.adminContactGroup.addEventListener("change", renderContacts);
+  refs.runHistorySelect.addEventListener("change", () => {
+    selectedRunId = refs.runHistorySelect.value;
+    renderRunHistory();
+  });
   refs.adminToEmail.addEventListener("input", () => {
     currentContactId = "";
   });
@@ -255,6 +295,7 @@ function bindAdminEvents() {
     settings.ccEmail = refs.adminCcEmail.value;
     persistSettings();
   });
+  refs.settingEmailFormat.addEventListener("change", syncEmailFormatControls);
   refs.adminEmailTemplate.addEventListener("input", updateEmailPreview);
   refs.optOutList.addEventListener("input", () => {
     refs.runSuppressionSummary.textContent = "Unsaved opt-out changes.";
@@ -315,6 +356,11 @@ function handleAdminClick(event) {
       refs.runLog.hidden = !refs.runLog.hidden;
       renderRunLog();
       break;
+    case "toggle-run-history":
+      refs.runHistoryPanel.hidden = !refs.runHistoryPanel.hidden;
+      refs.toggleRunHistory.setAttribute("aria-expanded", String(!refs.runHistoryPanel.hidden));
+      if (!refs.runHistoryPanel.hidden) renderRunHistory();
+      break;
     case "download-workbook":
       downloadWorkbookCsv();
       break;
@@ -354,17 +400,28 @@ function hydrateSettings() {
     (serverAvailable && serverSmtpReady) || settings.smtpPasswordSet
       ? "SMTP password saved. Private Email ready."
       : "SMTP password not saved.";
+  refs.settingSendingEnabled.checked = !!settings.sendingEnabled;
+  refs.settingEmailFormat.value = settings.emailFormat === "html" ? "html" : "plain";
+  refs.settingTrackOpens.checked = !!settings.trackOpens;
+  refs.settingDailySendLimit.value = settings.dailySendLimit;
+  syncEmailFormatControls();
   refs.scheduleFrequency.value = settings.frequency;
   refs.scheduleDay.value = settings.day;
   refs.scheduleTime.value = settings.time;
-  refs.scheduleDelay.min = String(MIN_EMAIL_DELAY_SECONDS);
+  refs.scheduleDelay.min = String(PRIVATE_EMAIL_MIN_DELAY_SECONDS);
   refs.scheduleDelay.step = "1";
-  settings.delaySeconds = normalizeRunDelaySeconds(settings.delaySeconds);
+  settings.delaySeconds = normalizeSendDelay(settings.delaySeconds);
   refs.scheduleDelay.value = settings.delaySeconds;
-  refs.scheduleDelay.title = `Minimum ${MIN_EMAIL_DELAY_SECONDS} seconds keeps runs under ${NAMECHEAP_HOURLY_EMAIL_LIMIT} emails per hour.`;
+  refs.scheduleDelay.title = `Minimum ${PRIVATE_EMAIL_MIN_DELAY_SECONDS} seconds between live send attempts.`;
   refs.openDraftsDuringRun.checked = !!settings.openDrafts;
   refs.adminCcEmail.value = settings.ccEmail || "";
   refs.consentDate.value = refs.consentDate.value || todayDateValue();
+}
+
+function syncEmailFormatControls() {
+  const plainText = refs.settingEmailFormat.value !== "html";
+  refs.settingTrackOpens.disabled = plainText;
+  if (plainText) refs.settingTrackOpens.checked = false;
 }
 
 function renderAll() {
@@ -375,46 +432,71 @@ function renderAll() {
   renderOptOuts();
   renderWebmailLinks();
   renderRunLog();
+  renderRunHistory();
   window.lucide?.createIcons();
 }
 
 function renderMetrics() {
   const history = loadEmailHistory();
-  const sentCount = history.filter((item) => /sent|opened|draft opened/i.test(item.status || "")).length;
+  const retainedSentCount = history.filter((item) => /accepted|sent|opened|draft opened/i.test(item.status || "")).length;
   const openedCount = history.filter((item) => item.viewedAt || item.openedAt || Number(item.openCount || 0) > 0).length;
   const totalRecipientCount = contactsWithEmail.reduce((total, contact) => total + contactRecipientTargets(contact).length, 0);
   const selectedContacts = [...selectedContactIds].map((id) => contacts.find((contact) => contact.id === id)).filter(Boolean);
-  const selectedRecipientCount = selectedContacts.reduce((total, contact) => total + activeContactRecipientTargets(contact).length, 0);
+  const selectedRecipientCount = new Set(
+    selectedContacts.flatMap((contact) => activeContactRecipientTargets(contact).map((recipient) => normalizeEmail(recipient.email)))
+  ).size;
   refs.metricContacts.textContent = contacts.length.toLocaleString();
   refs.metricSelected.textContent = selectedRecipientCount.toLocaleString();
   refs.metricContactsLabel.textContent = `${totalRecipientCount.toLocaleString()} individual coach emails`;
   refs.metricSelectedLabel.textContent =
     selectedContactIds.size > 0
-      ? `${selectedContactIds.size.toLocaleString()} schools selected for ${selectedRecipientCount.toLocaleString()} individual emails`
+      ? `${selectedContactIds.size.toLocaleString()} schools selected for ${selectedRecipientCount.toLocaleString()} unique emails`
       : "Email-ready for next run";
   refs.metricMessages.textContent = loadMessages().length.toLocaleString();
   refs.metricStorageLabel.textContent = serverAvailable ? "Saved permanently on server" : "Saved in this browser";
-  refs.metricSent.textContent = sentCount.toLocaleString();
+  const acceptedCount = deliveryStats ? deliveryStats.accepted : retainedSentCount;
+  refs.metricSent.textContent = `${acceptedCount.toLocaleString()}${deliveryStats?.baselineLimited ? "+" : ""}`;
+  const acceptedBreakdown = deliveryStats
+    ? `${deliveryStats.smtpAccepted.toLocaleString()} SMTP${deliveryStats.mailAccepted ? `, ${deliveryStats.mailAccepted.toLocaleString()} PHP mail` : ""}`
+    : "";
+  refs.metricSentLabel.textContent = deliveryStats
+    ? deliveryStats.baselineLimited
+      ? `Minimum accepted; exact counting is now active (${acceptedBreakdown})`
+      : `Sending-server accepted; delivery not confirmed (${acceptedBreakdown})`
+    : "Accepted entries retained in this browser; delivery not confirmed";
   refs.metricOpened.textContent = openedCount.toLocaleString();
   refs.metricConsents.textContent = consentDates.size.toLocaleString();
   refs.metricOptOuts.textContent = optOutEmails.size.toLocaleString();
-  refs.metricProgress.textContent = runState.total ? `${Math.round((runState.sent / runState.total) * 100)}%` : "0%";
-  refs.metricRunLabel.textContent = runState.active ? "Run in progress" : "Ready";
+  const lastRun = runState.total ? runState : deliveryStats?.lastRun;
+  const lastRunTotal = Math.max(0, Number(lastRun?.total || 0));
+  const lastRunProcessed = Math.max(0, Number(lastRun?.processed || 0));
+  const lastRunAccepted = Math.max(0, Number(lastRun?.accepted || 0));
+  const lastRunFailed = Math.max(0, Number(lastRun?.failed || 0));
+  const lastRunPrepared = Math.max(0, Number(lastRun?.prepared || 0));
+  refs.metricProgress.textContent = lastRunTotal ? `${Math.round((lastRunProcessed / lastRunTotal) * 100)}%` : "0%";
+  refs.metricRunLabel.textContent = lastRunTotal
+    ? `${runState.active ? "In progress · " : ""}${lastRunAccepted.toLocaleString()} accepted, ${lastRunFailed.toLocaleString()} failed${lastRunPrepared ? `, ${lastRunPrepared.toLocaleString()} prepared` : ""}`
+    : "Ready";
+  const dailyQuotaLabel = dailySendStatus
+    ? `${dailySendStatus.attempts} of ${dailySendStatus.limit} UTC daily attempts used`
+    : `UTC daily attempt limit ${settings.dailySendLimit}`;
   if (refs.backendStatusTitle) {
     refs.backendStatusTitle.textContent =
       serverAvailable && serverSmtpReady
-        ? "Private Email SMTP ready"
+        ? settings.sendingEnabled ? "Live sending enabled" : "Live sending paused"
         : serverAvailable && serverMailAvailable
-          ? "PHP mail fallback available"
+          ? "Authenticated SMTP required"
           : "Draft fallback ready";
   }
   if (refs.backendStatus) {
     refs.backendStatus.textContent =
       serverAvailable && serverSmtpReady
-        ? `Runs authenticate through ${settings.smtpUser || settings.fromEmail || DEFAULT_MAILBOX} at ${settings.smtpHost || DEFAULT_SMTP_HOST}; replies go to ${settings.forwardEmail || settings.fromEmail || DEFAULT_MAILBOX}; opens are tracked when images load.`
+        ? settings.sendingEnabled
+          ? `Live sends use ${settings.emailFormat === "html" ? "HTML with a plain-text alternative" : "plain text"} at no more than one recipient every ${settings.delaySeconds}s; ${dailyQuotaLabel}. Open tracking is ${settings.trackOpens ? "enabled" : "off"}. SMTP acceptance does not prove inbox delivery.`
+          : `SMTP is configured for ${settings.smtpUser || settings.fromEmail || DEFAULT_MAILBOX}, but the send API is paused. Runs prepare drafts until live sending is explicitly enabled in Settings.`
         : serverAvailable && serverMailAvailable
           ? "SMTP password is not saved yet. PHP mail exists on the host, but coach runs stay in draft fallback until Private Email SMTP is ready."
-          : "Static mode prepares drafts. Upload to cPanel with the API folder to send from the mailbox and track opens.";
+          : "Static mode prepares drafts. Live sending requires the cPanel API, configured SMTP, and explicit enablement.";
   }
 }
 
@@ -604,6 +686,17 @@ function relativeLuminance(hex) {
 
 async function saveSettingsFromForm() {
   toast("Saving settings...");
+  const previousSendingEnabled = !!settings.sendingEnabled;
+  const requestedSendingEnabled = refs.settingSendingEnabled.checked;
+  if (
+    requestedSendingEnabled &&
+    !previousSendingEnabled &&
+    !window.confirm("Enable live sending only after the email provider confirms the restriction is cleared. Continue?")
+  ) {
+    refs.settingSendingEnabled.checked = false;
+    toast("Live sending remains paused.");
+    return;
+  }
   const newCode = refs.settingCode.value.trim();
   const confirmCode = refs.settingCodeConfirm.value.trim();
   if (newCode || confirmCode) {
@@ -615,7 +708,6 @@ async function saveSettingsFromForm() {
       toast("Admin code confirmation did not match.");
       return;
     }
-    localStorage.setItem(ADMIN_CODE_KEY, newCode);
     refs.settingCode.value = "";
     refs.settingCodeConfirm.value = "";
   }
@@ -628,17 +720,33 @@ async function saveSettingsFromForm() {
   settings.smtpPort = Math.max(1, Number(refs.settingSmtpPort.value) || defaultSettings.smtpPort);
   settings.smtpSecurity = normalizeSmtpSecurity(refs.settingSmtpSecurity.value);
   settings.smtpUser = refs.settingSmtpUser.value.trim() || settings.fromEmail || defaultSettings.smtpUser;
+  settings.sendingEnabled = previousSendingEnabled;
+  settings.emailFormat = refs.settingEmailFormat.value === "html" ? "html" : "plain";
+  settings.trackOpens = settings.emailFormat === "html" && refs.settingTrackOpens.checked;
+  settings.dailySendLimit = normalizeDailySendLimit(refs.settingDailySendLimit.value);
+  refs.settingDailySendLimit.value = settings.dailySendLimit;
   const smtpPassword = refs.settingSmtpPassword.value.trim();
   persistSettings();
   const saved = serverAvailable ? await syncSettings({ newCode, ...(smtpPassword ? { smtpPassword } : {}) }) : false;
+  let gateSaved = true;
+  if (serverAvailable && requestedSendingEnabled !== previousSendingEnabled) {
+    gateSaved = !requestedSendingEnabled || saved
+      ? await setServerSendingEnabled(requestedSendingEnabled)
+      : false;
+  } else if (!serverAvailable) {
+    settings.sendingEnabled = false;
+    persistSettings();
+  }
   refs.settingSmtpPassword.value = "";
   hydrateSettings();
   renderWebmailLinks();
   renderMetrics();
-  if (serverAvailable && saved && smtpPassword) {
+  if (serverAvailable && saved && gateSaved && smtpPassword) {
     toast("Settings and SMTP password saved permanently.");
-  } else if (serverAvailable && saved) {
+  } else if (serverAvailable && saved && gateSaved) {
     toast("Settings saved permanently.");
+  } else if (serverAvailable) {
+    toast("The server save did not fully complete. Live sending was not newly enabled.");
   } else if (smtpPassword) {
     toast("Settings saved in this browser. The SMTP password needs the server API to save permanently.");
   } else {
@@ -650,21 +758,23 @@ async function saveSchedule() {
   settings.frequency = refs.scheduleFrequency.value;
   settings.day = refs.scheduleDay.value;
   settings.time = refs.scheduleTime.value;
-  settings.delaySeconds = readRunDelaySeconds();
+  settings.delaySeconds = normalizeSendDelay(refs.scheduleDelay.value);
+  refs.scheduleDelay.value = settings.delaySeconds;
   settings.openDrafts = refs.openDraftsDuringRun.checked;
   persistSettings();
-  if (serverAvailable) await syncSettings();
-  logRun(`Auto-send schedule saved: ${settings.frequency}, ${settings.day} at ${settings.time}, ${settings.delaySeconds}s between contacts (${emailsPerHour(settings.delaySeconds)} emails/hour max).`);
+  const saved = serverAvailable ? await syncSettings() : false;
+  logRun(`Auto-send schedule saved: ${settings.frequency}, ${settings.day} at ${settings.time}, ${settings.delaySeconds}s between contacts.`);
   renderRunLog();
-  toast(serverAvailable ? `Schedule saved permanently at ${settings.delaySeconds}s between emails.` : `Schedule saved at ${settings.delaySeconds}s between emails.`);
+  toast(serverAvailable && saved ? "Schedule saved permanently." : "Schedule saved in this browser only.");
 }
 
-function startSendRun() {
+async function startSendRun() {
   if (runState.active) {
     toast("A send run is already active.");
     return;
   }
-  settings.delaySeconds = readRunDelaySeconds();
+  settings.delaySeconds = normalizeSendDelay(refs.scheduleDelay.value);
+  refs.scheduleDelay.value = settings.delaySeconds;
   settings.openDrafts = refs.openDraftsDuringRun.checked;
   persistSettings();
 
@@ -672,24 +782,82 @@ function startSendRun() {
   if (runTargets.skippedOptOuts?.length) {
     logRun(`${runTargets.skippedOptOuts.length} selected contact${runTargets.skippedOptOuts.length === 1 ? "" : "s"} skipped because recipients were opted out or missing a consent date.`);
   }
+  if (runTargets.skippedDuplicates?.length) {
+    logRun(`${runTargets.skippedDuplicates.length} duplicate recipient${runTargets.skippedDuplicates.length === 1 ? " was" : "s were"} removed from this run.`);
+  }
   if (!targets.length) {
     toast("Select contacts with a saved consent date or record consent for the manual email first.");
     return;
   }
 
+  const liveSending = serverAvailable && serverCanSend && settings.sendingEnabled && refs.settingSendingEnabled.checked && !settings.openDrafts;
+  const configuredRunLimit = LIVE_RUN_RECIPIENT_LIMIT;
+  if (liveSending && targets.length > configuredRunLimit) {
+    toast("Every live send requires a separate confirmation for exactly one recipient. Reduce the selection or prepare drafts instead.");
+    return;
+  }
+  const confirmationMessage = targets.length === 1
+    ? `Submit one live email to ${targets[0].email}?\n\nSubject: ${targets[0].subject}\n\nSMTP acceptance does not confirm inbox delivery.`
+    : `Submit ${targets.length} unique emails to the sending server at ${settings.delaySeconds}-second intervals? SMTP acceptance does not confirm inbox delivery.`;
+  if (
+    liveSending &&
+    !window.confirm(confirmationMessage)
+  ) {
+    logRun("Live send run canceled before any message was submitted.");
+    renderRunLog();
+    toast("Live send run canceled.");
+    return;
+  }
+
   refs.progressPanel.hidden = false;
-  runState = { active: true, total: targets.length, sent: 0 };
-  logRun(`Send run started for ${targets.length} recipient${targets.length === 1 ? "" : "s"} at ${settings.delaySeconds}s between emails (${emailsPerHour(settings.delaySeconds)} emails/hour max).`);
+  const startedAt = new Date().toISOString();
+  runState = {
+    active: true,
+    mode: liveSending ? "send" : "draft",
+    total: targets.length,
+    processed: 0,
+    accepted: 0,
+    failed: 0,
+    prepared: 0,
+    smtpAccepted: 0,
+    mailAccepted: 0,
+    unknownAccepted: 0,
+    runId: `run-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    startedAt,
+    updatedAt: startedAt,
+    completedAt: "",
+    lastError: ""
+  };
+  selectedRunId = runState.runId;
+  logRun(`${liveSending ? "Confirmed live send" : "Draft preparation"} run started for ${targets.length} unique recipient${targets.length === 1 ? "" : "s"} at ${settings.delaySeconds}s intervals.`);
   updateProgress();
-  toast("Send run started successfully.");
+  await syncRunState("start");
+  toast(liveSending ? "Confirmed live send run started." : "Draft preparation run started.");
+
+  const finishRun = async () => {
+    runState.active = false;
+    runTimer = null;
+    if (liveSending) {
+      settings.sendingEnabled = false;
+      serverCanSend = false;
+      refs.settingSendingEnabled.checked = false;
+      persistSettings();
+      await setServerSendingEnabled(false);
+    }
+    runState.updatedAt = new Date().toISOString();
+    runState.completedAt = runState.updatedAt;
+    const summary = `${runState.accepted} accepted, ${runState.failed} failed${runState.prepared ? `, ${runState.prepared} prepared` : ""}`;
+    logRun(`Send run complete: ${summary}.`);
+    updateProgress();
+    await syncRunState("finish");
+    updateProgress();
+    toast(`Send run complete: ${summary}.`);
+  };
 
   const step = async () => {
-    const target = targets[runState.sent];
+    const target = targets[runState.processed];
     if (!target) {
-      runState.active = false;
-      logRun("Send run complete.");
-      updateProgress();
-      toast("Send run complete.");
+      await finishRun();
       return;
     }
 
@@ -698,48 +866,89 @@ function startSendRun() {
     refs.adminEmailBody.value = target.body;
     let status = "Prepared";
     let serverLoggedHistory = false;
-    if (serverAvailable && serverCanSend && !settings.openDrafts) {
-      const result = await sendEmailTarget(target);
+    if (liveSending) {
+      const result = await sendEmailTarget(target, {
+        runId: runState.runId,
+        runTotal: runState.total,
+        runPosition: runState.processed + 1,
+        runStartedAt: runState.startedAt,
+        runMode: runState.mode,
+        runConfirmed: true
+      });
       serverLoggedHistory = result.savedHistory;
-      status = result.sent ? "Sent" : "Send failed";
-      logRun(`${result.sent ? "Sent" : "Could not send"} individualized email for ${target.label} <${target.email}>.`);
-      if (!result.sent) openMailDraft(target, true);
+      status = result.sent ? "Accepted by SMTP" : "Send failed";
+      if (result.sent) {
+        runState.accepted += 1;
+        if (result.transport === "smtp") runState.smtpAccepted += 1;
+        else if (result.transport === "php-mail") runState.mailAccepted += 1;
+        else runState.unknownAccepted += 1;
+        logRun(`Accepted individualized email for ${target.label} <${target.email}> via ${result.transport === "smtp" ? "SMTP" : "server mail"}.`);
+      } else {
+        runState.failed += 1;
+        runState.lastError = result.error || "The sending server did not accept this message.";
+        logRun(`Could not send individualized email for ${target.label} <${target.email}>. ${runState.lastError}`);
+      }
+      if (result.accountingWarning) logRun(`Accounting warning for ${target.email}: ${result.accountingWarning}`);
     } else {
       logRun(`Prepared individualized draft for ${target.label} <${target.email}>.`);
       if (settings.openDrafts) openMailDraft(target, true);
       status = settings.openDrafts ? "Draft opened" : "Prepared";
+      runState.prepared += 1;
     }
-    if (status !== "Sent" && !serverLoggedHistory) recordEmailHistory(target, status);
-    runState.sent += 1;
+    if (status !== "Accepted by SMTP" && !serverLoggedHistory) recordEmailHistory(target, status);
+    runState.processed += 1;
+    runState.updatedAt = new Date().toISOString();
     updateProgress();
+    if (settings.openDrafts && serverAvailable && runState.processed % 25 === 0) await syncRunState("progress");
+    if (runState.processed >= runState.total) {
+      await finishRun();
+      return;
+    }
     runTimer = setTimeout(step, settings.delaySeconds * 1000);
   };
 
   step();
 }
 
-async function sendEmailTarget(target) {
-  try {
-    const response = await fetch(`${API_BASE}/send-email.php`, {
-      method: "POST",
-      credentials: "same-origin",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(target)
-    });
-    const result = await response.json();
-    if (result?.historyItem) {
-      saveOrUpdateHistoryItem(result.historyItem);
-      return { sent: !!result.sent, savedHistory: true };
+async function sendEmailTarget(target, runMetadata = {}) {
+  for (let throttleRetry = 0; throttleRetry < 60; throttleRetry += 1) {
+    try {
+      const response = await fetch(`${API_BASE}/send-email.php`, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...target, ...runMetadata })
+      });
+      const result = await response.json();
+      if (result?.dailySendStatus) dailySendStatus = normalizeDailySendStatus(result.dailySendStatus);
+      if (response.status === 429 && result?.rateLimited) {
+        const retryAfter = Math.min(300, Math.max(1, Number(result.retryAfter || 1)));
+        toast(`Mailbox pacing is active. Retrying in ${retryAfter}s.`);
+        await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+        continue;
+      }
+      if (result?.deliveryStats) deliveryStats = normalizeDeliveryStats(result.deliveryStats);
+      if (result?.historyItem) {
+        saveOrUpdateHistoryItem(result.historyItem);
+        return {
+          sent: !!result.sent,
+          savedHistory: result.historySaved !== false,
+          transport: String(result.transport || ""),
+          error: String(result.error || "").slice(0, 500),
+          accountingWarning: String(result.accountingWarning || "").slice(0, 500)
+        };
+      }
+      return { sent: false, savedHistory: false, transport: "", error: String(result?.error || `Send server returned ${response.status}.`).slice(0, 500), accountingWarning: "" };
+    } catch (error) {
+      return { sent: false, savedHistory: false, transport: "", error: "The send request could not reach the server.", accountingWarning: "" };
     }
-    return { sent: false, savedHistory: false };
-  } catch {
-    toast("Server send failed; opening a draft fallback.");
-    return { sent: false, savedHistory: false };
   }
+  return { sent: false, savedHistory: false, transport: "", error: "Mailbox pacing did not clear in time.", accountingWarning: "" };
 }
 
 function runTargets() {
   runTargets.skippedOptOuts = [];
+  runTargets.skippedDuplicates = [];
   const selectedContacts = [...selectedContactIds].map((id) => contacts.find((contact) => contact.id === id)).filter(Boolean);
   const targets = selectedContacts.flatMap((contact) => {
     const recipients = activeContactRecipientTargets(contact);
@@ -766,31 +975,158 @@ function runTargets() {
       runTargets.skippedOptOuts.push("manual recipient");
     }
   }
-  if (!targets.length && refs.adminToEmail.value.trim()) {
-    const activeDraftEmails = activeEmailListFromString(refs.adminToEmail.value);
-    if (activeDraftEmails.length) {
-      activeDraftEmails.forEach((email) => targets.push({
-        email,
-        label: "current draft recipient",
-        subject: refs.adminSubject.value,
-        body: refs.adminEmailBody.value,
-        websiteLink: `${PUBLIC_SITE_ORIGIN}/`,
-        videoLink: `${PUBLIC_SITE_ORIGIN}/#video`
-      }));
-    } else {
-      runTargets.skippedOptOuts.push("current draft recipient");
+  const seenEmails = new Set();
+  return targets.filter((target) => {
+    const email = normalizeEmail(target.email);
+    if (!email || seenEmails.has(email)) {
+      if (email) runTargets.skippedDuplicates.push(email);
+      return false;
     }
-  }
-  return targets;
+    seenEmails.add(email);
+    target.email = email;
+    return true;
+  });
 }
 
 function updateProgress() {
-  const percent = runState.total ? Math.round((runState.sent / runState.total) * 100) : 0;
+  const percent = runState.total ? Math.round((runState.processed / runState.total) * 100) : 0;
   refs.progressText.textContent = `${percent}%`;
-  refs.progressCount.textContent = `${runState.sent} of ${runState.total}`;
+  refs.progressCount.textContent = `${runState.processed} of ${runState.total} processed · ${runState.accepted} accepted · ${runState.failed} failed${runState.prepared ? ` · ${runState.prepared} prepared` : ""}`;
   refs.progressBar.style.width = `${percent}%`;
   renderMetrics();
   renderRunLog();
+  renderRunHistory();
+}
+
+function normalizeRunSummary(rawRun = {}) {
+  return {
+    id: String(rawRun.id || ""),
+    mode: rawRun.mode === "draft" ? "draft" : "send",
+    total: Math.max(0, Number(rawRun.total || 0)),
+    processed: Math.max(0, Number(rawRun.processed || 0)),
+    accepted: Math.max(0, Number(rawRun.accepted || 0)),
+    failed: Math.max(0, Number(rawRun.failed || 0)),
+    prepared: Math.max(0, Number(rawRun.prepared || 0)),
+    smtpAccepted: Math.max(0, Number(rawRun.smtpAccepted || 0)),
+    mailAccepted: Math.max(0, Number(rawRun.mailAccepted || 0)),
+    unknownAccepted: Math.max(0, Number(rawRun.unknownAccepted || 0)),
+    startedAt: String(rawRun.startedAt || ""),
+    updatedAt: String(rawRun.updatedAt || ""),
+    completedAt: String(rawRun.completedAt || ""),
+    lastError: String(rawRun.lastError || "").slice(0, 500)
+  };
+}
+
+function currentRunSummary() {
+  if (!runState.runId) return null;
+  return normalizeRunSummary({ ...runState, id: runState.runId });
+}
+
+function runHistoryEntries() {
+  const runs = Array.isArray(deliveryStats?.runs) ? deliveryStats.runs.map(normalizeRunSummary) : [];
+  const currentRun = currentRunSummary();
+  if (currentRun) {
+    const existingIndex = runs.findIndex((run) => run.id === currentRun.id);
+    if (existingIndex >= 0) runs.splice(existingIndex, 1);
+    runs.unshift(currentRun);
+  }
+  const seen = new Set();
+  return runs.filter((run) => run.id && !seen.has(run.id) && seen.add(run.id)).slice(0, 50);
+}
+
+async function syncRunState(phase) {
+  if (!serverAvailable || !runState.runId) {
+    renderRunHistory();
+    return false;
+  }
+  const response = await apiRequest(
+    "record-run",
+    { phase, run: currentRunSummary() },
+    { quiet: true }
+  );
+  if (!response?.ok || !response.deliveryStats) {
+    renderRunHistory();
+    return false;
+  }
+  deliveryStats = normalizeDeliveryStats(response.deliveryStats);
+  renderRunHistory();
+  return true;
+}
+
+function renderRunHistory() {
+  if (!refs.runHistorySelect) return;
+  const runs = runHistoryEntries();
+  refs.runHistorySelect.replaceChildren();
+  refs.runHistorySelect.disabled = runs.length === 0;
+  refs.runHistoryEmpty.hidden = runs.length > 0;
+  refs.runHistoryDetail.hidden = runs.length === 0;
+  if (!runs.length) {
+    selectedRunId = "";
+    return;
+  }
+
+  if (!runs.some((run) => run.id === selectedRunId)) selectedRunId = runs[0].id;
+  runs.forEach((run) => {
+    const option = document.createElement("option");
+    option.value = run.id;
+    option.textContent = formatRunOption(run);
+    refs.runHistorySelect.append(option);
+  });
+  refs.runHistorySelect.value = selectedRunId;
+
+  const run = runs.find((item) => item.id === selectedRunId) || runs[0];
+  const isActive = run.id === runState.runId && runState.active;
+  const isComplete = !isActive && (!!run.completedAt || (run.total > 0 && run.processed >= run.total));
+  const status = isActive ? "In progress" : isComplete ? "Complete" : "Incomplete";
+  const statusClass = isActive ? "active" : isComplete ? "complete" : "incomplete";
+  const transportParts = [];
+  if (run.smtpAccepted) transportParts.push(`${run.smtpAccepted.toLocaleString()} SMTP`);
+  if (run.mailAccepted) transportParts.push(`${run.mailAccepted.toLocaleString()} PHP mail`);
+  if (run.unknownAccepted) transportParts.push(`${run.unknownAccepted.toLocaleString()} unclassified`);
+
+  refs.runHistoryAccepted.textContent = `${run.accepted.toLocaleString()} of ${run.total.toLocaleString()} accepted`;
+  refs.runHistorySubtitle.textContent = run.mode === "draft"
+    ? `${run.prepared.toLocaleString()} prepared / ${run.processed.toLocaleString()} processed`
+    : `${run.processed.toLocaleString()} processed / ${run.failed.toLocaleString()} failed`;
+  refs.runHistoryStatus.textContent = status;
+  refs.runHistoryStatus.classList.remove("run-history-status-active", "run-history-status-complete", "run-history-status-incomplete");
+  refs.runHistoryStatus.classList.add(`run-history-status-${statusClass}`);
+  refs.runHistoryProcessed.textContent = `${run.processed.toLocaleString()} of ${run.total.toLocaleString()}`;
+  refs.runHistoryFailed.textContent = run.failed.toLocaleString();
+  refs.runHistoryTransport.textContent = transportParts.join(" / ") || "No accepted sends";
+  refs.runHistoryStarted.textContent = formatRunHistoryDate(run.startedAt);
+  refs.runHistoryFinished.textContent = formatRunHistoryDate(run.completedAt || run.updatedAt);
+  refs.runHistoryDuration.textContent = formatRunDuration(run.startedAt, isActive ? new Date().toISOString() : run.completedAt || run.updatedAt);
+  refs.runHistoryError.textContent = run.lastError ? `Last error: ${run.lastError}` : "";
+  refs.runHistoryError.hidden = !run.lastError;
+}
+
+function formatRunOption(run) {
+  const date = formatRunHistoryDate(run.startedAt, "Unknown time");
+  const count = run.mode === "draft"
+    ? `${run.prepared.toLocaleString()}/${run.total.toLocaleString()} prepared`
+    : `${run.accepted.toLocaleString()}/${run.total.toLocaleString()} accepted`;
+  return `${date} - ${count}`;
+}
+
+function formatRunHistoryDate(value, fallback = "Not recorded") {
+  if (!value) return fallback;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return fallback;
+  return formatDateTime(date.toISOString());
+}
+
+function formatRunDuration(startedAt, endedAt) {
+  const start = new Date(startedAt).getTime();
+  const end = new Date(endedAt).getTime();
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end < start) return "Not recorded";
+  const seconds = Math.round((end - start) / 1000);
+  if (seconds < 60) return `${seconds} sec`;
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) return `${minutes} min`;
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+  return remainder ? `${hours} hr ${remainder} min` : `${hours} hr`;
 }
 
 async function copyDraft() {
@@ -810,7 +1146,7 @@ function openMailDraft(target = currentEmailTarget(), quiet = false) {
     return;
   }
   const params = new URLSearchParams({
-    cc: refs.adminCcEmail.value || "",
+    cc: activeEmailsFromString(refs.adminCcEmail.value),
     subject: target.subject || refs.adminSubject.value,
     body: target.body || refs.adminEmailBody.value
   });
@@ -821,7 +1157,13 @@ function openMailDraft(target = currentEmailTarget(), quiet = false) {
 function markCurrentSent() {
   const contact = currentContact();
   if (!contact) {
-    toast("Manual draft marked ready.");
+    const enteredEmails = parseEmails(refs.adminToEmail.value);
+    const consentedEmails = activeEmailListFromString(refs.adminToEmail.value);
+    toast(consentedEmails.length
+      ? "Manual draft is consented and ready."
+      : enteredEmails.length
+        ? "Manual draft is opted out or missing a saved consent date."
+        : "Add a recipient email first.");
     return;
   }
   const recipients = activeContactRecipientTargets(contact);
@@ -829,7 +1171,7 @@ function markCurrentSent() {
     toast("This contact is opted out or missing a saved consent date.");
     return;
   }
-  recipients.forEach((recipient) => recordEmailHistory(targetFromRecipient(contact, recipient), "Sent"));
+  recipients.forEach((recipient) => recordEmailHistory(targetFromRecipient(contact, recipient), "Manually recorded as sent"));
   logRun(`Marked sent for ${recipients.length} individual email${recipients.length === 1 ? "" : "s"} for ${contact.displayName || contact.school}.`);
   selectedContactIds.delete(contact.id);
   renderAll();
@@ -975,34 +1317,37 @@ function renderOptOuts() {
 }
 
 async function saveOptOutsFromForm() {
-  optOutEmails = new Set(parseEmails(refs.optOutList.value));
-  optOutEmails.forEach((email) => consentDates.delete(normalizeEmail(email)));
-  persistConsentDates({ sync: false });
-  persistOptOutEmails();
-  if (serverAvailable) await syncOptOutEmails();
+  const requestedEmails = parseEmails(refs.optOutList.value);
+  if (!requestedEmails.length) {
+    toast("Add at least one email to the opt-out list.");
+    return;
+  }
+  const saveResult = await addSuppressionsThenRemoveConsent(requestedEmails);
   renderAll();
-  toast(serverAvailable ? "Opt-out list saved permanently." : "Opt-out list saved in this browser.");
+  toast(saveResult === "permanent"
+    ? "Opt-outs added permanently."
+    : saveResult === "local"
+      ? "Opt-outs saved in this browser only; live sending remains paused."
+      : "The opt-out update did not fully save on the server; live sending remains paused.");
 }
 
-function optOutCurrentContact() {
+async function optOutCurrentContact() {
   const contact = currentContact();
   const emails = contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
   if (!emails.length) {
     toast("Load a contact or enter an email to opt out.");
     return;
   }
-  emails.forEach((email) => {
-    const normalized = normalizeEmail(email);
-    optOutEmails.add(normalized);
-    consentDates.delete(normalized);
-  });
-  persistConsentDates({ sync: false });
-  persistOptOutEmails();
+  const saveResult = await addSuppressionsThenRemoveConsent(emails);
   renderAll();
-  toast(`${emails.length} email${emails.length === 1 ? "" : "s"} opted out.`);
+  toast(saveResult === "permanent"
+    ? `${emails.length} email${emails.length === 1 ? "" : "s"} opted out permanently.`
+    : saveResult === "local"
+      ? `${emails.length} email${emails.length === 1 ? "" : "s"} opted out in this browser only; live sending remains paused.`
+      : `The opt-out update did not fully save on the server; live sending remains paused.`);
 }
 
-function optInCurrentContact() {
+async function optInCurrentContact() {
   const contact = currentContact();
   const manualEmails = parseEmails(refs.manualEmail.value);
   const emails = manualEmails.length ? manualEmails : contact ? contactEmails(contact) : parseEmails(refs.adminToEmail.value);
@@ -1015,32 +1360,30 @@ function optInCurrentContact() {
     toast("Choose a valid consent date that is not in the future.");
     return;
   }
-  emails.forEach((email) => {
-    const normalized = normalizeEmail(email);
-    optOutEmails.delete(normalized);
-    consentDates.set(normalized, consentDate);
-  });
-  localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
-  persistConsentDates();
+  if (!confirmConsentForEmails(emails, consentDate)) return;
+  const saveResult = await saveConsentThenRemoveSuppression(emails, consentDate);
   renderAll();
-  toast(`${emails.length} consent date${emails.length === 1 ? "" : "s"} saved for ${formatConsentDate(consentDate)}.`);
+  toast(saveResult === "permanent"
+    ? `${emails.length} consent date${emails.length === 1 ? "" : "s"} saved permanently for ${formatConsentDate(consentDate)}.`
+    : saveResult === "local"
+      ? `${emails.length} consent date${emails.length === 1 ? "" : "s"} saved in this browser for ${formatConsentDate(consentDate)}; live sending remains paused.`
+      : "The consent update did not fully save on the server; suppression was not removed and live sending remains paused.");
 }
 
-function optOutContactById(contactId) {
+async function optOutContactById(contactId) {
   const contact = contacts.find((row) => row.id === contactId);
   if (!contact) return;
-  contactEmails(contact).forEach((email) => {
-    const normalized = normalizeEmail(email);
-    optOutEmails.add(normalized);
-    consentDates.delete(normalized);
-  });
-  persistConsentDates({ sync: false });
-  persistOptOutEmails();
+  const emails = contactEmails(contact);
+  const saveResult = await addSuppressionsThenRemoveConsent(emails);
   renderAll();
-  toast(`${contact.displayName || contact.school} opted out.`);
+  toast(saveResult === "permanent"
+    ? `${contact.displayName || contact.school} opted out permanently.`
+    : saveResult === "local"
+      ? `${contact.displayName || contact.school} opted out in this browser only; live sending remains paused.`
+      : `The opt-out update did not fully save on the server; live sending remains paused.`);
 }
 
-function optInContactById(contactId) {
+async function optInContactById(contactId) {
   const contact = contacts.find((row) => row.id === contactId);
   if (!contact) return;
   const input = refs.adminContactList.querySelector(`[data-consent-date="${CSS.escape(contactId || "")}"]`);
@@ -1049,15 +1392,15 @@ function optInContactById(contactId) {
     toast("Choose a valid consent date that is not in the future.");
     return;
   }
-  contactEmails(contact).forEach((email) => {
-    const normalized = normalizeEmail(email);
-    optOutEmails.delete(normalized);
-    consentDates.set(normalized, consentDate);
-  });
-  localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
-  persistConsentDates();
+  const emails = contactEmails(contact);
+  if (!confirmConsentForEmails(emails, consentDate)) return;
+  const saveResult = await saveConsentThenRemoveSuppression(emails, consentDate);
   renderAll();
-  toast(`${contact.displayName || contact.school} consent saved for ${formatConsentDate(consentDate)}.`);
+  toast(saveResult === "permanent"
+    ? `${contact.displayName || contact.school} consent saved permanently for ${formatConsentDate(consentDate)}.`
+    : saveResult === "local"
+      ? `${contact.displayName || contact.school} consent saved in this browser for ${formatConsentDate(consentDate)}; live sending remains paused.`
+      : "The consent update did not fully save on the server; suppression was not removed and live sending remains paused.");
 }
 
 function loadOptOutEmails() {
@@ -1094,9 +1437,7 @@ function consentDateForContact(contact = {}) {
 }
 
 function todayDateValue() {
-  const now = new Date();
-  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 10);
+  return new Date().toISOString().slice(0, 10);
 }
 
 function isValidConsentDate(value) {
@@ -1111,28 +1452,95 @@ function formatConsentDate(value) {
   return Number.isNaN(parsed.getTime()) ? value : parsed.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
 }
 
+function confirmConsentForEmails(emails, consentDate) {
+  const normalizedEmails = parseEmails(emails.join(" "));
+  if (normalizedEmails.length <= 1) return normalizedEmails.length === 1;
+  return window.confirm(
+    `Record ${formatConsentDate(consentDate)} as the consent date for all ${normalizedEmails.length} addresses below?\n\n`
+      + `${normalizedEmails.join("\n")}\n\nEach address must have separately provided consent.`
+  );
+}
+
 function persistOptOutEmails() {
   localStorage.setItem(OPT_OUT_KEY, JSON.stringify([...optOutEmails].sort()));
-  if (serverAvailable) syncOptOutEmails();
 }
 
-function persistConsentDates({ sync = true } = {}) {
+function persistConsentDates() {
   localStorage.setItem(CONSENT_DATES_KEY, JSON.stringify(Object.fromEntries(consentDates)));
-  if (serverAvailable && sync) syncConsentDates();
 }
 
-async function syncOptOutEmails() {
+async function pauseSendingForPolicyFailure() {
+  settings.sendingEnabled = false;
+  serverCanSend = false;
+  if (refs.settingSendingEnabled) refs.settingSendingEnabled.checked = false;
+  persistSettings();
+  if (serverAvailable) await setServerSendingEnabled(false);
+}
+
+async function addSuppressionsThenRemoveConsent(emails) {
+  const normalizedEmails = parseEmails(emails.join(" "));
+  normalizedEmails.forEach((email) => optOutEmails.add(email));
+  persistOptOutEmails();
+
+  if (serverAvailable) {
+    const suppressionSaved = await updateOptOutsOnServer("save-opt-outs", normalizedEmails, true);
+    return suppressionSaved ? "permanent" : "failed";
+  }
+
+  normalizedEmails.forEach((email) => consentDates.delete(email));
+  persistConsentDates();
+  await pauseSendingForPolicyFailure();
+  return "local";
+}
+
+async function saveConsentThenRemoveSuppression(emails, consentDate) {
+  const normalizedEmails = parseEmails(emails.join(" "));
+  normalizedEmails.forEach((email) => consentDates.set(email, consentDate));
+  persistConsentDates();
+
+  if (!serverAvailable) {
+    normalizedEmails.forEach((email) => optOutEmails.delete(email));
+    persistOptOutEmails();
+    await pauseSendingForPolicyFailure();
+    return "local";
+  }
+
+  const requestedConsents = Object.fromEntries(normalizedEmails.map((email) => [email, consentDate]));
+  const consentSaved = await saveConsentsOnServer(requestedConsents, { pauseOnFailure: true });
+  if (!consentSaved) return "failed";
+  normalizedEmails.forEach((email) => optOutEmails.delete(email));
+  persistOptOutEmails();
+  return "permanent";
+}
+
+async function updateOptOutsOnServer(action, emails, pauseOnFailure = false) {
   if (!serverAvailable) return false;
-  const response = await apiRequest("save-opt-outs", { optOutEmails: [...optOutEmails].sort() }, { quiet: true });
-  if (!response?.ok) return false;
+  const response = await apiRequest(action, { optOutEmails: parseEmails(emails.join(" ")) }, { quiet: true });
+  if (!response?.ok) {
+    if (pauseOnFailure) {
+      const localOptOutSnapshot = [...optOutEmails];
+      await pauseSendingForPolicyFailure();
+      optOutEmails = new Set(localOptOutSnapshot);
+      persistOptOutEmails();
+    }
+    return false;
+  }
   applyServerState(response);
   return true;
 }
 
-async function syncConsentDates() {
+async function saveConsentsOnServer(requestedConsents, { pauseOnFailure = false } = {}) {
   if (!serverAvailable) return false;
-  const response = await apiRequest("save-consents", { consentDates: Object.fromEntries(consentDates) }, { quiet: true });
-  if (!response?.ok) return false;
+  const response = await apiRequest("save-consents", { consentDates: requestedConsents }, { quiet: true });
+  if (!response?.ok) {
+    if (pauseOnFailure) {
+      const localConsentSnapshot = new Map(consentDates);
+      await pauseSendingForPolicyFailure();
+      consentDates = localConsentSnapshot;
+      persistConsentDates();
+    }
+    return false;
+  }
   applyServerState(response);
   return true;
 }
@@ -1205,23 +1613,23 @@ async function saveTemplateFromEditor() {
     toast("Add template text before saving.");
     return;
   }
-  settings.emailTemplate = ensureRequiredEmailTemplate(template);
+  settings.emailTemplate = normalizeEmailTemplate(template);
   settings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
   persistSettings();
-  if (serverAvailable) await syncSettings();
+  const saved = serverAvailable ? await syncSettings() : false;
   renderTemplateEditor();
   updateEmailPreview();
-  toast(serverAvailable ? "Email template saved permanently." : "Email template saved in this browser.");
+  toast(serverAvailable && saved ? "Email template saved permanently." : "Email template saved in this browser only.");
 }
 
 async function resetTemplate() {
   settings.emailTemplate = defaultEmailTemplate();
   settings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
   persistSettings();
-  if (serverAvailable) await syncSettings();
+  const saved = serverAvailable ? await syncSettings() : false;
   renderTemplateEditor();
   updateEmailPreview();
-  toast(serverAvailable ? "Email template reset and saved." : "Email template reset in this browser.");
+  toast(serverAvailable && saved ? "Email template reset and saved." : "Email template reset in this browser only.");
 }
 
 function resolveTemplate(template, contact) {
@@ -1269,44 +1677,8 @@ function buildQuickResponseLink(contact = {}) {
   return `${PUBLIC_SITE_ORIGIN}/respond.html?${params.toString()}`;
 }
 
-function ensureRequiredEmailTemplate(template) {
-  let cleanTemplate = stripGradePointTemplate(template || defaultEmailTemplate()).trim();
-  cleanTemplate = ensureWebsiteLinkTemplate(cleanTemplate);
-  cleanTemplate = ensureVideoLinkTemplate(cleanTemplate);
-  return ensureQuickResponseTemplate(cleanTemplate);
-}
-
-function ensureWebsiteLinkTemplate(template) {
-  const cleanTemplate = String(template || "").trim();
-  if (/\{\{website_link\}\}|(?:https?:\/\/)?(?:www\.)?roycecastle\.com\/?(?:\s|$)/i.test(cleanTemplate)) return cleanTemplate;
-  const websiteBlock = `You can view my recruiting profile, highlight video, and action photo library here:
-{{website_link}}`;
-  if (/Quick reply option, no typing required:/i.test(cleanTemplate)) {
-    return cleanTemplate.replace(/\n*Quick reply option, no typing required:/i, `\n\n${websiteBlock}\n\nQuick reply option, no typing required:`);
-  }
-  return `${cleanTemplate}\n\n${websiteBlock}`;
-}
-
-function ensureVideoLinkTemplate(template) {
-  const cleanTemplate = String(template || "").trim();
-  if (/\{\{video_link\}\}|(?:https?:\/\/)?(?:www\.)?roycecastle\.com\/?#video/i.test(cleanTemplate)) return cleanTemplate;
-  const videoBlock = `Direct highlight video section:
-{{video_link}}`;
-  if (/Quick reply option, no typing required:/i.test(cleanTemplate)) {
-    return cleanTemplate.replace(/\n*Quick reply option, no typing required:/i, `\n\n${videoBlock}\n\nQuick reply option, no typing required:`);
-  }
-  return `${cleanTemplate}\n\n${videoBlock}`;
-}
-
-function ensureQuickResponseTemplate(template) {
-  const cleanTemplate = String(template || defaultEmailTemplate()).trim();
-  if (/\{\{quick_response_link\}\}/i.test(cleanTemplate)) return cleanTemplate;
-  return `${cleanTemplate}
-
-Quick reply option, no typing required:
-{{quick_response_link}}
-
-That link lets your staff choose highly interested, moderately interested, or still exploring fit, and it opens a prefilled response email.`;
+function normalizeEmailTemplate(template) {
+  return stripGradePointTemplate(template || defaultEmailTemplate()).trim();
 }
 
 function stripGradePointTemplate(template) {
@@ -1404,33 +1776,73 @@ function normalizeSettings(rawSettings = {}) {
   loadedSettings.smtpSecurity = normalizeSmtpSecurity(loadedSettings.smtpSecurity);
   loadedSettings.smtpUser = normalizeMailboxSetting(loadedSettings.smtpUser || loadedSettings.fromEmail || DEFAULT_MAILBOX);
   loadedSettings.smtpPasswordSet = !!rawSettings?.smtpPasswordSet;
-  loadedSettings.delaySeconds = normalizeRunDelaySeconds(loadedSettings.delaySeconds);
+  loadedSettings.sendingEnabled = rawSettings?.sendingEnabled === true;
+  loadedSettings.emailFormat = rawSettings?.emailFormat === "html" ? "html" : "plain";
+  loadedSettings.trackOpens = loadedSettings.emailFormat === "html" && rawSettings?.trackOpens === true;
+  loadedSettings.dailySendLimit = normalizeDailySendLimit(loadedSettings.dailySendLimit);
+  loadedSettings.openDrafts = rawSettings?.openDrafts === true;
   loadedSettings.emailTemplate = shouldUpgradeLegacyTemplate(loadedSettings.emailTemplate, savedTemplateVersion)
     ? defaultEmailTemplate()
-    : ensureRequiredEmailTemplate(loadedSettings.emailTemplate);
+    : normalizeEmailTemplate(loadedSettings.emailTemplate);
   loadedSettings.emailTemplateVersion = EMAIL_TEMPLATE_VERSION;
+  loadedSettings.delaySeconds = normalizeSendDelay(loadedSettings.delaySeconds);
   return loadedSettings;
+}
+
+function normalizeSendDelay(value) {
+  return Math.max(PRIVATE_EMAIL_MIN_DELAY_SECONDS, Number(value) || PRIVATE_EMAIL_MIN_DELAY_SECONDS);
+}
+
+function normalizeDailySendLimit(value) {
+  return Math.min(DAILY_SEND_LIMIT_MAX, Math.max(1, Math.floor(Number(value) || 1)));
+}
+
+function normalizeDailySendStatus(rawStatus = {}) {
+  const limit = normalizeDailySendLimit(rawStatus.limit);
+  const attempts = Math.max(0, Math.floor(Number(rawStatus.attempts) || 0));
+  return {
+    date: String(rawStatus.date || ""),
+    attempts,
+    limit,
+    remaining: Math.max(0, Math.min(limit, Math.floor(Number(rawStatus.remaining) || 0)))
+  };
+}
+
+function normalizeDeliveryStats(rawStats = {}) {
+  const rawRuns = Array.isArray(rawStats.runs) ? rawStats.runs : [];
+  const runs = [];
+  const seenRunIds = new Set();
+  rawRuns.forEach((rawRun) => {
+    if (!rawRun || typeof rawRun !== "object") return;
+    const run = normalizeRunSummary(rawRun);
+    if (!run.id || seenRunIds.has(run.id)) return;
+    seenRunIds.add(run.id);
+    runs.push(run);
+  });
+  if (rawStats.lastRun && typeof rawStats.lastRun === "object") {
+    const legacyLastRun = normalizeRunSummary(rawStats.lastRun);
+    if (legacyLastRun.id && !seenRunIds.has(legacyLastRun.id)) runs.unshift(legacyLastRun);
+  }
+  runs.splice(50);
+  const lastRun = runs[0] || null;
+  return {
+    attempted: Math.max(0, Number(rawStats.attempted || 0)),
+    accepted: Math.max(0, Number(rawStats.accepted || 0)),
+    failed: Math.max(0, Number(rawStats.failed || 0)),
+    smtpAccepted: Math.max(0, Number(rawStats.smtpAccepted || 0)),
+    mailAccepted: Math.max(0, Number(rawStats.mailAccepted || 0)),
+    unknownAccepted: Math.max(0, Number(rawStats.unknownAccepted || 0)),
+    baselineLimited: !!rawStats.baselineLimited,
+    initializedAt: String(rawStats.initializedAt || ""),
+    lastResultAt: String(rawStats.lastResultAt || ""),
+    runs,
+    lastRun
+  };
 }
 
 function shouldUpgradeLegacyTemplate(template, version) {
   if (Number(version || 0) >= EMAIL_TEMPLATE_VERSION) return false;
   return /Royce Castle would be grateful for an evaluation conversation\s+with\s+\{\{school_name\}\}/i.test(String(template || ""));
-}
-
-function readRunDelaySeconds() {
-  const delaySeconds = normalizeRunDelaySeconds(refs.scheduleDelay.value);
-  refs.scheduleDelay.value = delaySeconds;
-  return delaySeconds;
-}
-
-function normalizeRunDelaySeconds(value) {
-  const parsed = Number(value);
-  const requestedDelay = Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_EMAIL_DELAY_SECONDS;
-  return Math.max(MIN_EMAIL_DELAY_SECONDS, Math.ceil(requestedDelay));
-}
-
-function emailsPerHour(delaySeconds) {
-  return Math.floor(3600 / normalizeRunDelaySeconds(delaySeconds));
 }
 
 function normalizeMailboxSetting(value) {
@@ -1449,15 +1861,13 @@ function settingsForBrowserStorage(value = settings) {
 }
 
 function settingsForServer(value = settings) {
-  return settingsForBrowserStorage(value);
+  const copy = settingsForBrowserStorage(value);
+  delete copy.sendingEnabled;
+  return copy;
 }
 
 function persistSettings() {
   localStorage.setItem(ADMIN_SETTINGS_KEY, JSON.stringify(settingsForBrowserStorage(settings)));
-  if (serverAvailable) {
-    clearTimeout(settingsSyncTimer);
-    settingsSyncTimer = setTimeout(() => syncSettings(), 500);
-  }
 }
 
 async function syncSettings(extra = {}) {
@@ -1471,8 +1881,12 @@ async function syncSettings(extra = {}) {
   return true;
 }
 
-function getAdminCode() {
-  return localStorage.getItem(ADMIN_CODE_KEY) || "Patriot";
+async function setServerSendingEnabled(enabled) {
+  if (!serverAvailable) return false;
+  const response = await apiRequest("set-sending-enabled", { enabled: enabled === true }, { quiet: true });
+  if (!response?.ok) return false;
+  applyServerState(response);
+  return true;
 }
 
 function loadMessages() {
@@ -1484,7 +1898,7 @@ function loadMessages() {
   }
 }
 
-function recordEmailHistory(target, status = "Sent") {
+function recordEmailHistory(target, status = "Manually recorded as sent") {
   if (!target.contactId) return;
   const item = {
     id: `email-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,

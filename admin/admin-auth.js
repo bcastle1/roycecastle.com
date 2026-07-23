@@ -1,5 +1,4 @@
 (function () {
-  const ADMIN_CODE_KEY = "royceCastleRecruitingStudio.adminCode.v1";
   const ADMIN_SESSION_KEY = "royceCastleRecruitingStudio.adminUnlocked.v1";
 
   if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "true") return;
@@ -24,9 +23,8 @@
     overlay.querySelector("#page-admin-auth").addEventListener("submit", async (event) => {
       event.preventDefault();
       const code = overlay.querySelector("#page-admin-code").value;
-      const expected = localStorage.getItem(ADMIN_CODE_KEY) || "Patriot";
       const serverOk = await loginWithServer(code);
-      if (serverOk || code === expected) {
+      if (serverOk) {
         sessionStorage.setItem(ADMIN_SESSION_KEY, "true");
         overlay.remove();
         return;

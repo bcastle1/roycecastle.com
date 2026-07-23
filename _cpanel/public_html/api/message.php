@@ -21,8 +21,7 @@ $message['id'] = (string)($message['id'] ?? ('message-' . time() . '-' . bin2hex
 $message['createdAt'] = (string)($message['createdAt'] ?? gmdate('c'));
 $message['status'] = 'New';
 
-$messages = read_json_file('messages.json', []);
-array_unshift($messages, [
+$savedMessage = [
     'id' => $message['id'],
     'name' => $name,
     'email' => $email,
@@ -31,8 +30,11 @@ array_unshift($messages, [
     'body' => $bodyText,
     'createdAt' => $message['createdAt'],
     'status' => 'New',
-]);
-write_json_file('messages.json', array_slice($messages, 0, 300));
+];
+update_json_file('messages.json', [], function (array $messages) use ($savedMessage): array {
+    array_unshift($messages, $savedMessage);
+    return array_slice($messages, 0, 300);
+});
 
 $settings = load_settings();
 $to = normalize_email((string)($settings['forwardEmail'] ?? RC_DEFAULT_MAILBOX));
