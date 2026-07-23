@@ -38,7 +38,9 @@ async function syncServerState() {
     const response = await fetch("api/admin.php?action=state", { credentials: "same-origin" });
     if (!response.ok) return;
     const state = await response.json();
-    if (Array.isArray(state.emailHistory)) localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(state.emailHistory));
+    if (Array.isArray(state.emailHistory)) {
+      localStorage.setItem(EMAIL_HISTORY_KEY, JSON.stringify(state.emailHistory.slice(0, 500)));
+    }
   } catch {
     // Static hosting keeps using browser-local history.
   }

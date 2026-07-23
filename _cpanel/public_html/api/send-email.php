@@ -6,37 +6,100 @@ require_admin();
 
 $target = request_json();
 $settings = load_settings();
+
+if (empty($settings['sendingEnabled'])) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'paused' => true,
+        'error' => 'Live sending is paused in Admin & Email Settings.',
+    ], 423);
+}
+if (!smtp_configured($settings)) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'error' => 'Authenticated SMTP is required for every live send.',
+    ], 503);
+}
+
 $emails = parse_emails((string)($target['email'] ?? ''));
-$optOuts = read_json_file('opt-outs.json', []);
-$optOutMap = array_fill_keys(array_map('normalize_email', $optOuts), true);
-$savedConsentDates = read_json_file('consent-dates.json', []);
-$consentDates = [];
-foreach ($savedConsentDates as $email => $date) {
-    $normalized = normalize_email((string)$email);
-    $date = substr(trim((string)$date), 0, 10);
-    if (filter_var($normalized, FILTER_VALIDATE_EMAIL) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
-        $consentDates[$normalized] = $date;
-    }
+if (count($emails) !== 1) {
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'Live sends must contain exactly one individualized recipient.'], 422);
 }
-$emails = array_values(array_filter($emails, fn($email) => empty($optOutMap[$email]) && isset($consentDates[$email])));
+$recipient = $emails[0];
 
-if (!$emails) {
-    respond_json(['ok' => false, 'sent' => false, 'error' => 'No recipients have an active saved consent date.'], 422);
+try {
+    $optOutMap = send_normalized_email_set(read_json_file('opt-outs.json', [], true));
+    $consentDates = send_normalize_consent_dates(read_json_file('consent-dates.json', [], true));
+} catch (Throwable $exception) {
+    pause_sending_after_safety_state_failure($exception);
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'paused' => true,
+        'error' => 'Recipient eligibility records could not be verified, so live sending was paused.',
+    ], 503);
 }
 
-$from = normalize_email((string)($settings['fromEmail'] ?? RC_DEFAULT_MAILBOX));
+if (isset($optOutMap[$recipient])) {
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'The recipient is suppressed from live sending.'], 422);
+}
+if (!array_key_exists($recipient, $consentDates)) {
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'The recipient does not have an active saved consent date that is a valid nonfuture UTC date.'], 422);
+}
+
+$runId = trim((string)($target['runId'] ?? ''));
+$runTotal = (int)($target['runTotal'] ?? 0);
+$runPosition = (int)($target['runPosition'] ?? 0);
+$dailySendLimit = min(RC_MAX_DAILY_SEND_ATTEMPTS, max(1, (int)($settings['dailySendLimit'] ?? 1)));
+if (
+    $runId === '' ||
+    preg_match('/^[a-zA-Z0-9._:-]{1,120}$/', $runId) !== 1 ||
+    empty($target['runConfirmed']) ||
+    $runTotal !== RC_LIVE_RUN_RECIPIENT_LIMIT ||
+    $runPosition !== 1
+) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'error' => 'Every live send requires a separate confirmation for exactly one recipient.',
+    ], 422);
+}
+$dailyStatus = daily_send_status($dailySendLimit);
+$remainingRunAttempts = $runTotal - $runPosition + 1;
+if ($remainingRunAttempts > (int)$dailyStatus['remaining']) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'dailyLimitReached' => true,
+        'dailySendStatus' => $dailyStatus,
+        'error' => 'This run exceeds the remaining UTC daily live-send attempt quota.',
+    ], 429);
+}
+
+$from = normalize_email((string)($settings['smtpUser'] ?? RC_DEFAULT_MAILBOX));
 $replyTo = normalize_email((string)($settings['forwardEmail'] ?? $from));
-if (!filter_var($from, FILTER_VALIDATE_EMAIL)) $from = RC_DEFAULT_MAILBOX;
+if (!filter_var($from, FILTER_VALIDATE_EMAIL)) {
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'The authenticated SMTP mailbox is not a valid sender address.'], 503);
+}
 if (!filter_var($replyTo, FILTER_VALIDATE_EMAIL)) $replyTo = $from;
 
 $subject = safe_header_value((string)($target['subject'] ?? "Royce Castle | Basketball Recruiting"));
-$bodyText = ensure_required_links((string)($target['body'] ?? ''), $target);
-$trackingId = 'open-' . bin2hex(random_bytes(12));
+$bodyText = trim((string)($target['body'] ?? ''));
+if ($subject === '' || $bodyText === '') {
+    respond_json(['ok' => false, 'sent' => false, 'error' => 'A nonblank subject and message body are required.'], 422);
+}
+$emailFormat = ($settings['emailFormat'] ?? 'plain') === 'html' ? 'html' : 'plain';
+$trackOpens = $emailFormat === 'html' && !empty($settings['trackOpens']);
+$trackingId = $trackOpens ? 'open-' . bin2hex(random_bytes(12)) : '';
 $historyId = 'email-' . time() . '-' . bin2hex(random_bytes(4));
 
 $historyItem = [
     'id' => $historyId,
     'trackingId' => $trackingId,
+    'runId' => (string)($target['runId'] ?? ''),
+    'runPosition' => (int)($target['runPosition'] ?? 0),
     'contactId' => (string)($target['contactId'] ?? ''),
     'school' => (string)($target['label'] ?? ''),
     'email' => implode(', ', $emails),
@@ -48,81 +111,132 @@ $historyItem = [
     'viewedAt' => '',
     'openedAt' => '',
     'openCount' => 0,
+    'emailFormat' => $emailFormat,
+    'trackingEnabled' => $trackOpens,
 ];
 
 $sent = false;
 $error = '';
-$transport = 'php-mail';
-if (smtp_configured($settings)) {
-    $transport = 'smtp';
-    $sent = send_recruiting_email_smtp($emails, $subject, $bodyText, $settings, $target, $trackingId, $from, $replyTo, $error);
-    if (!$sent && function_exists('mail')) {
-        $fallbackError = '';
-        $sent = send_recruiting_email_mail($emails, $subject, $bodyText, $settings, $target, $trackingId, $from, $replyTo);
-        $fallbackError = $sent ? 'PHP mail fallback succeeded.' : 'PHP mail fallback returned false.';
-        $error = trim($error . ' ' . $fallbackError);
-        $transport = $sent ? 'smtp-fallback-mail' : 'smtp';
-    }
-} elseif (function_exists('mail')) {
-    $sent = send_recruiting_email_mail($emails, $subject, $bodyText, $settings, $target, $trackingId, $from, $replyTo);
-    if (!$sent) $error = 'PHP mail() returned false.';
-} else {
-    $error = 'No SMTP password is saved and PHP mail() is not available on this host.';
+$transport = 'smtp';
+$slot = claim_smtp_send_slot(max(RC_PRIVATE_EMAIL_MIN_DELAY_SECONDS, (int)($settings['delaySeconds'] ?? 0)));
+if (empty($slot['allowed'])) {
+    $retryAfter = max(1, (int)($slot['retryAfter'] ?? 1));
+    header('Retry-After: ' . $retryAfter);
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'rateLimited' => true,
+        'retryAfter' => $retryAfter,
+        'error' => 'Mailbox pacing is active. Retry this recipient shortly.',
+    ], 429);
+}
+$runClaim = claim_live_run_target($runId, $runTotal, $runPosition, $emails[0]);
+if (empty($runClaim['allowed'])) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'error' => (string)($runClaim['error'] ?? 'This recipient was already submitted for the live run.'),
+    ], 409);
+}
+if ($runPosition === $runTotal) {
+    set_sending_enabled(false);
+}
+$dailyClaim = claim_daily_send_attempt($dailySendLimit);
+if (empty($dailyClaim['allowed'])) {
+    respond_json([
+        'ok' => false,
+        'sent' => false,
+        'dailyLimitReached' => true,
+        'dailySendStatus' => $dailyClaim,
+        'error' => 'The UTC daily live-send attempt limit has been reached.',
+    ], 429);
+}
+$sent = send_recruiting_email_smtp($emails, $subject, $bodyText, $settings, $target, $trackingId, $from, $replyTo, $error);
+
+$historyItem['status'] = $sent ? 'Accepted by SMTP' : 'Send failed';
+$historyItem['transport'] = $transport;
+$accountingWarnings = [];
+$historySaved = false;
+$deliveryStats = null;
+try {
+    $deliveryStats = record_delivery_result($target, $sent, $transport, $error);
+} catch (Throwable $exception) {
+    $accountingWarnings[] = 'Delivery totals could not be updated.';
+    error_log('Royce delivery stats save failed: ' . $exception->getMessage());
 }
 
-$historyItem['status'] = $sent ? 'Sent' : 'Send failed';
-$historyItem['transport'] = $transport;
-$history = upsert_by_id(read_json_file('email-history.json', []), $historyItem);
-write_json_file('email-history.json', $history);
+try {
+    update_json_file(
+        'email-history.json',
+        [],
+        fn(array $items): array => upsert_by_id($items, $historyItem)
+    );
+    $historySaved = true;
+} catch (Throwable $exception) {
+    $accountingWarnings[] = 'Detailed history could not be saved.';
+    error_log('Royce email history save failed: ' . $exception->getMessage());
+}
 
-$log = read_json_file('run-log.json', []);
-array_unshift($log, [
-    'createdAt' => gmdate('c'),
-    'message' => ($sent ? 'Sent' : 'Could not send') . ' recruiting email to ' . implode(', ', $emails) . '.',
-]);
-write_json_file('run-log.json', array_slice($log, 0, 200));
+$transportLabel = 'SMTP';
+$logMessage = ($sent ? 'Accepted' : 'Could not send') . ' recruiting email to ' . implode(', ', $emails) . ' via ' . $transportLabel . '.';
+if (!$sent && $error !== '') $logMessage .= ' ' . $error;
+try {
+    update_json_file('run-log.json', [], function (array $log) use ($logMessage): array {
+        array_unshift($log, [
+            'createdAt' => gmdate('c'),
+            'message' => $logMessage,
+        ]);
+        return array_slice($log, 0, 200);
+    });
+} catch (Throwable $exception) {
+    $accountingWarnings[] = 'The server run log could not be updated.';
+    error_log('Royce run log save failed: ' . $exception->getMessage());
+}
 
 respond_json([
     'ok' => true,
     'sent' => $sent,
     'error' => $error,
     'transport' => $transport,
+    'historySaved' => $historySaved,
+    'accountingWarning' => implode(' ', $accountingWarnings),
+    'deliveryStats' => $deliveryStats,
+    'dailySendStatus' => $dailyClaim,
     'historyItem' => $historyItem,
 ]);
 
-function send_recruiting_email_mail(array $emails, string $subject, string $text, array $settings, array $target, string $trackingId, string $from, string $replyTo): bool
+function send_normalized_email_set($values): array
 {
-    $boundary = 'rc-' . bin2hex(random_bytes(12));
-    $toLine = implode(', ', $emails);
-    $cc = implode(', ', parse_emails((string)($settings['ccEmail'] ?? '')));
-    $headers = [
-        'MIME-Version: 1.0',
-        'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
-        'From: Royce Castle Recruiting <' . $from . '>',
-        'Reply-To: ' . $replyTo,
-        'X-Mailer: Royce Castle Recruiting',
-    ];
-    if ($cc !== '') $headers[] = 'Cc: ' . $cc;
+    $emails = [];
+    foreach (is_array($values) ? $values : [] as $value) {
+        $email = normalize_email((string)$value);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) $emails[$email] = true;
+    }
+    return $emails;
+}
 
-    $html = email_html($text, $settings, $target, $trackingId);
-    $message = "--{$boundary}\r\n"
-        . "Content-Type: text/plain; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-        . $text . "\r\n\r\n"
-        . "--{$boundary}\r\n"
-        . "Content-Type: text/html; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-        . $html . "\r\n\r\n"
-        . "--{$boundary}--";
+function send_normalize_consent_dates($values): array
+{
+    $consentDates = [];
+    foreach (is_array($values) ? $values : [] as $email => $date) {
+        $normalized = normalize_email((string)$email);
+        $normalizedDate = send_normalize_utc_consent_date($date);
+        if (!filter_var($normalized, FILTER_VALIDATE_EMAIL) || $normalizedDate === '') continue;
+        $consentDates[$normalized] = $normalizedDate;
+    }
+    return $consentDates;
+}
 
-    return mail($toLine, $subject, $message, implode("\r\n", $headers), '-f' . $from);
+function send_normalize_utc_consent_date($value): string
+{
+    $date = trim((string)$value);
+    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})$/D', $date, $parts) !== 1) return '';
+    if (!checkdate((int)$parts[2], (int)$parts[3], (int)$parts[1])) return '';
+    return $date <= gmdate('Y-m-d') ? $date : '';
 }
 
 function send_recruiting_email_smtp(array $emails, string $subject, string $text, array $settings, array $target, string $trackingId, string $from, string $replyTo, string &$error): bool
 {
-    $boundary = 'rc-' . bin2hex(random_bytes(12));
-    $ccEmails = parse_emails((string)($settings['ccEmail'] ?? ''));
-    $allRecipients = array_values(array_unique(array_merge($emails, $ccEmails)));
     $smtpUser = normalize_email((string)($settings['smtpUser'] ?? $from));
     $smtpPassword = smtp_password($settings);
     $host = trim((string)($settings['smtpHost'] ?? RC_DEFAULT_SMTP_HOST));
@@ -139,26 +253,31 @@ function send_recruiting_email_smtp(array $emails, string $subject, string $text
         'To: ' . implode(', ', $emails),
         'Subject: ' . $subject,
         'MIME-Version: 1.0',
-        'Content-Type: multipart/alternative; boundary="' . $boundary . '"',
         'From: Royce Castle Recruiting <' . $from . '>',
         'Reply-To: ' . $replyTo,
-        'X-Mailer: Royce Castle Recruiting',
     ];
-    if ($ccEmails) $headers[] = 'Cc: ' . implode(', ', $ccEmails);
 
-    $html = email_html($text, $settings, $target, $trackingId);
-    $body = "--{$boundary}\r\n"
-        . "Content-Type: text/plain; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-        . $text . "\r\n\r\n"
-        . "--{$boundary}\r\n"
-        . "Content-Type: text/html; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: 8bit\r\n\r\n"
-        . $html . "\r\n\r\n"
-        . "--{$boundary}--";
+    if (($settings['emailFormat'] ?? 'plain') !== 'html') {
+        $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+        $headers[] = 'Content-Transfer-Encoding: 8bit';
+        $body = normalize_email_body($text);
+    } else {
+        $boundary = 'rc-' . bin2hex(random_bytes(12));
+        $headers[] = 'Content-Type: multipart/alternative; boundary="' . $boundary . '"';
+        $html = email_html($text, $settings, $trackingId, !empty($settings['trackOpens']));
+        $body = "--{$boundary}\r\n"
+            . "Content-Type: text/plain; charset=UTF-8\r\n"
+            . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+            . normalize_email_body($text) . "\r\n\r\n"
+            . "--{$boundary}\r\n"
+            . "Content-Type: text/html; charset=UTF-8\r\n"
+            . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+            . $html . "\r\n\r\n"
+            . "--{$boundary}--";
+    }
     $message = implode("\r\n", $headers) . "\r\n\r\n" . $body;
 
-    return smtp_send($host, $port, $security, $smtpUser, $smtpPassword, $from, $allRecipients, $message, $error);
+    return smtp_send($host, $port, $security, $smtpUser, $smtpPassword, $from, $emails, $message, $error);
 }
 
 function smtp_send(string $host, int $port, string $security, string $username, string $password, string $from, array $recipients, string $message, string &$error): bool
@@ -242,14 +361,20 @@ function smtp_dot_stuff(string $message): string
     return preg_replace('/^\./m', '..', $normalized) ?? $normalized;
 }
 
-function email_html(string $text, array $settings, array $target, string $trackingId): string
+function normalize_email_body(string $text): string
 {
-    $website = safe_text((string)($target['websiteLink'] ?? RC_PUBLIC_ORIGIN . '/'));
-    $video = safe_text((string)($target['videoLink'] ?? RC_PUBLIC_ORIGIN . '/#video'));
-    $quick = safe_text((string)($target['quickResponseLink'] ?? RC_PUBLIC_ORIGIN . '/respond.html'));
+    return preg_replace("/\r\n|\r|\n/", "\r\n", $text) ?? $text;
+}
+
+function email_html(string $text, array $settings, string $trackingId, bool $trackOpens): string
+{
     $replyTo = safe_text((string)($settings['forwardEmail'] ?? $settings['fromEmail'] ?? RC_DEFAULT_MAILBOX));
     $profile = nl2br(link_urls(safe_text($text)));
-    $pixel = RC_PUBLIC_ORIGIN . '/api/open.php?id=' . rawurlencode($trackingId);
+    $trackingPixel = '';
+    if ($trackOpens && $trackingId !== '') {
+        $pixel = RC_PUBLIC_ORIGIN . '/api/open.php?id=' . rawurlencode($trackingId);
+        $trackingPixel = '<img src="' . safe_text($pixel) . '" width="1" height="1" alt="" style="display:none;width:1px;height:1px;">';
+    }
 
     return '<!doctype html><html><body style="margin:0;background:#eef2f6;padding:28px;font-family:Inter,Segoe UI,Arial,sans-serif;color:#07111f;">'
         . '<div style="max-width:720px;margin:0 auto;background:#ffffff;border:1px solid #d9e0ea;border-radius:8px;overflow:hidden;box-shadow:0 18px 44px rgba(9,17,31,.12);">'
@@ -259,13 +384,10 @@ function email_html(string $text, array $settings, array $target, string $tracki
         . '</div>'
         . '<div style="padding:26px 28px;font-size:16px;line-height:1.62;">' . $profile . '</div>'
         . '<div style="padding:0 28px 28px;display:block;">'
-        . '<a href="' . $video . '" style="display:inline-block;margin:0 8px 10px 0;padding:12px 16px;border-radius:8px;background:#7a1026;color:#ffffff;text-decoration:none;font-weight:400;">Watch Highlight Video</a>'
-        . '<a href="' . $website . '" style="display:inline-block;margin:0 8px 10px 0;padding:12px 16px;border-radius:8px;background:#07111f;color:#ffffff;text-decoration:none;font-weight:400;">View Recruiting Site</a>'
-        . '<a href="' . $quick . '" style="display:inline-block;margin:0 0 10px 0;padding:12px 16px;border-radius:8px;background:#f0b323;color:#07111f;text-decoration:none;font-weight:400;">Quick Reply</a>'
-        . '<p style="margin:12px 0 0;color:#5e6879;font-size:13px;line-height:1.5;">Replying to this email will go to ' . $replyTo . '.</p>'
+        . '<p style="margin:0;color:#5e6879;font-size:13px;line-height:1.5;">Replying to this email will go to ' . $replyTo . '.</p>'
         . '</div>'
         . '</div>'
-        . '<img src="' . safe_text($pixel) . '" width="1" height="1" alt="" style="display:none;width:1px;height:1px;">'
+        . $trackingPixel
         . '</body></html>';
 }
 

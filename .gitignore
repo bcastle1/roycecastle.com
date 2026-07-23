@@ -1,1 +1,3 @@
 dist/
+bounced-recipients-*.csv
+*.eml

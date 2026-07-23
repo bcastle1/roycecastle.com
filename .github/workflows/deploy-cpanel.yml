@@ -8,7 +8,10 @@ on:
 
 concurrency:
   group: roycecastle-cpanel-deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
@@ -19,6 +22,8 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -34,8 +39,9 @@ jobs:
           php -l _cpanel/public_html/api/admin.php
           php -l _cpanel/public_html/api/send-email.php
 
-      - name: Deploy current main to cPanel
+      - name: Deploy exact commit to cPanel
         env:
+          DEPLOY_SHA: ${{ github.sha }}
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
@@ -48,29 +54,72 @@ jobs:
           set -euo pipefail
 
           HOST="${CPANEL_HOST:-premium126.web-hosting.com}"
-          USER="${CPANEL_USER:-xromiats}"
+          REMOTE_USER="${CPANEL_USER:-xromiats}"
           PORT="${CPANEL_PORT:-21098}"
           TARGET="${CPANEL_TARGET:-/home/xromiats/roycecastle.com}"
 
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-
-          if [ -n "${CPANEL_KNOWN_HOSTS:-}" ]; then
-            printf '%s\n' "$CPANEL_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          else
-            ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          if [[ ! "$DEPLOY_SHA" =~ ^[0-9a-fA-F]{40}$ ]]; then
+            echo "::error::github.sha is not a full 40-character commit SHA."
+            exit 1
+          fi
+          if [[ ! "$HOST" =~ ^[A-Za-z0-9.-]+$ ]] || [[ ! "$REMOTE_USER" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+            echo "::error::CPANEL_HOST or CPANEL_USER contains unsupported characters."
+            exit 1
+          fi
+          if [[ ! "$PORT" =~ ^[0-9]+$ ]] || (( PORT < 1 || PORT > 65535 )); then
+            echo "::error::CPANEL_PORT must be an integer from 1 through 65535."
+            exit 1
           fi
 
-          SSH_OPTS=(-p "$PORT" -o StrictHostKeyChecking=accept-new)
+          EXPECTED_PREFIX="/home/$REMOTE_USER/"
+          if [[ "$TARGET" != "$EXPECTED_PREFIX"* ]]; then
+            echo "::error::CPANEL_TARGET must be directly beneath /home/$REMOTE_USER."
+            exit 1
+          fi
+          TARGET_NAME="${TARGET#"$EXPECTED_PREFIX"}"
+          if [ "$TARGET_NAME" != "roycecastle.com" ]; then
+            echo "::error::CPANEL_TARGET must be exactly /home/$REMOTE_USER/roycecastle.com."
+            exit 1
+          fi
+
+          if [ -z "${CPANEL_KNOWN_HOSTS:-}" ]; then
+            echo "::error::CPANEL_KNOWN_HOSTS is required and must contain the independently verified cPanel SSH host key."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$CPANEL_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          if ! ssh-keygen -F "[$HOST]:$PORT" -f ~/.ssh/known_hosts >/dev/null 2>&1; then
+            if [ "$PORT" != "22" ] || ! ssh-keygen -F "$HOST" -f ~/.ssh/known_hosts >/dev/null 2>&1; then
+              echo "::error::CPANEL_KNOWN_HOSTS does not contain a pinned key for the configured host and port."
+              exit 1
+            fi
+          fi
+
+          SSH_OPTS=(
+            -p "$PORT"
+            -o StrictHostKeyChecking=yes
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts"
+          )
+          printf -v REMOTE_COMMAND \
+            'ROYCE_TARGET=%q ROYCE_EXPECTED_USER=%q ROYCE_ARCHIVE_SHA=%q bash -s' \
+            "$TARGET" "$REMOTE_USER" "$DEPLOY_SHA"
 
           if [ -n "${CPANEL_SSH_PRIVATE_KEY:-}" ]; then
             printf '%s\n' "$CPANEL_SSH_PRIVATE_KEY" > ~/.ssh/cpanel_deploy_key
             chmod 600 ~/.ssh/cpanel_deploy_key
-            ssh "${SSH_OPTS[@]}" -i ~/.ssh/cpanel_deploy_key "$USER@$HOST" "ROYCE_TARGET='$TARGET' bash -s" < tools/deploy-royce-cpanel-from-github.sh
+            ssh "${SSH_OPTS[@]}" -o BatchMode=yes -i ~/.ssh/cpanel_deploy_key \
+              "$REMOTE_USER@$HOST" "$REMOTE_COMMAND" \
+              < tools/deploy-royce-cpanel-from-github.sh
           elif [ -n "${CPANEL_SSH_PASSWORD:-}" ]; then
             sudo apt-get update
             sudo apt-get install -y sshpass
-            sshpass -p "$CPANEL_SSH_PASSWORD" ssh "${SSH_OPTS[@]}" "$USER@$HOST" "ROYCE_TARGET='$TARGET' bash -s" < tools/deploy-royce-cpanel-from-github.sh
+            SSHPASS="$CPANEL_SSH_PASSWORD" sshpass -e ssh "${SSH_OPTS[@]}" \
+              "$REMOTE_USER@$HOST" "$REMOTE_COMMAND" \
+              < tools/deploy-royce-cpanel-from-github.sh
           else
             echo "::error::Set either CPANEL_SSH_PRIVATE_KEY or CPANEL_SSH_PASSWORD in GitHub repository secrets."
             exit 1
@@ -79,4 +128,11 @@ jobs:
       - name: Verify live health
         run: |
           set -euo pipefail
-          curl -fsS https://roycecastle.com/api/health.php
+          HEALTH_JSON="$(curl -fsS https://roycecastle.com/api/health.php)"
+          HEALTH_JSON="$HEALTH_JSON" node -e '
+            const health = JSON.parse(process.env.HEALTH_JSON || "{}");
+            if (health.ok !== true) throw new Error("Live health did not report ok=true.");
+            if (health.dataWritable !== true) throw new Error("Live data directory is not writable.");
+            if (health.sendingEnabled !== false) throw new Error("Deployment verification requires live sending to remain paused.");
+            console.log(JSON.stringify(health));
+          '
